@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="/plantilla/ModuloPares/Plantillas/plantilla_ocaa_p.xhtml">
+	<ui:define name="contenido">
+		<p:breadCrumb>
+			<p:menuitem value="Inicio" url="#"></p:menuitem>
+			<p:menuitem value="Mostrar Temas" url="#"></p:menuitem>
+		</p:breadCrumb>
+
+		<p:panel header="Mostrar Temas">
+
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Curso"></p:outputLabel>
+				<p:selectOneMenu id="curso"
+					value="#{temaMBean.codigoCursoSeleccionado}">
+					<p:ajax process="curso" update="listaTemas"></p:ajax>
+					<f:selectItem itemLabel="Seleccionar Curso" itemValue=""
+						noSelectionOption="true"></f:selectItem>
+					<f:selectItems value="#{temaMBean.listaCursos}" var="curso"
+						itemLabel="#{curso.nombre}" itemValue="#{curso.cCodigo}"></f:selectItems>
+				</p:selectOneMenu>
+			</p:panelGrid>
+
+			<p:dataTable id="listaTemas" var="tema"
+				value="#{temaMBean.listaTemas}">
+				<p:column headerText="Id">
+					<p:outputLabel value="#{tema.id}"></p:outputLabel>
+				</p:column>
+
+				<p:column headerText="Nombre">
+					<p:outputLabel value="#{tema.nombre}"></p:outputLabel>
+				</p:column>
+
+				<p:column headerText="Descripción">
+					<p:outputLabel value="#{tema.descripcion}"></p:outputLabel>
+				</p:column>
+
+				<p:column headerText="Opciones">
+					<p:commandButton value="Eliminar"
+						actionListener="#{temaMBean.eliminarTema(tema.id)}"
+						update="listaTemas"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+
+</html>

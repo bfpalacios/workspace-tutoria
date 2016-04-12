@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="/plantilla/ModuloPares/Plantillas/plantilla_ocaa_p.xhtml">
+	<ui:define name="contenido">
+		<p:breadCrumb>
+			<p:menuitem value="Inicio" url="#"></p:menuitem>
+			<p:menuitem value="Mostrar Convocatorias" url="#"></p:menuitem>
+		</p:breadCrumb>
+		
+		<p:panel header="Mostrar Convocatorias">
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+				
+			<p:dataTable id="tblConvocatorias" var="convocatoria"
+				value="#{convocatoriaMBean.getListaConvocatorias()}">
+				
+				<p:column headerText="Nombre">
+					<h:outputText value="#{convocatoria.nombre}" />
+				</p:column>
+
+				<p:column headerText="Fecha Inicio">
+					<h:outputText value="#{convocatoria.fechaInicio}" />
+				</p:column>
+
+				<p:column headerText="Fecha Final">
+					<h:outputText value="#{convocatoria.fechaFinal}" />
+				</p:column>
+
+				<p:column headerText="Opciones">
+					<p:commandButton value="Cancelar" update="tblConvocatorias"
+						action="#{convocatoriaMBean.cancelarConvocatoria(convocatoria.id)}"></p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+</html>

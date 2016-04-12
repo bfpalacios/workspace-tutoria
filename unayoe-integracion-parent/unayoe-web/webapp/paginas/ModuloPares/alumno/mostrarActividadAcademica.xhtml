@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/plantilla/ModuloPares/Plantillas/plantilla_alumno_p.xhtml">
+    <ui:define name="contenido">
+
+
+
+
+
+        <h:form id="form">
+            <p:dataGrid var="activity" value="#{actividadAcademicaMBean.actividadAcademicaModels}" columns="3" layout="grid"
+                        rows="9" paginator="true" id="cars"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,9,12,16">
+
+                <f:facet name="header">
+                    Actividades Académicas Actuales
+                </f:facet>
+
+                <p:panel header="#{activity.nombre}" style="text-align:center" >
+                    <p:panelGrid columns="2" style="width: 100%">
+                        <!--<f:facet name="header">
+                            <h:outputText value="#{activity.nombre}" />
+                        </f:facet>-->
+
+                        <h:outputText value="Area:" style="color: #1c86ee; font-weight: bold;"/>
+                        <h:outputText value="#{activity.nombreArea}" style="color: #1c86ee; font-weight: bold;"/>
+
+                        <h:outputText value="Curso:" />
+                        <h:outputText value="#{activity.nombreCurso}" />
+
+                        <h:outputText value="Tutor:" />
+                        <h:outputText value="#{activity.nombreTutor}" />
+
+                        <h:outputText value="Horario:" />
+                        <ui:repeat value="#{activity.horarios}" var="horario">
+                            <h:outputText value="#{horario.dia} : #{horario.horaInicio} a #{horario.horaFin}"/>
+                            <br/>
+                        </ui:repeat>
+
+                        <h:outputText value="Vacantes Restantes:" />
+                        <h:outputText value="#{activity.vacantesRestantes} / #{activity.numeroVacantes}" style="color: teal; font-weight: bold; font-size: larger;" />
+
+                        <h:outputText value="Más Detalle:" />
+                        <h:commandButton style="color: teal;" value="IR A LA ACTIVIDAD" icon="fa fa-arrow-right" action="#{actividadAcademicaMBean.selectorDetalle(1,activity.codigo)}"/>
+
+                    </p:panelGrid>
+
+                    <!--<h:panelGrid columns="1" style="width:100%">
+                        <p:graphicImage name="demo/images/car/#{car.brand}.gif"/>
+
+                        <h:outputText value="#{car.year}" />
+
+                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
+                        </p:commandLink>
+                    </h:panelGrid>-->
+                </p:panel>
+
+            </p:dataGrid>
+
+            <!--<p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty dataGridView.selectedCar}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <p:graphicImage name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif"/>
+                        </f:facet>
+
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{dataGridView.selectedCar.id}" />
+
+                        <h:outputText value="Year" />
+                        <h:outputText value="#{dataGridView.selectedCar.year}" />
+
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{dataGridView.selectedCar.color}" style="color:#{dataGridView.selectedCar.color}"/>
+
+                        <h:outputText value="Price" />
+                        <h:outputText value="$#{dataGridView.selectedCar.price}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>-->
+        </h:form>
+
+
+
+
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <p:commandButton value="Añadir Horario" title="Presione para añadir un horario" type="button" onclick="PF('dlg2').show();" />
+
+    <p:dialog header="Añadir Horario" id="dialogHorario" widgetVar="dlg2" height="auto"  width="500" resizable="false" draggable="false">
+        <h:panelGrid columns="2">
+            <p:outputLabel value="Día" for="selectOneDia"/>
+            <p:selectOneMenu id="selectOneDia" value="#{horarioModel.dia}" style="width: 250px;">
+                <f:selectItem itemValue="" itemLabel="Seleccionar" noSelectionOption="true" />
+                <f:selectItem itemLabel="Lunes" itemValue="LUNES" />
+                <f:selectItem itemLabel="Martes" itemValue="MARTES" />
+                <f:selectItem itemLabel="Miercoles" itemValue="MIERCOLES" />
+                <f:selectItem itemLabel="Jueves" itemValue="JUEVES" />
+                <f:selectItem itemLabel="Viernes" itemValue="VIERNES" />
+                <f:selectItem itemLabel="Sabado" itemValue="SÁBADO" />
+            </p:selectOneMenu>
+            
+            <p:outputLabel value="Hora de Inicio:"/>
+            <p:selectOneMenu id="horaInicio" value="#{horarioModel.horaInicio}" style="width: 150px;"
+                             valueChangeListener="#{actividadAcademicaMBean.onChangeHoraInicio}">
+                <f:selectItem itemLabel="Hora Inicio"/>
+                <f:selectItems
+                        value="#{horarioModel.horasInicio}"
+                        var="horaInicio"
+                        itemValue="#{horaInicio.idCampo}"
+                        itemLabel="#{horaInicio.valorCampo}"/>
+                <f:ajax event="change" execute="@this" render="horaFin"/>
+            </p:selectOneMenu>           
+
+            
+            <p:outputLabel value="Hora Final:"/>
+            <p:selectOneMenu id="horaFin" value="#{horarioModel.horaFin}" style="width: 150px;">
+                <f:selectItem itemLabel="Hora Fin"/>
+                <f:selectItems
+                        value="#{horarioModel.horasFin}"
+                        var="horaFin"
+                        itemValue="#{horaFin.idCampo}"
+                        itemLabel="#{horaFin.valorCampo}"/>
+            </p:selectOneMenu>       
+
+            
+            <p:commandButton value="Cancelar" type="button" onclick="PF('dlg2').hide();" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            <p:commandButton value="Añadir Horario" actionListener="#{actividadAcademicaMBean.addHorario}"
+                             onclick="PF('dlg2').hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+                             ajax="true" update="tablaHorarios,dialogHorario">
+            </p:commandButton>
+            
+
+        </h:panelGrid>
+    </p:dialog>
+
+    <!-- Listar horarios -->
+    <p:outputPanel id="displayTable" style="width:75%;margin-top:5px;">
+        <p:dataTable id="tablaHorarios" style="font-size:12px;" draggableRows="true"
+                     value="#{actividadAcademicaModel.horarios}"
+                     var="horario" emptyMessage="Sin Horarios registrados">
+            <f:facet name="header">
+                <h:outputLabel style="font-size: 12px;" value="Horarios de Actividad Académica"/>
+            </f:facet>
+
+            <p:column headerText="Día" style="font-size: 12px;width: 20%" >
+                <h:outputText value="#{horario.dia}" />
+            </p:column>
+
+            <p:column headerText="Hora de Inicio" style="font-size: 12px;width: 15%" >
+                <h:outputText value="#{horario.horaInicio}:00" />
+            </p:column>
+
+            <p:column headerText="Hora de Fin" style="font-size: 12px;width: 15%" >
+                <h:outputText value="#{horario.horaFin}:00" />
+            </p:column>
+            <p:column headerText="Aula" style="font-size: 12px;width: 30%" >
+                <h:outputText value="#{horario.codAula}" />
+            </p:column>
+            <p:column headerText="Opciones" style="font-size: 12px;width: 15%" >
+                <p:commandButton value="Borrar" icon="ui-icon-close" update="tablaHorarios"
+                                 actionListener="#{actividadAcademicaMBean.eliminarHorario(horario)}"/>
+            </p:column>
+
+        </p:dataTable>
+    </p:outputPanel>
+    <!-- /Listar horarios -->
+</f:view>
+</ui:composition>

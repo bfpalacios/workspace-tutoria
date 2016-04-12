@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <f:view>
+        <p:commandButton value="Añadir Sesión"
+                         title="Presione para añadir una sesión" type="button"
+                         onclick="PF('sesion-dlg').show();" />
+        <p:dialog header="Añadir Sesión" widgetVar="sesion-dlg" height="auto"
+                  width="500" resizable="false" draggable="false">
+            <h:panelGrid width="80%" id="dialogSesion">
+                <!--<p:outputLabel value="Número de sesión" for="sesion-numero"/>
+                <p:spinner id="sesion-numero" value="#{sesionModel.numero}" min="1" max="16"/>-->
+
+                <p:selectOneButton value="#{sesionModel.tipo}">
+                    <f:selectItem itemLabel="Virtual" itemValue="1" />
+                    <f:selectItem  itemLabel="Presencial" itemValue="2" />
+                </p:selectOneButton>
+
+                <p:row>
+                    <p:column colspan="4">
+                        <p:outputLabel value="Descripción:" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column colspan="4">
+                        <p:inputTextarea rows="3" cols="60"
+                                         value="#{sesionModel.descripcion}" counter="display"
+                                         maxlength="140" counterTemplate="{0} caracteres restantes."
+                                         autoResize="false" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column colspan="4">
+                        <h:outputText id="display" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column colspan="2">
+                        <p:outputLabel for="fecha" value="Fecha: " style="width:150px;"/>
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:calendar id="fecha" value="#{sesionModel.fecha}"
+                                    mindate="today" lang="es" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column colspan="2">
+                        <p:commandButton value="Cancelar" type="button"
+                                         onclick="PF('sesion-dlg').hide();"
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:column>
+                    <p:column colspan="2">
+                        <p:commandButton value="Añadir Sesión"
+                                         actionListener="#{actividadAcademicaMBean.addSesion}"
+                                         onclick="PF('sesion-dlg').hide();"
+                                         styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+                                         ajax="true" update="tablaSesiones,dialogSesion">
+                        </p:commandButton>
+                    </p:column>
+                </p:row>
+
+            </h:panelGrid>
+        </p:dialog>
+
+        <!-- Listar sesiones -->
+        <p:outputPanel style="width:75%;margin-top:5px;">
+            <p:dataTable id="tablaSesiones" style="font-size:12px;"
+                         draggableRows="true" value="#{actividadAcademicaModel.sesiones}"
+                         var="sesion" emptyMessage="Sin sesiones registrados">
+                <p:ajax event="rowReorder" update="tablaSesiones" listener="#{actividadAcademicaMBean.onRowReorderSesion}"/>
+                <f:facet name="header">
+                    <h:outputLabel style="font-size: 12px;"
+                                   value="Sesiones de Actividad Académica" />
+                </f:facet>
+
+                <p:column headerText="Número"
+                          style="font-size: 12px;width: 10%">
+                    <h:outputText value="#{sesion.numero}" />
+                </p:column>
+                
+                <p:column headerText="Tipo de sesión"
+                          style="font-size: 12px;width: 15%">
+                    <h:outputText value="#{sesion.tipo==1?'Virtual':'Presencial'}" />
+                </p:column>
+
+                <p:column headerText="Descripción"
+                          style="font-size: 12px;width: 40%">
+                    <h:outputText value="#{sesion.descripcion}"/>
+                </p:column>
+
+                <p:column headerText="Fecha"
+                          style="font-size: 12px;width: 20%">
+                    <h:outputText value="#{filter.date(sesion.fecha,'EEE, d MMM yyyy')}" />
+                </p:column>
+
+                <p:column headerText="Opciones" style="font-size: 12px;width: 10%">
+                    <p:commandButton value="Borrar" icon="ui-icon-close"
+                                     update="tablaSesiones"
+                                     actionListener="#{actividadAcademicaMBean.eliminarSesion(sesion)}" />
+                </p:column>
+
+            </p:dataTable>
+        </p:outputPanel>
+        <!-- /Listar sesiones -->
+    </f:view>
+</ui:composition>
+

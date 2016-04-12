@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
+	<ui:define name="contenido">
+
+		<p:panel header="Visualizar Reporte de Asistencia de Alumnos a Tutoria"
+			style="width: 95%;border: 0px;">
+
+			<h:panelGrid columns="3" cellspacing="5">
+				<h:outputText value="Ciclo" />
+				<p:spacer width="10px" />
+				<p:selectOneMenu
+					value="#{visualizarReporteMBean.periodo}">
+					<f:selectItem itemLabel="2014-0" itemValue="0" />
+					<f:selectItem itemLabel="2014-1" itemValue="1" />
+					<f:selectItem itemLabel="2014-2" itemValue="2" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+
+			<h:panelGrid id="pnlBuscador"
+				style="font-size: 12px;text-align: left" columns="4" cellspacing="5">
+				<h:outputText value="Codigo Alumno" />
+			
+					<p:inputText  
+						value="#{visualizarReporteMBean.c_alumno}"
+						size="30" />
+					<p:spacer width="5px" />
+					<p:commandButton update="tablaResultado,idNombre"
+						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+						actionListener="#{visualizarReporteMBean.asistenciaAlumnoTutoria}" />
+				
+				
+
+				<h:outputText value="Nombre de Alumno" />
+				<p:inputText  id="idNombre"
+					value="#{visualizarReporteMBean.n_alumno}"
+					size="30" />
+				<p:spacer width="40px" />
+				<p:spacer width="40px" />
+				 <h:outputText value="Fecha Desde" />
+				 
+				 <p:calendar value="#{visualizarReporteMBean.dateDesde}"
+					id="fechaDesde" pattern="dd/MM/yyyy" mode="popup" showOn="button">
+				</p:calendar>
+				
+				 <h:outputText value="Fecha Hasta" />
+				 
+				 <p:calendar value="#{visualizarReporteMBean.dateHasta}"
+					id="fechaHasta" pattern="dd/MM/yyyy" mode="popup" showOn="button">
+				</p:calendar>
+				<p:spacer width="5px" />
+			</h:panelGrid>
+
+			<p:row>
+				<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+
+
+
+					<p:dataTable id="tablaResultado" style="font-size:10px;"
+						value="#{visualizarReporteMBean.asistenciaClases}" var="asistencia"
+						emptyMessage="Datos de Tutoria Vacio" paginator="true" rows="5">
+
+						<p:column headerText="Fecha" style="font-size: 12px;width: 10%">
+							<h:outputText value="#{asistencia.fecha}" />
+						</p:column>
+
+						<p:column headerText="Dia" style="font-size: 12px;width: 10%">
+							<h:outputText value="#{asistencia.dia}" />
+						</p:column>
+						<p:column headerText="Codigo Curso" style="font-size: 12px;width: 10%">
+							<h:outputText value="#{asistencia.c_codigo}" />
+						</p:column>
+						
+						<p:column headerText="Nombre de Curso" style="font-size: 12px;width: 20%">
+							<h:outputText value="#{asistencia.c_nombre}" />
+						</p:column>
+						<p:column headerText="# Repitencias" style="font-size: 12px;width: 10%">
+							<h:outputText value="#{asistencia.repitencias}" />
+						</p:column>
+						<p:column headerText="Asistencia" style="font-size: 12px;width: 20%">
+							<h:outputText value="#{asistencia.asistencia}" />
+						</p:column>
+						<p:column headerText="Observaciones" style="font-size: 12px;width: 20%">
+							<h:outputText value="#{asistencia.observacion}" />
+						</p:column> 
+
+						<f:facet name="footer">
+							<h:outputLabel style="font-size: 12px;"
+								value="Total de Registros: #{visualizarReporteMBean.asistenciaClases.size()}" />
+						</f:facet>
+					</p:dataTable>
+
+				</p:column>
+
+			</p:row>
+
+			<p:row>
+				<p:column colspan="3">
+					<p:commandButton value="Exportar" id="botonExportar"
+						actionListener="#{visualizarReporteMBean.imprimirReporteAsistenciaAlumnoTutoria}" ajax="false" />
+				</p:column>
+				<p:column  >
+					<p:commandButton value="Cancelar" id="botonCamcelar"
+						actionListener="#{asistenciaTutoriaMBean.cancelar}" ajax="false" />
+				</p:column>
+			</p:row>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+
+</html>

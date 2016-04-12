@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/plantilla/ModuloPares/Plantillas/plantilla_tutor_p.xhtml">
+    <ui:define name="contenido">
+
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+        <p:panel header="Actividad Académica: #{actividadAcademicaModel.nombre}" style="text-align:center" >
+            <p:panelGrid columns="2" style="width: 80%">
+                <f:facet name="header">
+                    <h:outputText value="#{actividadAcademicaModel.nombre}" />
+                </f:facet>
+
+                <h:outputText value="Area:" style="color: #1c86ee; font-weight: bold;"/>
+                <h:outputText value="#{actividadAcademicaModel.nombreArea}" style="color: #1c86ee; font-weight: bold;"/>
+
+                <h:outputText value="Curso:" />
+                <h:outputText value="#{actividadAcademicaModel.nombreCurso}" />
+
+                <h:outputText value="Tutor:" />
+                <h:outputText value="#{actividadAcademicaModel.nombreTutor}" />
+
+                <h:outputText value="Horario:" />
+                <ui:repeat value="#{actividadAcademicaModel.horarios}" var="horario">
+                    <h:outputText value="#{horario.dia} : #{horario.horaInicio} a #{horario.horaFin}"/>
+                    <br/>
+                </ui:repeat>
+
+                <h:outputText value="Sesiones:" />
+                <ui:repeat value="#{actividadAcademicaModel.sesiones}" var="sesion">
+                    <p:panelGrid columns="2" style="width: 100%; border-bottom: 1px solid dodgerblue;">
+                        <h:outputText value="Sesión - Fecha :" />
+                        <h:outputText value="Nº #{sesion.numero}  - #{filter.date(sesion.fecha,'EEE, d MMM yyyy')}" />
+
+                        <h:outputText value="Tipo:" />
+                        <h:outputText value="#{sesion.tipo==1?'Virtual':'Presencial'}" />
+
+                        <h:outputText value="Descripción:" />
+                        <h:outputText value="#{sesion.descripcion}" />
+                    </p:panelGrid>
+                    <hr style="height: 1px; width: 100%; background-color: rgba(22, 106, 187, 0.8);border: 1px solid rgba(21, 98, 174, 0.76);"/>
+                </ui:repeat>
+
+                <h:outputText value="Vacantes Restantes:" />
+                <h:outputText value="#{actividadAcademicaModel.vacantesRestantes} / #{actividadAcademicaModel.numeroVacantes}" style="color: teal; font-weight: bold; font-size: larger;" />
+
+<!-- 
+                <h:outputText value="Opciones:" />
+                
+                <h:commandButton style="background-color:orangered; font-weight:bold; color: white; border: 1px solid #b23000; padding: 7px 10px;"
+
+                                 value="#{actividadAcademicaMBean.isMatriculado(actividadAcademicaModel.codigo)?'ESTAS MATRICULADO':'MATRICULARSE'}"
+                                 actionListener="#{actividadAcademicaMBean.matricularAlumno(actividadAcademicaModel.codigo)}"
+                                 disabled="#{actividadAcademicaMBean.isMatriculado(actividadAcademicaModel.codigo)}"
+                                 icon="fa-check-circle-o"/>
+ -->
+ 
+            </p:panelGrid>
+
+            <!--<h:panelGrid columns="1" style="width:100%">
+                <p:graphicImage name="demo/images/car/#{car.brand}.gif"/>
+
+                <h:outputText value="#{car.year}" />
+
+                <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
+                </p:commandLink>
+            </h:panelGrid>-->
+        </p:panel>
+
+
+
+
+
+
+
+
+
+
+    </ui:define>
+</ui:composition>
+
+</html>

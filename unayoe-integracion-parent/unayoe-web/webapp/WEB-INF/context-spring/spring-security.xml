@@ -1,0 +1,106 @@
+ <beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http auto-config="true" >	
+		
+        <intercept-url pattern="/javax.faces.resource/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+                
+		<intercept-url pattern="/login.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+		<intercept-url pattern="/plantilla/plantilla-login.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+		<intercept-url pattern="/admin" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+		<intercept-url pattern="/admin/" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+		<intercept-url pattern="/denegado" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+		<intercept-url pattern="/errorHTTP4" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+		<intercept-url pattern="/admin/errorLogin" access="IS_AUTHENTICATED_ANONYMOUSLY"  />
+				
+		<intercept-url pattern="/home.xhtml" access="ROLE_ADMIN_O, ROLE_ADMIN_R, ROLE_DIR_ACA_O, ROLE_DIR_ACA_R, ROLE_UNAYOE_O, ROLE_UNAYOE_R, ROLE_OCAA_O, ROLE_OCAA_R, ROLE_TUTOR_O, ROLE_TUTOR_R, ROLE_ALUMNO_R, ROLE_OCAA_P, ROLE_ADMIN_P, ROLE_TUTOR_P, ROLE_ALUMNO_P"/>
+		
+		<!-- Modulo de observados -->
+		<intercept-url pattern="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml" access="ROLE_ADMIN_O"/> 
+		<intercept-url pattern="/plantilla/ModuloObservados/Plantillas/plantilla_dir_aca_o.xhtml" access="ROLE_DIR_ACA_O"/>
+		<intercept-url pattern="/plantilla/ModuloObservados/Plantillas/plantilla_unayoe_o.xhtml" access="ROLE_UNAYOE_O"/>
+		<intercept-url pattern="/plantilla/ModuloObservados/Plantillas/plantilla_ocaa_o.xhtml" access="ROLE_OCAA_O"/>
+		<intercept-url pattern="/plantilla/ModuloObservados/Plantillas/plantilla_tutor_o.xhtml" access="ROLE_TUTOR_O"/>
+		
+		<intercept-url pattern="/paginas/ModuloObservados/principal_o.xhtml" access="ROLE_ADMIN_O"/>
+		<intercept-url pattern="/paginas/ModuloObservados/principal_dir_aca_o.xhtml" access="ROLE_DIR_ACA_O"/>
+		<intercept-url pattern="/paginas/ModuloObservados/principal_unayoe_o.xhtml" access="ROLE_UNAYOE_O"/>
+		<intercept-url pattern="/paginas/ModuloObservados/principal_ocaa_o.xhtml" access="ROLE_OCAA_O"/>		
+		<intercept-url pattern="/paginas/ModuloObservados/principal_tutor_o.xhtml" access="ROLE_TUTOR_O"/>
+		
+		<intercept-url pattern="/plantilla/ModuloObservados/Menus/menu_o.xhtml" access="ROLE_ADMIN_O"/> 
+		<intercept-url pattern="/plantilla/ModuloObservados/Menus/menu_dir_aca_o.xhtml" access="ROLE_DIR_ACA_O"/>
+		<intercept-url pattern="/plantilla/ModuloObservados/Menus/menu_unayoe_o.xhtml" access="ROLE_UNAYOE_O"/>
+		<intercept-url pattern="/plantilla/ModuloObservados/Menus/menu_ocaa_o.xhtml" access="ROLE_OCAA_O"/>
+		<intercept-url pattern="/plantilla/ModuloObservados/Menus/menu_tutor_o.xhtml" access="ROLE_TUTOR_O"/>
+		
+		<!-- Modulo de regulares -->
+		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_r.xhtml" access="ROLE_ADMIN_R"/> 
+		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_dir_aca_r.xhtml" access="ROLE_DIR_ACA_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_unayoe_r.xhtml" access="ROLE_UNAYOE_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_ocaa_r.xhtml" access="ROLE_OCAA_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_tutor_r.xhtml" access="ROLE_TUTOR_R"/>
+		
+		<intercept-url pattern="/paginas/ModuloRegulares/principal_r.xhtml" access="ROLE_ADMIN_R"/>
+		<intercept-url pattern="/paginas/ModuloRegulares/principal_dir_aca_r.xhtml" access="ROLE_DIR_ACA_R"/>
+		<intercept-url pattern="/paginas/ModuloRegulares/principal_unayoe_r.xhtml" access="ROLE_UNAYOE_R"/>
+		<intercept-url pattern="/paginas/ModuloRegulares/principal_ocaa_r.xhtml" access="ROLE_OCAA_R"/>		
+		<intercept-url pattern="/paginas/ModuloRegulares/principal_tutor_r.xhtml" access="ROLE_TUTOR_R"/>
+		
+		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_r.xhtml" access="ROLE_ADMIN_R"/> 
+		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_dir_aca_r.xhtml" access="ROLE_DIR_ACA_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_unayoe_r.xhtml" access="ROLE_UNAYOE_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_ocaa_r.xhtml" access="ROLE_OCAA_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_tutor_r.xhtml" access="ROLE_TUTOR_R"/>
+		
+		<!-- Modulo de pares -->
+		<intercept-url pattern="/plantilla/ModuloPares/Plantillas/plantilla_p.xhtml" access="ROLE_ADMIN_P"/>
+		<intercept-url pattern="/plantilla/ModuloPares/Plantillas/plantilla_ocaa_p.xhtml" access="ROLE_OCAA_P"/>
+		<intercept-url pattern="/plantilla/ModuloPares/Plantillas/plantilla_tutor_p.xhtml" access="ROLE_TUTOR_P"/>
+		<intercept-url pattern="/plantilla/ModuloPares/Plantillas/plantilla_alumno_p.xhtml" access="ROLE_ALUMNO_P"/>
+		
+		<intercept-url pattern="/paginas/ModuloPares/principal_p.xhtml" access="ROLE_ADMIN_P"/>
+		<intercept-url pattern="/paginas/ModuloPares/principal_ocaa_p.xhtml" access="ROLE_OCAA_P"/>		
+		<intercept-url pattern="/paginas/ModuloPares/principal_tutor_p.xhtml" access="ROLE_TUTOR_P"/>
+		<intercept-url pattern="/paginas/ModuloPares/principal_alumno_p.xhtml" access="ROLE_ALUMNO_P"/>
+		
+		<intercept-url pattern="/plantilla/ModuloPares/Menus/menu_p.xhtml" access="ROLE_ADMIN_P"/> 
+		<intercept-url pattern="/plantilla/ModuloPares/Menus/menu_ocaa_p.xhtml" access="ROLE_OCAA_P"/>
+		<intercept-url pattern="/plantilla/ModuloPares/Menus/menu_tutor_p.xhtml" access="ROLE_TUTOR_P"/>
+		<intercept-url pattern="/plantilla/ModuloPares/Menus/menu_alumno_p.xhtml" access="ROLE_ALUMNO_P"/>
+		
+
+		
+		<intercept-url pattern="/resources/**" access="IS_AUTHENTICATED_ANONYMOUSLY"  /> 
+<!--		<intercept-url pattern="/incidencias/**" access="ROLE_SUPERVIDOR, ROLE_PROCESADOR, ROLE_REVISOR"  />
+		<intercept-url pattern="/canales/**" access="ROLE_SUPERVIDOR, ROLE_PROCESADOR, ROLE_REVISOR"  />-->
+		
+		<form-login login-page="/login.xhtml" default-target-url="/home.xhtml" authentication-failure-url="/login.xhtml" />
+		
+		<logout invalidate-session="true" logout-success-url="/" />
+		
+		
+		<!--form-login login-page="/login.xhtml" default-target-url="/paginas/principal.xhtml" authentication-failure-url="/login.xhtml" />
+		
+		<logout logout-success-url="/login.xhtml" />
+		<session-management invalid-session-url="/login.xhtml">
+                <concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>
+        </session-management -->
+	 </http>
+
+	
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="sha" />
+			<jdbc-user-service data-source-ref="dataSource"				
+				users-by-username-query="SELECT ID_USUARIO AS USERNAME, CLAVE AS PASSWORD, 1 AS ENABLED FROM USUARIO WHERE ID_USUARIO=?" 				
+				authorities-by-username-query="SELECT U.ID_USUARIO AS USERNAME, UR.ROL AS AUTHORITY FROM USUARIO U, USUARIO_ROL UR 
+				WHERE U.ID_USUARIO = UR.ID_USUARIO AND U.ID_USUARIO = ?  "/>
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

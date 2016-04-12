@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>
+
+    <ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_tutor_r.xhtml">
+        <ui:define name="contenido">            
+            <p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+            
+            <p:panel header="Control de las observaciones de tutoría" style="width: 450px;" >
+                <p:panelGrid  id="pnlLoginAcceso" style="font-size: 12px;">                                       
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idCurso"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}"/>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneCurso" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.cCodigo}" 
+                    			valueChangeListener="#{registrarTutoriaMBean.actualizarAlumnoGenerico}"
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el curso:"/>
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarCursos}"
+                                    var="cursos" itemLabel="#{cursos.nombre}"
+                                    itemValue="#{cursos.cCodigo}" />
+                        		<f:ajax event="change" execute="@this" render="selectOneAlumno"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idAlumno"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.alumno']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneAlumno" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}" 
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el alumno: " />
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarAlumnos}"
+                                    var="alumnos" itemLabel="#{alumnos.aNombre}"
+                                    itemValue="#{alumnos.aCodigo}"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>                    
+                    
+                    <p:spacer width="50px"/>
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<p:commandButton 
+							 	id="btnBuscarObservaciones" align="center" 
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+                                actionListener="#{registrarTutoriaMBean.buscarObservacionesTutoria}"
+                                update="tablaObservacionesFinalizadas, tablaObservacionesPendientes"
+                                ajax="true"/>                            
+						</p:column>
+                    </p:row>                   
+                </p:panelGrid>            
+            </p:panel>
+            
+            <p:outputPanel id="mostrarObsFinalizadas" style="width:100%;margin-top:15px">                
+            	<p:row id="filTabla">		   		
+		   			<p:column id="colObsFinalizadas" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaObservacionesFinalizadas"  		   						
+		   					value="#{registrarTutoriaMBean.tutoriaModel.listaObservacionesFinalizadas}" 		   								   						
+		   					var="observacionesFinalizadas"		   					
+		   					emptyMessage="No se encontraron observaciones finalizadas">
+     						<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Observaciones finalizadas de tutoría"/>
+                    		</f:facet>
+     						
+     						<p:column headerText="Sesión" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.sesionRegistro}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Nº de observación" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.idObservacion}" />
+    						</p:column> 
+     						
+     						<p:column headerText="Observación" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesFinalizadas.observacion}" />
+    						</p:column>
+     						
+     						<p:column headerText="Criticidad" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.criticidad}" />
+    						</p:column>
+   	 						
+   	 						<p:column headerText="Fecha de registro" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.fechaRegistro}" />
+    						</p:column>
+    
+    						<p:column headerText="Fecha de cierre" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.fechaCierre}" />
+    						</p:column> 
+    							
+    						<p:column headerText="Tiempo(Sesiones)" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.sesionesCierre}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Tiempo(Días)" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesFinalizadas.diasCierre}" />
+    						</p:column>
+    						
+    						<p:column headerText="Comentario final" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesFinalizadas.observacionCierre}" />
+    						</p:column>
+						</p:dataTable>
+			   		</p:column>   
+				</p:row>				
+			</p:outputPanel>
+            
+            <p:outputPanel id="mostrarObsPendientes" style="width:90%;margin-top:40px">
+                <p:row>
+            		<p:column colspan="3" style="font-weight:bold;font-size:15px">#{mensaje['unayoe.ingresar.grillaObservaciones']}</p:column>
+        		</p:row> 
+        		
+                <p:row id="tablaObsPendientes">		   		
+		   			<p:column  id="colObsPendientes" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaObservacionesPendientes" 		   					
+		   					style="font-size:12px;" 
+		   				    value="#{registrarTutoriaMBean.tutoriaModel.listaObservacionesPendientes}"                            
+                            var="observacionesPendientes" emptyMessage="No se encontraron observaciones pendientes">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Observaciones pendientes de tutoría"/>
+                    		</f:facet>
+                    		
+                    		<p:column headerText="Sesión" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesPendientes.sesionRegistro}" />
+    						</p:column>
+    						
+    						<p:column headerText="Nº de observación" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesPendientes.idObservacion}" />
+    						</p:column>
+    						
+    						<p:column headerText="Observación" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesPendientes.observacion}" />
+    						</p:column> 
+    						
+    						<p:column headerText="Criticidad" style="font-size:12px; width:10%">
+        						<h:outputText value="#{observacionesPendientes.criticidad}" />
+    						</p:column>                  		
+                    		
+                    		<p:column headerText="Fecha de registro" style="font-size:12px; width:8%">
+        						<h:outputText value="#{observacionesPendientes.fechaRegistro}" />
+    						</p:column>
+                    		
+                    		<p:column headerText="Estado" style="font-size: 12px;width:10%" >
+                        		<p:selectOneMenu
+									id="estadoObservacion"
+									value="#{observacionesPendientes.estadoControl}">
+									<f:selectItems 
+										value="#{observacionesPendientes.listaEstados}"
+										var="pendientes" 
+										itemLabel="#{pendientes.valorCampo}"
+										itemValue="#{pendientes.valorCampo}"/> 									
+								</p:selectOneMenu>
+                    		</p:column> 
+                    		
+                    		<p:column headerText="Sesion de cierre" style="font-size: 12px;width:10%" >
+                        		<p:selectOneMenu
+									id="sesionesCierre"
+									value="#{observacionesPendientes.sesionCierre}">
+									<f:selectItems 
+										value="#{observacionesPendientes.listaSesionesCierre}"
+										var="sesionesCierre" 
+										itemLabel="#{sesionesCierre.nroSesion}"
+										itemValue="#{sesionesCierre.nroSesion}"/> 									
+								</p:selectOneMenu>
+                    		</p:column> 
+                    		
+                    		<p:column headerText="Observación de cierre" style="font-size:12px; width:8%">
+        						<p:inputTextarea 
+                    				id="observaciones" rows="5" cols="60" 
+                    				value="#{observacionesPendientes.observacionCierre}"
+                    				counter="display" maxlength="250" 
+                    				counterTemplate="{0} caracteres restantes." 
+                    				autoResize="false" />
+    							<h:outputText id="display" />
+    						</p:column>                   		       		
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+			</p:outputPanel>      
+              
+            <p:outputPanel id="guardarAsistencia" style="width:50%;margin-top:15px;margin-bottom:10px"> 
+                <p:row>
+		   			<p:column colspan="3">
+						<p:commandButton 
+							id="botonGuardar"							
+							value="Guardar"    
+							actionListener="#{registrarTutoriaMBean.guardarControlObservaciones}" 
+							update="selectOneCurso, selectOneAlumno, tablaObservacionesFinalizadas, tablaObservacionesPendientes"
+							ajax="true" />
+					</p:column>
+            	</p:row>
+            </p:outputPanel>  
+        </ui:define>
+    </ui:composition>
+</html>

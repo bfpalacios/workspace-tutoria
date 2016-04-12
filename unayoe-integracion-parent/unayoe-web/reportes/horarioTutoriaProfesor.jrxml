@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-06-16T13:53:11 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="horarioTutoriaAlumno" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f5ef60e-a18a-44f7-a856-890aa9cbbaa0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ciclo" class="java.lang.String"/>
+	<parameter name="facultad" class="java.lang.String"/>
+	<parameter name="escuela" class="java.lang.String"/>
+	<parameter name="nomPro" class="java.lang.String"/>
+	<parameter name="escudounmsm" class="java.lang.String"/>
+	<field name="codCurso" class="java.lang.String"/>
+	<field name="nomCurso" class="java.lang.String"/>
+	<field name="repitencias" class="java.lang.String"/>
+	<field name="nomProfesor" class="java.lang.String"/>
+	<field name="dia" class="java.lang.String"/>
+	<field name="horaIni" class="java.lang.String"/>
+	<field name="horaFin" class="java.lang.String"/>
+	<field name="nomAlu" class="java.lang.String"/>
+	<field name="codAlu" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="260" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="0" width="60" height="79" uuid="5b069bf7-8178-46a5-ae42-4570a08edf92"/>
+				<imageExpression><![CDATA["Logo.png"]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="100" y="20" width="370" height="20" uuid="7e394898-005b-409c-9b87-c7b81a0ba07c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="173" y="40" width="225" height="20" uuid="92c70a8a-bcd6-4087-8613-acbd3c454336"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Universidad del Perú, Decana de América"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="79" width="301" height="27" uuid="dc54cb22-9359-4c1c-83ae-a9d123879472"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["HORARIOS DE TUTORÍAS - DOCENTE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="130" width="330" height="20" uuid="0b467ba8-8ba5-4010-993d-8efc67930397"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL DOCENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="151" width="80" height="19" uuid="d8effeb0-7452-412d-9024-14815c0b0f07"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph lineSpacing="Single" leftIndent="8"/>
+				</textElement>
+				<text><![CDATA[Ciclo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="150" width="250" height="20" uuid="c96a0b25-a3b8-48b9-9469-2ddab83e4e8f"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single" lineSpacingSize="2.0" leftIndent="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ciclo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="170" width="80" height="20" uuid="58c77ead-5eaf-44b3-8e54-133ece61f274"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="8"/>
+				</textElement>
+				<text><![CDATA[Docente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="170" width="250" height="20" uuid="2ac05cb7-ec61-488a-b77c-42816e94b01c"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single" lineSpacingSize="2.0" leftIndent="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomPro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="190" width="80" height="20" uuid="8d364421-8e21-4bd8-bd09-128952b20f8e"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="8"/>
+				</textElement>
+				<text><![CDATA[Facultad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="190" width="250" height="20" uuid="bb4bdaad-3d23-4c51-8735-70e86611330d"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single" lineSpacingSize="2.0" leftIndent="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{facultad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="210" width="80" height="20" uuid="0113bfb5-3de3-49a5-9984-21bc4bafc139"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+					<paragraph leftIndent="8"/>
+				</textElement>
+				<text><![CDATA[Escuela:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="210" width="250" height="20" uuid="2cde34ee-36c7-41b6-a5ea-a4376bc00cd8"/>
+				<box>
+					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single" lineSpacingSize="2.0" leftIndent="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{escuela}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="336" y="0" width="59" height="28" uuid="f6c21295-cd6a-48b7-8a75-8686c7f9a274"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Repitencias]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="0" width="47" height="29" uuid="283b2f3f-4901-4af5-9eb2-a97d12fc7428"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="0" width="54" height="29" uuid="a714101c-4391-48e7-9ddf-0010805822ba"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="496" y="0" width="59" height="29" uuid="2e7055bb-7895-4365-8142-ce4495f2e4b2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="0" width="110" height="27" uuid="cd020b2c-5b5d-4d17-be2c-2574c37361fe"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="0" width="67" height="29" uuid="5bbf5e0c-b322-49bc-9dde-06e14ce56d90"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="62" height="28" uuid="349ca89c-6ec2-4c5d-8471-9c97ed663273"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo de Alumno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="0" width="95" height="28" uuid="7f5fc2a1-1e03-4d67-9b5b-91a7cf518373"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres del Alumno]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="553" height="1" uuid="dd1dbafb-83aa-4ed3-b4b0-6447f50afdf1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="159" y="0" width="67" height="15" uuid="5e60da67-98a2-4102-a5a9-01ef9854fcb6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codCurso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="0" width="110" height="15" uuid="364dcd1c-3283-46e3-ba05-aa1d31c36b2d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nomCurso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="0" width="59" height="15" uuid="75ac9a65-6d0c-490d-8b27-4317ccc8a742"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{repitencias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="0" width="50" height="15" uuid="7d0551a5-fb47-4fc7-b648-38d7e237c384"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="0" width="59" height="15" uuid="199b87c4-3dc9-4f57-8c5b-120f01b439e4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{horaFin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="0" width="50" height="15" uuid="6573d0ff-9e14-4f07-935c-7ac2c38f4624"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{horaIni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="62" height="15" uuid="54c28c5e-2d39-481b-b4c0-45b4fd0fd194"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codAlu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="1" width="95" height="14" uuid="af195c14-fe80-4f3c-a41f-b989c253c85b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nomAlu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

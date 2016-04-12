@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
+		<ui:define name="contenido">
+			<p:outputPanel id="pnlGridMensajes" style="width:500px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+		
+			<p:panel 
+				header="Visualizar Datos de Tutoria General"
+				style="width: 95%;border: 0px;">			
+				
+				<p:panelGrid id="pnlDatosConsulta" style="font-size: 12px;">   
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+                    			id="idDia"
+                    			value="#{mensaje['demo.mantenimiento.tutoria.dia']}"/>
+						</p:column>
+                    	<p:column>
+							<p:selectOneMenu
+								value="#{registrarTutoriaMBean.tutoriaModelSelect.dia}">
+								<f:selectItem itemLabel="Todos" itemValue="" />
+								<f:selectItem itemLabel="Lunes" itemValue="LUNES" />
+								<f:selectItem itemLabel="Martes" itemValue="MARTES" />
+								<f:selectItem itemLabel="Miercoles" itemValue="MIERCOLES" />
+								<f:selectItem itemLabel="Jueves" itemValue="JUEVES" />  
+								<f:selectItem itemLabel="Viernes" itemValue="VIERNES" />  
+								<f:selectItem itemLabel="Sabado" itemValue="SABADO" />  
+							</p:selectOneMenu>
+						</p:column>
+                    </p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idCurso"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                 				id="selectOneCurso" 
+                 				value="#{registrarTutoriaMBean.tutoriaModelSelect.cCodigo}" 
+                 				styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el curso: "/>
+                    			<f:selectItems 
+                    				value="#{registrarTutoriaMBean.asistenciaTutoriaModelSelect.listarCursos}"
+                       				var="cursos" itemLabel="#{cursos.nombre}"
+                        			itemValue="#{cursos.cCodigo}" />
+                 				</p:selectOneMenu>
+						</p:column>
+					</p:row>  
+					
+					<p:row>                    	
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<p:commandButton 
+								id="botonGenerar"
+								value="Buscar horarios" 								
+								actionListener="#{registrarTutoriaMBean.buscarHorariosTutoriaSemanal}" 
+								update="tablaResultado"
+								ajax="true" />
+						</p:column>
+					</p:row>
+                </p:panelGrid>		
+
+				<p:outputPanel id="pnlDatosTutoria" style="width:95%;margin-top:5px;">
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<p:dataTable 
+								id="tablaResultado" style="font-size:10px;"
+								value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
+								emptyMessage="Sin tutorías" paginator="true" rows="5">
+
+								<p:column headerText="Dia" style="font-size:12px; width:10%">
+									<h:outputText value="#{lista.dia}" />
+								</p:column>
+
+								<p:column headerText="Hora Inicio" style="font-size:12px; width:5%">
+									<h:outputText value="#{lista.horaIni}" />
+								</p:column>
+
+								<p:column headerText="Hora Fin" style="font-size:12px; width:5%">
+									<h:outputText value="#{lista.horaFin}" />
+								</p:column>
+
+								<p:column headerText="Nombre Curso" style="font-size:12px; width:20%">
+									<h:outputText value="#{lista.c_nombre}" />
+								</p:column>
+						
+								<p:column headerText="Nombre Docente"
+									style="font-size:12px; width:25%">
+									<h:outputText value="#{lista.p_nombre}" />
+								</p:column>
+						
+								<p:column headerText="Codigo Alumno"
+									style="font-size:12px; width:5%">
+									<h:outputText value="#{lista.a_codigo}" />
+								</p:column>
+						
+								<p:column headerText="Nombre Alumno"
+									style="font-size:12px; width:25%">
+									<h:outputText value="#{lista.a_nombre}" />
+								</p:column>
+						
+								<f:facet name="footer">
+									<h:outputLabel style="font-size:12px;"
+										value="Total de Registros: #{registrarTutoriaMBean.listAsistenciaTutoria.size()}" />
+								</f:facet>
+							</p:dataTable>
+						</p:column>
+					</p:row>
+				</p:outputPanel>
+				
+				<p:outputPanel id="pnlGenerarReporte" style="width:500px;margin-top:5px;">
+					<p:row>
+						<p:column colspan="3">
+							<p:commandButton value="Exportar" id="botonExportar"
+							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioDocente}" ajax="true" />
+						</p:column>
+					</p:row>	
+				</p:outputPanel>			
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</html>

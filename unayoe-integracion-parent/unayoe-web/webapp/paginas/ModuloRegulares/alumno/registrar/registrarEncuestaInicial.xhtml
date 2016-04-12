@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>
+
+    <ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_alumno_r.xhtml">
+        <ui:define name="contenido">
+            <p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+            
+            <p:panelGrid id="pnlEncuestaInicial" style="width:400px;margin-top:5px;" >
+				<f:facet name="header">
+        			<p:row>
+            			<p:column colspan="3">ENCUESTA INICIAL</p:column>
+        			</p:row>
+    			</f:facet>
+		   		
+		   		<p:row id="filTabla">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaAlumnos"  
+		   					value="#{registrarTutoriaMBean.tutoriaModel.listaEncuestas}"
+		   					binding="#{tabla}"
+		   					var="encuesta" 	
+		   				    rows="20">
+     						<p:column headerText="Nº pregunta" style="font-size:12px; width:5%">
+        						<h:outputText value="#{tabla.rowIndex + 1}" />    
+    						</p:column>
+     						
+     						<p:column headerText="Pregunta" style="font-size:12px; width:30%">
+        						<h:outputText value="#{encuesta.pregunta}" />
+    						</p:column>
+    						
+    						<p:column headerText="Respuesta" style="font-size:12px; width:8%">
+                    			<p:row>
+                    				<p:inputTextarea 
+                    				id="repuestas" rows="4" cols="50" 
+                    				value="#{encuesta.respuesta}"
+                    				counter="display" maxlength="150" 
+                    				counterTemplate="{0} caracteres restantes." 
+                    				autoResize="false" />
+                    			</p:row>
+                    			<p:row>
+                    				<h:outputText id="display"/>
+                    			</p:row>
+                    		</p:column> 
+    						
+						</p:dataTable>
+			   		</p:column>   
+				</p:row>
+			</p:panelGrid>
+            
+            <p:outputPanel id="guardarEncuesta" style="width:50%;margin-top:15px;margin-bottom:10px">
+            	<p:row>
+					<p:column colspan="3">
+						<p:commandButton  
+							value="Guardar encuesta" 
+							id="botonGuardar"   
+							actionListener="#{registrarTutoriaMBean.guardarEncuesta}" 
+							ajax="true" />
+					</p:column>
+				</p:row>
+            </p:outputPanel>
+        </ui:define>
+    </ui:composition>
+</html>

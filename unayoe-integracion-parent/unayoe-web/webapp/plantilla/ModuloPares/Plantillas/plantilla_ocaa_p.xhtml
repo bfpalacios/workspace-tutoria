@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta charset="UTF-8"/>
+		<link type="text/css" rel="stylesheet" href="#{request.contextPath}/resources/css/demo.css"/>
+	</h:head>
+	
+	<h:body>
+		<h:form id="formPrincipal">		
+			<p:layout fullPage="true">
+		 		<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
+            	<p:dialog header="#{mensaje['error.sessionTimeOut.header']}" widgetVar="sessionTimeOutDialog"
+             		modal="true" fixedCenter="true" closable="false" width="400" visible="false">
+                 <h:outputText value="#{mensaje['error.sessionTimeOut.text']}" />
+                 <input id="confirmBackToLogin" type="button" value="#{mensaje['error.sessionTimeOut.button']}"
+                    onclick="window.location='#{facesContext.externalContext.requestContextPath}/login.xhtml';" />
+            	</p:dialog>
+		 		<p:layoutUnit position="north" size="220"  >  
+	        		 <h:graphicImage id="imgBanner" value="/resources/images/banner/fisi-unmsm.jpg" width="100%" height="100%"/>	
+	    		</p:layoutUnit>  
+	  
+			    <p:layoutUnit position="south" size="40">  
+			        <h:outputText value="${mensaje['demo.piepagina.mensaje']}" />  
+			    </p:layoutUnit>  
+ 	
+				<p:layoutUnit id="layoutCenter" position="center">
+					<div id="divPrincipalContenido" style="font-size:12px;margin:0px auto;height:100%;" align="center">
+						<p:messages id="msgContenido" />  
+			         	<ui:insert name="contenido"/>
+			        </div>
+			        <ui:insert name="dialogos"/> 	
+			    </p:layoutUnit>  
+
+				<p:layoutUnit position="west" size="200">
+					<ui:include src="/plantilla/ModuloPares/Menus/menu_ocaa_p.xhtml"/>
+				</p:layoutUnit>
+			</p:layout>
+		</h:form>
+	</h:body>
+</html>      

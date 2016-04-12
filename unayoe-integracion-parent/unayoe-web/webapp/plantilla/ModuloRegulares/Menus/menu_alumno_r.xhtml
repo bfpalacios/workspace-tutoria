@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<p:panelMenu style="font-size:10px;"
+		transient="true" >		 
+		<p:submenu label="Registrar Disponibilidad">			
+			<p:menuitem value="Registrar Disp. Alumno" action="#{disponibilidadMBean.selectorRegistroDisponibilidad(3,0)}"
+				icon="ui-icon-arrowrefresh-1-w"  />
+		</p:submenu>
+				
+		<p:submenu label="Encuesta">			
+			<p:menuitem value="Registrar encuesta inicial" action="#{registrarTutoriaMBean.selectorRegistroEncuesta(1)}"
+				icon="ui-icon-arrowrefresh-1-w"  />			
+		</p:submenu>
+		
+		<p:submenu label="Salir del sistema">
+        	 <p:menuitem value="Cerrar Sesion" url="#{request.contextPath}/j_spring_security_logout" 
+				icon="ui-icon-arrowrefresh-1-w" />			 
+		</p:submenu>
+
+	</p:panelMenu>
+</h:body>
+</html>

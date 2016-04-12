@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_tutor_r.xhtml">
+		<ui:define name="contenido">
+			<p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+			
+			<p:panel header="Registro de Disponibilidad Horaria Docente"
+				     style="width: 95%;border: 0px;"
+				     id="generalPanelDisponibilidad">	
+
+				<h:panelGrid id="pnlgdBuscador"
+							 style="font-size: 12px;text-align: left" columns="5" cellspacing="5">
+					<h:outputText 
+						value="#{mensaje['unayoe.ingresar.datos.usuario.label.area_conocimiento']}" 
+					    style="font-weight: bold;" />
+					<p:selectOneMenu id="selectOneAreaConocimiento"
+						value="#{disponibilidadMBean.disponibilidadModelSelect.codAreaConocimiento}"
+						valueChangeListener="#{disponibilidadMBean.actualizarAreaConocimiento}"
+						styleClass="ui-column-label-spij styleAlignRightColumn">								     
+						<f:selectItem itemLabel="Seleccionar el área del conocimiento: "  />
+						<f:selectItems
+							value="#{disponibilidadMBean.disponibilidadModel.listaAreaConocimiento}"
+							var="areaConocimiento"
+							itemLabel="#{areaConocimiento.nomAreaConocimiento}"
+							itemValue="#{areaConocimiento.codAreaConocimiento}" />
+						<f:ajax event="change" execute="@this" render="selectOneCurso"/>
+					</p:selectOneMenu>					
+					
+					<h:outputText 
+						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}" 
+					    style="font-weight: bold;" />
+					<p:selectOneMenu id="selectOneCurso"
+						value="#{disponibilidadMBean.disponibilidadModelSelect.codCurso}"						
+						styleClass="ui-column-label-spij styleAlignRightColumn">								     
+						<f:selectItem itemLabel="Seleccionar el curso : "/>
+							<f:selectItems
+								value="#{disponibilidadMBean.disponibilidadModel.listaCursos}"
+								var="cursos" 
+								itemLabel="#{cursos.nombre}"
+								itemValue="#{cursos.cCodigo}" />							
+					</p:selectOneMenu>
+				</h:panelGrid>
+			
+				<p:panelGrid style="margin-top:10px" >
+    				<f:facet name="header">        
+        				<p:row>
+            				<p:column colspan="2">Día</p:column>
+            				<p:column colspan="2">Hora de Inicio</p:column>
+            				<p:column colspan="2">Hora de Fin</p:column>            
+        				</p:row> 
+    				</f:facet>
+    				<p:row>
+        				<p:column colspan="2"  rowspan="2" style="font-weight: bold;">        		
+        					<p:outputPanel id="customPanel" >
+        						<p:selectOneRadio 
+        							id="customRadio"  
+        							value="#{disponibilidadMBean.disponibilidadModelSelect.dia}"  
+        							layout="custom">
+            						<f:selectItem itemLabel="Lunes" itemValue="LUNES" />
+           	 						<f:selectItem itemLabel="Martes" itemValue="MARTES" />
+            						<f:selectItem itemLabel="Miercoles" itemValue="MIERCOLES" />
+            						<f:selectItem itemLabel="Jueves" itemValue="JUEVES" />
+            						<f:selectItem itemLabel="Viernes" itemValue="VIERNES" />
+            						<f:selectItem itemLabel="Sabado" itemValue="SABADO" />
+	            				</p:selectOneRadio>
+        						<h:panelGrid columns="2" cellpadding="5">
+            						<p:radioButton id="opt1" for="customRadio" itemIndex="0" /><h:outputLabel for="opt1" value="Lunes" />        		
+            						<p:radioButton id="opt2" for="customRadio" itemIndex="1" /><h:outputLabel for="opt2" value="Martes" />
+            						<p:radioButton id="opt3" for="customRadio" itemIndex="2" /><h:outputLabel for="opt3" value="Miercoles" />
+            						<p:radioButton id="opt4" for="customRadio" itemIndex="3" /><h:outputLabel for="opt4" value="Jueves" />         
+		            				<p:radioButton id="opt5" for="customRadio" itemIndex="4" /><h:outputLabel for="opt5" value="Viernes" />           
+		            				<p:radioButton id="opt6" for="customRadio" itemIndex="5" /><h:outputLabel for="opt6" value="Sabado" />
+	            				</h:panelGrid>
+        		 			</p:outputPanel>
+        				</p:column>
+        	
+        				<p:column colspan="2" rowspan="6" style="font-weight: bold;">
+        					<p:selectOneMenu id="horaInicio"
+								value="#{disponibilidadMBean.disponibilidadModelSelect.horaInicio}"
+								valueChangeListener="#{disponibilidadMBean.actualizarHoraFin}">
+								<f:selectItem itemLabel="Hora Inicio:"/>
+								<f:selectItems 
+									value="#{disponibilidadMBean.disponibilidadModel.listaHoraInicio}"
+									var="horaInicio" 
+									itemLabel="#{horaInicio.valorCampo}"
+									itemValue="#{horaInicio.idCampo}"/>	
+								<f:ajax event="change" execute="@this" render="horaFin"/>														
+							</p:selectOneMenu>        	
+        				</p:column>        	
+        	
+        				<p:column colspan="2" rowspan="6" style="font-weight: bold;">
+        					<p:selectOneMenu id="horaFin"
+								value="#{disponibilidadMBean.disponibilidadModelSelect.horaFin}">
+								<f:selectItem itemLabel="Hora Fin:"/>
+								<f:selectItems
+									value="#{disponibilidadMBean.disponibilidadModel.listaHoraFin}"
+									var="horaFin" 
+									itemLabel="#{horaFin.valorCampo}"
+									itemValue="#{horaFin.idCampo}"/>	
+							</p:selectOneMenu>	
+        				</p:column>
+    				</p:row>
+    			</p:panelGrid>    						 	
+			</p:panel>
+			
+			<p:panel 
+				id="panelAgregar" style="width: 95%;border:0px;">
+				<p:row>
+					<p:column colspan="4">						
+						<p:outputPanel>							
+							<p:commandButton 
+								value="#{mensaje['unayoe.ingresar.datos.alumnos.label.agregar']}"
+								actionListener="#{disponibilidadMBean.agregarDisponibilidad}" 
+								update="tablaResultado"
+								ajax="true"/>
+						</p:outputPanel>						
+					</p:column>
+				</p:row>     
+			</p:panel>
+			
+			<p:outputPanel id="displayTable" style="width:75%;margin-top:5px;">
+                <p:row id="tablaDisponibilidadHoraria">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable id="tablaResultado" style="font-size:12px;" 
+		   				             value="#{disponibilidadMBean.listaDisponibilidadGrid}" 
+                             		 var="lista" emptyMessage="Sin disponibilidades registradas">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Disponibilidad de Docentes"/>
+                    		</f:facet>
+                    	
+                    		<p:column headerText="Area del Conocimiento" style="font-size: 12px;width: 20%" >
+                        		<h:outputText value="#{lista.nomAreaConocimiento}" />
+                    		</p:column>
+                    
+                    		<p:column headerText="Cod. Curso" style="font-size: 12px;width: 10%" >
+                        		<h:outputText value="#{lista.codCurso}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Curso" style="font-size: 12px;width: 15%" >
+                        		<h:outputText value="#{lista.nomCurso}" />
+                    		</p:column>
+
+                    		<p:column headerText="Día" style="font-size: 12px;width: 10%" >
+                        		<h:outputText value="#{lista.dia}" />
+                    		</p:column>
+
+                    		<p:column headerText="Hora de Inicio" style="font-size: 12px;width: 10%" >
+                        		<h:outputText value="#{lista.horaInicio}" />
+                    		</p:column>
+
+                    		<p:column headerText="Hora de Fin"  style="font-size: 12px;width: 10%" >
+                        		<h:outputText value="#{lista.horaFin}" />
+                    		</p:column>
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+            </p:outputPanel>
+            
+            <p:outputPanel id="panelGuardar" style="width:100%;margin-top:10px;">
+            	<p:row>
+		   			<p:column colspan="3">
+						<p:commandButton 
+							id="botonGuardar"							
+							value="Guardar"    
+							actionListener="#{disponibilidadMBean.guardarRegistroDisponibilidad}" 
+							update="tablaResultado, selectOneAreaConocimiento, selectOneCurso, customRadio, horaInicio, horaFin"
+							ajax="true"/>
+					</p:column>
+            	</p:row>
+            </p:outputPanel>
+		</ui:define>
+	</ui:composition>
+</html>

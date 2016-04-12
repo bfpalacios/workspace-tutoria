@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<p:panelMenu style="font-size:10px;" transient="true">
+		<p:submenu label="Postular a Tutor">
+			<p:menuitem value="Postular a Tutor Par"
+				action="/paginas/ModuloPares/alumno/postularTutor.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+
+		<p:submenu label="Actividad Académica">
+			<!--<p:menuitem value="Registrar Actividad Académica"
+						action="#{actividadAcademicaMBean.navigation}"
+						icon="ui-icon-arrowrefresh-1-w"  />-->
+
+			<p:menuitem value="Ver Actividades Académicas"
+				action="#{actividadAcademicaMBean.selectorMostrarActividades(1,1)}"
+				icon="ui-icon-arrowrefresh-1-w" update="@all" />
+
+			
+			<p:menuitem value="Mis Actividades Académicas" title="Ver mis actividades Académicas"
+						action="#{actividadAcademicaMBean.selectorMostrarActividades(1,2)}"
+						icon="ui-icon-arrowrefresh-1-w" update="@all" />
+						
+			<!-- 
+
+			<p:menuitem value="Mis Actividades Académicas"
+				action="/paginas/ModuloPares/alumno/mostrarTutorias.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+				
+			 -->
+
+		</p:submenu>
+
+		<p:submenu label="Salir del sistema">
+			<p:menuitem value="Cerrar Sesion"
+				url="#{request.contextPath}/j_spring_security_logout"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+
+	</p:panelMenu>
+</h:body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="/plantilla/ModuloPares/Plantillas/plantilla_ocaa_p.xhtml">
+	<ui:define name="contenido">
+		<p:breadCrumb>
+			<p:menuitem value="Inicio" url="#"></p:menuitem>
+			<p:menuitem value="Nuevo Tema" url="#"></p:menuitem>
+		</p:breadCrumb>
+
+		<p:panel header="Nuevo Tema">
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<h:form>
+				<p:panelGrid id="frmTema">
+				
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Curso"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="curso"
+								value="#{temaMBean.temaModel.codigoCurso}" style="width:300px;">
+								<f:selectItem itemLabel="Seleccionar Curso" itemValue=""
+									noSelectionOption="true"></f:selectItem>
+								<f:selectItems value="#{temaMBean.listaCursos}" var="curso"
+									itemLabel="#{curso.nombre}" itemValue="#{curso.cCodigo}"></f:selectItems>
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Nombre"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputText value="#{temaMBean.temaModel.nombre}"
+								style="width:300px;"></p:inputText>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Descripción"></p:outputLabel>
+						</p:column>
+						<p:column>
+							<p:inputTextarea value="#{temaMBean.temaModel.descripcion}"
+								style="width:300px;"></p:inputTextarea>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton value="Crear Tema" update="frmTema"
+								actionListener="#{temaMBean.crearTema}"></p:commandButton>
+							
+							<p:commandButton value="Limpiar" update="frmTema"
+								actionListener="#{temaMBean.limpiarTema()}"></p:commandButton>
+						</p:column>
+					</p:row>
+
+				</p:panelGrid>
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+
+</html>

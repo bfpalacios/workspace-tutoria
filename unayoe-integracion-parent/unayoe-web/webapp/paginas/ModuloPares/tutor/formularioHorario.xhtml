@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<!-- Es necesario ese head, no borrar sino no funciona ... -->
+<h:body>
+    <p:panel>
+        <h:form>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            <p:panelGrid>
+                <!-- Día de la semana -->
+                <p:row>
+                    <p:column>
+                        <p:outputLabel value="Día:" />
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu value="#{horarioModel.dia}" required="true">
+                            <f:selectItem itemValue="" itemLabel="Seleccionar un día" noSelectionOption="true" />
+                            <f:selectItem itemLabel="Lunes" itemValue="LUNES" />
+                            <f:selectItem itemLabel="Martes" itemValue="MARTES" />
+                            <f:selectItem itemLabel="Miercoles" itemValue="MIERCOLES" />
+                            <f:selectItem itemLabel="Jueves" itemValue="JUEVES" />
+                            <f:selectItem itemLabel="Viernes" itemValue="VIERNES" />
+                            <f:selectItem itemLabel="Sabado" itemValue="SÁBADO" />
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <!-- /Día de la semana -->
+
+                <!-- Horas -->
+                <p:row>
+                    <p:column style="font-weight: bold;">
+                        <p:selectOneMenu id="horaInicio"
+                                         value="#{horarioModel.horaInicio}"
+                                         valueChangeListener="#{actividadAcademicaMBean.cambioHoraInicio}">
+                            <f:selectItem itemLabel="Hora Inicio:"/>
+                            <f:selectItems
+                                    value="#{horarioModel.horasInicio}"
+                                    var="horaInicio"
+                                    itemValue="#{horaInicio.idCampo}"
+                                    itemLabel="#{horaInicio.valorCampo}"/>
+                            <f:ajax event="change" execute="@this" render="horaFin"/>
+                        </p:selectOneMenu>
+                    </p:column>
+
+                    <p:column style="font-weight: bold;">
+                        <p:selectOneMenu id="horaFin"
+                                         value="#{horarioModel.horaFin}">
+                            <f:selectItem itemLabel="Hora Fin:"/>
+                            <f:selectItems
+                                    value="#{horarioModel.horasFin}"
+                                    var="horaFin"
+                                    itemValue="#{horaFin.idCampo}"
+                                    itemLabel="#{horaFin.valorCampo}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <!-- /Horas -->
+            </p:panelGrid>
+        </h:form>
+    </p:panel>
+</h:body>
+</html>

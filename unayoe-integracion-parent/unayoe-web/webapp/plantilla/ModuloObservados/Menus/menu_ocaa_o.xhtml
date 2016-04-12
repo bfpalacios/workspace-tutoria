@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<p:panelMenu style="font-size:10px;"
+		transient="true" >
+		<p:submenu label="Datos de los Alumnos Observados">
+			<p:menuitem value="Cargar alumnos observados" action="#{datosAlumnosMBean.selectorDatosAlumnos(2)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu> 
+		<p:submenu label="Notas de los Alumnos">
+			<p:menuitem value="Ingresar Notas" action="#{notasAlumnoMBean.selectorCargaNotas(1,2)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+			<p:menuitem value="Visualizar Notas" action="#{notasAlumnoMBean.selectorVisualizacionNotas(1,2)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+		<p:submenu label="Registro de Usuarios">
+				<p:menuitem 
+					value="Nuevo Usuario" action="#{usuarioMBean.selectorRegistroUsuarios(1,2)}"
+					icon="ui-icon-arrowrefresh-1-w" />			 
+			</p:submenu>
+		<p:submenu label="Gestión de Actas de Tutoria">
+				<p:menuitem 
+					value="Cargar Actas" action="#{gestionarActasMBean.selectorCargaActas(1,2)}"
+					icon="ui-icon-arrowrefresh-1-w" />		
+				<p:menuitem 
+					value="Descargar Actas" action="#{gestionarActasMBean.selectorDescargaActas(1,2)}"
+					icon="ui-icon-arrowrefresh-1-w" />	
+			</p:submenu>
+		<p:submenu label="Visualizar Horarios de Tutoría">
+			<p:menuitem value="De alumnos" action="#{registrarTutoriaMBean.selectorPaginasConsultaTutoria(1,2)}"
+				icon="ui-icon-arrowrefresh-1-w"  />					
+		</p:submenu>		
+		<p:submenu label="Reporte de Asistencia a Tutoría">
+			<p:menuitem value="De alumnos" action="#{registrarTutoriaMBean.selectorVisualizacionDatosTutoria(1,2)}"
+				icon="ui-icon-arrowrefresh-1-w" />			
+		</p:submenu>				 
+		<p:submenu label="Estadísticas del sistema">
+				<p:menuitem 
+					value="Estadísticas" action="#{registrarTutoriaMBean.selectorPaginasIndicadores(1,2)}"
+					icon="ui-icon-arrowrefresh-1-w" />		
+			</p:submenu>		
+		<p:submenu label="Salir del sistema">
+                    <p:menuitem value="Cerrar Sesion" url="#{request.contextPath}/j_spring_security_logout" 
+				icon="ui-icon-arrowrefresh-1-w" />			 
+		</p:submenu>		
+	</p:panelMenu>
+</h:body>
+</html>

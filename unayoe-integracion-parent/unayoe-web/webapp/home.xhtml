@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/resources/css/demo.css" />
+</h:head>
+
+<h:body>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit id="lytPlantillaLoginBanner" position="north" size="250">
+			<h:graphicImage id="imgPlantillaLoginBanner"
+				value="/resources/images/banner/fisi-unmsm.jpg" width="100%"
+				height="100%" />
+		</p:layoutUnit>
+
+		<p:layoutUnit id="lytPlantillaLoginPiePagina" position="south"
+			size="40">
+			<div align="center" style="font-size: 9px;">
+				<h:outputText id="txtPlantillaLoginPiePagina"
+					value="#{mensaje['demo.piepagina.mensaje']}" />
+			</div>
+		</p:layoutUnit>
+
+		<p:layoutUnit id="lytTemplateLoginContent" position="center">
+			<div id="divTemplateLoginContent" align="center">
+			
+			
+			<p:panel header="Modulos Disponibles">
+
+		<p:outputPanel>
+			Seleccione el módulo del sistema al que desea acceder.
+		</p:outputPanel>
+
+		<ul class="lista-roles">
+			<ui:repeat var="rol" value="#{loginMBean.roles}">
+
+				<ui:fragment rendered="#{rol eq 'ROLE_ADMIN_O'}">
+					<li><p:link href="/paginas/ModuloObservados/principal_o.xhtml"
+							value="Modulo Admin Observados"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_DIR_ACA_O'}">
+					<li><p:link
+							href="/paginas/ModuloObservados/principal_dir_aca_o.xhtml"
+							value="Modulo Dirección Academica Observados"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_UNAYOE_O'}">
+					<li><p:link
+							href="/paginas/ModuloObservados/principal_unayoe_o.xhtml"
+							value="Modulo UNAYOE Observados"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_OCAA_O'}">
+					<li><p:link
+							href="/paginas/ModuloObservados/principal_ocaa_o.xhtml"
+							value="Modulo OCAA Observados"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_TUTOR_O'}">
+					<li><p:link
+							href="/paginas/ModuloObservados/principal_tutor_o.xhtml"
+							value="Modulo Tutor Observados"></p:link></li>
+				</ui:fragment>
+
+
+				<!-- Módulo de alumnos Regulares -->
+				<ui:fragment rendered="#{rol eq 'ROLE_ADMIN_R'}">
+					<li><p:link href="/paginas/ModuloRegulares/principal_r.xhtml"
+							value="Modulo Admin Regulares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_UNAYOE_R'}">
+					<li><p:link
+							href="/paginas/ModuloRegulares/principal_unayoe_r.xhtml"
+							value="Modulo UNAYOE Regulares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_DIR_ACA_R'}">
+					<li><p:link
+							href="/paginas/ModuloRegulares/principal_dir_aca_r.xhtml"
+							value="Modulo Direccion Academica Regulares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_OCAA_R'}">
+					<li><p:link
+							href="/paginas/ModuloRegulares/principal_ocaa_r.xhtml"
+							value="Modulo OCAA Regulares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_TUTOR_R'}">
+					<li><p:link
+							href="/paginas/ModuloRegulares/principal_tutor_r.xhtml"
+							value="Modulo Tutor Regulares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_ALUMNO_R'}">
+					<li><p:link
+							href="/paginas/ModuloRegulares/principal_alumno_r.xhtml"
+							value="Modulo Alumno Regulares"></p:link></li>
+				</ui:fragment>
+
+
+				<!-- Modulo de Pares -->
+				<ui:fragment rendered="#{rol eq 'ROLE_ADMIN_P'}">
+					<li><p:link href="/paginas/ModuloPares/principal_p.xhtml"
+							value="Modulo Admin Pares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_TUTOR_P'}">
+					<li><p:link
+							href="/paginas/ModuloPares/principal_tutor_p.xhtml"
+							value="Modulo Tutor Pares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_ALUMNO_P'}">
+					<li><p:link
+							href="/paginas/ModuloPares/principal_alumno_p.xhtml"
+							value="Modulo Alumno Pares"></p:link></li>
+				</ui:fragment>
+
+				<ui:fragment rendered="#{rol eq 'ROLE_OCAA_P'}">
+					<li><p:link href="/paginas/ModuloPares/principal_ocaa_p.xhtml"
+							value="Modulo OCAA Pares"></p:link></li>
+				</ui:fragment>
+
+			</ui:repeat>
+		</ul>
+
+	</p:panel>
+			
+			
+			
+			</div>
+		</p:layoutUnit>
+	</p:layout>
+
+
+
+</h:body>
+
+
+</html>

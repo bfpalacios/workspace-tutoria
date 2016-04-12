@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="/plantilla/ModuloPares/Plantillas/plantilla_ocaa_p.xhtml">
+	<ui:define name="contenido">
+		<p:breadCrumb>
+			<p:menuitem value="Inicio" url="#"></p:menuitem>
+			<p:menuitem value="Iniciar Convocatoria" url="#"></p:menuitem>
+		</p:breadCrumb>
+
+		<p:panel header="Iniciar Convocatoria">
+			<h:form>
+				<p:messages id="messages" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<p:panelGrid id="frmConvocatoria">
+
+					<p:row>
+						<p:column>
+							<p:outputLabel for="nombre" value="Nombre:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="nombre"
+								value="#{convocatoriaMBean.convocatoriaModel.nombre}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel for="txtPeriodo" value="Periodo:" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="txtPeriodo" readonly="true" disabled="true"
+								value="#{convocatoriaMBean.periodoActual}"></p:inputText>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel for="fechaInicio" value="Fecha Inicio:" />
+						</p:column>
+						<p:column>
+							<p:calendar id="fechaInicio"
+								value="#{convocatoriaMBean.convocatoriaModel.fechaInicio}"
+								showOn="button" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel for="fechaFinal" value="Fecha Final:" />
+						</p:column>
+						<p:column>
+							<p:calendar id="fechaFinal"
+								value="#{convocatoriaMBean.convocatoriaModel.fechaFinal}"
+								showOn="button" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel for="temas" value="Temas:" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="curso"
+								value="#{convocatoriaMBean.convocatoriaModel.codigoCurso}">
+								<p:ajax update="temas" process="curso"></p:ajax>
+								<f:selectItem itemLabel="Seleccionar Curso" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{convocatoriaMBean.listaCursos}"
+									var="curso" itemLabel="#{curso.nombre}"
+									itemValue="#{curso.cCodigo}" />
+							</p:selectOneMenu>
+
+
+							<p:scrollPanel style="width:250px;height:200px;">
+
+								<p:selectManyCheckbox id="temas"
+									value="#{convocatoriaMBean.convocatoriaModel.temas}"
+									layout="grid" columns="1" converter="javax.faces.Integer">
+									<p:ajax process="temas"></p:ajax>
+									<f:selectItems value="#{convocatoriaMBean.listaTemas}"
+										var="tema" itemLabel="#{tema.nombre}" itemValue="#{tema.id}" />
+								</p:selectManyCheckbox>
+
+							</p:scrollPanel>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2">
+							<p:commandButton value="Iniciar Convocatoria"
+								update="frmConvocatoria"
+								action="#{convocatoriaMBean.iniciarConvocatoria()}"></p:commandButton>
+
+							<p:commandButton value="Limpiar" update="frmConvocatoria"
+								action="#{convocatoriaMBean.limpiarConvocatoria()}"></p:commandButton>
+						</p:column>
+					</p:row>
+
+
+				</p:panelGrid>
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+</html>

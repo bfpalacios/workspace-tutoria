@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="/plantilla/ModuloPares/Plantillas/plantilla_alumno_p.xhtml">
+
+	<ui:define name="contenido">
+
+		<p:breadCrumb>
+			<p:menuitem value="Inicio" url="#"></p:menuitem>
+			<p:menuitem value="Postular a Tutor" url="#"></p:menuitem>
+		</p:breadCrumb>
+
+		<c:choose>
+			<c:when test="#{postulacionMBean.convocatoriaActual == null}">
+				<p:outputPanel>
+					<h1>Actualmente no hay una convocatoria activa para dictado de
+						tutorías. Gracias por paticipar.</h1>
+				</p:outputPanel>
+			</c:when>
+			<c:otherwise>
+
+				<p:panel header="Postular a Tutor">
+					<p:growl id="messages" showDetail="true" autoUpdate="true"
+						closable="true" />
+
+					<p:panel header="Datos Personales">
+						<p:panelGrid id="datospersonales">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Nombres"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:inputText disabled="true" readonly="true"
+										value="#{postulacionMBean.nombre}"></p:inputText>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Apellidos"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:inputText disabled="true" readonly="true"
+										value="#{postulacionMBean.apellidos}"></p:inputText>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Edad"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:inputText id="edad" disabled="true" readonly="true"
+										value="#{postulacionMBean.edad}">
+										<f:validateDoubleRange minimum="0" maximum="110"></f:validateDoubleRange>
+									</p:inputText>
+									<p:message for="edad" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:panel>
+
+					<p:panel header="Información Académica">
+						<p:panelGrid id="infoacademica">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Convocatoria"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:inputText value="#{postulacionMBean.convocatoriaActual}"
+										readonly="true" disabled="true"></p:inputText>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Temas de Tutoria"></p:outputLabel>
+								</p:column>
+
+								<p:column>
+									<p:selectOneMenu id="curso"
+										value="#{postulacionMBean.postulacionModel.codigoCurso}">
+										<p:ajax update="temas" process="curso"></p:ajax>
+										<f:selectItem itemLabel="Seleccionar Curso" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="#{postulacionMBean.listaCursos}"
+											var="curso" itemLabel="#{curso.nombre}"
+											itemValue="#{curso.cCodigo}" />
+									</p:selectOneMenu>
+
+									<p:scrollPanel style="width:250px;height:200px;">
+										<p:selectManyCheckbox id="temas"
+											value="#{postulacionMBean.postulacionModel.temas}"
+											layout="grid" columns="1" converter="javax.faces.Integer">
+											<p:ajax process="temas"></p:ajax>
+											<f:selectItems value="#{postulacionMBean.listaTemas}"
+												var="tema" itemLabel="#{tema.nombre}" itemValue="#{tema.id}" />
+										</p:selectManyCheckbox>
+									</p:scrollPanel>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Curriculum"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<c:if
+										test="#{postulacionMBean.postulacionModel.archivoCV != null}">
+										<p:inputText
+											value="#{postulacionMBean.postulacionModel.nombreArchivoCV}"
+											disabled="true" readonly="true" style="width:150px;"></p:inputText>
+										<p:commandButton value="Cambiar"
+											action="#{postulacionMBean.cambiarArchivoCV()}"
+											update="infoacademica" style="margin:5px;"></p:commandButton>
+									</c:if>
+
+
+									<c:if
+										test="#{postulacionMBean.postulacionModel.archivoCV == null}">
+										<p:fileUpload id="fileUpload" auto="true"
+											fileUploadListener="#{postulacionMBean.subirCV}"
+											mode="advanced" label="Cargar CV"
+											update="messages infoacademica">
+										</p:fileUpload>
+									</c:if>
+
+
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:panel>
+
+					<p:panel header="Disponibilidad">
+						<p:outputPanel style="margin:10px;">
+					Selecciones los rangos de horas en los que tiene disponibilidad para dar tutoría.
+				</p:outputPanel>
+
+						<p:panelGrid id="disponibilidad">
+							<p:row>
+								<p:column>
+									<p:outputLabel value=""></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Lunes"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Martes"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Miércoles"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Jueves"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Viernes"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Sábado"></p:outputLabel>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Manana (08:00 - 12:00)"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.lunesManana}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.martesManana}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.miercolesManana}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.juevesManana}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.viernesManana}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.sabadoManana}"></p:selectBooleanCheckbox>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Tarde (12:00 - 18:00)"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.lunesTarde}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.martesTarde}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.miercolesTarde}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.juevesTarde}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.viernesTarde}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.sabadoTarde}"></p:selectBooleanCheckbox>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Noche (18:00 - 22:00)"></p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.lunesNoche}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.martesNoche}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.miercolesNoche}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.juevesNoche}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.viernesNoche}"></p:selectBooleanCheckbox>
+								</p:column>
+								<p:column>
+									<p:selectBooleanCheckbox
+										value="#{postulacionMBean.disponibilidadTutoriaParModel.sabadoNoche}"></p:selectBooleanCheckbox>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+
+					</p:panel>
+
+					<p:commandButton value="Postular" style="margin:10px;"
+						action="#{postulacionMBean.registrarPostulacion()}"
+						update="datospersonales infoacademica disponibilidad messages"></p:commandButton>
+
+				</p:panel>
+
+
+			</c:otherwise>
+		</c:choose>
+
+
+	</ui:define>
+</ui:composition>
+</html>

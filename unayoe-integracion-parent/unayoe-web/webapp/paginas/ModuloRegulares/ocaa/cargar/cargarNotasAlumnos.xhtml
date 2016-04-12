@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_ocaa_r.xhtml">
+		<ui:define name="contenido">
+			<p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+   				
+			<p:panelGrid id="pnlGridIngresoNotas"  style="border:none;margin:0 auto;width:1300px;">				
+				<f:facet name="header">
+        			<p:row>
+            			<p:column colspan="3">Cargar notas de los alumnos observados</p:column>
+        			</p:row>
+    			</f:facet>
+			
+				<p:row>
+		    		<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+		        		<h:outputText id="lCargar" value="#{mensaje['unayoe.ingresar.datos.alumnos.label.cargar.notas']}"/>		        	
+		        	</p:column>
+		        	<p:column>
+		        		<p:inputText id="nombreExcel" value="#{notasAlumnoMBean.archivoModel.nombre}" size="50"/>
+		        	</p:column>
+		         	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+		         		<p:fileUpload fileUploadListener="#{notasAlumnoMBean.cargarNotasAlumnos}"
+		            				  sizeLimit="500000"
+		            				  update="nombreExcel"
+		            				  auto="true" mode= "advanced" allowTypes="/(\.|\/)(xlsx|xls)$/" 
+		            			      multiple="false" rendered="true" label="Seleccionar Excel"
+		            			      ajax="true"/>	
+		          	</p:column>
+		   		</p:row>
+		   	
+		   		<p:row id="filExcel">		        	
+		        	<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3">
+		        		<p:commandButton value="Mostrar datos" id="botonMostrar" ajax="true" update="tablaNotas"/>		        	
+		        	</p:column> 
+		   		</p:row>		 
+		   		
+        		<p:row>
+            		<p:column colspan="3" style="font-weight:bold;font-size:15px">#{mensaje['unayoe.ingresar.grilla']}</p:column>
+        		</p:row>    	   		
+		   		
+		   		<p:row id="filTabla">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaNotas"  
+		   					value="#{notasAlumnoMBean.notasAlumnoExcelModelsGrid}"  
+		   					var="tablaNotas" 
+		   					paginator="true" rows="20"
+		   					emptyMessage="Sin notas para cargar">
+     						<p:column headerText="Año(*)">
+        						<h:outputText value="#{tablaNotas.anio}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Periodo(*)">
+        						<h:outputText value="#{tablaNotas.periodo}" />
+    						</p:column> 
+     						
+     						<p:column headerText="Plan(*)">
+        						<h:outputText value="#{tablaNotas.plan}" />
+    						</p:column>
+   	 						
+   	 						<p:column headerText="Código del Curso(*)">
+        						<h:outputText value="#{tablaNotas.codCurso}" />
+    						</p:column>
+    
+    						<p:column headerText="Asignatura">
+        						<h:outputText value="#{tablaNotas.nomCurso}" />
+    						</p:column> 
+    						
+    						<p:column headerText="Créditos">
+        						<h:outputText value="#{tablaNotas.creditos}" />
+    						</p:column>
+    						
+    						<p:column headerText="Código del alumno(*)">
+        						<h:outputText value="#{tablaNotas.codAlumno}" />
+    						</p:column>
+    						
+    						<p:column headerText="Nombre del alumno">
+        						<h:outputText value="#{tablaNotas.nomAlumno}" />
+    						</p:column>
+    						
+    						<p:column headerText="Docente">
+        						<h:outputText value="#{tablaNotas.nomDocente}" />
+    						</p:column>
+ 	
+ 							<p:column headerText="Nota final(*)">
+        						<h:outputText value="#{tablaNotas.notaFinal}" />
+    						</p:column>
+    						
+    						<p:column headerText="Existe">
+        						<h:outputText value="#{tablaNotas.existe}" />
+    						</p:column>
+    						
+    						<p:column headerText="Válido">
+        						<h:outputText value="#{tablaNotas.valido}" />
+    						</p:column>
+						</p:dataTable>
+			   		</p:column>   
+				</p:row>
+				
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							value="Guardar" 
+						    id="botonGuardar" 
+						    actionListener="#{notasAlumnoMBean.guardarNotas}" 
+						    update="tablaNotas, nombreExcel"
+						    ajax="true"/>
+					</p:column>
+				</p:row>			
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+</html>

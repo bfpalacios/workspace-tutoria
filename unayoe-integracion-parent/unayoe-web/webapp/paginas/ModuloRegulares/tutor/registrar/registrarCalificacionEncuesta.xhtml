@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>
+
+    <ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_tutor_r.xhtml">
+        <ui:define name="contenido">            
+            <p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+            
+            <p:panel header="Registro de observaciones a la encuesta inicial" style="width: 450px;" >
+                <p:panelGrid  id="pnlLoginAcceso" style="font-size: 12px;">                                       
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idCurso"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}"/>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneCurso" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.cCodigo}" 
+                    			valueChangeListener="#{registrarTutoriaMBean.actualizarAlumnoRegular}"
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el curso:"/>
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarCursos}"
+                                    var="cursos" itemLabel="#{cursos.nombre}"
+                                    itemValue="#{cursos.cCodigo}" />
+                        		<f:ajax event="change" execute="@this" render="selectOneAlumno"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idAlumno"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.alumno']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneAlumno" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}" 
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el alumno: " />
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarAlumnos}"
+                                    var="alumnos" itemLabel="#{alumnos.aNombre}"
+                                    itemValue="#{alumnos.aCodigo}"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>                    
+                    
+                    <p:spacer width="50px"/>
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<p:commandButton 
+							 	id="btnBuscarEncuesta" align="center" 
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+                                actionListener="#{registrarTutoriaMBean.buscarEncuestaInicial}"
+                                update="tablaResultado"
+                                ajax="true"/>                            
+						</p:column>
+                    </p:row>                   
+                </p:panelGrid>            
+            </p:panel>
+            
+            <p:spacer height="20px"/>
+            
+            <p:outputPanel id="mostrarEncuesta" style="width:75%;margin-top:10px">
+                <p:row id="tablaEncuesta">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaResultado" 		   					
+		   					style="font-size:12px;" 
+		   				    value="#{registrarTutoriaMBean.tutoriaModel.listaEncuestas}" 
+                            binding="#{tabla}"
+                            var="encuesta" emptyMessage="Sin respuestas para observar">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Datos de la encuesta inicial"/>
+                    		</f:facet>
+                    	
+                    		<p:column headerText="Nº pregunta" style="font-size:12px; width:5%">
+        						<h:outputText value="#{tabla.rowIndex + 1}" />    
+    						</p:column>
+                    		
+                    		<p:column headerText="Pregunta" style="font-size:12px; width:30%">
+        						<h:outputText value="#{encuesta.pregunta}" />
+    						</p:column>
+    						
+    						<p:column headerText="Respuesta" style="font-size:12px; width:30%">
+        						<h:outputText value="#{encuesta.respuesta}" />
+    						</p:column>
+    						
+    						<p:column headerText="Calificación psicóloga" style="font-size:12px; width:10%">
+        						<h:outputText value="#{encuesta.calificacionPsicologa}" />
+    						</p:column>                   		
+                    		
+                    		<p:column headerText="Calificación Tutor" style="font-size: 12px;width: 10%" >
+                        		<p:selectOneMenu
+									id="observacionEncuesta"
+									value="#{encuesta.calificacionTutor}">
+									<f:selectItems 
+										value="#{encuesta.listaCalificacion}"
+										var="calificacion" 
+										itemLabel="#{calificacion.valorCampo}"
+										itemValue="#{calificacion.valorCampo}"/> 									
+								</p:selectOneMenu>
+                    		</p:column>                    		       		
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+			</p:outputPanel>      
+              
+            <p:outputPanel id="guardarAsistencia" style="width:50%;margin-top:15px;margin-bottom:10px"> 
+                <p:row>
+		   			<p:column colspan="3">
+						<p:commandButton 
+							id="botonGuardar"							
+							value="Guardar"    
+							actionListener="#{registrarTutoriaMBean.calificarEncuesta}" 
+							ajax="true" />
+					</p:column>
+            	</p:row>
+            </p:outputPanel>  
+        </ui:define>
+    </ui:composition>
+</html>

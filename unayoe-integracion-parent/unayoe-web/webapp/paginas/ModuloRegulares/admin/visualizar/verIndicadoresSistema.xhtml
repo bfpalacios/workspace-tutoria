@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_r.xhtml">
+	<ui:define name="contenido">
+
+		<p:outputPanel id="mostrarIndicadores" style="width:40%;margin-top:10px">
+                <p:row id="filaIndicadores">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaIndicadores" 		   					
+		   					style="font-size:12px;" 
+		   				    value="#{registrarTutoriaMBean.tutoriaModel.listaIndicadores}" 
+                            binding="#{tabla}"
+                            var="indicador" emptyMessage="Sin respuestas para observar">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Indicadores del sistema"/>
+                    		</f:facet>
+                    	
+                    		<p:column headerText="Nº indicador" style="font-size:12px; width:5%">
+        						<h:outputText value="#{tabla.rowIndex + 1}" />    
+    						</p:column>
+    						
+    						<p:column headerText="Indicador" style="font-size:12px; width:15%">
+        						<h:outputText value="#{indicador.indicador}" />
+    						</p:column>
+                    		
+                    		<p:column headerText="Módulo de observados" style="font-size:12px; width:5%">
+        						<h:outputText value="#{indicador.indicadorObservados}" />
+    						</p:column>
+    						
+    						<p:column headerText="Módulo de regulares" style="font-size:12px; width:5%">
+        						<h:outputText value="#{indicador.indicadorRegulares}" />
+    						</p:column>	       		
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+			</p:outputPanel>		
+	</ui:define>
+</ui:composition>
+
+
+</html>

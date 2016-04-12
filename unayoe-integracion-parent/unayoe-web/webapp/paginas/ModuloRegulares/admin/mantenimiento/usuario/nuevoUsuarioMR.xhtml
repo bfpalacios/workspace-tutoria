@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_r.xhtml">
+		<ui:define name="contenido">
+			<p:outputPanel id="pnlGridMensajes" style="width:500px;margin-top:5px;">
+				<p:row>
+    				<p:column colspan="4" rowspan="2">
+    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+   					</p:column>
+   				</p:row>
+   			</p:outputPanel>
+			
+			<p:panel header="Mantenimiento de Usuarios" style="width: 400px;">					
+				<p:panelGrid id="pnlGridLoginAcceso">
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="lblUserId"
+								value="#{mensaje['demo.mantenimiento.usuario.idUsuario']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="usuarioId" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{usuarioMBean.usuarioModel.idUsuario}" />
+							<p:message for="usuarioId" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="lblLoginPassword"
+								value="#{mensaje['demo.mantenimiento.usuario.clave']}" />
+						</p:column>
+
+						<p:column styleClass="styleAlignLeftColumn">
+							<p:password 
+								id="clave" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{usuarioMBean.usuarioModel.clave}" />
+							<p:message for="clave" />
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblNombresUsuario"
+								value="#{mensaje['demo.mantenimiento.usuario.nombres']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="nombresUsuario" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{usuarioMBean.usuarioModel.nombres}" />
+							<p:message for="nombresUsuario" />
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblApellidoPaternoUsuario"
+								value="#{mensaje['demo.mantenimiento.usuario.paterno']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText 
+								id="apellidoPaternoUsuario" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{usuarioMBean.usuarioModel.paterno}" />
+							<p:message for="apellidoPaternoUsuario" />
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblApellidoMaternoUsuario"
+								value="#{mensaje['demo.mantenimiento.usuario.materno']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="apellidoMaternoUsuario" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{usuarioMBean.usuarioModel.materno}" />
+							<p:message for="apellidoMaternoUsuario" />
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblCorreoUsuario"
+								value="#{mensaje['demo.mantenimiento.usuario.correo']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="correoUsuario" size="40"						
+								value="#{usuarioMBean.usuarioModel.correo}" />					
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblDireccionUsuario"
+								value="#{mensaje['demo.mantenimiento.usuario.direccion']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="direccionUsuario" size="40"						
+								value="#{usuarioMBean.usuarioModel.direccion}" />					
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblTelefonoUsuario"
+								value="#{mensaje['demo.mantenimiento.usuario.telefono']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="telefonoUsuario" size="40"						
+								value="#{usuarioMBean.usuarioModel.telefono}" />					
+						</p:column>
+					</p:row>
+			
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblRol"
+								value="#{mensaje['demo.mantenimiento.usuario.rol']}" />
+						</p:column>
+						<p:column styleClass="styleAlignLeftColumn">
+							<p:selectOneMenu
+								value="#{usuarioMBean.usuarioModelSelect.rol}"
+								valueChangeListener="#{usuarioMBean.activarAlumno}">
+								<f:selectItems 
+									value="#{usuarioMBean.usuarioModel.rolesUsuario}"
+									var="roles" 
+									itemLabel="#{roles.role}"
+									itemValue="#{roles.idRol}"/> 
+								<f:ajax event="change" execute="@this" render="selectOnePlan codigoAlumno"/> 
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<h:outputText id="lblCodAlumno"
+								value="Sólo aplicable si el rol a registrar es alumno" />
+						</p:column>
+					</p:row>
+					
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblCodigoAlumno"
+								value="#{mensaje['demo.mantenimiento.usuario.codAlumno']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="codigoAlumno" size="40"						
+								value="#{usuarioMBean.usuarioModel.codAlumno}" 
+								disabled="#{usuarioMBean.esAlumno}"/>					
+						</p:column>
+					</p:row>
+					
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblPlan"
+								value="#{mensaje['demo.mantenimiento.usuario.plan']}" />
+						</p:column>
+						<p:column styleClass="styleAlignLeftColumn">
+							<p:selectOneMenu
+								id="selectOnePlan"
+								value="#{usuarioMBean.usuarioModelSelect.planAlumno}"								
+								disabled="#{usuarioMBean.esAlumno}">
+								<f:selectItems 
+									value="#{usuarioMBean.usuarioModel.listaPlanes}"
+									var="planes" 
+									itemLabel="#{planes.valorCampo}"
+									itemValue="#{planes.idCampo}"/>								
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			
+			<p:outputPanel id="pnlGuardar" style="width:400x;margin-top:px;">
+				<p:row>
+					<p:column colspan="2" styleClass="styleAlignRightColumn">
+						<p:commandButton 
+							id="botonGuardar" value="Guardar" 
+							actionListener="#{usuarioMBean.guardarNuevoUsuarioMR}" 
+							update="usuarioId, clave, nombresUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, correoUsuario, direccionUsuario, telefonoUsuario, codigoAlumno"
+							ajax="true" />							
+					</p:column>
+				</p:row>
+			</p:outputPanel>
+		</ui:define>
+	</ui:composition>
+</html>

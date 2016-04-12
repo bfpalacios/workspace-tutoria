@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<p:panelMenu style="font-size:10px;" transient="true">
+
+		<p:submenu label="Gestión de Temas">
+			<p:menuitem value="Nuevo Tema"
+				action="/paginas/ModuloPares/ocaa/tema/crearTemas.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+
+			<p:menuitem value="Mostrar Temas"
+				action="/paginas/ModuloPares/ocaa/tema/mostrarTemas.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+
+		<p:submenu label="Gestión de convocatorias">
+		
+			<p:menuitem value="Iniciar convocatoria"
+				action="/paginas/ModuloPares/ocaa/convocatoria/crearConvocatoria.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+
+			<p:menuitem value="Mostrar convocatorias"
+				action="/paginas/ModuloPares/ocaa/convocatoria/mostrarConvocatorias.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+
+			<p:menuitem value="Mostrar postulantes"
+				action="/paginas/ModuloPares/ocaa/convocatoria/mostrarPostulantes.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+
+		</p:submenu>
+
+		<p:submenu label="Gestión de tutores">
+			<p:menuitem value="Mostrar tutores"
+				action="/paginas/ModuloPares/ocaa/tutores/mostrarTutores.xhtml"
+				icon="ui-icon-arrowrefresh-1-w" />
+
+
+		</p:submenu>
+
+
+		<p:submenu label="Salir del sistema">
+			<p:menuitem value="Cerrar Sesion"
+				url="#{request.contextPath}/j_spring_security_logout"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+	</p:panelMenu>
+</h:body>
+</html>

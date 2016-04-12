@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_ocaa_o.xhtml">
+		<ui:define name="contenido">
+			<p:panel header="Visualizar Notas de Alumnos"
+				style="width: 95%;border: 0px;">
+			
+				<h:panelGrid columns="3" cellspacing="5">
+					<h:outputText value="Ciclo" />
+					<p:spacer width="10px" />
+					<p:selectOneMenu
+						value="#{notasAlumnoMBean.claseMaestraModelSelect.idCampo}">
+						<f:selectItems 
+							value="#{notasAlumnoMBean.claseMaestraModel.listaClaseMaestra}"
+							var="ciclo" 
+							itemLabel="#{ciclo.valorCampo}"
+							itemValue="#{ciclo.idCampo}"/> 
+					</p:selectOneMenu>
+				</h:panelGrid>
+
+				<h:panelGrid id="pnlBuscador"
+					style="font-size: 12px;text-align: left" columns="5" cellspacing="5">
+					<h:outputText value="Codigo Alumno" />
+					<p:outputPanel>
+						<p:inputText
+							value="#{notasAlumnoMBean.alumnoBuscarNotasModelSelect.codigo}"
+							size="30" />
+						<p:spacer width="5px" />
+						<p:commandButton update="tablaNotas,a_nombre"
+							value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+							actionListener="#{notasAlumnoMBean.buscarNotasAlumno}" />
+					</p:outputPanel>
+					<p:spacer width="30px" />  
+					
+					<h:outputText value="Nombre de Alumno" />
+					<p:inputText id="a_nombre"
+						         value="#{notasAlumnoMBean.alumnoBuscarNotasModelSelect.nombres}"
+						         size="40" />
+					<p:spacer width="30px" />				 
+				</h:panelGrid>
+    	   		
+		   		
+		   		<p:row id="filTabla">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable id="tablaNotas"  var="tablaNotas" value="#{notasAlumnoMBean.visualizarNotasAlumnoGrid}"  >
+     						<p:column headerText="Año">
+        						<h:outputText value="#{tablaNotas.anio}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Periodo">
+        						<h:outputText value="#{tablaNotas.periodo}" />
+    						</p:column> 
+     						
+     						<p:column headerText="Plan">
+        						<h:outputText value="#{tablaNotas.plan}" />
+    						</p:column>
+   	 						
+   	 						<p:column headerText="Código del Curso">
+        						<h:outputText value="#{tablaNotas.codCurso}" />
+    						</p:column>
+    
+    						<p:column headerText="Asignatura">
+        						<h:outputText value="#{tablaNotas.nomCurso}" />
+    						</p:column> 
+    						
+    						<p:column headerText="Créditos">
+        						<h:outputText value="#{tablaNotas.creditos}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Docente">
+        						<h:outputText value="#{tablaNotas.nomDocente}" />
+    						</p:column>
+ 	
+ 							<p:column headerText="Nota final">
+        						<h:outputText value="#{tablaNotas.notaFinal}" />
+    						</p:column>
+						</p:dataTable>
+			   		</p:column>   
+				</p:row>
+			</p:panel>
+			
+			<p:outputPanel id="pnlExportarNotas" style="width:100px;margin-top:10px;">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							id="botonExportar"
+							value="Exportar" 
+							actionListener="#{notasAlumnoMBean.imprimirReporteNotasAlumno}" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>
+		</ui:define>
+	</ui:composition>
+</html>

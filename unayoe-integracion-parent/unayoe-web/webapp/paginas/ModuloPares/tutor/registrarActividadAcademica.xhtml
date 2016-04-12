@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/plantilla/ModuloPares/Plantillas/plantilla_tutor_p.xhtml">
+    <ui:define name="contenido">
+
+        <p:panel header="Registrar Actividad Académica" id="content">
+            
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:panelGrid>
+                    <!-- Área de conocimiento -->
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Área de Conocimiento:" />
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu value="#{actividadAcademicaMBean.codigoArea}"
+                                             valueChangeListener="#{actividadAcademicaMBean.onChangeArea}"
+                                             filter="true" filterMatchMode="contains" effect="fade" style="width:250px;">
+                                <f:selectItem itemValue="" itemLabel="Seleccionar Área de Conocimiento"
+                                              noSelectionOption="true" />
+                                <f:selectItems value="#{actividadAcademicaModel.areas}"
+                                               var="area" itemValue="#{area.codAreaConocimiento}" itemLabel="#{area.nomAreaConocimiento}"/>
+                                <p:ajax event="change" process="@this" update="selectOneCurso" />
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:row>
+                    <!-- /Área de conocimiento -->
+
+                    <!-- Cursos -->
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Curso:" />
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu value="#{actividadAcademicaMBean.codigoCurso}" id="selectOneCurso"
+                                             valueChangeListener="#{actividadAcademicaMBean.onChangeCurso}"
+                                             filter="true" filterMatchMode="contains" effect="fade" style="width: 250px;">
+                                <f:selectItem itemValue="" itemLabel="Seleccionar Curso"
+                                              noSelectionOption="true" />
+                                <f:selectItems value="#{actividadAcademicaModel.cursos}"
+                                               var="curso" itemValue="#{curso.cCodigo}" itemLabel="#{curso.nombre}"/>
+                                <p:ajax event="change" process="@this" update="selectOneTheme"/>
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:row>
+                    <!-- /Cursos -->
+
+                    <!-- Temas -->
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Tema:" />
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu value="#{actividadAcademicaModel.codigoTema}" id="selectOneTheme"
+                            				 valueChangeListener="#{actividadAcademicaMBean.onChangeTema}"
+                                             filter="true" filterMatchMode="contains" effect="fade" style="width: 250px;">
+                                <f:selectItem itemValue="" itemLabel="Seleccionar Curso"
+                                              noSelectionOption="true" />
+                                <f:selectItems value="#{actividadAcademicaModel.temas}"
+                                               var="tema" itemValue="#{tema.id}" itemLabel="#{tema.nombre}"/>
+                                <p:ajax event="change" process="@this" update="themeName"/>
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:row>
+                    <!-- /Temas -->
+
+                    <!-- Nombre Actividad -->
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Nombre de Actividad Académica:" />
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="themeName" style="width: 250px;" value="#{actividadAcademicaModel.nombre}"/>
+                        </p:column>
+                    </p:row>
+                    <!-- /Nombre Actividad -->
+
+                    <!-- Número Vacantes -->
+                    <p:row>
+                        <p:column>
+                            <p:outputLabel value="Número de vacantes:" />
+                        </p:column>
+                        <p:column>
+                            <p:spinner id="numeroVacantes" value="#{actividadAcademicaModel.numeroVacantes}" min="1" max="20" />
+                        </p:column>
+                    </p:row>
+                    <!-- /Número Actividad -->
+                </p:panelGrid>
+
+                <p:separator/>
+
+                <ui:include src="includes/horarios-actividad.xhtml"/>
+
+                <p:separator/>
+
+                <ui:include src="includes/sesiones-actividad.xhtml"/>
+
+                <p:separator/>
+
+                <p:commandButton value="Crear Actividad Académica" styleClass="ui-priority-primary"
+                                 action="#{actividadAcademicaMBean.guardarActividad}" ajax="true" update="content"/>
+           
+        </p:panel>
+    </ui:define>
+</ui:composition>
+
+</html>

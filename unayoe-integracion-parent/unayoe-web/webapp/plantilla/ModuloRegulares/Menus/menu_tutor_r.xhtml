@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<p:panelMenu style="font-size:10px;"
+		transient="true" >		 
+		<p:submenu label="Registrar Disponibilidad">
+			<p:menuitem value="Registrar Disp. Docente" action="#{disponibilidadMBean.selectorRegistroDisponibilidad(2,0)}"
+				icon="ui-icon-arrowrefresh-1-w"/>
+		</p:submenu>
+		
+		<p:submenu label="Encuesta">
+			<p:menuitem value="Calificar encuesta" action="#{registrarTutoriaMBean.selectorRegistroEncuesta(2)}"
+				icon="ui-icon-arrowrefresh-1-w"  />
+		</p:submenu>
+		
+		<p:submenu label="Visualizar Horarios de Tutoría">
+			<p:menuitem value="De alumnos" action="#{registrarTutoriaMBean.selectorPaginasConsultaTutoria(2,5)}"
+				icon="ui-icon-arrowrefresh-1-w"  />	
+		</p:submenu>
+		
+		<p:submenu label="Registrar Asistencia a Tutoria">
+			<p:menuitem 
+				value="Primera sesión" action="#{alumnoMBean.selectorRegistroAsistencia(2,2,1)}"
+				icon="ui-icon-arrowrefresh-1-w" />	
+			<p:menuitem 
+				value="Sesión normal" action="#{alumnoMBean.selectorRegistroAsistencia(2,2,2)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+			<p:menuitem 
+				value="Última sesión" action="#{alumnoMBean.selectorRegistroAsistencia(2,2,3)}"
+				icon="ui-icon-arrowrefresh-1-w" />		
+		</p:submenu>		
+		
+		<p:submenu label="Observaciones de tutoría">
+			<p:menuitem value="Control de observaciones" action="#{registrarTutoriaMBean.selectorControlObservaciones(2,2)}"
+				icon="ui-icon-arrowrefresh-1-w"  />
+		</p:submenu>
+		
+		<p:submenu label="Gestión de Actas de Tutoria">
+			<p:menuitem 
+				value="Descargar Actas" action="#{gestionarActasMBean.selectorDescargaActas(2,3)}"
+				icon="ui-icon-arrowrefresh-1-w" />	
+		</p:submenu>		
+		
+		<p:submenu label="Reporte de Asistencia a Tutoría">
+			<p:menuitem value="De alumnos" action="#{registrarTutoriaMBean.selectorVisualizacionDatosTutoria(2,4)}"
+				icon="ui-icon-arrowrefresh-1-w" />			
+		</p:submenu> 		 
+		
+		<p:submenu label="Salir del sistema">
+                    <p:menuitem value="Cerrar Sesion" url="#{request.contextPath}/j_spring_security_logout" 
+				icon="ui-icon-arrowrefresh-1-w" />			 
+		</p:submenu>
+	</p:panelMenu>
+</h:body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="/plantilla/ModuloPares/Plantillas/plantilla_ocaa_p.xhtml">
+	<ui:define name="contenido">
+
+		<p:breadCrumb>
+			<p:menuitem value="Inicio" url="#"></p:menuitem>
+			<p:menuitem value="Mostrar Postulantes" url="#"></p:menuitem>
+		</p:breadCrumb>
+
+		<p:panel header="Mostrar Postulantes">
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Si" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
+			<p:panelGrid>
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Convocatoria" for="txtConvocatoria"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:inputText id="txtConvocatoria"
+							value="#{mostrarPostulacionMBean.convocatoriaActual}"
+							disabled="true" readonly="true"></p:inputText>
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Curso" for="cmbCurso"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="cmbCurso" value="#{mostrarPostulacionMBean.mostrarPostulacionModel.codigoCurso}">
+							<p:ajax update="cmbTema"></p:ajax>
+							<f:selectItem noSelectionOption="true"
+								itemLabel="Seleccionar Curso" itemValue=""></f:selectItem>
+							<f:selectItems value="#{mostrarPostulacionMBean.listaCursos}"
+								var="curso" itemLabel="#{curso.nombre}" itemValue="#{curso.cCodigo}"></f:selectItems>
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column>
+						<p:outputLabel value="Tema" for="cmbTema"></p:outputLabel>
+					</p:column>
+					<p:column>
+						<p:selectOneMenu id="cmbTema" converter="javax.faces.Integer"
+							value="#{mostrarPostulacionMBean.mostrarPostulacionModel.idTema}">
+							<p:ajax update="tblPostulaciones"></p:ajax>
+							<f:selectItem noSelectionOption="true"
+								itemLabel="Seleccionar Tema" itemValue=""></f:selectItem>
+							<f:selectItems value="#{mostrarPostulacionMBean.listaTemas}"
+								var="tema" itemLabel="#{tema.nombre}" itemValue="#{tema.id}"></f:selectItems>
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<p:dataTable id="tblPostulaciones" var="postulacion"
+				style="margin:10px;"
+				value="#{mostrarPostulacionMBean.listaPostulaciones}">
+
+				<p:column headerText="Aprobar">
+					<p:commandButton update="tblPostulaciones"
+						value="Aprobar Postulante"
+						action="#{mostrarPostulacionMBean.aprobarPostulante(postulacion.id)}">
+						<p:confirm header="Aprobar Postulante"
+							message="¿Está seguro que desea aprobar este postulante?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+
+				<p:column headerText="Nombres">
+					<h:outputText value="#{postulacion.nombres}" />
+				</p:column>
+
+				<p:column headerText="Apellidos">
+					<h:outputText value="#{postulacion.apellidos}" />
+				</p:column>
+
+				<p:column headerText="Edad">
+					<h:outputText value="#{postulacion.edad}" />
+				</p:column>
+
+				<p:column headerText="Disponibilidad">
+					<ul>
+						<ui:repeat var="disp" value="#{postulacion.disponibilidad}">
+							<li><p:outputLabel
+									value="#{disp.nombreDia} (#{disp.nombreTurno})"></p:outputLabel>
+							</li>
+						</ui:repeat>
+					</ul>
+				</p:column>
+
+				<p:column headerText="Opciones">
+					<p:commandButton value="Descargar CV" ajax="false"
+						onclick="PrimeFaces.monitorDownload(start, stop);"
+						icon="ui-icon-arrowthick-1-s">
+						<p:fileDownload
+							value="#{mostrarPostulacionMBean.descargarCV(postulacion.id)}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/plantilla/plantilla-login.xhtml">
+	<ui:define name="contenido">
+		<f:view>
+
+			<p:panel id="pnlLoginAcceso"
+				header="#{mensaje['demo.login.cabecera']}"
+				styleClass="ui-pnl-login ui-panel-main-view">
+				<p:messages id="msgSpijLoginAcceso" autoUpdate="true"
+					closable="true" />
+				<p:panelGrid id="pnlGridLoginAcceso">
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblLoginUser"
+								value="#{mensaje['demo.login.usuario']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="j_username" required="true" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{loginMBean.loginModel.usuario}" />
+							<p:message for="j_username" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblLoginPassword"
+								value="#{mensaje['demo.login.contrasenia']}" />
+						</p:column>
+
+						<p:column styleClass="styleAlignLeftColumn">
+							<p:password id="j_password" required="true" size="40"
+								requiredMessage="#{mensaje['general.error.requerido']}"
+								value="#{loginMBean.loginModel.clave}" />
+							<p:message for="j_password" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column colspan="2" styleClass="styleAlignRightColumn">
+							<input type="submit" id="login" name="login" value="Ingresar"
+								title="Ingresar" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

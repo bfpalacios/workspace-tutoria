@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>
+
+    <ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
+        <ui:define name="contenido">
+            <p:outputPanel id="mensajePrimeraSesion" style="width:100%;margin-top:2px;margin-bottom:5px">
+            	<h:outputLabel 
+            		id="lblBienvenida" rendered="#{alumnoMBean.activarTablaNotas}"
+            		style="font-size: 20px;" value="Bienvenidos a la primera sesión de tutoría"/>	
+            </p:outputPanel> 
+            
+            <p:panel header="Asistencia de alumnos observados a tutoría" style="width: 450px;" >
+                <p:panelGrid  id="pnlLoginAcceso" style="font-size: 12px;">
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="lCargar"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.fecha']}"/>
+						</p:column>
+                    	<p:column>
+							<p:calendar 
+								value="#{alumnoMBean.date}" id="fechaCurso"
+                                pattern="dd/MM/yyyy" mode="popup" showOn="button">
+                    		</p:calendar>
+						</p:column>                    
+                    </p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idCurso"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}"/>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneCurso" 
+                    			value="#{alumnoMBean.alumnoModelSelect.cod_curso}" 
+                    			valueChangeListener="#{alumnoMBean.actualizarDocente}"
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el curso:"/>
+                        		<f:selectItems 
+                        			value="#{alumnoMBean.alumnoModel.listarCursos}"
+                                    var="cursos" itemLabel="#{cursos.nombre}"
+                                    itemValue="#{cursos.cCodigo}" />
+                        		<f:ajax event="change" execute="@this" render="selectOneProfesor"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+                    			id="idTutor"
+                    			value="#{mensaje['unayoe.ingresar.datos.alumnos.label.docente']}"/>
+						</p:column>
+                    	<p:column>
+							<p:selectOneMenu 
+								id="selectOneProfesor"
+								value="#{alumnoMBean.alumnoModelSelect.pCodigo}"
+								valueChangeListener="#{alumnoMBean.actualizarAlumno}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el tutor: " />
+								<f:selectItems
+									value="#{alumnoMBean.alumnoModel.listarTutores}"
+									var="profesor" itemLabel="#{profesor.pNombre}"
+									itemValue="#{profesor.pCodigo}" />
+								<f:ajax event="change" execute="@this" render="selectOneAlumno"/>
+							</p:selectOneMenu>
+						</p:column>
+                    </p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idAlumno"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.alumno']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneAlumno" 
+                    			value="#{alumnoMBean.alumnoModelSelect.codigo}" 
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el alumno: " />
+                        		<f:selectItems 
+                        			value="#{alumnoMBean.alumnoModel.listarAlumnos}"
+                                    var="alumnos" itemLabel="#{alumnos.aNombre}"
+                                    itemValue="#{alumnos.aCodigo}"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>                    
+                    
+                    <p:spacer width="50px"/>
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<p:commandButton 
+							 	id="btnBuscarAsistencia" align="center" 
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+                                actionListener="#{alumnoMBean.buscarAsistenciaAlumnosTutoria}"
+                                update="tablaResultado, mostrarNotas, mensajePrimeraSesion"/>                            
+						</p:column>
+                    </p:row>                   
+                </p:panelGrid>            
+            </p:panel>
+            
+            <p:spacer height="20px"/>
+            
+            <p:outputPanel id="mostrarTutoria" style="width:100%;margin-top:10px">
+                <p:row id="tablaAsistenciaTutoria">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaResultado" 		   					
+		   					style="font-size:12px;" 
+		   				    value="#{alumnoMBean.listaAsistenciaAlumnosTutoria}" 
+                            var="lista" emptyMessage="Sin alumnos regulares">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Sesiones de tutoría"/>
+                    		</f:facet>
+                    	
+                    		<p:column headerText="Sesión" style="font-size: 12px;width: 5%" >
+                        		<h:outputText value="#{lista.sesion}" />
+                    		</p:column>
+                    
+                    		<p:column headerText="Codigo Alumno" style="font-size: 12px;width: 10%" >
+                        		<h:outputText value="#{lista.aCodigo}" />
+                    		</p:column>
+
+                    		<p:column headerText="Nombre" style="font-size: 12px;width: 15%" >
+                        		<h:outputText value="#{lista.aNombre}" />
+                    		</p:column>
+
+                    		<p:column headerText="Apellidos" style="font-size: 12px;width: 15%" >
+                        		<h:outputText value="#{lista.aApellidos}" />
+                    		</p:column>
+
+                    		<p:column headerText="Hora Inicio"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{lista.horaIni}" />
+                    		</p:column>
+
+                    		<p:column headerText="Hora Fin"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{lista.horaFin}" />
+                    		</p:column>
+
+                    		<p:column headerText="Asistencia" style="font-size: 12px;width: 10%" >
+                        		<p:selectOneMenu
+									id="opcionAsistencia"
+									value="#{lista.asistencia}">
+									<f:selectItems 
+										value="#{lista.listaAsistencia}"
+										var="asistencia" 
+										itemLabel="#{asistencia.valorCampo}"
+										itemValue="#{asistencia.idCampo}"/> 									
+								</p:selectOneMenu>
+                    		</p:column>
+                    
+                    		<p:column headerText="Justificacion "   style="font-size: 12px;width: 10%" >
+                        		<p:selectOneMenu
+									value="#{lista.justificacion}">
+									<f:selectItem itemLabel="NINGUNA" itemValue="1" />
+									<f:selectItem itemLabel="SALUD" itemValue="2" />
+									<f:selectItem itemLabel="TRABAJO" itemValue="3" />
+									<f:selectItem itemLabel="FAMILIA" itemValue="4" />
+									<f:selectItem itemLabel="OTROS" itemValue="5" />
+								</p:selectOneMenu>
+                    		</p:column>
+
+                    		<p:column headerText="Objetivos"   style="font-size: 12px;width: 10%" >
+                        		<p:selectOneMenu
+									value="#{lista.objetivos}">
+									<f:selectItem itemLabel="NINGUNO" itemValue="N" />
+									<f:selectItem itemLabel="APROBAR PARCIAL" itemValue="P" />
+									<f:selectItem itemLabel="APROBAR FINAL" itemValue="F" />
+									<f:selectItem itemLabel="APROBAR SUST." itemValue="S" />
+								</p:selectOneMenu>
+                    		</p:column>     		               		
+
+							<p:spacer width="100" height="15" />
+                    		
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+			</p:outputPanel> 
+            
+            <p:outputPanel id="mostrarNotas" style="width:100%;margin-top:15px">                
+            	<p:row id="filTabla">		   		
+		   			<p:column id="colTablaNotas" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaNotas" var="tablaNotas" 		   						
+		   					value="#{alumnoMBean.visualizarNotasAlumnoGrid}" 		   								   						
+		   					rendered="#{alumnoMBean.activarTablaNotas}"
+		   					emptyMessage="Notas no encontradas">
+     						<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Notas del alumno"/>
+                    		</f:facet>
+     						
+     						<p:column headerText="Año">
+        						<h:outputText value="#{tablaNotas.anio}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Periodo">
+        						<h:outputText value="#{tablaNotas.periodo}" />
+    						</p:column> 
+     						
+     						<p:column headerText="Plan">
+        						<h:outputText value="#{tablaNotas.plan}" />
+    						</p:column>
+   	 						
+   	 						<p:column headerText="Código del Curso">
+        						<h:outputText value="#{tablaNotas.codCurso}" />
+    						</p:column>
+    
+    						<p:column headerText="Asignatura">
+        						<h:outputText value="#{tablaNotas.nomCurso}" />
+    						</p:column> 
+    							
+    						<p:column headerText="Créditos">
+        						<h:outputText value="#{tablaNotas.creditos}" />
+    						</p:column>    						
+    						
+    						<p:column headerText="Docente">
+        						<h:outputText value="#{tablaNotas.nomDocente}" />
+    						</p:column>
+ 	
+ 							<p:column headerText="Nota final">
+        						<h:outputText value="#{tablaNotas.notaFinal}" />
+    						</p:column>
+						</p:dataTable>
+			   		</p:column>   
+				</p:row>				
+			</p:outputPanel>  
+              
+            <p:outputPanel id="agregarObservacion" icon="fa-plus" style="float:center;width:70%;margin-top:15px;margin-bottom:5px"> 
+                <p:row>
+		   			<p:column colspan="3">
+						<p:commandButton 
+							id="botonAgregar"
+							disabled="#{alumnoMBean.activarObservacion}"
+							update="tablaObservaciones"  
+							value="Agregar observación"    
+							actionListener="#{alumnoMBean.agregarObservacion}" 
+							ajax="true" />
+					</p:column>
+            	</p:row>
+            </p:outputPanel>
+            
+            <p:outputPanel id="mostrarObservaciones" style="width:40%;margin-top:5px">               
+                <p:row id="filTablaObservaciones">		   		
+		   			<p:column  id="colObservaciones" colspan="3"> 
+		   				<p:dataTable id="tablaObservaciones" var="lista" value="#{alumnoMBean.listaObservaciones}" binding="#{tabla}" >
+     						<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Observaciones de tutoría"/>
+                    		</f:facet>
+     						
+     						<p:column headerText="Fila" style="font-size:12px; width:5%">
+        						<h:outputText value="#{tabla.rowIndex + 1}" />    
+    						</p:column>
+     						
+     						<p:column headerText="Observacion" style="font-size:12px; width:25%">
+                    			<p:inputTextarea 
+                    				id="observaciones" rows="5" cols="60" 
+                    				value="#{lista.observacion}"
+                    				counter="display" maxlength="250" 
+                    				counterTemplate="{0} caracteres restantes." 
+                    				autoResize="false" />
+    							<h:outputText id="display" /> 
+                    		</p:column>    						
+    						
+    						<p:column headerText="Criticidad" style="font-size:12px; width:10%" >
+                        		<p:selectOneMenu
+									value="#{lista.criticidad}">
+									<f:selectItem itemLabel="BAJA" itemValue="BAJA" />
+									<f:selectItem itemLabel="MEDIA" itemValue="MEDIA" />
+									<f:selectItem itemLabel="ALTA" itemValue="ALTA" />									
+								</p:selectOneMenu>
+                    		</p:column>      						
+						</p:dataTable>
+			   		</p:column>   
+				</p:row>
+			</p:outputPanel>
+              
+            <p:outputPanel id="guardarAsistencia" style="width:50%;margin-top:15px;margin-bottom:10px"> 
+                <p:row>
+		   			<p:column colspan="3">
+						<p:commandButton 
+							id="botonGuardar"
+							update=""  
+							value="Guardar"    
+							actionListener="#{alumnoMBean.guardarRegistroAsistencia()}" 
+							ajax="true" />
+					</p:column>
+            	</p:row>
+            </p:outputPanel>  
+        </ui:define>
+    </ui:composition>
+</html>

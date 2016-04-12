@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/></head>
+
+    <ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_ocaa_o.xhtml">
+        <ui:define name="contenido">
+            <p:panel header="Reporte del registro de asistencia a tutoría de alumnos" style="width: 450px;">
+                <p:panelGrid  id="pnlLoginAcceso" style="font-size: 12px;">
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idCurso"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}"/>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneCurso" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.cCodigo}" 
+                    			valueChangeListener="#{registrarTutoriaMBean.actualizarDocenteGenerico}"
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el curso:"/>
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarCursos}"
+                                    var="cursos" itemLabel="#{cursos.nombre}"
+                                    itemValue="#{cursos.cCodigo}" />
+                        		<f:ajax event="change" execute="@this" render="selectOneProfesor"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+                    			id="idTutor"
+                    			value="#{mensaje['unayoe.ingresar.datos.alumnos.label.docente']}"/>
+						</p:column>
+                    	<p:column>
+							<p:selectOneMenu 
+								id="selectOneProfesor"
+								value="#{registrarTutoriaMBean.tutoriaModelSelect.pCodigo}"
+								valueChangeListener="#{registrarTutoriaMBean.actualizarAlumnoGenerico}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el tutor: " />
+								<f:selectItems
+									value="#{registrarTutoriaMBean.tutoriaModel.listarTutores}"
+									var="profesor" itemLabel="#{profesor.pNombre}"
+									itemValue="#{profesor.pCodigo}" />
+								<f:ajax event="change" execute="@this" render="selectOneAlumno"/>
+							</p:selectOneMenu>
+						</p:column>
+                    </p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idAlumno"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.alumno']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneAlumno" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}" 
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el alumno: " />
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarAlumnos}"
+                                    var="alumnos" itemLabel="#{alumnos.aNombre}"
+                                    itemValue="#{alumnos.aCodigo}"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>                    
+                    
+                    <p:spacer width="50px"/>
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<p:commandButton 
+							 	id="btnBuscarAsistencia" align="center" 
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+                                actionListener="#{registrarTutoriaMBean.buscarDatosAsistenciaTutoria}"
+                                update="tablaAsistenciaGeneral, tablaAsistencia"/>                            
+						</p:column>
+                    </p:row>                   
+                </p:panelGrid>            
+            </p:panel>
+            
+            <p:outputPanel id="mostrarAsistenciaGeneral" style="width:50%;margin-top:10px">
+                <p:row id="tablaAsistenciaTutoriaGeneral">		   		
+		   			<p:column  id="colTablaGen" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaAsistenciaGeneral" 		   					
+		   					style="font-size:12px;" 
+		   				    value="#{registrarTutoriaMBean.tutoriaModelGrid.listaTutorias}" 
+                            var="tutoria" emptyMessage="Sin registros para mostrar">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Días de tutoría"/>
+                    		</f:facet>
+                    		                    		
+                    		<p:column headerText="Día de sesión"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{tutoria.dia}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Hora inicio"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{tutoria.horaIni}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Hora fin"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{tutoria.horaFin}" />
+                    		</p:column>                    		
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+			</p:outputPanel>
+            
+            <p:outputPanel id="mostrarAsistencia" style="width:70%;margin-top:10px">
+                <p:row id="tablaAsistenciaTutoria">		   		
+		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
+		   				<p:dataTable 
+		   					id="tablaAsistencia" 		   					
+		   					style="font-size:12px;" 
+		   				    value="#{registrarTutoriaMBean.tutoriaModel.listaTutorias}" 
+                            var="sesion" emptyMessage="Sin registros para mostrar">
+                    		<f:facet name="header">
+                        		<h:outputLabel style="font-size: 12px;" value="Sesiones de tutoría"/>
+                    		</f:facet>
+                    	
+                    		<p:column headerText="Sesión" style="font-size: 12px;width: 5%" >
+                        		<h:outputText value="#{sesion.sesion}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Fecha de sesión" style="font-size: 12px;width: 5%" >
+                        		<h:outputText value="#{sesion.fecha}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Sesión registrada"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{sesion.validacionAsistencia}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Acta cargada"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{sesion.validacionCargaActa}" />
+                    		</p:column>
+                    		
+                    		<p:column headerText="Con observaciones"  style="font-size: 12px;width: 8%" >
+                        		<h:outputText value="#{sesion.validacionObservacion}" />
+                    		</p:column>
+                		</p:dataTable>
+                	</p:column>
+                </p:row>                
+			</p:outputPanel> 
+        </ui:define>
+    </ui:composition>
+</html>

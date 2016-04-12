@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_r.xhtml">
+	<ui:define name="contenido">
+
+		<p:panel header="Visualizar Datos de Tutoria General"
+			style="width: 95%;border: 0px;">
+
+			<h:panelGrid columns="3" cellspacing="5">
+				<h:outputText value="Ciclo" />
+				<p:spacer width="5px" />
+				<p:selectOneMenu
+					value="#{registrarTutoriaMBean.claseMaestraModelSelect.idCampo}">
+					<f:selectItems 
+						value="#{registrarTutoriaMBean.claseMaestraModel.listaClaseMaestra}"
+						var="ciclo" 
+						itemLabel="#{ciclo.valorCampo}"
+						itemValue="#{ciclo.idCampo}"/> 
+				</p:selectOneMenu>
+				
+				<h:outputText value="Dia" />
+				<p:spacer width="5px" />
+				<p:selectOneMenu
+					value="#{registrarTutoriaMBean.asistenciaTutoriaModelSelect.dia}">
+					<f:selectItem itemLabel="Todos" itemValue="" />
+					<f:selectItem itemLabel="Lunes" itemValue="LUNES" />
+					<f:selectItem itemLabel="Martes" itemValue="MARTES" />
+					<f:selectItem itemLabel="Miercoles" itemValue="MIERCOLES" />
+					<f:selectItem itemLabel="Jueves" itemValue="JUEVES" />  
+					<f:selectItem itemLabel="Viernes" itemValue="VIERNES" />  
+					<f:selectItem itemLabel="Sabado" itemValue="SABADO" />  
+				</p:selectOneMenu>
+				
+				 <h:outputText id="idCurso"
+                                  value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}" />
+                 <p:spacer width="5px" />
+                 <p:selectOneMenu 
+                 	id="selectOneCurso" 
+                 	value="#{registrarTutoriaMBean.asistenciaTutoriaModelSelect.c_codigo}" 
+                 	styleClass="ui-column-label-spij styleAlignRightColumn">
+					<f:selectItem itemLabel="Seleccionar el curso : " />
+                    <f:selectItems 
+                    	value="#{registrarTutoriaMBean.asistenciaTutoriaModelSelect.listarCursos}"
+                        var="cursos" itemLabel="#{cursos.nombre}"
+                        itemValue="#{cursos.cCodigo}" />
+                 </p:selectOneMenu>                 
+                 <p:commandButton value="Generar Reporte" id="botonGenerar"
+						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoriaSemanal}" ajax="false" />
+			</h:panelGrid>
+
+			<p:row>
+				<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+					<p:dataTable id="tablaResultado" style="font-size:10px;"
+						value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
+						emptyMessage="Datos de Tutoria Vacio" paginator="true" rows="5">
+
+						<p:column headerText="Dia" style="font-size:12px; width:10%">
+							<h:outputText value="#{lista.dia}" />
+						</p:column>
+
+						<p:column headerText="Hora Inicio" style="font-size:12px; width:5%">
+							<h:outputText value="#{lista.horaIni}" />
+						</p:column>
+
+						<p:column headerText="Hora Fin" style="font-size:12px; width:5%">
+							<h:outputText value="#{lista.horaFin}" />
+						</p:column>
+
+						<p:column headerText="Nombre Curso" style="font-size:12px; width:20%">
+							<h:outputText value="#{lista.c_nombre}" />
+						</p:column>
+						
+						<p:column headerText="Nombre Docente"
+							style="font-size:12px; width:25%">
+							<h:outputText value="#{lista.p_nombre}" />
+						</p:column>
+						
+						<p:column headerText="Codigo Alumno"
+							style="font-size:12px; width:5%">
+							<h:outputText value="#{lista.a_codigo}" />
+						</p:column>
+						
+						<p:column headerText="Nombre Alumno"
+							style="font-size:12px; width:25%">
+							<h:outputText value="#{lista.a_nombre}" />
+						</p:column>
+						
+						<f:facet name="footer">
+							<h:outputLabel style="font-size:12px;"
+								value="Total de Registros: #{registrarTutoriaMBean.listAsistenciaTutoria.size()}" />
+						</f:facet>
+					</p:dataTable>
+				</p:column>
+			</p:row>
+
+			<p:row>
+				<p:column colspan="3">
+					<p:commandButton value="Exportar" id="botonExportar"
+						actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioDocente}" ajax="false" />
+				</p:column>
+			</p:row>
+			
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+
+</html>
