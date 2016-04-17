@@ -15,6 +15,7 @@ public class Asistencia {
 	
 	
 	
+	
 	public Asistencia(String fecha, String dia, String codCurso,
 			String nomCurso, String repitencia, String asistencia, String obs) {
 		super();

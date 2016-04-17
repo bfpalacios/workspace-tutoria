@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author bpalacios
  */
 @Entity
-@Table(name = "TUTORIA", catalog = "", schema = "DBUNAYOE")
+@Table(name = "TUTORIA", catalog = "", schema = "DBTUTORIA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tutoria.findAll", query = "SELECT t FROM Tutoria t"),
@@ -97,7 +97,7 @@ public class Tutoria implements Serializable {
 
     @Override
     public String toString() {
-        return "dbunayoe.Tutoria[ tutoriaPK=" + tutoriaPK + " ]";
+        return "DBTUTORIA.Tutoria[ tutoriaPK=" + tutoriaPK + " ]";
     }
     
 }

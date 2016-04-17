@@ -91,7 +91,7 @@ public class TutoriaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "dbunayoe.TutoriaPK[ tAnio=" + tAnio + ", tPeriodo=" + tPeriodo + ", tCodigo=" + tCodigo + " ]";
+        return "DBTUTORIA.TutoriaPK[ tAnio=" + tAnio + ", tPeriodo=" + tPeriodo + ", tCodigo=" + tCodigo + " ]";
     }
     
 }

@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author bpalacios
  */
 @Entity
-@Table(name = "PROFESOR", catalog = "", schema = "DBUNAYOE")
+@Table(name = "PROFESOR", catalog = "", schema = "DBTUTORIA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profesor.findAll", query = "SELECT p FROM Profesor p"),
@@ -172,7 +172,7 @@ public class Profesor implements Serializable {
 
     @Override
     public String toString() {
-        return "dbunayoe.Profesor[ pCodigo=" + pCodigo + " ]";
+        return "DBTUTORIA.Profesor[ pCodigo=" + pCodigo + " ]";
     }
     
 }

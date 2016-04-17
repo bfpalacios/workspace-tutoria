@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author bpalacios
  */
 @Entity
-@Table(name = "CURSO", catalog = "", schema = "DBUNAYOE")
+@Table(name = "CURSO", catalog = "", schema = "DBTUTORIA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Curso.findAll", query = "SELECT c FROM Curso c"),
@@ -99,7 +99,7 @@ public class Curso implements Serializable {
 
     @Override
     public String toString() {
-        return "dbunayoe.Curso[ cCodigo=" + cCodigo + " ]";
+        return "DBTUTORIA.Curso[ cCodigo=" + cCodigo + " ]";
     }
     
 }
