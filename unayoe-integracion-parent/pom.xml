@@ -16,7 +16,8 @@
 
   <modules>
     <module>unayoe-dao</module>
-    <module>unayoe-services</module>
+    
     <module>unayoe-web</module>
+    <module>../unayoe-services</module>
   </modules>
 </project>
