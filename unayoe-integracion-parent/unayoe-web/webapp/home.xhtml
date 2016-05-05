@@ -71,6 +71,12 @@
 							href="/paginas/ModuloObservados/principal_tutor_o.xhtml"
 							value="Modulo Tutor Observados"></p:link></li>
 				</ui:fragment>
+				
+				<ui:fragment rendered="#{rol eq 'ROLE_DECANO_O'}">
+					<li><p:link
+							href="/paginas/ModuloObservados/principal_decano_o.xhtml"
+							value="Modulo Decano Observados"></p:link></li>
+				</ui:fragment>
 
 
 				<!-- Módulo de alumnos Regulares -->
@@ -108,6 +114,12 @@
 							href="/paginas/ModuloRegulares/principal_alumno_r.xhtml"
 							value="Modulo Alumno Regulares"></p:link></li>
 				</ui:fragment>
+				
+				<ui:fragment rendered="#{rol eq 'ROLE_DECANO_R'}">
+					<li><p:link
+							href="/paginas/ModuloRegulares/principal_decano_r.xhtml"
+							value="Modulo Decano Regulares"></p:link></li>
+				</ui:fragment>
 
 
 				<!-- Modulo de Pares -->
@@ -131,6 +143,10 @@
 				<ui:fragment rendered="#{rol eq 'ROLE_OCAA_P'}">
 					<li><p:link href="/paginas/ModuloPares/principal_ocaa_p.xhtml"
 							value="Modulo OCAA Pares"></p:link></li>
+				</ui:fragment>
+				<ui:fragment rendered="#{rol eq 'ROLE_DECANO_P'}">
+					<li><p:link href="/paginas/ModuloPares/principal_decano_p.xhtml"
+							value="Modulo Decano Pares"></p:link></li>
 				</ui:fragment>
 
 			</ui:repeat>
