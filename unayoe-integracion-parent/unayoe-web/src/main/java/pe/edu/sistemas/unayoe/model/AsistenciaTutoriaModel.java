@@ -23,6 +23,7 @@ public class AsistenciaTutoriaModel {
 	private String p_codigo;
 	private String p_nombre;
 	private String p_apellidos;
+	private String tAnio;
 	private String tPeriodo;
 	private String a_fecha;
 	private String tCodigo;
@@ -40,6 +41,15 @@ public class AsistenciaTutoriaModel {
 	private int idHoraInicio;
 	private int idHoraFin;
 	private String descFrecuencia;
+
+	
+	public String gettAnio() {
+		return tAnio;
+	}
+
+	public void settAnio(String tAnio) {
+		this.tAnio = tAnio;
+	}
 
 	public String getAsistencia() {
 		return asistencia;

@@ -96,6 +96,11 @@ public class RegistrarTutoriaMBean {
     
     private static String REGISTRO_FALTANTE = "F";
     
+    private String nombreOrigen="Nombre Tutor";
+    private String cursoBuscado;
+    private String profesorBuscado;
+    
+    
     public RegistrarTutoriaMBean() {
     	hoy = new GregorianCalendar();
         System.out.println("::::: LOADING ::::::::");
@@ -551,6 +556,8 @@ public class RegistrarTutoriaMBean {
     	horario.setHoraIni(tutoriaBO.getHoraIni());
     	horario.setHoraFin(tutoriaBO.getHoraFin());
     	horario.setDescFrecuencia(tutoriaBO.getDesc_frecuencia());
+    	horario.settPeriodo(tutoriaBO.gettPeriodo());
+    	horario.settAnio(tutoriaBO.gettAnio());
     	return horario;
     }
     
@@ -562,7 +569,8 @@ public class RegistrarTutoriaMBean {
     		mostrarMensaje(1);
     	}
     	else{
-    		try {   	
+    		try {   
+    			setNombreOrigen("Nombre Tutor");
         		CicloBO cicloActual = comunServices.buscarCicloActual();        			
         		listaHorarios = tutoriaServices.listarHorariosDeTutoria(cicloActual.getAnio(), 
         				                                                cicloActual.getPeriodo(), 
@@ -588,6 +596,41 @@ public class RegistrarTutoriaMBean {
     	}
     }  
     
+    
+    /* ver tutoria docente*/
+    public void buscarHorariosTutoriaDocente(int procesoTutoria) {
+    	System.out.println("ENTRAAAA** ");
+    	List<TutoriaBO> listaHorarios =  new ArrayList<TutoriaBO>();    	
+    	listAsistenciaTutoria.clear();
+    	
+    	setNombreOrigen("Nombre Alumno");
+    	
+    		System.out.println("codigo del profe "+getTutoriaModelSelect().getpCodigo());
+    		try {   	
+        		CicloBO cicloActual = comunServices.buscarCicloActual();        			
+        		listaHorarios = tutoriaServices.listarHorariosDeTutoriaProfesor(cicloActual.getAnio(), 
+        				                                                cicloActual.getPeriodo(), 
+        				                                                getTutoriaModelSelect().getpCodigo()
+                                                                 );
+        		
+        		if(listaHorarios.size() > 0){
+    				for(TutoriaBO tutoria : listaHorarios){
+    					listAsistenciaTutoria.add(asistenciaModel(tutoria));
+    				}
+  
+    				setCursoBuscado(listAsistenciaTutoria.get(0).getC_nombre());
+    				setProfesorBuscado(listAsistenciaTutoria.get(0).getA_nombre());
+    			}        		
+        		else{
+        			getTutoriaModelSelect().setaNombre("Profesor no encontrado");
+        		}
+    		} 
+        	catch (Exception e) {			
+    			e.printStackTrace();
+    		}
+    	
+    }  
+    /*fin ver tutoria docente*/
     public void buscarHorariosTutoriaSemanal() {
     	listarProfesores();
     	List<TutoriaBO> listaHorarios =  new ArrayList<TutoriaBO>();
@@ -889,7 +932,12 @@ public class RegistrarTutoriaMBean {
 						case 2: MODO_USUARIO = MODO_OCAA;
 								pagina = "/paginas/ModuloRegulares/ocaa/registrar/registrarDatosDeTutoria.xhtml";
 								break;
-					} break;			
+					} break;
+			case 2 : switch(modo){ 
+						case 1: MODO_USUARIO = MODO_ADMIN;
+								pagina = "/paginas/ModuloObservados/admin/registrar/registrarDatosDeTutoria.xhtml";
+									break;
+					}break;
 		}		
 		return pagina;		
 	}
@@ -906,7 +954,7 @@ public class RegistrarTutoriaMBean {
 						case 3: MODO_USUARIO = MODO_DIR_ACA;	
 								pagina = "/paginas/ModuloObservados/diraca/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
 						case 4: MODO_USUARIO = MODO_UNAYOE;	
-								pagina = "/paginas/ModuloObservados/unayoe/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+								pagina = "/paginas/ModuloObservados/unayoe/verHorariosTutoriaAlumno.xhtml"; break;
 						case 5: MODO_USUARIO = MODO_TUTOR;	
 								pagina = "/paginas/ModuloObservados/tutor/visualizar/verHorariosTutoriaAlumno.xhtml"; break;						
 					} break;	
@@ -1261,4 +1309,29 @@ public class RegistrarTutoriaMBean {
 	public void setTutoriaModelGrid(TutoriaModel tutoriaModelGrid) {
 		this.tutoriaModelGrid = tutoriaModelGrid;
 	}
+
+	public String getNombreOrigen() {
+		return nombreOrigen;
+	}
+
+	public void setNombreOrigen(String nombreOrigen) {
+		this.nombreOrigen = nombreOrigen;
+	}
+
+	public String getCursoBuscado() {
+		return cursoBuscado;
+	}
+
+	public void setCursoBuscado(String cursoBuscado) {
+		this.cursoBuscado = cursoBuscado;
+	}
+
+	public String getProfesorBuscado() {
+		return profesorBuscado;
+	}
+
+	public void setProfesorBuscado(String profesorBuscado) {
+		this.profesorBuscado = profesorBuscado;
+	}
+	
 }

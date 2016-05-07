@@ -28,6 +28,11 @@
 					value="Nuevo Usuario" action="#{usuarioMBean.selectorRegistroUsuarios(1,1)}"
 					icon="ui-icon-arrowrefresh-1-w" />			 
 			</p:submenu>
+			<p:submenu label="Crear Tutoria">
+				<p:menuitem 
+					value="Registro de nueva tutoría" action="#{registrarTutoriaMBean.selectorPaginasRegistroTutoria(2,1)}"
+					icon="ui-icon-arrowrefresh-1-w"  />
+			</p:submenu>
 			<p:submenu label="Ver Horarios de Tutoría">
 				<p:menuitem 
 					value="De alumnos" action="#{registrarTutoriaMBean.selectorPaginasConsultaTutoria(1,1)}"

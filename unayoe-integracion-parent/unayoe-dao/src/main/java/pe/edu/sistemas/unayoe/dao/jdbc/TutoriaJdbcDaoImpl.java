@@ -354,6 +354,8 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
         }
 	}
 	
+
+	
 	public List<TutoriaBO> listarHorariosDeTutoria(Integer anio, Integer periodo, String a_codigo, String codUsuario, int procesoTutoria)throws Exception{
 		List<TutoriaBO> listaHorarioTutoria = new ArrayList<TutoriaBO>();
 		
@@ -434,8 +436,10 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 				horarioTutoria.setHoraFin(rs.getString(8).trim());
 				horarioTutoria.setcCodigo(rs.getString(9).trim());
 				horarioTutoria.setcNombre(rs.getString(10).trim());
-				horarioTutoria.setaNombre(rs.getString(11).trim());
+				horarioTutoria.setpNombre(rs.getString(11).trim());//deberia ser setaNombre PERO PARA LA TABLA LO PONEMOS ASÍ
 				horarioTutoria.setRepitencias(String.valueOf(rs.getInt(12)));
+				horarioTutoria.setDesc_frecuencia(rs.getString(13).trim());
+				horarioTutoria.setaNombre(rs.getString(14).trim());//deberia ser setPnombre por profesor pero en la tabla lo ponemos asi
 				listaHorarioTutoria.add(horarioTutoria);
 			}			
 		} 

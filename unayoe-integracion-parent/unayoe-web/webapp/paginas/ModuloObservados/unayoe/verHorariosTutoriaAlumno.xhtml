@@ -38,8 +38,8 @@
 						value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
 						emptyMessage="Datos de Tutoria Vacio">
 
-						<p:column headerText="Cod Curso" style="font-size: 12px;width: 10%">
-							<h:outputText value="#{lista.c_codigo}" />
+						<p:column headerText="Ciclo académico" style="font-size: 12px;width: 10%">
+							<h:outputText value="#{lista.tAnio}-#{lista.tPeriodo}" />
 						</p:column>
 
 						<p:column headerText="Nombre Curso" style="font-size: 12px;width: 20%">
