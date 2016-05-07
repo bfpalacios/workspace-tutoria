@@ -6,63 +6,101 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
+<ui:composition
+	template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
 	<ui:define name="contenido">
 
 		<p:panel header="Ver horarios de Tutoria de Alumnos"
 			style="width: 95%;border: 0px;">
-			<h:panelGrid id="pnlBuscador"
-				style="font-size: 12px;text-align: left" columns="5" cellspacing="5">
-				<h:outputText value="Codigo Alumno" />
-				<p:outputPanel>
-					<p:inputText
-						value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}"
-						size="30" />
-					<p:spacer width="5px" />
-					<p:commandButton update="tablaResultado, a_nombre"
-						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
-						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
-				</p:outputPanel>
-				<p:spacer width="30px" />  
-				<h:outputText  value="Nombre de Alumno" />
-				<p:inputText  id="a_nombre"
-					value="#{registrarTutoriaMBean.tutoriaModelSelect.aNombre}"
-					size="40" />
-				<p:spacer width="30px" />				 
-			</h:panelGrid>
-
+			<p:row>
+				<h:panelGrid id="pnlBuscador"
+					style="font-size: 12px;text-align: left" columns="5"
+					cellspacing="5">
+					<h:outputText value="Codigo Alumno" />
+					<p:outputPanel>
+						<p:inputText
+							value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}"
+							size="30" />
+						<p:spacer width="5px" />
+						<p:commandButton update="tablaResultado, a_nombre"
+							value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+							actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
+					</p:outputPanel>
+					<p:spacer width="10px" />
+					<h:outputText value="Nombre de Alumno" />
+					<p:inputText id="a_nombre"
+						value="#{registrarTutoriaMBean.tutoriaModelSelect.aNombre}"
+						size="40" />
+					<p:spacer width="10px" />
+				</h:panelGrid>
+			</p:row>
+			<p:row>
+				<h:panelGrid id="pnlBuscadorDoc"
+					style="font-size: 12px;text-align: left" columns="5"
+					cellspacing="5">
+					<h:outputText value="Docente" />
+<!-- 					<p:selectOneMenu id="selectOneDocentePN" -->
+<!-- 						value="#{alumnoMBean.alumnoModelSelect.cod_curso}" -->
+<!-- 						valueChangeListener="#{alumnoMBean.actualizarAlumnoTutor}" -->
+<!-- 						styleClass="ui-column-label-spij styleAlignRightColumn"> -->
+<!-- 						<f:selectItem itemLabel="Seleccione el curso:" /> -->
+<!-- 						<f:selectItems value="#{alumnoMBean.alumnoModel.listarCursos}" -->
+<!-- 							var="cursos" itemLabel="#{cursos.nombre}" -->
+<!-- 							itemValue="#{cursos.cCodigo}" /> -->
+<!-- 						<f:ajax event="change" execute="@this" render="selectOneAlumnoPS" /> -->
+<!-- 					</p:selectOneMenu> -->
+					<p:spacer width="30px" />
+					<h:outputText value="Curso" />
+<!-- 					<p:selectOneMenu id="selectOneCursoPN" -->
+<!-- 						value="#{alumnoMBean.alumnoModelSelect.cod_curso}" -->
+<!-- 						valueChangeListener="#{alumnoMBean.actualizarAlumnoTutor}" -->
+<!-- 						styleClass="ui-column-label-spij styleAlignRightColumn"> -->
+<!-- 						<f:selectItem itemLabel="Seleccione el curso:" /> -->
+<!-- 						<f:selectItems value="#{alumnoMBean.alumnoModel.listarCursos}" -->
+<!-- 							var="cursos" itemLabel="#{cursos.nombre}" -->
+<!-- 							itemValue="#{cursos.cCodigo}" /> -->
+<!-- 						<f:ajax event="change" execute="@this" render="selectOneAlumnoPS" /> -->
+<!-- 					</p:selectOneMenu> -->
+					<p:spacer width="30px" />
+				</h:panelGrid>
+			</p:row>
 			<p:row>
 				<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
-					<p:dataTable 
-						id="tablaResultado" style="font-size:10px;"
+					<p:dataTable id="tablaResultado" style="font-size:10px;"
 						value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
 						emptyMessage="Datos de Tutoria Vacio">
 
-						<p:column headerText="Cod Curso" style="font-size: 12px;width: 10%">
+						<p:column headerText="Cod Curso"
+							style="font-size: 12px;width: 10%">
 							<h:outputText value="#{lista.c_codigo}" />
 						</p:column>
 
-						<p:column headerText="Nombre Curso" style="font-size: 12px;width: 20%">
+						<p:column headerText="Nombre Curso"
+							style="font-size: 12px;width: 20%">
 							<h:outputText value="#{lista.c_nombre}" />
 						</p:column>
 
-						<p:column headerText="# Repitencias" style="font-size: 12px;width: 8%">
+						<p:column headerText="# Repitencias"
+							style="font-size: 12px;width: 8%">
 							<h:outputText value="#{lista.repitencia}" />
 						</p:column>
 
-						<p:column headerText="Nombre Tutor" style="font-size: 12px;width: 20%">
+						<p:column headerText="Nombre Tutor"
+							style="font-size: 12px;width: 20%">
 							<h:outputText value="#{lista.p_nombre}" />
 						</p:column>
 
-						<p:column headerText="Frecuencia" style="font-size: 12px;width: 15%">
+						<p:column headerText="Frecuencia"
+							style="font-size: 12px;width: 15%">
 							<h:outputText value="#{lista.descFrecuencia}" />
 						</p:column>
-						
+
 						<p:column headerText="Dia" style="font-size: 12px;width: 15%">
 							<h:outputText value="#{lista.dia}" />
 						</p:column>
 
-						<p:column headerText="Hora de Inicio" style="font-size: 12px;width: 10%">
+						<p:column headerText="Hora de Inicio"
+							style="font-size: 12px;width: 10%">
 							<h:outputText value="#{lista.horaIni}" />
 						</p:column>
 
@@ -72,7 +110,7 @@
 					</p:dataTable>
 				</p:column>
 			</p:row>
-			<p:spacer width="30px" />			
+			<p:spacer width="30px" />
 		</p:panel>
 	</ui:define>
 </ui:composition>
