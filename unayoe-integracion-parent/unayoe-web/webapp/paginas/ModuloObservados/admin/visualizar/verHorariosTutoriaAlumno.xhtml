@@ -28,7 +28,68 @@
 				<p:inputText  id="a_nombre"
 					value="#{registrarTutoriaMBean.tutoriaModelSelect.aNombre}"
 					size="40" />
-				<p:spacer width="30px" />				 
+				<p:spacer width="30px" />	
+				
+   		 		<p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+								id="idCurso"
+                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}"/>
+						</p:column>
+						<p:column>
+							<p:selectOneMenu 
+                    			id="selectOneCurso" 
+                    			value="#{registrarTutoriaMBean.tutoriaModelSelect.cCodigo}" 
+                    			valueChangeListener="#{registrarTutoriaMBean.actualizarDocenteGenerico}"
+                    			styleClass="ui-column-label-spij styleAlignRightColumn">
+                        		<f:selectItem itemLabel="Seleccione el curso:"/>
+                        		<f:selectItems 
+                        			value="#{registrarTutoriaMBean.tutoriaModel.listarCursos}"
+                                    var="cursos" itemLabel="#{cursos.nombre}"
+                                    itemValue="#{cursos.cCodigo}" />
+                        		<f:ajax event="change" execute="@this" render="selectOneProfesor"/>
+                    		</p:selectOneMenu>
+						</p:column>
+					</p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+                    			id="idTutor"
+                    			value="#{mensaje['unayoe.ingresar.datos.alumnos.label.docente']}"/>
+						</p:column>
+                    	<p:column>
+							<p:selectOneMenu 
+								id="selectOneProfesor"
+								value="#{registrarTutoriaMBean.tutoriaModelSelect.pCodigo}"
+								valueChangeListener="#{registrarTutoriaMBean.actualizarAlumnoGenerico}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el tutor: " />
+								<f:selectItems
+									value="#{registrarTutoriaMBean.tutoriaModel.listarTutores}"
+									var="profesor" itemLabel="#{profesor.pNombre}"
+									itemValue="#{profesor.pCodigo}" />
+								
+							</p:selectOneMenu>
+						</p:column>
+						
+                    </p:row>
+                    
+                    <p:row>
+
+						<p:column>
+							<p:commandButton update="tablaResultado, a_nombre , cursoBuscado , profesorBuscado"
+								value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+								actionListener="#{registrarTutoriaMBean.buscarHorariosTutoriaDocente(1)}" />
+						</p:column>
+
+					</p:row> 
+                    
+                                   
+                    
+                    <p:spacer width="50px"/>
+   
+							 
 			</h:panelGrid>
 
 			<p:row>
@@ -38,8 +99,8 @@
 						value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
 						emptyMessage="Datos de Tutoria Vacio">
 
-						<p:column headerText="Cod Curso" style="font-size: 12px;width: 10%">
-							<h:outputText value="#{lista.c_codigo}" />
+						<p:column headerText="Ciclo académico" style="font-size: 12px;width: 10%">
+							<h:outputText value="#{lista.tAnio}-#{lista.tPeriodo}" />
 						</p:column>
 
 						<p:column headerText="Nombre Curso" style="font-size: 12px;width: 20%">
@@ -50,7 +111,7 @@
 							<h:outputText value="#{lista.repitencia}" />
 						</p:column>
 
-						<p:column headerText="Nombre Tutor" style="font-size: 12px;width: 20%">
+						<p:column id="nombreOrigen" headerText="#{registrarTutoriaMBean.nombreOrigen}" style="font-size: 12px;width: 20%">
 							<h:outputText value="#{lista.p_nombre}" />
 						</p:column>
 
@@ -72,7 +133,19 @@
 					</p:dataTable>
 				</p:column>
 			</p:row>
-			<p:spacer width="30px" />			
+			<p:spacer width="15px" />		
+						<p:outputPanel>
+					
+		                   	<p:column style="font-size: 12px;width: 10%">
+								<h:outputText id="cursoBuscado" value="Curso #{registrarTutoriaMBean.cursoBuscado}"/>
+							</p:column>
+															
+					</p:outputPanel>
+			         	<p:column style="font-size: 12px;width: 10%">
+							<h:outputText  id = "profesorBuscado" value="Tutor  #{registrarTutoriaMBean.profesorBuscado}"/>
+						</p:column>
+						
+					
 		</p:panel>
 	</ui:define>
 </ui:composition>
