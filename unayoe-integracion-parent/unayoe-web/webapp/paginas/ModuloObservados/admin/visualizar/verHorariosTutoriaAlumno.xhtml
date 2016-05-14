@@ -16,10 +16,11 @@
 				<h:outputText value="Codigo Alumno" />
 				<p:outputPanel>
 					<p:inputText
+						id="a_codigo"
 						value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}"
 						size="30" />
 					<p:spacer width="5px" />
-					<p:commandButton update="tablaResultado, a_nombre"
+					<p:commandButton update="tablaResultado, a_nombre, profesorBuscado, cursoBuscado, selectOneProfesor, selectOneCurso"
 						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
 						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
 				</p:outputPanel>
@@ -61,8 +62,7 @@
                     	<p:column>
 							<p:selectOneMenu 
 								id="selectOneProfesor"
-								value="#{registrarTutoriaMBean.tutoriaModelSelect.pCodigo}"
-								valueChangeListener="#{registrarTutoriaMBean.actualizarAlumnoGenerico}"
+								value="#{registrarTutoriaMBean.tutoriaModelSelect.pCodigo}"	
 								styleClass="ui-column-label-spij styleAlignRightColumn">
 								<f:selectItem itemLabel="Seleccione el tutor: " />
 								<f:selectItems
@@ -78,7 +78,7 @@
                     <p:row>
 
 						<p:column>
-							<p:commandButton update="tablaResultado, a_nombre , cursoBuscado , profesorBuscado"
+							<p:commandButton update="tablaResultado, a_nombre , a_codigo, cursoBuscado , profesorBuscado"
 								value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
 								actionListener="#{registrarTutoriaMBean.buscarHorariosTutoriaDocente(1)}" />
 						</p:column>

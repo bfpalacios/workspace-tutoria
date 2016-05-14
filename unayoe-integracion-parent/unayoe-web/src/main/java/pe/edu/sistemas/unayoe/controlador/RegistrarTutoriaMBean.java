@@ -97,8 +97,8 @@ public class RegistrarTutoriaMBean {
     private static String REGISTRO_FALTANTE = "F";
     
     private String nombreOrigen="Nombre Tutor";
-    private String cursoBuscado;
-    private String profesorBuscado;
+    private String cursoBuscado="";
+    private String profesorBuscado="";
     
     
     public RegistrarTutoriaMBean() {
@@ -120,6 +120,11 @@ public class RegistrarTutoriaMBean {
         setClaseMaestraFrecuenciaSelect(new ClaseMaestraModel());    
         setListaObservacionesPendientes(new ArrayList<ObservacionBO>());
         setListaObservacionesFinalizadas(new ArrayList<ObservacionBO>());
+        setListAsistenciaTutoria(new ArrayList< AsistenciaTutoriaModel>());
+        
+         nombreOrigen="Nombre Tutor";
+         cursoBuscado="";
+         profesorBuscado="";
     }    
     
     private void limpiarClases(){
@@ -305,13 +310,15 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListarAlumnos(listaAlumnos);
 	}
 	
-	public void actualizarDocenteGenerico(ValueChangeEvent e) throws Exception{		
+	public void actualizarDocenteGenerico(ValueChangeEvent e) throws Exception{	
+		
 		String codCurso = (String) (e.getNewValue()==null?"": e.getNewValue());		
 		List<ProfesorBO> listaTutores = new ArrayList<ProfesorBO>();
 		
 		switch(PROCESO){
 			case 1: listaTutores = tutoriaServices.listarTutoresObservados(codCurso); break;
 			case 2: listaTutores = tutoriaServices.listarTutoresRegulares(codCurso); break;
+			
 		}		
 		getTutoriaModel().setListarTutores(listaTutores);
 	}	
@@ -564,7 +571,9 @@ public class RegistrarTutoriaMBean {
     public void buscarHorariosTutoria(int procesoTutoria) {
     	List<TutoriaBO> listaHorarios =  new ArrayList<TutoriaBO>();    	
     	listAsistenciaTutoria.clear();
-    	
+    	cursoBuscado="";
+        profesorBuscado="";
+        
     	if(!validaNumero(getTutoriaModelSelect().getaCodigo())){
     		mostrarMensaje(1);
     	}
@@ -585,6 +594,10 @@ public class RegistrarTutoriaMBean {
     				
     				AlumnoBO datosAlumno = tutoriaServices.buscarDatosAlumno(listaHorarios.get(0).getaCodigo());
     				getTutoriaModelSelect().setaNombre(datosAlumno.getaNombre() + " " + datosAlumno.getaApellido());
+    				getTutoriaModelSelect().setcCodigo(listaHorarios.get(0).getcCodigo());
+    				System.out.println("CODIGO DEL PROFESOR "+listaHorarios.get(0).getpCodigo());
+    				getTutoriaModelSelect().setpCodigo(listaHorarios.get(0).getpCodigo());
+    				
     			}        		
         		else{
         			getTutoriaModelSelect().setaNombre("Alumno no encontrado");
@@ -620,6 +633,8 @@ public class RegistrarTutoriaMBean {
   
     				setCursoBuscado(listAsistenciaTutoria.get(0).getC_nombre());
     				setProfesorBuscado(listAsistenciaTutoria.get(0).getA_nombre());
+    				getTutoriaModelSelect().setaCodigo("");
+    				getTutoriaModelSelect().setaNombre("");
     			}        		
         		else{
         			getTutoriaModelSelect().setaNombre("Profesor no encontrado");
@@ -679,18 +694,24 @@ public class RegistrarTutoriaMBean {
             	tutoriabo.setHoraIni(horaInicio + ":00");
             	tutoriabo.setHoraFin(horaFin + ":00");
             	tutoriabo.setFrecuencia(getTutoriaModelSelect().getFrecuencia());        	
-            	
+            	System.out.println("VALIDA CAMPOS TUTORIA");
             	if (tutoriaExistente.isEmpty()){ 
+            		System.out.println("Tutoria no existente");
                 	tutoriabo.setaCodigo(codAlumno);                 	            		
                 	tutoriaServices.procesarTutoriaRegulares(tutoriabo, 1);
                 	mostrarMensaje(7);
+                	
             	}
             	else{
+            		System.out.println("Tutoria existente **");
             		tutoriabo.settCodigo(tutoriaExistente);
             		tutoriaServices.procesarTutoriaRegulares(tutoriabo, 2);
             		mostrarMensaje(8);
+            		
             	}
             	limpiarClases();
+        	}else{
+        		System.out.println("NO VALIDA CAMPOS DE TUTORIA");
         	}
 		} catch (Exception e) {			
 			e.printStackTrace();
@@ -944,10 +965,12 @@ public class RegistrarTutoriaMBean {
 	
 	public String selectorPaginasConsultaTutoria(int procesoTutoria, int tipoUsuario) throws Exception{
 		String pagina = "";
-		
+		inicializarClases();
 		switch(procesoTutoria){
-			case 1: switch(tipoUsuario){ 
+			case 1:   PROCESO = PROCESO_OBSERVADOS;
+				switch(tipoUsuario){ 
 						case 1: MODO_USUARIO = MODO_ADMIN;
+								listarCursos();
 								pagina = "/paginas/ModuloObservados/admin/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
 						case 2: MODO_USUARIO = MODO_OCAA;	
 					    		pagina = "/paginas/ModuloObservados/ocaa/visualizar/verHorariosTutoriaAlumno.xhtml"; break;

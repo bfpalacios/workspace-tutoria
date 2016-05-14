@@ -5,7 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-   <ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
+
+	<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
 		<ui:define name="contenido">
 			<p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
 				<p:row>
@@ -15,7 +16,7 @@
    				</p:row>
    			</p:outputPanel>
    						
-			<p:panel header="Registro de tutoría de alumnos Observados"
+			<p:panel header="Registro de tutoría de alumnos observados"
 				     style="width: 95%;border: 0px;"
 				     id="generalPanel">			
 				<h:panelGrid id="pnlBuscador"
@@ -36,7 +37,7 @@
 					</p:outputPanel>
 					
 					<p:spacer width="30px" />
-
+	
 					<h:outputText 
 						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}" 
 					    style="font-weight: bold;" />

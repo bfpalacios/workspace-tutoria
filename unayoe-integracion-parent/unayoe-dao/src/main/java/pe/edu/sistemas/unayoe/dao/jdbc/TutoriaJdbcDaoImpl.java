@@ -694,7 +694,7 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 	    	cstm.setString(8, tutoriaBO.getHoraFin());
 	    	cstm.setString(9, tutoriaBO.gettCodigo());
 	    	cstm.setInt(10, tutoriaBO.getFrecuencia());
-	    	cstm.setInt(11, modo);
+	    	cstm.setInt(11, modo);/*modo 1*/
 
 	    	cstm.execute();     	    			
 		}
