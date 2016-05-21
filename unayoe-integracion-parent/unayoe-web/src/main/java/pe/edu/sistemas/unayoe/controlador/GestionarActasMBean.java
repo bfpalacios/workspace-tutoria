@@ -67,6 +67,7 @@ public class GestionarActasMBean {
 	private boolean desactivarDescarga;
 	private StreamedContent file;
 	
+	private List<TutoriaModel> listaObservaciones;
 	/*-------------------------------------------------------*/
 	/*Estas variables no deben ser accedidas por ninguna clase
 	  por ello, no tendrán métodos GET y SET*/
@@ -107,6 +108,8 @@ public class GestionarActasMBean {
 		}
 		setDesactivarCarga(true);
 		setDesactivarDescarga(true);
+		
+		setListaObservaciones(new ArrayList<TutoriaModel>());
 	}
 	
 	public void listarCursos() {
@@ -472,6 +475,41 @@ public class GestionarActasMBean {
 		return pagina;		
 	}
 	
+	public String selectorTareasAsignadas(int proceso, int modo) throws Exception{
+		String pagina = "";
+		 
+		CicloBO cicloActual = comunServices.buscarCicloActual();
+		ANIO_ACTUAL = cicloActual.getAnio();
+		PERIODO_ACTUAL = cicloActual.getPeriodo();		
+		inicializarClases();			
+		listarCursos();
+		switch(proceso){
+			case 1: switch(modo){ 
+		 				case 1: PROCESO = PROCESO_OBSERVADOS;
+		 						MODO = MODO_ADMIN;			 								 						
+		 						//setDesactivarCarga(true);
+		 						pagina = "/paginas/ModuloObservados/admin/visualizar/verHistorialTareasAlumno.xhtml"; break;
+		 				
+		 				case 2: PROCESO = PROCESO_OBSERVADOS;
+		 						MODO = MODO_ADMIN;
+		 						//setDesactivarCarga(true);
+		 						pagina = "/paginas/ModuloObservados/ocaa/visualizar/verHistorialTareasAlumno.xhtml"; break;
+		 			} break;
+		 	case 2: switch(modo){ 
+						case 1: PROCESO = PROCESO_REGULARES;
+								MODO = MODO_ADMIN;
+								//setDesactivarCarga(true);						
+								pagina = "/paginas/ModuloRegulares/admin/cargar/cargarActasTutoria.xhtml"; break;
+						
+						case 2: PROCESO = PROCESO_REGULARES;
+								MODO = MODO_ADMIN;
+								setDesactivarCarga(true);
+								pagina = "/paginas/ModuloRegulares/ocaa/cargar/cargarActasTutoria.xhtml"; break;
+		 			} break;
+		}
+		return pagina;		
+	}
+	
 	public String selectorDescargaActas(int proceso, int modo) throws Exception{
 		String pagina = "";
 		 
@@ -624,4 +662,13 @@ public class GestionarActasMBean {
 	public void setUsuarioServices(UsuarioServices usuarioServices) {
 		this.usuarioServices = usuarioServices;
 	}
+
+	public List<TutoriaModel> getListaObservaciones() {
+		return listaObservaciones;
+	}
+
+	public void setListaObservaciones(List<TutoriaModel> listaObservaciones) {
+		this.listaObservaciones = listaObservaciones;
+	}
+	
 }

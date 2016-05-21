@@ -37,8 +37,18 @@ public class TutoriaModel extends PersonaModel{
 	private String cNombre;	
 	private int frecuencia;
 	private int sesion;
+	/* atributos para observacion:*/
 	private String observacion;
+	
 	private String criticidad;
+	private String razon;
+	private String tarea;
+	private String fechaAsignada;
+	private String fechaFin;
+	private String estado;
+	private String fechaEntregada;
+	
+	/*fin observacion*/
 	private List<CursoBO> listarCursos;
 	private List<AlumnoBO> listarAlumnos;
 	private List<ProfesorBO> listarTutores;
@@ -234,4 +244,41 @@ public class TutoriaModel extends PersonaModel{
 	public void setListaIndicadores(List<IndicadoresBO> listaIndicadores) {
 		this.listaIndicadores = listaIndicadores;
 	}
+	public String getRazon() {
+		return razon;
+	}
+	public void setRazon(String razon) {
+		this.razon = razon;
+	}
+	public String getTarea() {
+		return tarea;
+	}
+	public void setTarea(String tarea) {
+		this.tarea = tarea;
+	}
+	public String getFechaAsignada() {
+		return fechaAsignada;
+	}
+	public void setFechaAsignada(String fechaAsignada) {
+		this.fechaAsignada = fechaAsignada;
+	}
+	public String getFechaFin() {
+		return fechaFin;
+	}
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public String getFechaEntregada() {
+		return fechaEntregada;
+	}
+	public void setFechaEntregada(String fechaEntregada) {
+		this.fechaEntregada = fechaEntregada;
+	}
+	
 }

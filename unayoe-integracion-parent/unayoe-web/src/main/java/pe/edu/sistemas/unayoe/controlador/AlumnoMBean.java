@@ -71,7 +71,7 @@ public class AlumnoMBean {
 	private List<TutoriaBO> listaAsistenciaAlumnosTutoriaGrid;
 	private List<AsistenciaTAlumBO> listAsistenciaAlumnosTutoria;
 	private List<NotasAlumnoExcelModel> visualizarNotasAlumnoGrid;
-
+	
 	/*-------------------------------------------------------*/
 	/*
 	 * Estas variables no deben ser accedidas por ninguna clase por ello, no
