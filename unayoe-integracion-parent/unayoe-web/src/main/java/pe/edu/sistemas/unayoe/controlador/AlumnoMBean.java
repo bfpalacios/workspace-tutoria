@@ -459,7 +459,7 @@ public class AlumnoMBean {
 					} else {
 						getTutoriaServices().guardarRegistroAsistencia(asistenciaTutorias,
 								new FormateadorFecha().formatoFechaDDMMAAAA(getDate()), PROCESO, MODO);
-
+						/*
 						if (getListaObservaciones().size() > 0) {
 							for (TutoriaModel observacionTutoria : getListaObservaciones()) {
 								observacionTutoria.setSesion(sesionesTutoria.getSesion());
@@ -468,6 +468,7 @@ public class AlumnoMBean {
 										observacionTutoria.getSesion());
 							}
 						}
+						*/
 						reiniciarObjetos();
 						switch (MODO) {
 						case 1:
