@@ -184,8 +184,8 @@ public class TutoriaServicesImpl implements TutoriaServices {
 		return tutoriaIDao.buscarTutoriaxCodigoAlumnoRegular(codAlumno);
 	}
 	
-	public void guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion) throws Exception{
-		tutoriaIDao.guardarObservacionesAsistencia(codTutoria, observacion, criticidad, sesion);
+	public void guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion,String razon,String fechaCumplimiento) throws Exception{
+		tutoriaIDao.guardarObservacionesAsistencia(codTutoria, observacion, criticidad, sesion,razon,fechaCumplimiento);
 	}
 	
 	public SesionBO buscarSesionTutoria(int anio, int periodo, String codCurso, String codDocente, String codAlumno, int sesion, int procesoTutoria, int modo) throws Exception{
