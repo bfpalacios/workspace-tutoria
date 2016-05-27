@@ -73,5 +73,22 @@ public class Convertidor {
 		return hourFormat.format(d);
 
 	}
+	
+	/**
+	 * @param numero Numero que se desea formatear long
+	 * @param nroDig Cantidad de digitos del numero
+	 * @return
+	 */
+	public static String formatoNumero(long numero,int nroDig ){
+		String num = String.valueOf(numero);
+		String numFormat = "";
+		if(numero>0 && num.length()<nroDig){
+			for(int i = 0;i<nroDig-num.length();i++)numFormat+="0";
+			numFormat+=num;
+		}else{
+			numFormat = num;
+		}
+		return numFormat;
+	}
 
 }
