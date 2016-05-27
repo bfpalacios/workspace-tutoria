@@ -48,7 +48,7 @@ public interface TutoriaServices {
 	public List<TutoriaBO> 			listarHorariosDeTutoriaxSemana(Integer anio , Integer periodo ,String c_codigo , String dia)throws Exception;
 	public List<ObservacionBO>      listarObservaciones(String codCurso, String codDocente, String codAlumno, int procesoTutoria) throws Exception;
 	public void                     guardarRegistroAsistencia(TutoriaBO asistenciaTutorias, String fecha, int tipoAlumno, int modo) throws Exception;	
-	public void                     guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion) throws Exception;
+	public void                     guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion,String razon,String fechaCumplimiento) throws Exception;
 	public List<AsistenciaTAlumBO>  buscarAsistenciaDeAlumnosTutoria(String periodo, String anio, String dia, String curso, String fecha) throws Exception;
 	public List<TutoriaBO>          listarDatosTutoria(String codCurso, String codDocente, String codAlumno, int procesoTutoria, int modoUsuario) throws Exception;
 	public List<TutoriaBO> 			listarHorariosDeTutoria(Integer anio, Integer periodo, String a_codigo, String codUsuario, int procesoTutoria)throws Exception;
