@@ -69,7 +69,7 @@ public class RegistrarTutoriaMBean {
     Calendar hoy;
     private Date date;
     private String dia;
-    private TutoriaModel tutoriaModel; 
+    private TutoriaModel tutoriaModel; /*visualizar las tutorias en el reporte de asistencia*/
     private TutoriaModel tutoriaModelGrid;
     private TutoriaModel tutoriaModelSelect;
     private List<ClaseMaestra> listarCiclos;
