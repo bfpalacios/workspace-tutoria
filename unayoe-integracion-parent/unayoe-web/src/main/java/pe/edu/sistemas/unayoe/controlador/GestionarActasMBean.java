@@ -65,6 +65,7 @@ public class GestionarActasMBean {
 	private TutoriaModel tutoriaModelSelect;
 	private boolean desactivarCarga;
 	private boolean desactivarDescarga;
+	private boolean desactivarTarea;
 	private StreamedContent file;
 	
 	private List<TutoriaModel> listaObservaciones;
@@ -89,11 +90,16 @@ public class GestionarActasMBean {
 	//private static String REGISTRO_EXTEMPORANEO = "E";
 	private static String REGISTRO_FALTANTE = "F";
 	/*-------------------------------------------------------*/
-	
+	private Date date;
+    private UploadedFile acta;
 	public GestionarActasMBean(){
 		setTutoriaModelSelect(new TutoriaModel());
+		System.out.println("carga : "+getDesactivarCarga());
 		setDesactivarCarga(true);
 		setDesactivarDescarga(true);
+		setDesactivarTarea(true);
+		System.out.println("TAREA : "+isDesactivarTarea());
+		date= new Date();
 	}
 	
 	public void inicializarClases(){
@@ -108,6 +114,7 @@ public class GestionarActasMBean {
 		}
 		setDesactivarCarga(true);
 		setDesactivarDescarga(true);
+		setDesactivarTarea(true);
 		
 		setListaObservaciones(new ArrayList<TutoriaModel>());
 	}
@@ -137,7 +144,54 @@ public class GestionarActasMBean {
 		}		
 		return fechaFormateada;
 	}
-	
+	public void algo(){
+		System.out.println("Hola gg");
+	}
+	public void cargarTareas(){
+		
+		try{
+
+
+							
+				TutoriaBO sesionTutoria = comunServices.obtenerSesionTutoria(ANIO_ACTUAL, PERIODO_ACTUAL, 
+						                                                     getTutoriaModelSelect().getcCodigo(), 
+						                                                     getTutoriaModelSelect().getpCodigo(), 
+						                                                     String.valueOf(getTutoriaModelSelect().getaCodigo()),
+						                                                     getTutoriaModelSelect().getSesion(), 
+						                                                     MODO, PROCESO);
+				
+
+		        
+				if (getListaObservaciones().size() > 0) {
+					for (TutoriaModel observacionTutoria : getListaObservaciones()) {
+						observacionTutoria.setSesion(sesionTutoria.getSesion());
+						getTutoriaServices().guardarObservacionesAsistencia(sesionTutoria.gettCodigo(),
+								observacionTutoria.getObservacion(), observacionTutoria.getCriticidad(),
+								observacionTutoria.getSesion(),observacionTutoria.getRazon(),observacionTutoria.getFechaFin());
+					}
+					mostrarMensaje(12);
+				}
+		        
+				
+				
+				
+			}
+			catch(IOException IOEx){
+				IOEx.printStackTrace();
+			}
+			catch(SerialException SEx){
+				SEx.printStackTrace();
+			}
+			catch(SQLException SQLEx){
+				SQLEx.printStackTrace();
+			}
+			catch(NumberFormatException NFE){
+				NFE.printStackTrace();
+			}
+			catch(Exception Ex){
+				Ex.printStackTrace();
+			}
+	}
 	public void gestorCargaActas(FileUploadEvent e){
 		try{
 			UploadedFile archivoPDF = e.getFile();			
@@ -256,7 +310,8 @@ public class GestionarActasMBean {
 		String codDocente = "";
 		String codAlumno = (String) (e.getNewValue()==null?"": e.getNewValue());
 		getTutoriaModelSelect().setaCodigo(codAlumno);
-		
+		AlumnoBO alumno=tutoriaServices.buscarDatosAlumno(codAlumno);
+		getTutoriaModelSelect().setaNombre(alumno.getaNombre()+" "+alumno.getaApellido());
 		if (MODO == MODO_ADMIN){
 			codDocente = getTutoriaModelSelect().getpCodigo()==null?"":getTutoriaModelSelect().getpCodigo();	
 		}
@@ -279,6 +334,7 @@ public class GestionarActasMBean {
 			sesiones.add(sesion);
 		}
 		getTutoriaModel().setListarSesiones(sesiones);
+		
 	}
  
 	public User obtenerUsuario() {        
@@ -291,6 +347,7 @@ public class GestionarActasMBean {
     }
 	
 	public void validarCargaActas(ValueChangeEvent e) throws Exception{
+		try{
 		int sesion = (Integer)(e.getNewValue()==null?0: e.getNewValue());
 		
 		SesionBO actaTutoria = tutoriaServices.obtenerActaTutoria(ANIO_ACTUAL, PERIODO_ACTUAL,
@@ -298,19 +355,40 @@ public class GestionarActasMBean {
 															      getTutoriaModelSelect().getpCodigo(),
 															      String.valueOf(getTutoriaModelSelect().getaCodigo()),
 															      sesion, PROCESO, MODO);
-		
-		if (actaTutoria.getEstadoSesion().equals(REGISTRO_FALTANTE)){
-			mostrarMensaje(1);
-			setDesactivarCarga(true);
-		}
-		else{
-			if (actaTutoria.getEstadoActa() == 2){
+		if(actaTutoria!=null){
+			
+			if (actaTutoria.getEstadoSesion().equals(REGISTRO_FALTANTE) ){
+				mostrarMensaje(1);
 				setDesactivarCarga(true);
-				mostrarMensaje(3);				
+				setDesactivarTarea(false);
 			}
 			else{
-				setDesactivarCarga(false);
-			}			
+				if (actaTutoria.getEstadoActa() == 2){
+					setDesactivarCarga(true);
+					setDesactivarTarea(false);
+					mostrarMensaje(3);				
+				}
+				else{
+					setDesactivarCarga(false);
+					setDesactivarTarea(false);
+				}			
+			}
+		}
+		}catch(Exception exception){
+			
+		}
+	}
+	
+	public void agregarObservacion() {
+		System.out.println("TAREA : "+isDesactivarTarea());
+		if (!isDesactivarTarea()) {
+			TutoriaModel observacionTutoria = new TutoriaModel();
+			getListaObservaciones().add(observacionTutoria);
+			System.out.println("YA HAY UNA TUTORIA CARGADA PARA TAREA");
+			
+		} else {
+			mostrarMensaje(11);
+			System.out.println("NO HAY UNA TUTORIA CARGADA PARA TAREA");
 		}
 	}
 	
@@ -351,7 +429,7 @@ public class GestionarActasMBean {
 						InputStream datosActa = new ByteArrayInputStream(actaTutoria.getActa());
 						setFile(new DefaultStreamedContent(datosActa, "application/pdf", actaTutoria.getNombreActa() + ".pdf"));				
 					}			
-				}
+				}	
 			}
 		}
 		catch(Exception e){
@@ -453,22 +531,27 @@ public class GestionarActasMBean {
 		 				case 1: PROCESO = PROCESO_OBSERVADOS;
 		 						MODO = MODO_ADMIN;			 								 						
 		 						setDesactivarCarga(true);
+		 						setDesactivarTarea(true);
+		 						System.out.println("TAREA GG : "+isDesactivarTarea());
 		 						pagina = "/paginas/ModuloObservados/admin/cargar/cargarActasTutoria.xhtml"; break;
 		 				
 		 				case 2: PROCESO = PROCESO_OBSERVADOS;
 		 						MODO = MODO_ADMIN;
 		 						setDesactivarCarga(true);
+		 						setDesactivarTarea(true);
 		 						pagina = "/paginas/ModuloObservados/ocaa/cargar/cargarActasTutoria.xhtml"; break;
 		 			} break;
 		 	case 2: switch(modo){ 
 						case 1: PROCESO = PROCESO_REGULARES;
 								MODO = MODO_ADMIN;
-								setDesactivarCarga(true);						
+								setDesactivarCarga(true);	
+								setDesactivarTarea(true);
 								pagina = "/paginas/ModuloRegulares/admin/cargar/cargarActasTutoria.xhtml"; break;
 						
 						case 2: PROCESO = PROCESO_REGULARES;
 								MODO = MODO_ADMIN;
 								setDesactivarCarga(true);
+								setDesactivarTarea(true);
 								pagina = "/paginas/ModuloRegulares/ocaa/cargar/cargarActasTutoria.xhtml"; break;
 		 			} break;
 		}
@@ -504,6 +587,7 @@ public class GestionarActasMBean {
 						case 2: PROCESO = PROCESO_REGULARES;
 								MODO = MODO_ADMIN;
 								setDesactivarCarga(true);
+								setDesactivarTarea(true);
 								pagina = "/paginas/ModuloRegulares/ocaa/cargar/cargarActasTutoria.xhtml"; break;
 		 			} break;
 		}
@@ -604,6 +688,13 @@ public class GestionarActasMBean {
 					FacesContext.getCurrentInstance().addMessage(null, message); break;	
 		 	case 10: message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Debe seleccionar una sesión");
 					FacesContext.getCurrentInstance().addMessage(null, message); break;	
+			case 11:
+				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error",
+						"No se encontró una sesión de tutoría para registrar tareas");
+				RequestContext.getCurrentInstance().showMessageInDialog(message);
+				break;
+		 	case 12: message = new FacesMessage(FacesMessage.SEVERITY_INFO,"", "Tareas registrada con éxito");
+		 			RequestContext.getCurrentInstance().showMessageInDialog(message); break;
 		 }
 	}
 	
@@ -669,6 +760,43 @@ public class GestionarActasMBean {
 
 	public void setListaObservaciones(List<TutoriaModel> listaObservaciones) {
 		this.listaObservaciones = listaObservaciones;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String fecha(){
+        Date ahora = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        return formateador.format(ahora);
+	}
+
+	public UploadedFile getActa() {
+		return acta;
+	}
+
+	public void setActa(UploadedFile acta) {
+		this.acta = acta;
+	}
+
+	public TutoriaServices getTutoriaServices() {
+		return tutoriaServices;
+	}
+
+	public void setTutoriaServices(TutoriaServices tutoriaServices) {
+		this.tutoriaServices = tutoriaServices;
+	}
+
+	public boolean isDesactivarTarea() {
+		return desactivarTarea;
+	}
+
+	public void setDesactivarTarea(boolean desactivarTarea) {
+		this.desactivarTarea = desactivarTarea;
 	}
 	
 }
