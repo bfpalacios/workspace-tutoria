@@ -1,21 +1,23 @@
 package pe.edu.sistemas.unayoe.model;
  
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
 
 import org.springframework.stereotype.Component;
 
-import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
+import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
+import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
+import pe.edu.sistemas.unayoe.unayoe.bo.EncuestaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.IndicadoresBO;
+import pe.edu.sistemas.unayoe.unayoe.bo.ObservacionBO;
+import pe.edu.sistemas.unayoe.unayoe.bo.ProfesorBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.SesionBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
-import pe.edu.sistemas.unayoe.unayoe.bo.EncuestaBO;
-import pe.edu.sistemas.unayoe.unayoe.bo.ProfesorBO;
-import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
-import pe.edu.sistemas.unayoe.unayoe.bo.ObservacionBO;
 
 @Component("tutoriaModel")
 @RequestScoped
@@ -40,13 +42,14 @@ public class TutoriaModel extends PersonaModel{
 	/* atributos para observacion:*/
 	private String observacion;
 	
-	private String criticidad;
-	private String razon;
-	private String tarea;
-	private String fechaAsignada;
-	private String fechaFin;
-	private String estado;
-	private String fechaEntregada;
+	private String criticidad;//va
+	private String razon;//va
+	private String tarea;//va
+	private Date fechaCumplimiento;
+	private String fechaAsignada;//el sistema
+	private String fechaFin;//va
+	private String estado;//va
+	private String fechaEntregada;//al comienzo es nulo
 	
 	/*fin observacion*/
 	private List<CursoBO> listarCursos;
@@ -59,7 +62,7 @@ public class TutoriaModel extends PersonaModel{
 	private List<EncuestaBO> listaEncuestas;
 	private List<ObservacionBO> listaObservacionesPendientes;
 	private List<ObservacionBO> listaObservacionesFinalizadas;
-	private List<TutoriaBO> listaTutorias;
+	private List<TutoriaBO> listaTutorias;/*listar todas las tutorias para ver su asistencia */
 	private List<IndicadoresBO> listaIndicadores;
 	
 	public ProfesorModel getProfesor() {
@@ -263,6 +266,9 @@ public class TutoriaModel extends PersonaModel{
 		this.fechaAsignada = fechaAsignada;
 	}
 	public String getFechaFin() {
+        
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        fechaFin=formateador.format(fechaCumplimiento);
 		return fechaFin;
 	}
 	public void setFechaFin(String fechaFin) {
@@ -279,6 +285,12 @@ public class TutoriaModel extends PersonaModel{
 	}
 	public void setFechaEntregada(String fechaEntregada) {
 		this.fechaEntregada = fechaEntregada;
+	}
+	public Date getFechaCumplimiento() {
+		return fechaCumplimiento;
+	}
+	public void setFechaCumplimiento(Date fechaCumplimiento) {
+		this.fechaCumplimiento = fechaCumplimiento;
 	}
 	
 }
