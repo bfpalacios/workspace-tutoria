@@ -800,6 +800,7 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 			cstm.setString(4, asistenciaTutorias.getAsistencia());
 			cstm.setString(5, asistenciaTutorias.getJustificacion());
 			cstm.setString(6, asistenciaTutorias.getObservacion());
+			System.out.println("OBSERVACIÓN DE TUTORIA: "+ asistenciaTutorias.getObservacion());
 			cstm.setInt(7, tipoAlumno);
 			cstm.setInt(8, modo);
 				
@@ -1355,17 +1356,19 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaTutorias;
 	}
 	
-	public void guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion) throws SQLException{
+	public void guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion,String razon,String fechaCumplimiento) throws SQLException{
 		Connection con = null;
 		CallableStatement cstm = null;
 						
 		con = Conexion.obtenerConexion();		
-		cstm = con.prepareCall("{call GUARDAR_OBSERV_ASISTENCIA(?,?,?,?)}");	
+		cstm = con.prepareCall("{call GUARDAR_OBSERV_ASISTENCIA(?,?,?,?,?,?)}");	
 		
 		cstm.setString(1, codTutoria);
-		cstm.setString(2, observacion);		
-		cstm.setString(3, criticidad);			
-		cstm.setInt(4, sesion);
+		cstm.setString(2, razon);
+		cstm.setString(3, observacion);		
+		cstm.setString(4, criticidad);			
+		cstm.setInt(5, sesion);
+		cstm.setString(6, fechaCumplimiento);
 		
 		cstm.execute();
 	}
