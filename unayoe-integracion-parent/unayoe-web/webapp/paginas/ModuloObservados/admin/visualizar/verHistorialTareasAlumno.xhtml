@@ -123,17 +123,19 @@
                     		</p:column>
       						<p:column headerText="Tarea" style="font-size:12px; width:10%">
 								<h:outputText  value="lista.tarea"  /> 
-                    		</p:column>                    		    						
-    						
-    						<p:column headerText="Criticidad" style="font-size:12px; width:10%" >
-								<h:outputText   value="lista.criticidad" /> 
-                    		</p:column>   
-      						<p:column headerText="Fecha Asignada" style="font-size:12px; width:10%">
+                    		</p:column>                    		    								
+      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:10%">
         						<h:outputText  value="lista.fechaAsignada" />    
     						</p:column> 
-      						<p:column headerText="Fecha fin" style="font-size:12px; width:10%">
+      						<p:column headerText="Fecha Fin" style="font-size:12px; width:10%">
         						<h:outputText  value="lista.fechaFin" />    
     						</p:column> 
+   							<p:column headerText="Fecha Cumplida" style="font-size:12px; width:10%">
+        						<h:outputText value="tabla.fechaAsignada" />    
+    						</p:column>  
+    						<p:column headerText="Criticidad" style="font-size:12px; width:10%" >
+								<h:outputText   value="lista.criticidad" /> 
+                    		</p:column>       						
     						<p:column headerText="Estado" style="font-size:12px; width:10%" >
                         		<p:selectOneMenu
 									 value="lista.estado">
@@ -142,9 +144,7 @@
 									<f:selectItem itemLabel="ALTA" itemValue="ALTA" />									
 								</p:selectOneMenu>
                     		</p:column>   
-   							<p:column headerText="Fecha Entregada" style="font-size:12px; width:10%">
-        						<h:outputText value="tabla.fechaAsignada" />    
-    						</p:column>                     		   						   						                   		   						
+                  		   						   						                   		   						
 						</p:dataTable>
 			   		</p:column>   
 				</p:row>
