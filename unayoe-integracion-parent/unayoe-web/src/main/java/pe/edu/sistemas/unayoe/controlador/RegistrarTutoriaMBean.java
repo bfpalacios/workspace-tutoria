@@ -20,6 +20,7 @@ import org.primefaces.context.RequestContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -437,6 +438,89 @@ public class RegistrarTutoriaMBean {
 		}
 		return pagina;
 	}
+	
+	public void buscarTareasTutoria(){
+	
+		
+		try{
+			String codCurso = getTutoriaModelSelect().getcCodigo()==""?"Invalido":getTutoriaModelSelect().getcCodigo();
+			String codDocente =getTutoriaModelSelect().getpCodigo()==""?"Invalido":getTutoriaModelSelect().getpCodigo();
+			String codAlumno = getTutoriaModelSelect().getaCodigo()==""?"Invalido":getTutoriaModelSelect().getaCodigo();	
+			
+			if (validarCamposPrincipalesTutoria(codCurso, codDocente, codAlumno)){
+				List<ObservacionBO> listaObservacionesTotales = tutoriaServices.listarObservaciones(codCurso, codDocente, 
+						                                                                            codAlumno, PROCESO);
+				if (listaObservacionesTotales.size() > 0){
+					List<ObservacionBO> listaObservacionesPendientes = new ArrayList<ObservacionBO>();
+					List<ObservacionBO> listaObservacionesFinalizadas = new ArrayList<ObservacionBO>();
+					List<ClaseMaestra> listaEstadosTotales = comunServices.listarClaseMaestra("ESTADOS_OBSERVACION", "ESTADOS_TOTALES");
+					List<ClaseMaestra> listaEstadosParciales = comunServices.listarClaseMaestra("ESTADOS_OBSERVACION", "ESTADOS_PARCIALES");
+					for (ObservacionBO observacion : listaObservacionesTotales){					
+						switch(observacion.getEstadoObservacion()){
+							case 1: observacion.setListaEstados(listaEstadosTotales);
+//									observacion.setListaSesionesCierre(tutoriaServices.listarSesionesCierre(observacion.getCodTutoria(),
+//											                                                                Integer.parseInt(observacion.getSesionRegistro())));
+									listaObservacionesPendientes.add(observacion);							
+									break;
+							case 2: 
+//								observacion.setListaSesionesCierre(tutoriaServices.listarSesionesCierre(observacion.getCodTutoria(),
+//	                                                                                                   Integer.parseInt(observacion.getSesionRegistro())));
+									System.out.println("CASO 2 gg");
+									observacion.setListaEstados(listaEstadosParciales);
+									listaObservacionesPendientes.add(observacion); 							
+									break;
+							case 3: //observacion.setDiasCierre(String.valueOf(diferenciaFechasEnDias(observacion.getFechaCierre(), observacion.getFechaRegistro())));
+									//observacion.setSesionesCierre(String.valueOf((Integer.parseInt(observacion.getSesionCierre()) - Integer.parseInt(observacion.getSesionRegistro()))));
+									System.out.println("CASO 3 gg");
+									listaObservacionesFinalizadas.add(observacion);
+									break;
+						}
+					}
+					getTutoriaModel().setListaObservacionesPendientes(listaObservacionesPendientes); 
+					getTutoriaModel().setListaObservacionesFinalizadas(listaObservacionesFinalizadas);
+				}
+				else{
+					mostrarMensaje(17);
+				}				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void guardarControlTareas(){
+		
+		
+		try{
+			if (getTutoriaModel().getListaObservacionesPendientes().size() == 0){
+				
+			}
+			else{
+				int indicadorEstado;
+				List<ObservacionBO> listaObservacionesPendientes = getTutoriaModel().getListaObservacionesPendientes();
+				for (ObservacionBO observacion : listaObservacionesPendientes){
+					if (observacion.getEstadoControl().equals("PENDIENTE") || observacion.getEstadoControl().equals("PARCIALMENTE LEVANTADO")){
+						observacion.setObservacionCierre("");
+						indicadorEstado = 1;
+					}
+					else{						
+						indicadorEstado = 2;
+					}
+					observacion.setFecha_entrega(new FormateadorFecha().formatoFechaDDMMAAAA(new Date()));
+					tutoriaServices.actualizarEstadoObservacion(observacion, indicadorEstado);
+				}
+				limpiarClases();
+				listarCursosxDocente();
+				mostrarMensaje(18);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}	
+	
 	
 	public String buscarObservacionesTutoria(){
 		String pagina = "";
@@ -1091,6 +1175,10 @@ public class RegistrarTutoriaMBean {
 								MODO_USUARIO_AUX = MODO_TUTOR;
 								listarCursosxDocente();
 								pagina = "/paginas/ModuloObservados/tutor/visualizar/verAsistenciaTutoriaAlumnos.xhtml"; break;
+						case 5 : MODO_USUARIO = MODO_ADMIN;
+								 MODO_USUARIO_AUX = MODO_ADMIN;
+								 listarCursos();
+								 pagina = "/paginas/ModuloObservados/admin/visualizar/verHistorialTareasAlumno.xhtml"; break;
 					} break;
 			case 2: PROCESO = PROCESO_REGULARES;
 					switch(tipoUsuario){
