@@ -18,6 +18,10 @@ public class ObservacionBO implements Serializable{
 	private String observacionCierre;
 	private String fechaCierre;
 	private int estadoObservacion;	
+	private String fecha_entrega;
+	private String razon;
+	private String fecha_cumplimiento;
+	private String tarea;
 	private String estadoControl;
 	private String diasCierre;
 	private String sesionesCierre;
@@ -125,5 +129,30 @@ public class ObservacionBO implements Serializable{
 	}
 	public void setSesionesCierre(String sesionesCierre) {
 		this.sesionesCierre = sesionesCierre;
+	}
+	public String getFecha_entrega() {
+		return fecha_entrega;
+	}
+	public void setFecha_entrega(String fecha_entrega) {
+		this.fecha_entrega = fecha_entrega;
+	}
+	public String getRazon() {
+		return razon;
+	}
+	public void setRazon(String razon) {
+		this.razon = razon;
+	}
+	public String getFecha_cumplimiento() {
+		return fecha_cumplimiento;
+	}
+	public void setFecha_cumplimiento(String fecha_cumplimiento) {
+		this.fecha_cumplimiento = fecha_cumplimiento;
+	}
+	public String getTarea() {
+		return tarea;
+	}
+	public void setTarea(String tarea) {
+		this.tarea = tarea;
 	}	
+	
 }
