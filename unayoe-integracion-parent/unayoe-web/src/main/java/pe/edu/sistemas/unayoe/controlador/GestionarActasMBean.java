@@ -360,7 +360,7 @@ public class GestionarActasMBean {
 			if (actaTutoria.getEstadoSesion().equals(REGISTRO_FALTANTE) ){
 				mostrarMensaje(1);
 				setDesactivarCarga(true);
-				setDesactivarTarea(false);
+				setDesactivarTarea(true);
 			}
 			else{
 				if (actaTutoria.getEstadoActa() == 2){
@@ -373,6 +373,8 @@ public class GestionarActasMBean {
 					setDesactivarTarea(false);
 				}			
 			}
+		}else{
+			setDesactivarTarea(true);
 		}
 		}catch(Exception exception){
 			
@@ -557,42 +559,7 @@ public class GestionarActasMBean {
 		}
 		return pagina;		
 	}
-	
-	public String selectorTareasAsignadas(int proceso, int modo) throws Exception{
-		String pagina = "";
-		 
-		CicloBO cicloActual = comunServices.buscarCicloActual();
-		ANIO_ACTUAL = cicloActual.getAnio();
-		PERIODO_ACTUAL = cicloActual.getPeriodo();		
-		inicializarClases();			
-		listarCursos();
-		switch(proceso){
-			case 1: switch(modo){ 
-		 				case 1: PROCESO = PROCESO_OBSERVADOS;
-		 						MODO = MODO_ADMIN;			 								 						
-		 						//setDesactivarCarga(true);
-		 						pagina = "/paginas/ModuloObservados/admin/visualizar/verHistorialTareasAlumno.xhtml"; break;
-		 				
-		 				case 2: PROCESO = PROCESO_OBSERVADOS;
-		 						MODO = MODO_ADMIN;
-		 						//setDesactivarCarga(true);
-		 						pagina = "/paginas/ModuloObservados/ocaa/visualizar/verHistorialTareasAlumno.xhtml"; break;
-		 			} break;
-		 	case 2: switch(modo){ 
-						case 1: PROCESO = PROCESO_REGULARES;
-								MODO = MODO_ADMIN;
-								//setDesactivarCarga(true);						
-								pagina = "/paginas/ModuloRegulares/admin/cargar/cargarActasTutoria.xhtml"; break;
-						
-						case 2: PROCESO = PROCESO_REGULARES;
-								MODO = MODO_ADMIN;
-								setDesactivarCarga(true);
-								setDesactivarTarea(true);
-								pagina = "/paginas/ModuloRegulares/ocaa/cargar/cargarActasTutoria.xhtml"; break;
-		 			} break;
-		}
-		return pagina;		
-	}
+
 	
 	public String selectorDescargaActas(int proceso, int modo) throws Exception{
 		String pagina = "";
