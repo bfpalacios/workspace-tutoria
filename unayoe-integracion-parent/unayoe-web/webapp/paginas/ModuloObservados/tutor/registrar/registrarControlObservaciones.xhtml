@@ -18,7 +18,7 @@
    				</p:row>
    			</p:outputPanel>
             
-            <p:panel header="Control de las observaciones de tutoría" style="width: 450px;" >
+            <p:panel header="Control de las tareas de tutoría" style="width: 450px;" >
                 <p:panelGrid  id="pnlLoginAcceso" style="font-size: 12px;">                                       
                     <p:row>
                     	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
@@ -68,7 +68,7 @@
 							<p:commandButton 
 							 	id="btnBuscarEncuesta" align="center" 
                                 value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
-                                actionListener="#{registrarTutoriaMBean.buscarObservacionesTutoria}"
+                                actionListener="#{registrarTutoriaMBean.buscarTareasTutoriaProfesor}"
                                 update="tablaObservacionesFinalizadas, tablaObservacionesPendientes"
                                 ajax="true"/>                            
 						</p:column>
@@ -76,53 +76,50 @@
                 </p:panelGrid>            
             </p:panel>
             
-            <p:outputPanel id="mostrarObsFinalizadas" style="width:100%;margin-top:15px">                
+       <p:outputPanel id="mostrarObsFinalizadas" style="width:100%;margin-top:15px">                
             	<p:row id="filTabla">		   		
 		   			<p:column id="colObsFinalizadas" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
 		   				<p:dataTable 
 		   					id="tablaObservacionesFinalizadas"  		   						
 		   					value="#{registrarTutoriaMBean.tutoriaModel.listaObservacionesFinalizadas}" 		   								   						
 		   					var="observacionesFinalizadas"		   					
-		   					emptyMessage="No se encontraron observaciones finalizadas">
+		   					emptyMessage="No se encontraron tareas finalizadas">
      						<f:facet name="header">
-                        		<h:outputLabel style="font-size: 12px;" value="Observaciones finalizadas de tutoría"/>
+                        		<h:outputLabel style="font-size: 12px;" value="Tareas finalizadas de tutoría"/>
                     		</f:facet>
      						
      						<p:column headerText="Sesión" style="font-size:12px; width:5%">
         						<h:outputText value="#{observacionesFinalizadas.sesionRegistro}" />
     						</p:column>    						
     						
-    						<p:column headerText="Nº de observación" style="font-size:12px; width:5%">
+    						<p:column headerText="Nº de tarea" style="font-size:12px; width:5%">
         						<h:outputText value="#{observacionesFinalizadas.idObservacion}" />
     						</p:column> 
+     						<p:column headerText="Razon" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesFinalizadas.razon}" />
+    						</p:column>    						
      						
-     						<p:column headerText="Observación" style="font-size:12px; width:15%">
-        						<h:outputText value="#{observacionesFinalizadas.observacion}" />
+     						<p:column headerText="Tarea" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesFinalizadas.tarea}" />
     						</p:column>
      						
      						<p:column headerText="Criticidad" style="font-size:12px; width:5%">
         						<h:outputText value="#{observacionesFinalizadas.criticidad}" />
     						</p:column>
    	 						
-   	 						<p:column headerText="Fecha de registro" style="font-size:12px; width:5%">
-        						<h:outputText value="#{observacionesFinalizadas.fechaRegistro}" />
-    						</p:column>
-    
-    						<p:column headerText="Fecha de cierre" style="font-size:12px; width:5%">
-        						<h:outputText value="#{observacionesFinalizadas.fechaCierre}" />
+      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:10%">
+        						<h:outputText  value="#{observacionesFinalizadas.fechaRegistro}" />    
     						</p:column> 
+      						<p:column headerText="Fecha Fin" style="font-size:12px; width:10%">
+        						<h:outputText  value="#{observacionesFinalizadas.fecha_cumplimiento}" />    
+    						</p:column> 
+   							<p:column headerText="Fecha Cumplida" style="font-size:12px; width:10%">
+        						<h:outputText value="#{observacionesFinalizadas.fecha_entrega}" />    
+    						</p:column>  
+   							<p:column headerText="Estado" style="font-size:12px; width:10%">
+        						<h:outputText value="#{registrarTutoriaMBean.estadoTarea(observacionesFinalizadas.estadoObservacion)}" />    
+    						</p:column>      						
     							
-    						<p:column headerText="Tiempo(Sesiones)" style="font-size:12px; width:5%">
-        						<h:outputText value="#{observacionesFinalizadas.sesionesCierre}" />
-    						</p:column>    						
-    						
-    						<p:column headerText="Tiempo(Días)" style="font-size:12px; width:5%">
-        						<h:outputText value="#{observacionesFinalizadas.diasCierre}" />
-    						</p:column>
-    						
-    						<p:column headerText="Comentario final" style="font-size:12px; width:15%">
-        						<h:outputText value="#{observacionesFinalizadas.observacionCierre}" />
-    						</p:column>
 						</p:dataTable>
 			   		</p:column>   
 				</p:row>				
@@ -130,7 +127,7 @@
             
             <p:outputPanel id="mostrarObsPendientes" style="width:90%;margin-top:40px;font-size:15px">
                 <p:row>
-            		<p:column colspan="3" style="font-weight:bold;font-size:15px">#{mensaje['unayoe.ingresar.grillaObservaciones']}</p:column>
+            		<p:column colspan="3" style="font-weight:bold;font-size:15px">Advertencia : Puede editar el estado solo en tareas pendientes</p:column>
         		</p:row> 
                 
                 <p:row id="tablaObsPendientes">		   		
@@ -139,32 +136,37 @@
 		   					id="tablaObservacionesPendientes" 		   					
 		   					style="font-size:12px;" 
 		   				    value="#{registrarTutoriaMBean.tutoriaModel.listaObservacionesPendientes}"                            
-                            var="observacionesPendientes" emptyMessage="No se encontraron observaciones pendientes">
+                            var="observacionesPendientes" emptyMessage="No se encontraron tareas pendientes">
                     		<f:facet name="header">
-                        		<h:outputLabel style="font-size: 12px;" value="Observaciones pendientes de tutoría"/>
+                        		<h:outputLabel style="font-size: 12px;" value="Tareas pendientes de tutoría"/>
                     		</f:facet>
-                    		
-                    		<p:column headerText="Sesión" style="font-size:12px; width:5%">
+     						<p:column headerText="Sesión" style="font-size:12px; width:5%">
         						<h:outputText value="#{observacionesPendientes.sesionRegistro}" />
-    						</p:column>
+    						</p:column>    						
     						
-    						<p:column headerText="Nº de observación" style="font-size:12px; width:5%">
+    						<p:column headerText="Nº de tarea" style="font-size:12px; width:5%">
         						<h:outputText value="#{observacionesPendientes.idObservacion}" />
-    						</p:column>
-    						
-    						<p:column headerText="Observación" style="font-size:12px; width:15%">
-        						<h:outputText value="#{observacionesPendientes.observacion}" />
     						</p:column> 
-    						
-    						<p:column headerText="Criticidad" style="font-size:12px; width:10%">
-        						<h:outputText value="#{observacionesPendientes.criticidad}" />
-    						</p:column>                  		
-                    		
-                    		<p:column headerText="Fecha de registro" style="font-size:12px; width:8%">
-        						<h:outputText value="#{observacionesPendientes.fechaRegistro}" />
+     						<p:column headerText="Razon" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesPendientes.razon}" />
+    						</p:column>    						
+     						
+     						<p:column headerText="Tarea" style="font-size:12px; width:15%">
+        						<h:outputText value="#{observacionesPendientes.tarea}" />
     						</p:column>
-                    		
-                    		<p:column headerText="Estado" style="font-size: 12px;width:10%" >
+     						
+     						<p:column headerText="Criticidad" style="font-size:12px; width:5%">
+        						<h:outputText value="#{observacionesPendientes.criticidad}" />
+    						</p:column>
+   	 						
+      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:8%">
+        						<h:outputText  value="#{observacionesPendientes.fechaRegistro}" />    
+    						</p:column> 
+      						<p:column headerText="Fecha Fin" style="font-size:12px; width:8%">
+        						<h:outputText  value="#{observacionesPendientes.fecha_cumplimiento}" />    
+    						</p:column> 
+                   		
+                    		<p:column headerText="Estado" style="font-size: 12px;width:12%" >
                         		<p:selectOneMenu
 									id="estadoObservacion"
 									value="#{observacionesPendientes.estadoControl}">
@@ -176,44 +178,24 @@
 								</p:selectOneMenu>
                     		</p:column> 
                     		
-                    		<p:column headerText="Sesion de cierre" style="font-size: 12px;width:10%" >
-                        		<p:selectOneMenu
-									id="sesionesCierre"
-									value="#{observacionesPendientes.sesionCierre}">
-									<f:selectItems 
-										value="#{observacionesPendientes.listaSesionesCierre}"
-										var="sesionesCierre" 
-										itemLabel="#{sesionesCierre.nroSesion}"
-										itemValue="#{sesionesCierre.nroSesion}"/> 									
-								</p:selectOneMenu>
-                    		</p:column> 
-                    		
-                    		<p:column headerText="Observación de cierre" style="font-size:12px; width:8%">
-        						<p:inputTextarea 
-                    				id="observaciones" rows="5" cols="60" 
-                    				value="#{observacionesPendientes.observacionCierre}"
-                    				counter="display" maxlength="250" 
-                    				counterTemplate="{0} caracteres restantes." 
-                    				autoResize="false" />
-    							<h:outputText id="display" />
-    						</p:column>                   		       		
+                 		       		
                 		</p:dataTable>
                 	</p:column>
                 </p:row>                
-			</p:outputPanel>      
+			</p:outputPanel>  
               
-            <p:outputPanel id="guardarAsistencia" style="width:50%;margin-top:15px;margin-bottom:10px"> 
+             <p:outputPanel id="guardarAsistencia" style="width:50%;margin-top:15px;margin-bottom:10px"> 
                 <p:row>
 		   			<p:column colspan="3">
 						<p:commandButton 
 							id="botonGuardar"							
 							value="Guardar"    
-							actionListener="#{registrarTutoriaMBean.guardarControlObservaciones}" 
+							actionListener="#{registrarTutoriaMBean.guardarControlTareas}" 
 							update="selectOneCurso, selectOneAlumno, tablaObservacionesFinalizadas, tablaObservacionesPendientes"
 							ajax="true" />
 					</p:column>
             	</p:row>
-            </p:outputPanel>  
+            </p:outputPanel>   
         </ui:define>
     </ui:composition>
 </html>
