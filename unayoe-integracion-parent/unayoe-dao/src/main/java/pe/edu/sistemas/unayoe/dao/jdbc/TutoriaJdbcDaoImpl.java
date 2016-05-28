@@ -1443,14 +1443,14 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 				observacion.setPeriodo(rs.getInt(2));
 				observacion.setCodTutoria(rs.getString(3));
 				observacion.setIdObservacion(String.valueOf(rs.getInt(4)));
-				observacion.setObservacion(rs.getString(5));
-				observacion.setCriticidad(rs.getString(6));
-				observacion.setSesionRegistro(String.valueOf(rs.getInt(7)));
-				observacion.setFechaRegistro(rs.getString(8));
-				observacion.setSesionCierre(String.valueOf(rs.getInt(9)));
-				observacion.setObservacionCierre(rs.getString(10));
-				observacion.setFechaCierre(rs.getString(11));
-				observacion.setEstadoObservacion(rs.getInt(12));				
+				observacion.setRazon(rs.getString(5));
+				observacion.setTarea(rs.getString(6));
+				observacion.setCriticidad(rs.getString(7));
+				observacion.setSesionRegistro(String.valueOf(rs.getInt(8)));
+				observacion.setFechaRegistro(rs.getString(9));
+				observacion.setFecha_entrega(rs.getString(10));
+				observacion.setFecha_cumplimiento(rs.getString(11));
+				observacion.setEstadoObservacion(rs.getInt(12));				 
 				listaObservaciones.add(observacion);
 			}
 		}
@@ -1470,16 +1470,13 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		CallableStatement cstm = null;
 						
 		con = Conexion.obtenerConexion();		
-		cstm = con.prepareCall("{call ACTUALIZAR_OBSERVACION_TUTORIA(?,?,?,?,?,?,?,?)}");	
+		cstm = con.prepareCall("{call ACTUALIZAR_OBSERVACION_TUTORIA(?,?,?,?,?)}");	
 		
 		cstm.setString(1, observacion.getCodTutoria());
 		cstm.setInt(2, Integer.parseInt(observacion.getSesionRegistro()));
 		cstm.setInt(3, Integer.parseInt(observacion.getIdObservacion()));
-		cstm.setString(4, observacion.getEstadoControl());	
-		cstm.setInt(5, Integer.parseInt(observacion.getSesionCierre()));
-		cstm.setString(6, observacion.getObservacionCierre());		
-		cstm.setString(7, observacion.getFechaCierre());		
-		cstm.setInt(8, indicadorObservacion);		
+		cstm.setString(4, observacion.getEstadoControl());				
+		cstm.setInt(5, indicadorObservacion);		
 		
 		cstm.execute();
 	}
