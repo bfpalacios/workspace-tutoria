@@ -501,12 +501,17 @@ public class RegistrarTutoriaMBean {
 				int indicadorEstado;
 				List<ObservacionBO> listaObservacionesPendientes = getTutoriaModel().getListaObservacionesPendientes();
 				for (ObservacionBO observacion : listaObservacionesPendientes){
-					if (observacion.getEstadoControl().equals("PENDIENTE") || observacion.getEstadoControl().equals("PARCIALMENTE LEVANTADO")){
+					if (observacion.getEstadoControl().equals("PENDIENTE")){
 						observacion.setObservacionCierre("");
 						indicadorEstado = 1;
 					}
-					else{						
-						indicadorEstado = 2;
+					else{
+						if(observacion.getEstadoControl().equals("PARCIALMENTE LEVANTADO")){
+							indicadorEstado = 2;
+						}else{
+							indicadorEstado = 3;
+						}
+						
 					}
 					observacion.setFecha_entrega(new FormateadorFecha().formatoFechaDDMMAAAA(new Date()));
 					tutoriaServices.actualizarEstadoObservacion(observacion, indicadorEstado);
@@ -522,6 +527,79 @@ public class RegistrarTutoriaMBean {
 	}	
 	
 	
+	public void buscarTareasTutoriaProfesor(){
+	
+		
+		try{
+			String codCurso = getTutoriaModelSelect().getcCodigo()==""?"Invalido":getTutoriaModelSelect().getcCodigo();
+			String codDocente =getTutoriaModelSelect().getpCodigo()==""?"Invalido":getTutoriaModelSelect().getpCodigo();
+			String codAlumno = getTutoriaModelSelect().getaCodigo()==""?"Invalido":getTutoriaModelSelect().getaCodigo();	
+			
+			if (validarCamposPrincipalesTutoria(codCurso, codDocente, codAlumno)){
+				List<ObservacionBO> listaObservacionesTotales = tutoriaServices.listarObservaciones(codCurso, codDocente, 
+						                                                                            codAlumno, PROCESO);
+				if (listaObservacionesTotales.size() > 0){
+					List<ObservacionBO> listaObservacionesPendientes = new ArrayList<ObservacionBO>();
+					List<ObservacionBO> listaObservacionesFinalizadas = new ArrayList<ObservacionBO>();
+					List<ClaseMaestra> listaEstadosTotales = comunServices.listarClaseMaestra("ESTADOS_OBSERVACION", "ESTADOS_TOTALES");
+					List<ClaseMaestra> listaEstadosParciales = comunServices.listarClaseMaestra("ESTADOS_OBSERVACION", "ESTADOS_PARCIALES");
+					for (ObservacionBO observacion : listaObservacionesTotales){					
+						switch(observacion.getEstadoObservacion()){
+							case 1: 
+									Long diasTerminacion2=diferenciaFechasEnDias(observacion.getFecha_cumplimiento(),new FormateadorFecha().formatoFechaDDMMAAAA(new Date()));
+									if(diasTerminacion2<0){
+										observacion.setFecha_entrega("No cumplió");
+										listaObservacionesFinalizadas.add(observacion);
+									}else{
+										observacion.setListaEstados(listaEstadosTotales);
+//										observacion.setListaSesionesCierre(tutoriaServices.listarSesionesCierre(observacion.getCodTutoria(),
+//												                                                                Integer.parseInt(observacion.getSesionRegistro())));
+										listaObservacionesPendientes.add(observacion);	
+									}
+									
+									break;
+							case 2: 
+//								observacion.setListaSesionesCierre(tutoriaServices.listarSesionesCierre(observacion.getCodTutoria(),
+//	                                                                                                   Integer.parseInt(observacion.getSesionRegistro())));
+									System.out.println("CASO 2 gg");
+									Long diasTerminacion=diferenciaFechasEnDias(observacion.getFecha_cumplimiento(),new FormateadorFecha().formatoFechaDDMMAAAA(new Date()));
+									if(diasTerminacion<0){
+										listaObservacionesFinalizadas.add(observacion);
+									}else{
+									observacion.setListaEstados(listaEstadosParciales);
+									listaObservacionesPendientes.add(observacion); 		
+									}					
+									break;
+							case 3: //observacion.setDiasCierre(String.valueOf(diferenciaFechasEnDias(observacion.getFechaCierre(), observacion.getFechaRegistro())));
+									//observacion.setSesionesCierre(String.valueOf((Integer.parseInt(observacion.getSesionCierre()) - Integer.parseInt(observacion.getSesionRegistro()))));
+									System.out.println("CASO 3 gg");
+									listaObservacionesFinalizadas.add(observacion);
+									break;
+						}
+					}
+					getTutoriaModel().setListaObservacionesPendientes(listaObservacionesPendientes); 
+					getTutoriaModel().setListaObservacionesFinalizadas(listaObservacionesFinalizadas);
+				}
+				else{
+					mostrarMensaje(17);
+				}				
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public String estadoTarea(int estadoObservacion){
+		if(estadoObservacion==1){
+			return "PENDIENTE";
+		}else{
+			if(estadoObservacion==2) return "PARCIALMENTE LAVANTADO";
+			else return "CERRADO";
+		}
+		
+	}
 	public String buscarObservacionesTutoria(){
 		String pagina = "";
 		

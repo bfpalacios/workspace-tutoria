@@ -541,7 +541,17 @@ public class GestionarActasMBean {
 		 						MODO = MODO_ADMIN;
 		 						setDesactivarCarga(true);
 		 						setDesactivarTarea(true);
+		 					
 		 						pagina = "/paginas/ModuloObservados/ocaa/cargar/cargarActasTutoria.xhtml"; break;
+				 				
+		 				case 3: PROCESO = PROCESO_OBSERVADOS;
+ 								MODO = MODO_TUTOR;
+ 								listarCursosxDocente();
+		 						setDesactivarCarga(true);
+		 						setDesactivarTarea(true);
+		 						System.out.println("ENTRO");
+ 								pagina = "/paginas/ModuloObservados/tutor/cargar/cargarActasTutoria.xhtml"; break;	 					
+		 			
 		 			} break;
 		 	case 2: switch(modo){ 
 						case 1: PROCESO = PROCESO_REGULARES;
@@ -557,6 +567,7 @@ public class GestionarActasMBean {
 								pagina = "/paginas/ModuloRegulares/ocaa/cargar/cargarActasTutoria.xhtml"; break;
 		 			} break;
 		}
+		System.out.println("retornar pagina" + pagina);
 		return pagina;		
 	}
 
