@@ -517,7 +517,7 @@ public class RegistrarTutoriaMBean {
 					tutoriaServices.actualizarEstadoObservacion(observacion, indicadorEstado);
 				}
 				limpiarClases();
-				listarCursosxDocente();
+				listarCursos();
 				mostrarMensaje(18);
 			}
 		}

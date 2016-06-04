@@ -365,7 +365,7 @@ public class GestionarActasMBean {
 			else{
 				if (actaTutoria.getEstadoActa() == 2){
 					setDesactivarCarga(true);
-					setDesactivarTarea(false);
+					setDesactivarTarea(true);
 					mostrarMensaje(3);				
 				}
 				else{
