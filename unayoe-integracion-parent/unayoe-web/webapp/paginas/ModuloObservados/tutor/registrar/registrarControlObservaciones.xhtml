@@ -124,6 +124,16 @@
 			   		</p:column>   
 				</p:row>				
 			</p:outputPanel>
+ 			<p:outputPanel id="pnlExportarTarea" style="width:100px;margin-top:10px;">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							id="botonExportar"
+							value="Exportar Tareas" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteTareasTutoriaTutor}" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>  			
             
             <p:outputPanel id="mostrarObsPendientes" style="width:90%;margin-top:40px;font-size:15px">
                 <p:row>
@@ -159,14 +169,14 @@
         						<h:outputText value="#{observacionesPendientes.criticidad}" />
     						</p:column>
    	 						
-      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:8%">
+      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:6%">
         						<h:outputText  value="#{observacionesPendientes.fechaRegistro}" />    
     						</p:column> 
-      						<p:column headerText="Fecha Fin" style="font-size:12px; width:8%">
+      						<p:column headerText="Fecha Fin" style="font-size:12px; width:6%">
         						<h:outputText  value="#{observacionesPendientes.fecha_cumplimiento}" />    
     						</p:column> 
                    		
-                    		<p:column headerText="Estado" style="font-size: 12px;width:12%" >
+                    		<p:column headerText="Estado" style="font-size: 12px;width:16%" >
                         		<p:selectOneMenu
 									id="estadoObservacion"
 									value="#{observacionesPendientes.estadoControl}">

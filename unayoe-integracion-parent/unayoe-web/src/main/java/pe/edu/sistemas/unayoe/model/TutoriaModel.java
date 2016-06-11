@@ -1,8 +1,9 @@
 package pe.edu.sistemas.unayoe.model;
  
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.RequestScoped;
@@ -108,6 +109,7 @@ public class TutoriaModel extends PersonaModel{
 		this.descripcion = descripcion;
 	}
 	public List<CursoBO> getListarCursos() {
+		Collections.sort(listarCursos);
 		return listarCursos;
 	}
 	public void setListarCursos(List<CursoBO> listarCursos) {

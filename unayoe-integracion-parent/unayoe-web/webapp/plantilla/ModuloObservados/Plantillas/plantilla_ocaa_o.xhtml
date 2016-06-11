@@ -11,7 +11,7 @@
 	</h:head>
 	
 	<h:body>
-		<h:form id="formPrincipal">		
+		<h:form id="formPrincipal" prependId="false">		
 			<p:layout fullPage="true">
 		 		<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
             	<p:dialog header="#{mensaje['error.sessionTimeOut.header']}" widgetVar="sessionTimeOutDialog"

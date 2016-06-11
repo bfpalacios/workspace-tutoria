@@ -3,7 +3,7 @@ package pe.edu.sistemas.unayoe.unayoe.bo;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-public class CursoBO implements Serializable{
+public class CursoBO implements Serializable , Comparable{
 
 	private static final long serialVersionUID = 1L;
 	private String cCodigo;
@@ -36,5 +36,11 @@ public class CursoBO implements Serializable{
 		if(curso.getcCodigo().equalsIgnoreCase(this.cCodigo))
 			esIgual=true;
 		return esIgual;
+	}
+	@Override
+	public int compareTo(Object arg0) {
+		CursoBO curso=(CursoBO) arg0;
+		// TODO Auto-generated method stub
+		return this.getNombre().compareTo(curso.getNombre());
 	}
 }

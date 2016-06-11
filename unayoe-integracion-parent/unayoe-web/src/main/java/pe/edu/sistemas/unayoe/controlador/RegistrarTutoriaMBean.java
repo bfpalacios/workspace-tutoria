@@ -1323,6 +1323,51 @@ public class RegistrarTutoriaMBean {
 //    	}
     }
 	
+	public void imprimirReporteTareasTutoriaTutor() throws Exception{
+    	System.out.println("Impresion de reporte de horario:");
+    	
+    	ControladorReporte reporte =  new ControladorReporte();
+    	reporte.setNombreReporte("reporteTareasAlumno");
+    	reporte.generarReporteHorarioDocente(obtenerParametrosTareasTutor()  ,obtenerCamposTareas() );
+//    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
+//    		System.out.println(horario);
+//    	}
+    } 
+    private Map<Object, Object> obtenerParametrosTareasTutor() throws Exception{
+    	Map<Object, Object> pars = new HashMap<Object, Object>();
+    	String alumno="";
+    	for(int i=0;i<this.tutoriaModel.getListarAlumnos().size();i++){
+    		if(tutoriaModel.getListarAlumnos().get(i).getaCodigo().equals(tutoriaModelSelect.getaCodigo())){
+    			alumno=tutoriaModel.getListarAlumnos().get(i).getaNombre();
+    			i=tutoriaModel.getListarAlumnos().size();
+    		}
+    	}
+    	System.out.println("usuario: "+usuarioServices.buscarUsuarioEquivalencia(obtenerUsuario().getUsername()));
+    	String docente="";
+    	List<ProfesorBO> listaProfesores=tutoriaServices.listarProfesores();
+    	for(int i=0;i<listaProfesores.size();i++){
+    		if(listaProfesores.get(i).getpCodigo().equals(usuarioServices.buscarUsuarioEquivalencia(obtenerUsuario().getUsername()))){
+    			docente=listaProfesores.get(i).getpNombre()+" "+listaProfesores.get(i).getpApellidos();
+    			i=listaProfesores.size();
+    		}
+    	}
+    	
+    	
+    	String curso="";
+    	for(int i=0;i<this.tutoriaModel.getListarCursos().size();i++){
+    		if(tutoriaModel.getListarCursos().get(i).getcCodigo().equals(tutoriaModelSelect.getcCodigo())){
+    			curso=tutoriaModel.getListarCursos().get(i).getNombre();
+    			i=tutoriaModel.getListarCursos().size();
+    		}
+    	}
+    	
+    	pars.put("curso",curso);
+    	pars.put("docente",docente);
+    	pars.put("alumno", alumno);
+    	return pars;
+    }
+    
+	
     private Map<Object, Object> obtenerParametrosTareas() throws Exception{
     	Map<Object, Object> pars = new HashMap<Object, Object>();
     	String alumno="";
@@ -1365,7 +1410,7 @@ public class RegistrarTutoriaMBean {
     		tarea.setFechaInicio(model.getFechaRegistro());
     		tarea.setFechaFin(model.getFecha_cumplimiento());
     		tarea.setFechaCumplida(model.getFecha_entrega());
-    		tarea.setEstado("CERRADO");    		
+    		tarea.setEstado(estadoTarea(model.getEstadoObservacion()));    		
     		list.add(tarea);
     	}
     	for(ObservacionBO model : tutoriaModel.getListaObservacionesPendientes()){
@@ -1376,7 +1421,7 @@ public class RegistrarTutoriaMBean {
     		tarea.setCriticidad(model.getCriticidad());
     		tarea.setFechaInicio(model.getFechaRegistro());
     		tarea.setFechaFin(model.getFecha_cumplimiento());
-    		tarea.setFechaCumplida("");
+    		tarea.setFechaCumplida(model.getFecha_entrega());
     		tarea.setEstado(model.getEstadoControl());    		
     		list.add(tarea);
     	}

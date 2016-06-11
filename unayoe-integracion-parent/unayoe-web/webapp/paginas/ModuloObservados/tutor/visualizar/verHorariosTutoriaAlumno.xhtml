@@ -83,6 +83,17 @@
 				</p:column>
 			</p:row>				
 		</p:panel>
+								
+			<p:outputPanel id="pnlExportarHorarioAlumno" style="width:100px;margin-top:10px;">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							id="botonExportar1"
+							value="Exportar Tutoria Alumno" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioAlumno}" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>
 	</ui:define>
 </ui:composition>
 

@@ -134,7 +134,7 @@
         						<h:outputText value="#{observacionesFinalizadas.fecha_entrega}" />    
     						</p:column>  
    							<p:column headerText="Estado" style="font-size:12px; width:10%">
-        						<h:outputText value="CERRADO" />    
+        						<h:outputText value="#{registrarTutoriaMBean.estadoTarea(observacionesFinalizadas.estadoObservacion)}" />    
     						</p:column>      						
     							
 						</p:dataTable>
@@ -185,14 +185,14 @@
         						<h:outputText value="#{observacionesPendientes.criticidad}" />
     						</p:column>
    	 						
-      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:8%">
+      						<p:column headerText="Fecha Inicio" style="font-size:12px; width:6%">
         						<h:outputText  value="#{observacionesPendientes.fechaRegistro}" />    
     						</p:column> 
-      						<p:column headerText="Fecha Fin" style="font-size:12px; width:8%">
+      						<p:column headerText="Fecha Fin" style="font-size:12px; width:6%">
         						<h:outputText  value="#{observacionesPendientes.fecha_cumplimiento}" />    
     						</p:column> 
                    		
-                    		<p:column headerText="Estado" style="font-size: 12px;width:12%" >
+                    		<p:column headerText="Estado" style="font-size: 12px;width:16%" >
                         		<p:selectOneMenu
 									id="estadoObservacion"
 									value="#{observacionesPendientes.estadoControl}">

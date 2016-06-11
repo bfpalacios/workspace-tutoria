@@ -9,7 +9,7 @@
 <ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
 	<ui:define name="contenido">
 
-		<p:panel header="Ver horarios de Tutoria de Alumnos"
+		<p:panel header="Ver horarios de Tutoria en Alumnos Observados"
 			style="width: 95%;border: 0px;">
 			<h:panelGrid id="pnlBuscador"
 				style="font-size: 12px;text-align: left" columns="5" cellspacing="5">
@@ -23,7 +23,12 @@
 					<p:commandButton update="tablaResultado, a_nombre, profesorBuscado, cursoBuscado, selectOneProfesor, selectOneCurso"
 						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
 						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
+						<p:commandButton 
+							id="botonExportar1"
+							value="Exportar" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioAlumno}" ajax="false" />						
 				</p:outputPanel>
+				
 				<p:spacer width="30px" />  
 				<h:outputText  value="Nombre de Alumno" />
 				<p:inputText  id="a_nombre"
@@ -84,8 +89,10 @@
 						</p:column>
 
 					</p:row> 
-                    
-                                   
+						<p:commandButton 
+							id="botonExporta2r"
+							value="Exportar" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioDocente}" ajax="false" />                                   
                     
                     <p:spacer width="50px"/>
    
@@ -145,27 +152,8 @@
 							<h:outputText  id = "profesorBuscado" value="Tutor  #{registrarTutoriaMBean.profesorBuscado}"/>
 						</p:column>
 						
-			<p:outputPanel id="pnlExportarHorarioAlumno" style="width:100px;margin-top:10px;">
-				<p:row>
-					<p:column colspan="3">
-						<p:commandButton 
-							id="botonExportar1"
-							value="Exportar Tutoria Alumno" 
-							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioAlumno}" ajax="false" />
-					</p:column>
-				</p:row>
-			</p:outputPanel>
-						
-			<p:outputPanel id="pnlExportarHorarioProfesor" style="width:100px;margin-top:10px;">
-				<p:row>
-					<p:column colspan="3">
-						<p:commandButton 
-							id="botonExporta2r"
-							value="Exportar Tutoria Docente" 
-							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioDocente}" ajax="false" />
-					</p:column>
-				</p:row>
-			</p:outputPanel>									
+
+								
 		</p:panel>
 	</ui:define>
 </ui:composition>

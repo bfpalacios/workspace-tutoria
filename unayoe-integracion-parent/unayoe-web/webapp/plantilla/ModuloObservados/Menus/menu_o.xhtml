@@ -7,9 +7,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:body>
+	
 		<p:panelMenu 
-			style="font-size:10px;"
-			transient="true" >
+		   	style="font-size:10px;"
+			transient="true"
+			>
 			<p:submenu label="Datos de los Alumnos Observados">
 				<p:menuitem 
 					value="Cargar alumnos observados" action="#{datosAlumnosMBean.selectorDatosAlumnos(1)}"
@@ -72,5 +74,6 @@
 					icon="ui-icon-arrowrefresh-1-w" />			 
 			</p:submenu>				
 		</p:panelMenu>
+		
 	</h:body>
 </html>
