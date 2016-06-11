@@ -141,7 +141,16 @@
 			   		</p:column>   
 				</p:row>				
 			</p:outputPanel>
-            
+ 			<p:outputPanel id="pnlExportarTarea" style="width:100px;margin-top:10px;">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							id="botonExportar"
+							value="Exportar Tareas" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteTareasTutoria}" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>           
             <p:outputPanel id="mostrarObsPendientes" style="width:90%;margin-top:40px;font-size:15px">
                 <p:row>
             		<p:column colspan="3" style="font-weight:bold;font-size:15px">Advertencia : Puede editar el estado solo en tareas pendientes</p:column>

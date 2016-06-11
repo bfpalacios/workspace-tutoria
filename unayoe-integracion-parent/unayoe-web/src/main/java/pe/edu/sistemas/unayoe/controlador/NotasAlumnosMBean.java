@@ -375,7 +375,7 @@ public class NotasAlumnosMBean {
     	String ciclo = alumnoServices.buscarCicloAcademico(getClaseMaestraModelSelect().getIdCampo());
     	String plan = Integer.toString(getVisualizarNotasAlumnoGrid().get(0).getPlan());
     	pars.put("ciclo", ciclo);
-    	pars.put("nomAlumno", alumnoBuscarNotasModelSelect.getCodigo());
+    	pars.put("nomAlumno", alumnoBuscarNotasModelSelect.getNombres());
     	pars.put("facultad", "Ingeniería de Sistemas e Informática");
     	pars.put("escuela", "E.A.P. Sistemas");    	   
     	pars.put("plan", plan); 

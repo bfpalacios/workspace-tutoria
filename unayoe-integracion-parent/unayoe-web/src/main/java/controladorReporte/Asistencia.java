@@ -8,7 +8,8 @@ public class Asistencia {
 	private String repitencia;
 	private String asistencia;
 	private String obs;
-	
+	private String sesion;
+	private String acta;
 	public Asistencia() {
 		super();
 	}
@@ -27,6 +28,34 @@ public class Asistencia {
 		this.asistencia = asistencia;
 		this.obs = obs;
 	}
+
+
+
+	public String getSesion() {
+		return sesion;
+	}
+
+
+
+
+	public void setSesion(String sesion) {
+		this.sesion = sesion;
+	}
+
+
+
+
+	public String getActa() {
+		return acta;
+	}
+
+
+
+
+	public void setActa(String acta) {
+		this.acta = acta;
+	}
+
 
 
 

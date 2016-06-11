@@ -2,50 +2,51 @@ package pe.edu.sistemas.unayoe.controlador;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Date;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Calendar;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.application.FacesMessage;
 
 import org.primefaces.context.RequestContext;
-import org.springframework.stereotype.Controller;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
 
-import controladorReporte.HorarioTutoria;
+import controladorReporte.Asistencia;
 import controladorReporte.ControladorReporte;
+import controladorReporte.HorarioTutoria;
+import controladorReporte.Tarea;
+import pe.edu.sistemas.unayoe.core.util.FormateadorFecha;
+import pe.edu.sistemas.unayoe.model.AsistenciaTutoriaModel;
+import pe.edu.sistemas.unayoe.model.ClaseMaestraModel;
+import pe.edu.sistemas.unayoe.model.TutoriaModel;
+import pe.edu.sistemas.unayoe.services.AlumnoServices;
+import pe.edu.sistemas.unayoe.services.ComunServices;
+import pe.edu.sistemas.unayoe.services.CursoServices;
+import pe.edu.sistemas.unayoe.services.MatriculaServices;
+import pe.edu.sistemas.unayoe.services.TutoriaServices;
+import pe.edu.sistemas.unayoe.services.UsuarioServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
-import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.CicloBO;
+import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
+import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.EncuestaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.IndicadoresBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ObservacionBO;
-import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ProfesorBO;
-import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
-import pe.edu.sistemas.unayoe.services.ComunServices;
-import pe.edu.sistemas.unayoe.services.CursoServices;
-import pe.edu.sistemas.unayoe.services.AlumnoServices;
-import pe.edu.sistemas.unayoe.services.TutoriaServices;
-import pe.edu.sistemas.unayoe.services.MatriculaServices;
-import pe.edu.sistemas.unayoe.services.UsuarioServices;
-import pe.edu.sistemas.unayoe.core.util.FormateadorFecha;
-import pe.edu.sistemas.unayoe.model.TutoriaModel;
-import pe.edu.sistemas.unayoe.model.ClaseMaestraModel;
-import pe.edu.sistemas.unayoe.model.AsistenciaTutoriaModel;
+import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 
 @Controller("registrarTutoriaMBean")
 @ViewScoped
@@ -1304,24 +1305,188 @@ public class RegistrarTutoriaMBean {
     	System.out.println("Impresion de reporte de horario:");
     	
     	ControladorReporte reporte =  new ControladorReporte();
-    	reporte.setNombreReporte("horarioTutoriaAlumno");
-    	reporte.generarReporteHorarioDocente(obtenerParametros()  ,obtenerCampos() );
+    	reporte.setNombreReporte("horarioTutoriaAlumno2");
+    	reporte.generarReporteHorarioDocente(obtenerParametrosAlumno()  ,obtenerCamposAlumno() );
     	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
     		System.out.println(horario);
     	}
     }
+	
+	public void imprimirReporteTareasTutoria() throws Exception{
+    	System.out.println("Impresion de reporte de horario:");
+    	
+    	ControladorReporte reporte =  new ControladorReporte();
+    	reporte.setNombreReporte("reporteTareasAlumno");
+    	reporte.generarReporteHorarioDocente(obtenerParametrosTareas()  ,obtenerCamposTareas() );
+//    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
+//    		System.out.println(horario);
+//    	}
+    }
+	
+    private Map<Object, Object> obtenerParametrosTareas() throws Exception{
+    	Map<Object, Object> pars = new HashMap<Object, Object>();
+    	String alumno="";
+    	for(int i=0;i<this.tutoriaModel.getListarAlumnos().size();i++){
+    		if(tutoriaModel.getListarAlumnos().get(i).getaCodigo().equals(tutoriaModelSelect.getaCodigo())){
+    			alumno=tutoriaModel.getListarAlumnos().get(i).getaNombre();
+    			i=tutoriaModel.getListarAlumnos().size();
+    		}
+    	}
+    	String docente="";
+    	for(int i=0;i<this.tutoriaModel.getListarTutores().size();i++){
+    		if(tutoriaModel.getListarTutores().get(i).getpCodigo().equals(tutoriaModelSelect.getpCodigo())){
+    			docente=tutoriaModel.getListarTutores().get(i).getpNombre();
+    			i=tutoriaModel.getListarTutores().size();
+    		}
+    	}
+    	
+    	String curso="";
+    	for(int i=0;i<this.tutoriaModel.getListarCursos().size();i++){
+    		if(tutoriaModel.getListarCursos().get(i).getcCodigo().equals(tutoriaModelSelect.getcCodigo())){
+    			curso=tutoriaModel.getListarCursos().get(i).getNombre();
+    			i=tutoriaModel.getListarCursos().size();
+    		}
+    	}
+    	
+    	pars.put("curso",curso);
+    	pars.put("docente",docente);
+    	pars.put("alumno", alumno);
+    	return pars;
+    }
     
+    private ArrayList<Object> obtenerCamposTareas(){
+    	ArrayList<Object> list = new ArrayList<Object>();
+    	for(ObservacionBO model : tutoriaModel.getListaObservacionesFinalizadas()){
+    		Tarea tarea = new Tarea();
+    		tarea.setSesion(model.getSesionRegistro());
+    		tarea.setRazon(model.getRazon());
+    		tarea.setTarea(model.getTarea());
+    		tarea.setCriticidad(model.getCriticidad());
+    		tarea.setFechaInicio(model.getFechaRegistro());
+    		tarea.setFechaFin(model.getFecha_cumplimiento());
+    		tarea.setFechaCumplida(model.getFecha_entrega());
+    		tarea.setEstado("CERRADO");    		
+    		list.add(tarea);
+    	}
+    	for(ObservacionBO model : tutoriaModel.getListaObservacionesPendientes()){
+    		Tarea tarea = new Tarea();
+    		tarea.setSesion(model.getSesionRegistro());
+    		tarea.setRazon(model.getRazon());
+    		tarea.setTarea(model.getTarea());
+    		tarea.setCriticidad(model.getCriticidad());
+    		tarea.setFechaInicio(model.getFechaRegistro());
+    		tarea.setFechaFin(model.getFecha_cumplimiento());
+    		tarea.setFechaCumplida("");
+    		tarea.setEstado(model.getEstadoControl());    		
+    		list.add(tarea);
+    	}
+    	return list;
+    }
+	
+	public void imprimirReporteAsistenciaTutoriaAlumno() throws Exception{
+    	System.out.println("Impresion de reporte de horario:");
+    	
+    	ControladorReporte reporte =  new ControladorReporte();
+    	reporte.setNombreReporte("reporteAsistenciaAlumno");
+    	reporte.generarReporteHorarioDocente(obtenerParametrosAsistenciaAlumno()  ,obtenerCamposAsistenciaAlumno() );
+
+    }
+    
+    private Map<Object, Object> obtenerParametrosAsistenciaAlumno() throws Exception{
+    	Map<Object, Object> pars = new HashMap<Object, Object>();
+    	//String ruta_imagen="classpath:reportes/";
+    	//String ciclo = alumnoServices.buscarCicloAcademico(getClaseMaestraModelSelect().getIdCampo());
+    	
+    	//File imagen = new File("classpath:reportes/Logo.png");
+    	//BufferedImage imagenIO = ImageIO.read(imagen);
+    	//BufferedImage imagen = ImageIO.read(getClass().getResource("/Imagenes/Logo.png"));    	
+    	
+    	//pars.put("logo", imagen);
+    	
+    	String alumno="";
+    	for(int i=0;i<this.tutoriaModel.getListarAlumnos().size();i++){
+    		if(tutoriaModel.getListarAlumnos().get(i).getaCodigo().equals(tutoriaModelSelect.getaCodigo())){
+    			alumno=tutoriaModel.getListarAlumnos().get(i).getaNombre();
+    			i=tutoriaModel.getListarAlumnos().size();
+    		}
+    	}
+    	String docente="";
+    	for(int i=0;i<this.tutoriaModel.getListarTutores().size();i++){
+    		if(tutoriaModel.getListarTutores().get(i).getpCodigo().equals(tutoriaModelSelect.getpCodigo())){
+    			docente=tutoriaModel.getListarTutores().get(i).getpNombre();
+    			i=tutoriaModel.getListarTutores().size();
+    		}
+    	}
+    	
+    	String curso="";
+    	for(int i=0;i<this.tutoriaModel.getListarCursos().size();i++){
+    		if(tutoriaModel.getListarCursos().get(i).getcCodigo().equals(tutoriaModelSelect.getcCodigo())){
+    			curso=tutoriaModel.getListarCursos().get(i).getNombre();
+    			i=tutoriaModel.getListarCursos().size();
+    		}
+    	}
+    	
+    	pars.put("curso",curso);
+    	pars.put("docente",docente);
+    	pars.put("alumno", alumno);
+    	pars.put("dia", tutoriaModelGrid.getListaTutorias().get(0).getDia());
+    	pars.put("inicio",tutoriaModelGrid.getListaTutorias().get(0).getHoraIni());
+    	pars.put("fin",tutoriaModelGrid.getListaTutorias().get(0).getHoraFin());
+//    	pars.put("ciclo", ciclo);
+//    	pars.put("facultad", "Ingeniería de Sistemas e Informática");
+//    	pars.put("escuela", "Ingeniería de Sistemas");
+//    	pars.put("escudounmsm", "imagenes/unmsm.gif");
+    	return pars;
+    }
+    
+    private ArrayList<Object> obtenerCamposAsistenciaAlumno(){
+    	ArrayList<Object> list = new ArrayList<Object>();
+    	System.out.println("Tamaño de la lista1 :"+ getTutoriaModel().getListaTutorias().size());
+    	for(TutoriaBO model : getTutoriaModel().getListaTutorias()){
+    		Asistencia asistenciaAlumno = new Asistencia();
+    		asistenciaAlumno.setSesion(Integer.toString(model.getSesion()));
+    		asistenciaAlumno.setFecha(model.getFecha());
+    		asistenciaAlumno.setAsistencia(model.getValidacionAsistencia());
+    		asistenciaAlumno.setActa(model.getValidacionCargaActa());
+    		asistenciaAlumno.setObs(model.getValidacionObservacion());
+    		asistenciaAlumno.setDia("");
+    		asistenciaAlumno.setCodCurso("");
+    		asistenciaAlumno.setNomCurso("");
+    		asistenciaAlumno.setRepitencia("");
+    		list.add(asistenciaAlumno);
+    	}
+    	System.out.println("Tamaño de la lista2 :"+list.size());
+    	return list;
+    }
     public void imprimirReporteHorarioDocente() throws Exception{
     	System.out.println("Impresion de reporte de horario:");
     	
     	ControladorReporte reporte =  new ControladorReporte();
-    	reporte.setNombreReporte("horarioTutoriaProfesor");
+    	reporte.setNombreReporte("horarioTutoriaProfesor2");
     	reporte.generarReporteHorarioDocente(obtenerParametros(), obtenerCampos() );
     	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
     		System.out.println(horario);
     	}
     }
 
+    private Map<Object, Object> obtenerParametrosAlumno() throws Exception{
+    	Map<Object, Object> pars = new HashMap<Object, Object>();
+    	//String ruta_imagen="classpath:reportes/";
+    	String ciclo = alumnoServices.buscarCicloAcademico(getClaseMaestraModelSelect().getIdCampo());
+    	
+    	//File imagen = new File("classpath:reportes/Logo.png");
+    	//BufferedImage imagenIO = ImageIO.read(imagen);
+    	//BufferedImage imagen = ImageIO.read(getClass().getResource("/Imagenes/Logo.png"));    	
+    	
+    	//pars.put("logo", imagen);
+    	pars.put("nomAlu", tutoriaModelSelect.getaNombre());
+//    	pars.put("ciclo", ciclo);
+//    	pars.put("facultad", "Ingeniería de Sistemas e Informática");
+//    	pars.put("escuela", "Ingeniería de Sistemas");
+//    	pars.put("escudounmsm", "imagenes/unmsm.gif");
+    	return pars;
+    }
+    
     private Map<Object, Object> obtenerParametros() throws Exception{
     	Map<Object, Object> pars = new HashMap<Object, Object>();
     	//String ruta_imagen="classpath:reportes/";
@@ -1332,12 +1497,32 @@ public class RegistrarTutoriaMBean {
     	//BufferedImage imagen = ImageIO.read(getClass().getResource("/Imagenes/Logo.png"));    	
     	
     	//pars.put("logo", imagen);
-    	pars.put("nomPro", asistenciaTutoriaModelSelect.getP_nombre());
-    	pars.put("ciclo", ciclo);
-    	pars.put("facultad", "Ingeniería de Sistemas e Informática");
-    	pars.put("escuela", "Ingeniería de Sistemas");
-    	pars.put("escudounmsm", "imagenes/unmsm.gif");
+    	pars.put("nomPro", profesorBuscado);
+//    	pars.put("ciclo", ciclo);
+//    	pars.put("facultad", "Ingeniería de Sistemas e Informática");
+//    	pars.put("escuela", "Ingeniería de Sistemas");
+//    	pars.put("escudounmsm", "imagenes/unmsm.gif");
     	return pars;
+    }
+    private ArrayList<Object> obtenerCamposAlumno(){
+    	ArrayList<Object> list = new ArrayList<Object>();
+    	for(AsistenciaTutoriaModel model : listAsistenciaTutoria){
+    		HorarioTutoria horarioDocente = new HorarioTutoria();
+    		horarioDocente.setCodCurso(model.getC_codigo());
+    		horarioDocente.setDia(model.getDia());
+    		horarioDocente.setHoraFin(model.getHoraFin());
+    		horarioDocente.setHoraIni(model.getHoraIni());
+    		horarioDocente.setNomCurso(model.getC_nombre());
+    		horarioDocente.setNomProfesor(model.getP_nombre());
+    		horarioDocente.setRepitencias(model.getRepitencia());
+    		horarioDocente.setCodAlu(model.getA_codigo());
+    		horarioDocente.setNomAlu(model.getA_nombre()+" "+model.getA_apellido());   
+    		horarioDocente.setCiclo(model.gettAnio()+"-"+model.gettPeriodo());
+    		horarioDocente.setFrecuencia(model.getDescFrecuencia());
+    		
+    		list.add(horarioDocente);
+    	}
+    	return list;
     }
     
     private ArrayList<Object> obtenerCampos(){
@@ -1352,7 +1537,9 @@ public class RegistrarTutoriaMBean {
     		horarioDocente.setNomProfesor(model.getP_nombre()+" "+model.getP_apellidos());
     		horarioDocente.setRepitencias(model.getRepitencia());
     		horarioDocente.setCodAlu(model.getA_codigo());
-    		horarioDocente.setNomAlu(model.getA_nombre()+" "+model.getA_apellido());    		
+    		horarioDocente.setNomAlu(model.getA_nombre()+" "+model.getA_apellido());   
+    		horarioDocente.setCiclo(model.gettAnio()+"-"+model.gettPeriodo());
+    		horarioDocente.setFrecuencia(model.getDescFrecuencia());
     		list.add(horarioDocente);
     	}
     	return list;

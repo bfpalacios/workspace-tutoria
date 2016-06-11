@@ -103,7 +103,7 @@
 							 	id="btnBuscarAsistencia" align="center" 
                                 value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
                                 actionListener="#{alumnoMBean.buscarAsistenciaAlumnosTutoria}"
-                                update="tablaResultado, mostrarNotas, mensajePrimeraSesion"/>                            
+                                update="tablaResultado,mostrarTutoria, mostrarNotas, mensajePrimeraSesion"/>                            
 						</p:column>
                     </p:row>                   
                 </p:panelGrid>            
@@ -118,7 +118,7 @@
 		   					id="tablaResultado" 		   					
 		   					style="font-size:12px;" 
 		   				    value="#{alumnoMBean.listaAsistenciaAlumnosTutoria}" 
-                            var="lista" emptyMessage="Sin alumnos regulares">
+                            var="lista" emptyMessage="Sin tutorías para mostrar">
                     		<f:facet name="header">
                         		<h:outputLabel style="font-size: 12px;" value="Sesiones de tutoría"/>
                     		</f:facet>

@@ -287,6 +287,7 @@ public class AlumnoMBean {
 				fechaElegida = new FormateadorFecha()
 						.formatoFechaDDMMAAAA(getDate() == null ? new Date(Long.MIN_VALUE) : getDate());
 			} else {
+				//fechaElegida="09/07/2015";
 				fechaElegida = new FormateadorFecha().formatoFechaDDMMAAAA(new Date());
 			}
 
@@ -321,6 +322,7 @@ public class AlumnoMBean {
 							PROCESO, MODO);
 
 					if (listarTutorias.size() > 0) {
+						System.out.println("Hay tutoria");
 						codTutoria = listarTutorias.get(0).gettCodigo();
 						int ultimaSesion = comunServices.obtenerUltimaSesionTutoria(codTutoria);
 						for (TutoriaBO tutoria : listarTutorias) {
@@ -374,6 +376,7 @@ public class AlumnoMBean {
 													mostrarMensaje(13);
 												}
 											} else {
+												System.out.println("si hay datas");
 												tutoria.setListaAsistencia(listaComboAsistencia);
 												setListaAsistenciaAlumnosTutoria(listarTutorias);
 												setListaAsistenciaAlumnosTutoriaGrid(listarTutorias);

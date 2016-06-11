@@ -87,7 +87,7 @@
 						<p:commandButton id="btnBuscarAsistenciaPS" align="center"
 							value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
 							actionListener="#{alumnoMBean.buscarAsistenciaAlumnosTutoria}"
-							update="tablaResultadoPS, tablaNotasPS" />
+							update="tablaResultadoPS" />
 					</p:column>
 				</p:row>
 			</p:panelGrid>
@@ -171,7 +171,7 @@
 			</p:row>
 		</p:outputPanel>
 
-		<p:outputPanel id="mostrarNotasPS" style="width:100%;margin-top:15px">
+<!-- 		<p:outputPanel id="mostrarNotasPS" style="width:100%;margin-top:15px">
 			<p:row id="filTabla">
 				<p:column id="colTablaNotasPS"
 					styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3">
@@ -216,56 +216,9 @@
 					</p:dataTable>
 				</p:column>
 			</p:row>
-		</p:outputPanel>
+		</p:outputPanel> -->
 
-		<p:outputPanel id="agregarObservacionPS" icon="fa-plus"
-			style="float:center;width:70%;margin-top:15px;margin-bottom:5px">
-			<p:row>
-				<p:column colspan="3">
-					<p:commandButton id="botonAgregarPS"
-						disabled="#{alumnoMBean.activarObservacion}"
-						update="tablaResultadoPS, tablaNotasPS, tablaObservacionesPS, selectOneCursoPS, selectOneAlumnoPS"
-						value="Agregar observación"
-						actionListener="#{alumnoMBean.agregarObservacion}" ajax="true" />
-				</p:column>
-			</p:row>
-		</p:outputPanel>
-
-		<p:outputPanel id="mostrarObservacionesPS"
-			style="width:40%;margin-top:5px">
-			<p:row id="filTablaObservaciones">
-				<p:column id="colObservaciones" colspan="3">
-					<p:dataTable id="tablaObservacionesPS" var="lista"
-						value="#{alumnoMBean.listaObservaciones}" binding="#{tabla}">
-						<f:facet name="header">
-							<h:outputLabel style="font-size: 12px;"
-								value="Observaciones de tutoría" />
-						</f:facet>
-
-						<p:column headerText="Fila" style="font-size:12px; width:5%">
-							<h:outputText value="#{tabla.rowIndex + 1}" />
-						</p:column>
-
-						<p:column headerText="Observacion"
-							style="font-size:12px; width:25%">
-							<p:inputTextarea id="observaciones" rows="5" cols="60"
-								value="#{lista.observacion}" counter="displayPS" maxlength="250"
-								counterTemplate="{0} caracteres restantes." autoResize="false" />
-							<h:outputText id="displayPS" />
-						</p:column>
-
-						<p:column headerText="Criticidad"
-							style="font-size:12px; width:10%">
-							<p:selectOneMenu value="#{lista.criticidad}">
-								<f:selectItem itemLabel="BAJA" itemValue="BAJA" />
-								<f:selectItem itemLabel="MEDIA" itemValue="MEDIA" />
-								<f:selectItem itemLabel="ALTA" itemValue="ALTA" />
-							</p:selectOneMenu>
-						</p:column>
-					</p:dataTable>
-				</p:column>
-			</p:row>
-		</p:outputPanel>
+	
 
 		<p:outputPanel id="guardarAsistencia"
 			style="width:50%;margin-top:15px;margin-bottom:10px">

@@ -10,6 +10,8 @@ public class HorarioTutoria {
 	private String horaFin;
 	private String codAlu;
 	private String nomAlu;
+	private String ciclo;
+	private String frecuencia;
 	
 	public HorarioTutoria() {
 		super();
@@ -90,6 +92,26 @@ public class HorarioTutoria {
 	}
 	public void setHoraFin(String horaFin) {
 		this.horaFin = horaFin;
+	}
+
+
+	public String getCiclo() {
+		return ciclo;
+	}
+
+
+	public void setCiclo(String ciclo) {
+		this.ciclo = ciclo;
+	}
+
+
+	public String getFrecuencia() {
+		return frecuencia;
+	}
+
+
+	public void setFrecuencia(String frecuencia) {
+		this.frecuencia = frecuencia;
 	}
 	
 	

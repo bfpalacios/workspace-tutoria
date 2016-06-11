@@ -161,7 +161,7 @@
 			</p:row>
 		</p:outputPanel>
 
-		<p:outputPanel id="agregarObservacionSN" icon="fa-plus"
+<!-- 		<p:outputPanel id="agregarObservacionSN" icon="fa-plus"
 			style="float:center;width:70%;margin-top:15px;margin-bottom:5px">
 			<p:row>
 				<p:column colspan="3">
@@ -171,9 +171,9 @@
 						actionListener="#{alumnoMBean.agregarObservacion}" ajax="true" />
 				</p:column>
 			</p:row>
-		</p:outputPanel>
+		</p:outputPanel> -->
 
-		<p:outputPanel id="mostrarObservacionesSN"
+<!-- 		<p:outputPanel id="mostrarObservacionesSN"
 			style="width:40%;margin-top:5px">
 			<p:row id="filTablaObservacionesSN">
 				<p:column id="colObservacionesSN" colspan="3">
@@ -207,14 +207,14 @@
 					</p:dataTable>
 				</p:column>
 			</p:row>
-		</p:outputPanel>
+		</p:outputPanel> -->
 
 		<p:outputPanel id="guardarAsistenciaSN"
 			style="width:50%;margin-top:15px;margin-bottom:10px">
 			<p:row>
 				<p:column colspan="3">
 					<p:commandButton id="botonGuardarSN"
-						update="tablaResultadoSN, tablaObservacionesSN, selectOneCursoSN, selectOneAlumnoSN"
+						update="tablaResultadoSN, selectOneCursoSN, selectOneAlumnoSN"
 						value="Guardar"
 						actionListener="#{alumnoMBean.guardarRegistroAsistencia()}"
 						ajax="true" />

@@ -145,7 +145,27 @@
 							<h:outputText  id = "profesorBuscado" value="Tutor  #{registrarTutoriaMBean.profesorBuscado}"/>
 						</p:column>
 						
-					
+			<p:outputPanel id="pnlExportarHorarioAlumno" style="width:100px;margin-top:10px;">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							id="botonExportar1"
+							value="Exportar Tutoria Alumno" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioAlumno}" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>
+						
+			<p:outputPanel id="pnlExportarHorarioProfesor" style="width:100px;margin-top:10px;">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton 
+							id="botonExporta2r"
+							value="Exportar Tutoria Docente" 
+							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioDocente}" ajax="false" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>									
 		</p:panel>
 	</ui:define>
 </ui:composition>
