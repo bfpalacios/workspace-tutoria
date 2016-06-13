@@ -10,6 +10,13 @@
 
     <ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
         <ui:define name="contenido">
+        	
+        	<f:facet name="header">
+			<p:row>
+				<p:column colspan="3">Registrar Asistencia a Tutoria >> De Alumnos</p:column>
+			</p:row>
+			</f:facet>
+        
             <p:outputPanel id="mensajePrimeraSesion" style="width:100%;margin-top:2px;margin-bottom:5px">
             	<h:outputLabel 
             		id="lblBienvenida" rendered="#{alumnoMBean.activarTablaNotas}"
