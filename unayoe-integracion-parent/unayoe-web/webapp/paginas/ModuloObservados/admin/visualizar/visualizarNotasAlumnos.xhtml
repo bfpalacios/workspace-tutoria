@@ -91,17 +91,18 @@
 			   		</p:column>   
 				</p:row>
 			</p:panel>
-			
-			<p:outputPanel id="pnlExportarNotas" style="width:100px;margin-top:10px;">
-				<p:row>
-					<p:column colspan="3">
-						<p:commandButton 
-							id="botonExportar"
-							value="Exportar" 
-							actionListener="#{notasAlumnoMBean.imprimirReporteNotasAlumno}" ajax="false" />
-					</p:column>
-				</p:row>
-			</p:outputPanel>
+			<h:form>
+				<p:outputPanel id="pnlExportarNotas" style="width:100px;margin-top:10px;">
+					<p:row>
+						<p:column colspan="3">
+							<p:commandButton 
+								id="botonExportar"
+								value="Exportar" 
+								actionListener="#{notasAlumnoMBean.imprimirReporteNotasAlumno}" ajax="false" />
+						</p:column>
+					</p:row>
+				</p:outputPanel>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </html>

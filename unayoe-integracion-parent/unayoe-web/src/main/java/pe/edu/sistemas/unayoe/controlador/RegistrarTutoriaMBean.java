@@ -82,6 +82,7 @@ public class RegistrarTutoriaMBean {
     private List<ObservacionBO> listaObservacionesPendientes;
     private List<ObservacionBO> listaObservacionesFinalizadas;
     private List<AsistenciaTutoriaModel> listAsistenciaTutoria;
+    private List<AsistenciaTutoriaModel> listAsistenciaTutoriaDocente;
     private AsistenciaTutoriaModel asistenciaTutoriaModelSelect;  
     
     private int MODO_USUARIO;
@@ -108,6 +109,7 @@ public class RegistrarTutoriaMBean {
         System.out.println("::::: LOADING ::::::::");
         asistenciaTutoriaModelSelect = new AsistenciaTutoriaModel();
         listAsistenciaTutoria = new ArrayList<AsistenciaTutoriaModel>();
+        listAsistenciaTutoriaDocente = new ArrayList<AsistenciaTutoriaModel>();
         inicializarClases();
     }
     
@@ -123,6 +125,7 @@ public class RegistrarTutoriaMBean {
         setListaObservacionesPendientes(new ArrayList<ObservacionBO>());
         setListaObservacionesFinalizadas(new ArrayList<ObservacionBO>());
         setListAsistenciaTutoria(new ArrayList< AsistenciaTutoriaModel>());
+        setListAsistenciaTutoriaDocente(new ArrayList< AsistenciaTutoriaModel>());
         
          nombreOrigen="Nombre Tutor";
          cursoBuscado="";
@@ -730,8 +733,9 @@ public class RegistrarTutoriaMBean {
     	horario.settAnio(tutoriaBO.gettAnio());
     	return horario;
     }
-    
+   
     public void buscarHorariosTutoria(int procesoTutoria) {
+    	
     	List<TutoriaBO> listaHorarios =  new ArrayList<TutoriaBO>();    	
     	listAsistenciaTutoria.clear();
     	cursoBuscado="";
@@ -758,7 +762,7 @@ public class RegistrarTutoriaMBean {
     				AlumnoBO datosAlumno = tutoriaServices.buscarDatosAlumno(listaHorarios.get(0).getaCodigo());
     				getTutoriaModelSelect().setaNombre(datosAlumno.getaNombre() + " " + datosAlumno.getaApellido());
     				getTutoriaModelSelect().setcCodigo(listaHorarios.get(0).getcCodigo());
-    				System.out.println("CODIGO DEL PROFESOR "+listaHorarios.get(0).getpCodigo());
+    				
     				getTutoriaModelSelect().setpCodigo(listaHorarios.get(0).getpCodigo());
     				
     			}        		
@@ -775,13 +779,13 @@ public class RegistrarTutoriaMBean {
     
     /* ver tutoria docente*/
     public void buscarHorariosTutoriaDocente(int procesoTutoria) {
-    	System.out.println("ENTRAAAA** ");
+    	listAsistenciaTutoriaDocente.clear();
     	List<TutoriaBO> listaHorarios =  new ArrayList<TutoriaBO>();    	
-    	listAsistenciaTutoria.clear();
     	
+    	   	
     	setNombreOrigen("Nombre Alumno");
     	
-    		System.out.println("codigo del profe "+getTutoriaModelSelect().getpCodigo());
+    		
     		try {   	
         		CicloBO cicloActual = comunServices.buscarCicloActual();        			
         		listaHorarios = tutoriaServices.listarHorariosDeTutoriaProfesor(cicloActual.getAnio(), 
@@ -791,13 +795,14 @@ public class RegistrarTutoriaMBean {
         		
         		if(listaHorarios.size() > 0){
     				for(TutoriaBO tutoria : listaHorarios){
-    					listAsistenciaTutoria.add(asistenciaModel(tutoria));
+    					listAsistenciaTutoriaDocente.add(asistenciaModel(tutoria));
     				}
   
-    				setCursoBuscado(listAsistenciaTutoria.get(0).getC_nombre());
-    				setProfesorBuscado(listAsistenciaTutoria.get(0).getA_nombre());
+    				setCursoBuscado(listAsistenciaTutoriaDocente.get(0).getC_nombre());
+    				setProfesorBuscado(listAsistenciaTutoriaDocente.get(0).getA_nombre());
     				getTutoriaModelSelect().setaCodigo("");
     				getTutoriaModelSelect().setaNombre("");
+    				
     			}        		
         		else{
         			getTutoriaModelSelect().setaNombre("Profesor no encontrado");
@@ -1099,7 +1104,11 @@ public class RegistrarTutoriaMBean {
 			case 17: message = new FacesMessage(FacesMessage.SEVERITY_WARN,"", "No se encontraron observaciones con los datos ingresados");
 					RequestContext.getCurrentInstance().showMessageInDialog(message); break;
 			case 18: message = new FacesMessage(FacesMessage.SEVERITY_WARN,"", "Las observaciones de tutoría se procesaron correctamente");
-					RequestContext.getCurrentInstance().showMessageInDialog(message); break;	
+					RequestContext.getCurrentInstance().showMessageInDialog(message); break;
+			case 19: message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Debe seleccionar un alumno");
+					 RequestContext.getCurrentInstance().showMessageInDialog(message); break;
+			case 20: message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Debe seleccionar un docente");
+			 		 RequestContext.getCurrentInstance().showMessageInDialog(message); break;	
 		}
 	}
 	
@@ -1302,14 +1311,16 @@ public class RegistrarTutoriaMBean {
 	}
 	
 	public void imprimirReporteHorarioAlumno() throws Exception{
-    	System.out.println("Impresion de reporte de horario:");
-    	
-    	ControladorReporte reporte =  new ControladorReporte();
-    	reporte.setNombreReporte("horarioTutoriaAlumno2");
-    	reporte.generarReporteHorarioDocente(obtenerParametrosAlumno()  ,obtenerCamposAlumno() );
-    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
-    		System.out.println(horario);
-    	}
+		if( !listAsistenciaTutoria.isEmpty()){
+	    	System.out.println("Impresion de reporte de horario:");
+	    	
+	    	ControladorReporte reporte =  new ControladorReporte();
+	    	reporte.setNombreReporte("horarioTutoriaAlumno");
+	    	reporte.generarReporteHorarioDocente(obtenerParametrosAlumno()  ,obtenerCamposAlumno() );
+//	    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
+//	    		System.out.println(horario);
+//	    	}
+		}else mostrarMensaje(19);
     }
 	
 	public void imprimirReporteTareasTutoria() throws Exception{
@@ -1504,14 +1515,17 @@ public class RegistrarTutoriaMBean {
     	return list;
     }
     public void imprimirReporteHorarioDocente() throws Exception{
-    	System.out.println("Impresion de reporte de horario:");
-    	
-    	ControladorReporte reporte =  new ControladorReporte();
-    	reporte.setNombreReporte("horarioTutoriaProfesor2");
-    	reporte.generarReporteHorarioDocente(obtenerParametros(), obtenerCampos() );
-    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
-    		System.out.println(horario);
-    	}
+    	System.out.println("entra a reporte de docente");
+    	if( !listAsistenciaTutoriaDocente.isEmpty()){
+	    	System.out.println("Impresion de reporte de horario:");
+	    	
+	    	ControladorReporte reporte =  new ControladorReporte();
+	    	reporte.setNombreReporte("horarioTutoriaProfesor");
+	    	reporte.generarReporteHorarioDocente(obtenerParametros(), obtenerCampos() );
+	//    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
+	//    		System.out.println(horario);
+	//    	}
+    	}else mostrarMensaje(20);
     }
 
     private Map<Object, Object> obtenerParametrosAlumno() throws Exception{
@@ -1543,6 +1557,7 @@ public class RegistrarTutoriaMBean {
     	
     	//pars.put("logo", imagen);
     	pars.put("nomPro", profesorBuscado);
+    	pars.put("nomCurso", cursoBuscado);
 //    	pars.put("ciclo", ciclo);
 //    	pars.put("facultad", "Ingeniería de Sistemas e Informática");
 //    	pars.put("escuela", "Ingeniería de Sistemas");
@@ -1553,15 +1568,15 @@ public class RegistrarTutoriaMBean {
     	ArrayList<Object> list = new ArrayList<Object>();
     	for(AsistenciaTutoriaModel model : listAsistenciaTutoria){
     		HorarioTutoria horarioDocente = new HorarioTutoria();
-    		horarioDocente.setCodCurso(model.getC_codigo());
+    		//horarioDocente.setCodCurso(model.getC_codigo());
     		horarioDocente.setDia(model.getDia());
     		horarioDocente.setHoraFin(model.getHoraFin());
     		horarioDocente.setHoraIni(model.getHoraIni());
     		horarioDocente.setNomCurso(model.getC_nombre());
     		horarioDocente.setNomProfesor(model.getP_nombre());
     		horarioDocente.setRepitencias(model.getRepitencia());
-    		horarioDocente.setCodAlu(model.getA_codigo());
-    		horarioDocente.setNomAlu(model.getA_nombre()+" "+model.getA_apellido());   
+    		horarioDocente.setCodAlu(model.getA_codigo());    		
+    		horarioDocente.setNomAlu(model.getP_nombre());   
     		horarioDocente.setCiclo(model.gettAnio()+"-"+model.gettPeriodo());
     		horarioDocente.setFrecuencia(model.getDescFrecuencia());
     		
@@ -1572,7 +1587,7 @@ public class RegistrarTutoriaMBean {
     
     private ArrayList<Object> obtenerCampos(){
     	ArrayList<Object> list = new ArrayList<Object>();
-    	for(AsistenciaTutoriaModel model : listAsistenciaTutoria){
+    	for(AsistenciaTutoriaModel model : listAsistenciaTutoriaDocente){
     		HorarioTutoria horarioDocente = new HorarioTutoria();
     		horarioDocente.setCodCurso(model.getC_codigo());
     		horarioDocente.setDia(model.getDia());
@@ -1582,7 +1597,7 @@ public class RegistrarTutoriaMBean {
     		horarioDocente.setNomProfesor(model.getP_nombre()+" "+model.getP_apellidos());
     		horarioDocente.setRepitencias(model.getRepitencia());
     		horarioDocente.setCodAlu(model.getA_codigo());
-    		horarioDocente.setNomAlu(model.getA_nombre()+" "+model.getA_apellido());   
+    		horarioDocente.setNomAlu(model.getP_nombre());   
     		horarioDocente.setCiclo(model.gettAnio()+"-"+model.gettPeriodo());
     		horarioDocente.setFrecuencia(model.getDescFrecuencia());
     		list.add(horarioDocente);
@@ -1753,6 +1768,14 @@ public class RegistrarTutoriaMBean {
 
 	public void setProfesorBuscado(String profesorBuscado) {
 		this.profesorBuscado = profesorBuscado;
+	}
+
+	public List<AsistenciaTutoriaModel> getListAsistenciaTutoriaDocente() {
+		return listAsistenciaTutoriaDocente;
+	}
+
+	public void setListAsistenciaTutoriaDocente(List<AsistenciaTutoriaModel> listAsistenciaTutoriaDocente) {
+		this.listAsistenciaTutoriaDocente = listAsistenciaTutoriaDocente;
 	}
 	
 }

@@ -15,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -364,10 +365,13 @@ public class NotasAlumnosMBean {
 	}
 	
 	public void imprimirReporteNotasAlumno() throws Exception{
-    	System.out.println("Impresion de reporte de horario:");    	
-    	ControladorReporte reporte = new ControladorReporte();
-    	reporte.setNombreReporte("visualizarNotasAlumno");
-    	reporte.generarReporteNotasAlumno(obtenerParametros(),obtenerCampos());  
+		if(!getVisualizarNotasAlumnoGrid().isEmpty()){
+	    	System.out.println("Impresion de reporte de horario:");    	
+	    	ControladorReporte reporte = new ControladorReporte();
+	    	reporte.setNombreReporte("visualizarNotasAlumno");
+	    	reporte.generarReporteNotasAlumno(obtenerParametros(),obtenerCampos());
+    	}else
+    		mostrarMensaje(6);
     }
 
     private Map<String,Object> obtenerParametros() throws Exception{
@@ -412,6 +416,8 @@ public class NotasAlumnosMBean {
 					FacesContext.getCurrentInstance().addMessage(null, message); break;
 			case 5: message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error:", "Ha ocurrido un error al guardar las notas");
 					FacesContext.getCurrentInstance().addMessage(null, message); break;
+			case 6 : message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error:", "Debe buscar un alumno");
+					RequestContext.getCurrentInstance().showMessageInDialog(message); break;
 		}
     }
     

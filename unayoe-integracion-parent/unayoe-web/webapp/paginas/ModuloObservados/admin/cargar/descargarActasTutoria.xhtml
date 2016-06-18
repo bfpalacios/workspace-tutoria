@@ -29,7 +29,7 @@
 			</p:row>
 			</f:facet>
         
-            <p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
+             <p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
 				<p:row>
     				<p:column colspan="4" rowspan="2">
     					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
@@ -127,19 +127,20 @@
 					</p:row>                    
                     <p:spacer width="50px"/>
                 </p:panelGrid>      
-                
-                <p:outputPanel id="pnlDescargar" style="width:400px;margin-top:10px;" visible="#{!gestionarActasMBean.desactivarDescarga}">                	
-                	<p:row>
-                		<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">                    		
-                    		<p:commandButton                     			                  				
-                    			value="Descargar Acta" icon="ui-icon-arrowthick-1-s"
-                    			actionListener="#{gestionarActasMBean.descargarActa}"                    									
-        						ajax="false">
-        						<p:fileDownload value="#{gestionarActasMBean.file}"/>
-    						</p:commandButton>    						
-                   		</p:column>
-                	</p:row>  
-				</p:outputPanel>  
+                <h:form>
+	                <p:outputPanel id="pnlDescargar" style="width:400px;margin-top:10px;" visible="#{!gestionarActasMBean.desactivarDescarga}">                	
+	                	<p:row>
+	                		<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">                    		
+	                    		<p:commandButton                     			                  				
+	                    			value="Descargar Acta" icon="ui-icon-arrowthick-1-s"
+	                    			actionListener="#{gestionarActasMBean.descargarActa}"                    									
+	        						ajax="false">
+	        						<p:fileDownload value="#{gestionarActasMBean.file}"/>
+	    						</p:commandButton>    						
+	                   		</p:column>
+	                	</p:row>  
+					</p:outputPanel>  
+				</h:form>
             </p:panel>
         </ui:define>
     </ui:composition>

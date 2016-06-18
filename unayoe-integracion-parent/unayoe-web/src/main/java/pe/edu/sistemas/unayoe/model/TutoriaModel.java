@@ -109,6 +109,7 @@ public class TutoriaModel extends PersonaModel{
 		this.descripcion = descripcion;
 	}
 	public List<CursoBO> getListarCursos() {
+		if(listarCursos!=null)
 		Collections.sort(listarCursos);
 		return listarCursos;
 	}

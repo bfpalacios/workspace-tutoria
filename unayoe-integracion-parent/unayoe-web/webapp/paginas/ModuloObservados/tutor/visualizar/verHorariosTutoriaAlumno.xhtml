@@ -15,92 +15,94 @@
 		</p:row>
 		</f:facet>
 	
-		<p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
-			<p:row>
-    			<p:column colspan="4" rowspan="2">
-    				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-   				</p:column>
-   			</p:row>
-   		</p:outputPanel>
-		
-		<p:panel 
-			header="Consulta de horarios de tutoría de alumnos"
-			style="width: 95%;border: 0px;">
-			
-			<h:panelGrid id="pnlBuscador"
-				style="font-size: 12px;text-align: left" columns="5" cellspacing="5">
-				<h:outputText value="Codigo del Alumno:" />
-				<p:outputPanel>
-					<p:inputText
-						value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}"
-						size="30" />
-					<p:spacer width="5px" />
-					<p:commandButton update="tablaResultado, a_nombre"
-						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
-						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
-				</p:outputPanel>
-				<p:spacer width="30px" />  
-				<h:outputText  value="Nombre del Alumno:" />
-				<p:inputText  
-					id="a_nombre"
-					value="#{registrarTutoriaMBean.tutoriaModelSelect.aNombre}"
-					size="40" />
-				<p:spacer width="30px" />				 
-			</h:panelGrid>
-
-			<p:row>
-				<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
-					<p:dataTable 
-						id="tablaResultado" style="font-size:10px;"
-						value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
-						emptyMessage="Datos de Tutoria Vacio">
-
-						<p:column headerText="Ciclo académico" style="font-size: 12px;width: 10%">
-							<h:outputText value="#{lista.tAnio}-#{lista.tPeriodo}" />
-						</p:column>
-
-						<p:column headerText="Nombre Curso" style="font-size: 12px;width: 20%">
-							<h:outputText value="#{lista.c_nombre}" />
-						</p:column>
-
-						<p:column headerText="# Repitencias" style="font-size: 12px;width: 8%">
-							<h:outputText value="#{lista.repitencia}" />
-						</p:column>
-
-						<p:column headerText="Nombre Tutor" style="font-size: 12px;width: 15%">
-							<h:outputText value="#{lista.p_nombre}" />
-						</p:column>
-
-						<p:column headerText="Frecuencia" style="font-size: 12px;width: 10%">
-							<h:outputText value="#{lista.descFrecuencia}" />
-						</p:column>
-						
-						<p:column headerText="Dia" style="font-size: 12px;width: 10%">
-							<h:outputText value="#{lista.dia}" />
-						</p:column>
-
-						<p:column headerText="Hora de Inicio" style="font-size: 12px;width: 8%">
-							<h:outputText value="#{lista.horaIni}" />
-						</p:column>
-
-						<p:column headerText="Hora Fin" style="font-size: 12px;width: 8%">
-							<h:outputText value="#{lista.horaFin}" />
-						</p:column>
-					</p:dataTable>
-				</p:column>
-			</p:row>				
-		</p:panel>
-								
-			<p:outputPanel id="pnlExportarHorarioAlumno" style="width:100px;margin-top:10px;">
+		<h:form>
+			<p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
 				<p:row>
-					<p:column colspan="3">
-						<p:commandButton 
-							id="botonExportar1"
-							value="Exportar Tutoria Alumno" 
-							actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioAlumno}" ajax="false" />
+	    			<p:column colspan="4" rowspan="2">
+	    				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+	   				</p:column>
+	   			</p:row>
+	   		</p:outputPanel>
+			
+			<p:panel 
+				header="Consulta de horarios de tutoría de alumnos"
+				style="width: 95%;border: 0px;">
+				
+				<h:panelGrid id="pnlBuscador"
+					style="font-size: 12px;text-align: left" columns="5" cellspacing="5">
+					<h:outputText value="Codigo del Alumno:" />
+					<p:outputPanel>
+						<p:inputText
+							value="#{registrarTutoriaMBean.tutoriaModelSelect.aCodigo}"
+							size="30" />
+						<p:spacer width="5px" />
+						<p:commandButton update="tablaResultado, a_nombre"
+							value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
+							actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
+					</p:outputPanel>
+					<p:spacer width="30px" />  
+					<h:outputText  value="Nombre del Alumno:" />
+					<p:inputText  
+						id="a_nombre"
+						value="#{registrarTutoriaMBean.tutoriaModelSelect.aNombre}"
+						size="40" />
+					<p:spacer width="30px" />				 
+				</h:panelGrid>
+	
+				<p:row>
+					<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+						<p:dataTable 
+							id="tablaResultado" style="font-size:10px;"
+							value="#{registrarTutoriaMBean.listAsistenciaTutoria}" var="lista"
+							emptyMessage="Datos de Tutoria Vacio">
+	
+							<p:column headerText="Ciclo académico" style="font-size: 12px;width: 10%">
+								<h:outputText value="#{lista.tAnio}-#{lista.tPeriodo}" />
+							</p:column>
+	
+							<p:column headerText="Nombre Curso" style="font-size: 12px;width: 20%">
+								<h:outputText value="#{lista.c_nombre}" />
+							</p:column>
+	
+							<p:column headerText="# Repitencias" style="font-size: 12px;width: 8%">
+								<h:outputText value="#{lista.repitencia}" />
+							</p:column>
+	
+							<p:column headerText="Nombre Tutor" style="font-size: 12px;width: 15%">
+								<h:outputText value="#{lista.p_nombre}" />
+							</p:column>
+	
+							<p:column headerText="Frecuencia" style="font-size: 12px;width: 10%">
+								<h:outputText value="#{lista.descFrecuencia}" />
+							</p:column>
+							
+							<p:column headerText="Dia" style="font-size: 12px;width: 10%">
+								<h:outputText value="#{lista.dia}" />
+							</p:column>
+	
+							<p:column headerText="Hora de Inicio" style="font-size: 12px;width: 8%">
+								<h:outputText value="#{lista.horaIni}" />
+							</p:column>
+	
+							<p:column headerText="Hora Fin" style="font-size: 12px;width: 8%">
+								<h:outputText value="#{lista.horaFin}" />
+							</p:column>
+						</p:dataTable>
 					</p:column>
-				</p:row>
-			</p:outputPanel>
+				</p:row>				
+			</p:panel>
+									
+				<p:outputPanel id="pnlExportarHorarioAlumno" style="width:100px;margin-top:10px;">
+					<p:row>
+						<p:column colspan="3">
+							<p:commandButton 
+								id="botonExportar1"
+								value="Exportar Tutoria Alumno" 
+								actionListener="#{registrarTutoriaMBean.imprimirReporteHorarioAlumno}" ajax="false" />
+						</p:column>
+					</p:row>
+				</p:outputPanel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 
