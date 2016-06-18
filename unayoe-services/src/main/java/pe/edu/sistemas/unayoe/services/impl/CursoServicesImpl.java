@@ -72,5 +72,10 @@ public class CursoServicesImpl implements CursoServices {
 	public List<CursoBO> listarCursosPorConvocatoria(Integer idConvocatoria) {
 		return cursoIDao.listarCursosPorConvocatoria(idConvocatoria);
 	}
+
+	@Override
+	public List<CursoBO> listarCursosTutorias() {
+		return cursoIDao.listarCursosTutorias();
+	}
 }
 

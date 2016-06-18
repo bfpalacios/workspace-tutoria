@@ -17,4 +17,7 @@ public interface CursoServices {
 	
 	public List<CursoBO> listarCursosPorConvocatoria(Integer idConvocatoria);
 	
+	
+	public List<CursoBO> listarCursosTutorias();
+	
 }

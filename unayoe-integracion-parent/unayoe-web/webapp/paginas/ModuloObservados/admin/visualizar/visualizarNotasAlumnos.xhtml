@@ -8,7 +8,7 @@
 
 	<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
 		<ui:define name="contenido">
-		
+		<h:form>
 		<f:facet name="header">
 		<p:row>
 			<p:column colspan="3">Notas de los Alumnos >> Visualizar Notas</p:column>
@@ -91,7 +91,7 @@
 			   		</p:column>   
 				</p:row>
 			</p:panel>
-			<h:form>
+<!-- 			<h:form> -->
 				<p:outputPanel id="pnlExportarNotas" style="width:100px;margin-top:10px;">
 					<p:row>
 						<p:column colspan="3">
@@ -102,7 +102,8 @@
 						</p:column>
 					</p:row>
 				</p:outputPanel>
-			</h:form>
+<!-- 			</h:form> -->
+		</h:form>
 		</ui:define>
 	</ui:composition>
 </html>

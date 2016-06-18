@@ -16,4 +16,7 @@ public interface CursoIDao {
 	CursoBO obtenerCursoTema(int codigoTema);
 	
 	public List<CursoBO> listarCursosPorConvocatoria(Integer idConvocatoria);
+	
+	
+	public List<CursoBO> listarCursosTutorias();
 }

@@ -186,7 +186,14 @@ public class RegistrarTutoriaMBean {
     public void listarCursos() {       
         List<CursoBO> listarCursos = null;
         try {
-            listarCursos = cursoServices.listarCursos();
+//            listarCursos = cursoServices.listarCursos();
+        	listarCursos = cursoServices.listarCursosTutorias();
+            
+            /*
+             * Falta crear un procedure para listar los cursos que pertenecen a una tutoria
+             * 
+             * 
+             */
             asistenciaTutoriaModelSelect.setListarCursos(listarCursos);
             asistenciaTutoriaModel.setListarCursos(listarCursos);
             getTutoriaModel().setListarCursos(listarCursos);

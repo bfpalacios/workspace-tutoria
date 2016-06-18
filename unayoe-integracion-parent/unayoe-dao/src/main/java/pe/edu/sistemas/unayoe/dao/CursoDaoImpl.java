@@ -211,5 +211,35 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 		return cursos;
 	}
 
+	@Override
+	public List<CursoBO> listarCursosTutorias() {
+		Connection con = null;
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+
+		List<CursoBO> listaCursos = new ArrayList<CursoBO>();
+
+		try{
+			con = Conexion.obtenerConexion();
+			cstm = con.prepareCall("{call LISTAR_CURSO_TUTORIAS(?)}");
+			cstm.registerOutParameter(1, OracleTypes.CURSOR);
+			cstm.execute();
+
+			rs = (ResultSet) cstm.getObject(1);
+
+			while(rs.next()){
+				CursoBO curso = new CursoBO();
+				curso.setcCodigo(rs.getString(1));
+				curso.setNombre(rs.getString(2));
+
+				listaCursos.add(curso);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return listaCursos;
+	}
+
 
 }
