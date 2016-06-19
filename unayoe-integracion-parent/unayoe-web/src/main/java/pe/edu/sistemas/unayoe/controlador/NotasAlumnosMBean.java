@@ -29,6 +29,7 @@ import pe.edu.sistemas.unayoe.services.AlumnoServices;
 import pe.edu.sistemas.unayoe.services.ComunServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.CicloBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
+import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.NotasAlumnoBO;
 import controladorReporte.ControladorReporte;
 
@@ -80,6 +81,16 @@ public class NotasAlumnosMBean {
 	private static int NOM_DOCENTE=8;
 	private static int NOTA_FINAL=9; 
 	
+	
+
+	private int MODO;
+	private int MODO_AUX;
+	private int ANIO_ACTUAL;
+	private int PERIODO_ACTUAL;	
+	
+	private static int PROCESO_OBSERVADOS = 1;
+	private static int PROCESO_REGULARES = 2;			
+
 	public NotasAlumnosMBean(){
 		System.out.println("::::: LOADING ::::::::");	
 		inicializarClases();
@@ -448,6 +459,79 @@ public class NotasAlumnosMBean {
 		 }
 		 return pagina;		
 	} 
+    
+    public void listarCursos() {
+		System.out.println("Listando los cursos:");
+		List<CursoBO> listarCursos = null;
+		try {
+//			listarCursos = cursoServices.listarCursos();
+//			tutoriaModel.setListarCursos(listarCursos);
+		} 
+		catch (Exception e) {			
+			e.printStackTrace();
+		}
+	}
+    
+    public void setDesactivarDescarga(boolean desactivarDescarga) {
+//		this.desactivarDescarga = desactivarDescarga;
+	}
+    
+    public void listarCursosxDocente() throws Exception{
+		String codDocente = "";
+		if (MODO == MODO_ADMIN){
+//			codDocente = getTutoriaModelSelect().getpCodigo()==null?"":getTutoriaModelSelect().getpCodigo();	
+		}
+		else{
+			if (MODO == MODO_TUTOR){
+//				codDocente = obtenerUsuario().getUsername();				
+//				getTutoriaModelSelect().setpCodigo(getUsuarioServices().buscarUsuarioEquivalencia(codDocente));
+			}
+		}
+//		List<CursoBO> listaCursos = cursoServices.listarCursosDocente(codDocente, PROCESO, MODO);
+//		getTutoriaModel().setListarCursos(listaCursos);
+	}	
+    
+//    public String selectorDescargaActas(int proceso, int modo) throws Exception{
+//		String pagina = "";
+//		 
+//		CicloBO cicloActual = comunServices.buscarCicloActual();
+//		ANIO_ACTUAL = cicloActual.getAnio();
+//		PERIODO_ACTUAL = cicloActual.getPeriodo();		
+//		inicializarClases();		
+//		switch(proceso){
+//			case 1: switch(modo){ 
+//		 				case 1: PROCESO = PROCESO_OBSERVADOS;
+//		 						MODO = MODO_ADMIN;
+//		 						MODO_AUX = MODO_ADMIN;
+//		 						listarCursos();
+//		 						setDesactivarDescarga(true);
+//		 						pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml"; break;
+//		 				
+//		 				case 2: PROCESO = PROCESO_OBSERVADOS;
+//		 						MODO = MODO_ADMIN;
+//		 						MODO_AUX = MODO_OCAA;
+//		 						listarCursos();
+//		 						setDesactivarDescarga(true);
+//		 						pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml"; break;
+//		 				
+//		 				case 3: PROCESO = PROCESO_OBSERVADOS;
+// 								MODO = MODO_TUTOR;
+// 								MODO_AUX = MODO_TUTOR;
+// 								listarCursosxDocente();
+// 								setDesactivarDescarga(true);
+// 								pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml"; break;
+//		 				
+//		 				case 4: PROCESO = PROCESO_OBSERVADOS;
+//		 						MODO = MODO_ADMIN;
+//								MODO_AUX = MODO_UNAYOE;
+//								listarCursos();
+//								setDesactivarDescarga(true);
+//								pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml"; break;
+//		 			} break;
+//		 	
+//		}
+//		return pagina;		
+//	}	
     
     public String selectorVisualizacionNotas(int proceso, int modoUsuario) throws Exception{
 		 String pagina = "";

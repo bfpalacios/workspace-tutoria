@@ -607,7 +607,7 @@ public class GestionarActasMBean {
 								MODO_AUX = MODO_UNAYOE;
 								listarCursos();
 								setDesactivarDescarga(true);
-								pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml"; break;
+								pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml?faces-redirect=true"; break;
 		 			} break;
 		 	case 2: switch(modo){ 
 						case 1: PROCESO = PROCESO_REGULARES;
