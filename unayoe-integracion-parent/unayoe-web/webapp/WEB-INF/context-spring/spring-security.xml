@@ -49,6 +49,7 @@
 		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_ocaa_r.xhtml" access="ROLE_OCAA_R"/>
 		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_tutor_r.xhtml" access="ROLE_TUTOR_R"/>
 		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_decano_r.xhtml" access="ROLE_DECANO_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Plantillas/plantilla_alumno_r.xhtml" access="ROLE_ALUMNO_R"/>
 		
 		<intercept-url pattern="/paginas/ModuloRegulares/principal_r.xhtml" access="ROLE_ADMIN_R"/>
 		<intercept-url pattern="/paginas/ModuloRegulares/principal_dir_aca_r.xhtml" access="ROLE_DIR_ACA_R"/>
@@ -56,6 +57,7 @@
 		<intercept-url pattern="/paginas/ModuloRegulares/principal_ocaa_r.xhtml" access="ROLE_OCAA_R"/>		
 		<intercept-url pattern="/paginas/ModuloRegulares/principal_tutor_r.xhtml" access="ROLE_TUTOR_R"/>
 		<intercept-url pattern="/paginas/ModuloRegulares/principal_decano_r.xhtml" access="ROLE_DECANO_R"/>
+		<intercept-url pattern="/paginas/ModuloRegulares/principal_alumno_r.xhtml" access="ROLE_ALUMNO_R"/>
 		
 		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_r.xhtml" access="ROLE_ADMIN_R"/> 
 		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_dir_aca_r.xhtml" access="ROLE_DIR_ACA_R"/>
@@ -63,6 +65,7 @@
 		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_ocaa_r.xhtml" access="ROLE_OCAA_R"/>
 		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_tutor_r.xhtml" access="ROLE_TUTOR_R"/>
 		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_decano_r.xhtml" access="ROLE_DECANO_R"/>
+		<intercept-url pattern="/plantilla/ModuloRegulares/Menus/menu_alumno_r.xhtml" access="ROLE_ALUMNO_R"/>
 		
 		<!-- Modulo de pares -->
 		<intercept-url pattern="/plantilla/ModuloPares/Plantillas/plantilla_p.xhtml" access="ROLE_ADMIN_P"/>
