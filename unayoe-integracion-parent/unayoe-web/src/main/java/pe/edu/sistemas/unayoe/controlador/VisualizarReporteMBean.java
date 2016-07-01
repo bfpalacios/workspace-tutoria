@@ -156,7 +156,7 @@ public class VisualizarReporteMBean {
 		c_alumno="";
 		n_alumno="";
 		this.periodo=obtenerPeriodo();
-		return "/paginas/visualizar/reportes_asistencia/visualizarReporteAsistenciaAlumnosTutoria.xhtml";
+		return "/paginas/ModuloRegulares/visualizar/reportes_asistencia/visualizarReporteAsistenciaAlumnosTutoria.xhtml";
 
 	}
 

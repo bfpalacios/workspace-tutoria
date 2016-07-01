@@ -163,10 +163,11 @@ public class DisponibilidadMBean {
 	public void actualizarDocente(ValueChangeEvent e) throws Exception{		
 		String codCurso = (String) (e.getNewValue()==null?"": e.getNewValue());		
 		List<ProfesorBO> listaProfesores = new ArrayList<ProfesorBO>();
-		
+		System.out.println("PROCESO DE BUSQUEDA "+PROCESO_BUSQUEDA);
+		PROCESO_BUSQUEDA=1;
 		switch(PROCESO_BUSQUEDA){
-			case 1: listaProfesores = tutoriaServices.listarTutoresObservados(codCurso); break;
-			case 2: listaProfesores = tutoriaServices.listarTutoresRegulares(codCurso); break;
+			case 2: listaProfesores = tutoriaServices.listarTutoresObservados(codCurso); break;
+			case 1: listaProfesores = tutoriaServices.listarTutoresRegulares(codCurso); break;
 		}		
 		getDisponibilidadModel().setListaTutoresRegulares(listaProfesores);
 	}
