@@ -145,7 +145,7 @@ public class AlumnoMBean {
 		System.out.println("Listando los cursos:");
 		List<CursoBO> listarCursos = null;
 		try {
-			listarCursos = cursoServices.listarCursos();
+			listarCursos = cursoServices.listarCursosTutorias();
 			alumnoModel.setListarCursos(listarCursos);
 		} catch (Exception e) {
 			e.printStackTrace();
