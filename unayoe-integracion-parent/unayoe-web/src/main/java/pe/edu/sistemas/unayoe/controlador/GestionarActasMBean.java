@@ -123,7 +123,7 @@ public class GestionarActasMBean {
 		System.out.println("Listando los cursos:");
 		List<CursoBO> listarCursos = null;
 		try {
-			listarCursos = cursoServices.listarCursos();
+			listarCursos = cursoServices.listarCursosTutorias();
 			tutoriaModel.setListarCursos(listarCursos);
 		} 
 		catch (Exception e) {			
@@ -170,6 +170,11 @@ public class GestionarActasMBean {
 								observacionTutoria.getSesion(),observacionTutoria.getRazon(),observacionTutoria.getFechaFin());
 					}
 					mostrarMensaje(12);
+					inicializarClases();			
+					listarCursos();
+				}
+				else{
+					mostrarMensaje(11);
 				}
 		        
 				
@@ -403,6 +408,7 @@ public class GestionarActasMBean {
 		String pagina = "";
 		String codProfesor = "";		
 		try{
+			file=null;
 			String codCurso = getTutoriaModelSelect().getcCodigo()==""?"Invalido":getTutoriaModelSelect().getcCodigo();
 			if (MODO == 1){
 				codProfesor = getTutoriaModelSelect().getpCodigo()==""?"Invalido":getTutoriaModelSelect().getpCodigo();
@@ -429,7 +435,8 @@ public class GestionarActasMBean {
 					}
 					else{
 						InputStream datosActa = new ByteArrayInputStream(actaTutoria.getActa());
-						setFile(new DefaultStreamedContent(datosActa, "application/pdf", actaTutoria.getNombreActa() + ".pdf"));				
+						setFile(new DefaultStreamedContent(datosActa, "application/pdf", actaTutoria.getNombreActa() + ".pdf"));	
+						
 					}			
 				}	
 			}

@@ -28,7 +28,7 @@
 				<p:column colspan="3">Gestion de Actas de Tutoria >> Descargar actas</p:column>
 			</p:row>
 			</f:facet>
-        
+        <h:form>
              <p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
 				<p:row>
     				<p:column colspan="4" rowspan="2">
@@ -127,7 +127,7 @@
 					</p:row>                    
                     <p:spacer width="50px"/>
                 </p:panelGrid>      
-                <h:form>
+                
 	                <p:outputPanel id="pnlDescargar" style="width:400px;margin-top:10px;" visible="#{!gestionarActasMBean.desactivarDescarga}">                	
 	                	<p:row>
 	                		<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">                    		
@@ -140,8 +140,9 @@
 	                   		</p:column>
 	                	</p:row>  
 					</p:outputPanel>  
-				</h:form>
+				
             </p:panel>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

@@ -1110,7 +1110,7 @@ public class RegistrarTutoriaMBean {
 					RequestContext.getCurrentInstance().showMessageInDialog(message); break;
 			case 17: message = new FacesMessage(FacesMessage.SEVERITY_WARN,"", "No se encontraron observaciones con los datos ingresados");
 					RequestContext.getCurrentInstance().showMessageInDialog(message); break;
-			case 18: message = new FacesMessage(FacesMessage.SEVERITY_WARN,"", "Las observaciones de tutoría se procesaron correctamente");
+			case 18: message = new FacesMessage(FacesMessage.SEVERITY_INFO,"", "Las observaciones de tutoría se procesaron correctamente");
 					RequestContext.getCurrentInstance().showMessageInDialog(message); break;
 			case 19: message = new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Debe seleccionar un alumno");
 					 RequestContext.getCurrentInstance().showMessageInDialog(message); break;
