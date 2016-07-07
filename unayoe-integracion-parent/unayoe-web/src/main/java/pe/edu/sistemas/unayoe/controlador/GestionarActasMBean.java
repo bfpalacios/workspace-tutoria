@@ -429,7 +429,10 @@ public class GestionarActasMBean {
 				}
 				else{
 					setDesactivarCarga(false);
-					setDesactivarTarea(false);
+					if(actaTutoria.getEstadoActa() == 0)
+						setDesactivarTarea(true);
+					else
+						setDesactivarTarea(false);
 				}			
 			}
 		}else{
@@ -729,7 +732,7 @@ public class GestionarActasMBean {
 					FacesContext.getCurrentInstance().addMessage(null, message); break;	
 			case 11:
 				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error",
-						"No se encontró una sesión de tutoría para registrar tareas");
+						"No se encontró una sesión de tutoría con acta para registrar tareas");
 				RequestContext.getCurrentInstance().showMessageInDialog(message);
 				break;
 		 	case 12: message = new FacesMessage(FacesMessage.SEVERITY_INFO,"", "Tareas registrada con éxito");
