@@ -197,6 +197,56 @@ public class GestionarActasMBean {
 				Ex.printStackTrace();
 			}
 	}
+	public void cargarTareasTutor(){
+		
+		try{
+
+
+							
+				TutoriaBO sesionTutoria = comunServices.obtenerSesionTutoria(ANIO_ACTUAL, PERIODO_ACTUAL, 
+						                                                     getTutoriaModelSelect().getcCodigo(), 
+						                                                     getTutoriaModelSelect().getpCodigo(), 
+						                                                     String.valueOf(getTutoriaModelSelect().getaCodigo()),
+						                                                     getTutoriaModelSelect().getSesion(), 
+						                                                     MODO, PROCESO);
+				
+
+		        
+				if (getListaObservaciones().size() > 0) {
+					for (TutoriaModel observacionTutoria : getListaObservaciones()) {
+						observacionTutoria.setSesion(sesionTutoria.getSesion());
+						getTutoriaServices().guardarObservacionesAsistencia(sesionTutoria.gettCodigo(),
+								observacionTutoria.getObservacion(), observacionTutoria.getCriticidad(),
+								observacionTutoria.getSesion(),observacionTutoria.getRazon(),observacionTutoria.getFechaFin());
+					}
+					mostrarMensaje(12);
+					inicializarClases();			
+					listarCursosxDocente();
+				}
+				else{
+					mostrarMensaje(11);
+				}
+		        
+				
+				
+				
+			}
+			catch(IOException IOEx){
+				IOEx.printStackTrace();
+			}
+			catch(SerialException SEx){
+				SEx.printStackTrace();
+			}
+			catch(SQLException SQLEx){
+				SQLEx.printStackTrace();
+			}
+			catch(NumberFormatException NFE){
+				NFE.printStackTrace();
+			}
+			catch(Exception Ex){
+				Ex.printStackTrace();
+			}
+	}
 	public void gestorCargaActas(FileUploadEvent e){
 		try{
 			UploadedFile archivoPDF = e.getFile();			
@@ -256,7 +306,8 @@ public class GestionarActasMBean {
 		}
 	}
 	
-	public void actualizarDocente(ValueChangeEvent e) throws Exception{		
+	public void actualizarDocente(ValueChangeEvent e) throws Exception{
+		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codCurso = (String) (e.getNewValue()==null?"": e.getNewValue());
 		List<ProfesorBO> listaProfesores = new ArrayList<ProfesorBO>();		
 		switch(PROCESO){
@@ -280,6 +331,7 @@ public class GestionarActasMBean {
 	}
 	
 	public void actualizarAlumnoGenerico(ValueChangeEvent e) throws Exception{
+		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codDocente = "";
 		String codCurso = "";
 		if (MODO == MODO_ADMIN){
@@ -312,6 +364,7 @@ public class GestionarActasMBean {
 	}	
 	
 	public void actualizarSesion(ValueChangeEvent e) throws Exception{
+		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codDocente = "";
 		String codAlumno = (String) (e.getNewValue()==null?"": e.getNewValue());
 		getTutoriaModelSelect().setaCodigo(codAlumno);
@@ -353,6 +406,7 @@ public class GestionarActasMBean {
 	
 	public void validarCargaActas(ValueChangeEvent e) throws Exception{
 		try{
+		setListaObservaciones(new ArrayList<TutoriaModel>());
 		int sesion = (Integer)(e.getNewValue()==null?0: e.getNewValue());
 		
 		SesionBO actaTutoria = tutoriaServices.obtenerActaTutoria(ANIO_ACTUAL, PERIODO_ACTUAL,

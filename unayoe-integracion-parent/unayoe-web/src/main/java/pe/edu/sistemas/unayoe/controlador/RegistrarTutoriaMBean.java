@@ -537,7 +537,41 @@ public class RegistrarTutoriaMBean {
 		}
 	}	
 	
-	
+	public void guardarControlTareasTutor(){
+		
+		
+		try{
+			if (getTutoriaModel().getListaObservacionesPendientes().size() == 0){
+				
+			}
+			else{
+				int indicadorEstado;
+				List<ObservacionBO> listaObservacionesPendientes = getTutoriaModel().getListaObservacionesPendientes();
+				for (ObservacionBO observacion : listaObservacionesPendientes){
+					if (observacion.getEstadoControl().equals("PENDIENTE")){
+						observacion.setObservacionCierre("");
+						indicadorEstado = 1;
+					}
+					else{
+						if(observacion.getEstadoControl().equals("PARCIALMENTE LEVANTADO")){
+							indicadorEstado = 2;
+						}else{
+							indicadorEstado = 3;
+						}
+						
+					}
+					observacion.setFecha_entrega(new FormateadorFecha().formatoFechaDDMMAAAA(new Date()));
+					tutoriaServices.actualizarEstadoObservacion(observacion, indicadorEstado);
+				}
+				limpiarClases();
+				listarCursosxDocente();
+				mostrarMensaje(18);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	public void buscarTareasTutoriaProfesor(){
 	
 		
@@ -545,7 +579,7 @@ public class RegistrarTutoriaMBean {
 			String codCurso = getTutoriaModelSelect().getcCodigo()==""?"Invalido":getTutoriaModelSelect().getcCodigo();
 			String codDocente =getTutoriaModelSelect().getpCodigo()==""?"Invalido":getTutoriaModelSelect().getpCodigo();
 			String codAlumno = getTutoriaModelSelect().getaCodigo()==""?"Invalido":getTutoriaModelSelect().getaCodigo();	
-			
+			System.out.println("DOCENTE : "+codDocente);
 			if (validarCamposPrincipalesTutoria(codCurso, codDocente, codAlumno)){
 				List<ObservacionBO> listaObservacionesTotales = tutoriaServices.listarObservaciones(codCurso, codDocente, 
 						                                                                            codAlumno, PROCESO);

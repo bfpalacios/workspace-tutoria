@@ -50,7 +50,7 @@
 									var="cursos" itemLabel="#{cursos.nombre}"
 									itemValue="#{cursos.cCodigo}" />
 								<f:ajax event="change" execute="@this"
-									render="selectOneProfesor selectOneAlumno selectOneSesion" />
+									render="selectOneProfesor selectOneAlumno selectOneSesion mostrarObservaciones" />
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
@@ -71,7 +71,7 @@
 									var="profesor" itemLabel="#{profesor.pNombre}"
 									itemValue="#{profesor.pCodigo}" />
 								<f:ajax event="change" execute="@this"
-									render="selectOneAlumno selectOneSesion" />
+									render="selectOneAlumno selectOneSesion mostrarObservaciones" />
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
@@ -91,7 +91,7 @@
 									value="#{gestionarActasMBean.tutoriaModel.listarAlumnos}"
 									var="alumnos" itemLabel="#{alumnos.aNombre}"
 									itemValue="#{alumnos.aCodigo}" />
-								<f:ajax event="change" execute="@this" render="selectOneSesion" />
+								<f:ajax event="change" execute="@this" render="selectOneSesion mostrarObservaciones" />
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
@@ -111,7 +111,7 @@
 									value="#{gestionarActasMBean.tutoriaModel.listarSesiones}"
 									var="sesion" itemLabel="#{sesion.descSesion}"
 									itemValue="#{sesion.nroSesion}" />
-								<f:ajax event="change" execute="@this" render="fileUpload" />
+								<f:ajax event="change" execute="@this" render="fileUpload mostrarObservaciones" />
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>

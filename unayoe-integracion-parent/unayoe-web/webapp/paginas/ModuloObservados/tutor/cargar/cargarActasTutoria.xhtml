@@ -59,7 +59,7 @@
 									var="cursos" itemLabel="#{cursos.nombre}"
 									itemValue="#{cursos.cCodigo}" />
 								<f:ajax event="change" execute="@this"
-									render="selectOneAlumno selectOneSesion" />
+									render="selectOneAlumno selectOneSesion mostrarObservaciones" />
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
@@ -79,7 +79,7 @@
 									value="#{gestionarActasMBean.tutoriaModel.listarAlumnos}"
 									var="alumnos" itemLabel="#{alumnos.aNombre}"
 									itemValue="#{alumnos.aCodigo}" />
-								<f:ajax event="change" execute="@this" render="selectOneSesion" />
+								<f:ajax event="change" execute="@this" render="selectOneSesion mostrarObservaciones" />
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
@@ -93,13 +93,15 @@
 							<p:selectOneMenu id="selectOneSesion"
 								value="#{gestionarActasMBean.tutoriaModelSelect.sesion}"
 								valueChangeListener="#{gestionarActasMBean.validarCargaActas}"
-								styleClass="ui-column-label-spij styleAlignRightColumn">
+								styleClass="ui-column-label-spij styleAlignRightColumn"
+								>
 								<f:selectItem itemLabel="Elija la sesión: " />
 								<f:selectItems
 									value="#{gestionarActasMBean.tutoriaModel.listarSesiones}"
 									var="sesion" itemLabel="#{sesion.descSesion}"
 									itemValue="#{sesion.nroSesion}" />
-								<f:ajax event="change" execute="@this" render="fileUpload" />
+								<f:ajax event="change" execute="@this" render="fileUpload mostrarObservaciones" />
+								
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
@@ -203,8 +205,8 @@
 				<p:row>
 					<p:column colspan="3">
 						<p:commandButton id="botonGuardar" value="Guardar"
-							icon="ui-icon-disk" update="tablaObservaciones"
-							actionListener="#{gestionarActasMBean.cargarTareas}" ajax="true" />
+							icon="ui-icon-disk" update="mostrarObservaciones,pnlLoginAcceso"
+							actionListener="#{gestionarActasMBean.cargarTareasTutor}" ajax="true" />
 					</p:column>
 
 				</p:row>
