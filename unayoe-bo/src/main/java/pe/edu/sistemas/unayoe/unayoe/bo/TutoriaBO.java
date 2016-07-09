@@ -44,6 +44,15 @@ public class TutoriaBO implements Serializable{
 	private String validacionObservacion;
 	private ArrayList<ClaseMaestra> listaAsistencia;
 	private ArrayList<ClaseMaestra> listaJustificacion;
+	private int num_sesiones;
+	private int num_asistencia_asistio;
+	private int num_asistencia_falto;
+	private int num_asistencia_tardanza;
+	private int num_tareas_pendiente;
+	private int num_tareas_parcialmente;
+	private int num_tareas_cerrado;
+	private int num_actas;
+	
 	
 	public String getNombre() {
 		return nombre;
@@ -260,5 +269,55 @@ public class TutoriaBO implements Serializable{
 	}
 	public void setEstadoActa(int estadoActa) {
 		this.estadoActa = estadoActa;
-	}	
+	}
+	public int getNum_sesiones() {
+		return num_sesiones;
+	}
+	public void setNum_sesiones(int num_sesiones) {
+		this.num_sesiones = num_sesiones;
+	}
+	public int getNum_asistencia_asistio() {
+		return num_asistencia_asistio;
+	}
+	public void setNum_asistencia_asistio(int num_asistencia_asistio) {
+		this.num_asistencia_asistio = num_asistencia_asistio;
+	}
+	public int getNum_asistencia_falto() {
+		return num_asistencia_falto;
+	}
+	public void setNum_asistencia_falto(int num_asistencia_falto) {
+		this.num_asistencia_falto = num_asistencia_falto;
+	}
+	public int getNum_asistencia_tardanza() {
+		return num_asistencia_tardanza;
+	}
+	public void setNum_asistencia_tardanza(int num_asistencia_tardanza) {
+		this.num_asistencia_tardanza = num_asistencia_tardanza;
+	}
+	public int getNum_tareas_pendiente() {
+		return num_tareas_pendiente;
+	}
+	public void setNum_tareas_pendiente(int num_tareas_pendiente) {
+		this.num_tareas_pendiente = num_tareas_pendiente;
+	}
+	public int getNum_tareas_parcialmente() {
+		return num_tareas_parcialmente;
+	}
+	public void setNum_tareas_parcialmente(int num_tareas_parcialmente) {
+		this.num_tareas_parcialmente = num_tareas_parcialmente;
+	}
+	public int getNum_tareas_cerrado() {
+		return num_tareas_cerrado;
+	}
+	public void setNum_tareas_cerrado(int num_tareas_cerrado) {
+		this.num_tareas_cerrado = num_tareas_cerrado;
+	}
+	public int getNum_actas() {
+		return num_actas;
+	}
+	public void setNum_actas(int num_actas) {
+		this.num_actas = num_actas;
+	}
+
+	
 }
