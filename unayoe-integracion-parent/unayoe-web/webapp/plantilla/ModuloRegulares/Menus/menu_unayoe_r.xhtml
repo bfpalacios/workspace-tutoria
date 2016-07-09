@@ -7,34 +7,38 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-	<p:panelMenu style="font-size:10px;"
-		transient="true" >		
-		<p:submenu label="Notas de los Alumnos">			
-			<p:menuitem 
-				value="Visualizar Notas" action="#{notasAlumnoMBean.selectorVisualizacionNotas(2,4)}"
-				icon="ui-icon-arrowrefresh-1-w" />
+<!-- 	<h:form> -->
+		<p:panelMenu style="font-size:10px;" transient="true">
+			<p:submenu label="Notas de los Alumnos">
+				<p:menuitem value="Visualizar Notas"
+					action="#{notasAlumnoMBean.selectorVisualizacionNotas(2,4)}"
+					icon="ui-icon-arrowrefresh-1-w" />
 			</p:submenu>
-		
-		<p:submenu label="Encuesta">
-			<p:menuitem value="Calificar encuesta" action="#{registrarTutoriaMBean.selectorRegistroEncuesta(3)}"
-				icon="ui-icon-arrowrefresh-1-w"  />
-		</p:submenu>
-		
-		<p:submenu label="Gestión de actas">				
-			<p:menuitem 
-				value="Descargar Actas" action="#{gestionarActasMBean.selectorDescargaActas(2,4)}"
-				icon="ui-icon-arrowrefresh-1-w" />	
-		</p:submenu>		
-		
-		<p:submenu label="Visualizar Horarios de Tutoría">
-			<p:menuitem value="De alumnos" action="#{registrarTutoriaMBean.selectorPaginasConsultaTutoria(2,4)}"
-				icon="ui-icon-arrowrefresh-1-w"  />						
-		</p:submenu>
-				 
-		<p:submenu label="Salir del sistema">
-        	<p:menuitem value="Cerrar Sesion" url="#{request.contextPath}/j_spring_security_logout" 
-				icon="ui-icon-arrowrefresh-1-w" />			 
-		</p:submenu>
-	</p:panelMenu>
+
+			<p:submenu label="Encuesta">
+				<p:menuitem value="Calificar encuesta"
+					action="#{registrarTutoriaMBean.selectorRegistroEncuesta(3)}"
+					icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+
+			<p:submenu label="Gestión de actas">
+				<p:menuitem value="Descargar Actas"
+					action="#{gestionarActasMBean.selectorDescargaActas(2,4)}"
+					icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+
+			<p:submenu label="Visualizar Horarios de Tutoría">
+				<p:menuitem value="De alumnos"
+					action="#{registrarTutoriaMBean.selectorPaginasConsultaTutoria(2,4)}"
+					icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+
+			<p:submenu label="Salir del sistema">
+				<p:menuitem value="Cerrar Sesion"
+					url="#{request.contextPath}/j_spring_security_logout"
+					icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+		</p:panelMenu>
+<!-- 	</h:form> -->
 </h:body>
 </html>

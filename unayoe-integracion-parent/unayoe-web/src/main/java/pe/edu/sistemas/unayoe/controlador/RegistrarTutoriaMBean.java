@@ -287,7 +287,7 @@ public class RegistrarTutoriaMBean {
 	}
     
     public void actualizarHoraFin(ValueChangeEvent e) throws Exception{		
-		int idHoraInicio = Integer.parseInt((String) (e.getNewValue()==""?"0":e.getNewValue()));		
+		int idHoraInicio = Integer.parseInt((String) (e.getNewValue()==null?"0":e.getNewValue()));		
 		List<ClaseMaestra> listaHoraFin = new ArrayList<ClaseMaestra>();;
 		listaHoraFin = tutoriaServices.actualizarHoraFin(idHoraInicio);
 		getTutoriaModel().setListaHoraFin(listaHoraFin);	
