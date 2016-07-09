@@ -62,6 +62,14 @@
 						value="Tareas asignadas a los alumnos" action="#{registrarTutoriaMBean.selectorVisualizacionDatosTutoria(1,5)}"
 						icon="ui-icon-arrowrefresh-1-w" />	
 				</p:submenu>
+				<p:submenu label="Reportes">
+					<p:menuitem 
+						value="Reporte alumnos" action="#{registrarTutoriaMBean.selectorPaginasReportes(1,1)}"
+						icon="ui-icon-arrowrefresh-1-w" />		
+					<p:menuitem 
+						value="Reporte tutores" action="#{registrarTutoriaMBean.selectorPaginasReportes(2,1)}"
+						icon="ui-icon-arrowrefresh-1-w" />						
+				</p:submenu>				
 				<p:submenu label="Estadísticas del sistema">
 					<p:menuitem 
 						value="Estadísticas" action="#{registrarTutoriaMBean.selectorPaginasIndicadores(1,1)}"
