@@ -1,5 +1,6 @@
 package pe.edu.sistemas.unayoe.controlador;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -772,6 +773,15 @@ public class RegistrarTutoriaMBean {
     	horario.setDescFrecuencia(tutoriaBO.getDesc_frecuencia());
     	horario.settPeriodo(tutoriaBO.gettPeriodo());
     	horario.settAnio(tutoriaBO.gettAnio());
+    	horario.setNum_sesiones(tutoriaBO.getNum_sesiones());
+    	horario.setNum_asistencia_asistio(tutoriaBO.getNum_asistencia_asistio());
+    	horario.setNum_asistencia_falto(tutoriaBO.getNum_asistencia_falto());
+    	horario.setNum_asistencia_tardanza(tutoriaBO.getNum_asistencia_tardanza());
+    	horario.setNum_tareas_cerrado(tutoriaBO.getNum_tareas_cerrado());
+    	horario.setNum_tareas_parcialmente(tutoriaBO.getNum_tareas_parcialmente());
+    	horario.setNum_tareas_pendiente(tutoriaBO.getNum_tareas_pendiente());
+    	horario.setNum_actas(tutoriaBO.getNum_actas());
+    	
     	return horario;
     }
    
@@ -1210,6 +1220,40 @@ public class RegistrarTutoriaMBean {
 		return pagina;		
 	}
 	
+	public String selectorPaginasReportes(int procesoTutoria, int tipoUsuario) throws Exception{
+		String pagina = "";
+		inicializarClases();
+		switch(procesoTutoria){
+			case 1:   PROCESO = PROCESO_OBSERVADOS;
+				switch(tipoUsuario){ 
+						case 1: MODO_USUARIO = MODO_ADMIN;
+								listarCursos();
+								pagina = "/paginas/ModuloObservados/admin/reportes/verReporteAlumnos.xhtml"; break;
+						case 2: MODO_USUARIO = MODO_OCAA;	
+					    		pagina = "/paginas/ModuloObservados/ocaa/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+						case 3: MODO_USUARIO = MODO_DIR_ACA;	
+								pagina = "/paginas/ModuloObservados/diraca/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+						case 4: MODO_USUARIO = MODO_UNAYOE;	
+								pagina = "/paginas/ModuloObservados/unayoe/verHorariosTutoriaAlumno.xhtml"; break;
+						case 5: MODO_USUARIO = MODO_TUTOR;	
+								pagina = "/paginas/ModuloObservados/tutor/visualizar/verHorariosTutoriaAlumno.xhtml"; break;						
+					} break;	
+			case 2: switch(tipoUsuario){ 
+						case 1: MODO_USUARIO = MODO_ADMIN;
+								listarCursos();
+								pagina = "/paginas/ModuloObservados/admin/reportes/verReporteTutores.xhtml"; break;
+						case 2: MODO_USUARIO = MODO_OCAA;	
+								pagina = "/paginas/ModuloRegulares/ocaa/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+						case 3: MODO_USUARIO = MODO_DIR_ACA;	
+								pagina = "/paginas/ModuloRegulares/diraca/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+						case 4: MODO_USUARIO = MODO_UNAYOE;	
+								pagina = "/paginas/ModuloRegulares/unayoe/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+						case 5: MODO_USUARIO = MODO_TUTOR;	
+								pagina = "/paginas/ModuloRegulares/tutor/visualizar/verHorariosTutoriaAlumno.xhtml"; break;
+					} break;
+		}			
+		return pagina;		
+	}
 	public String selectorPaginasConsultaTutoriaSemanal(int procesoTutoria, int tipoUsuario) throws Exception{
 		String pagina = "";
 		listarCursos();	
@@ -1569,6 +1613,32 @@ public class RegistrarTutoriaMBean {
     	}else mostrarMensaje(20);
     }
 
+    public void imprimirReporteGeneralAlumno() throws Exception{
+    	System.out.println("entra a reporte de docente");
+    	if( !listAsistenciaTutoriaDocente.isEmpty()){
+	    	System.out.println("Impresion de reporte de horario:");
+	    	
+	    	ControladorReporte reporte =  new ControladorReporte();
+	    	reporte.setNombreReporte("ReporteGeneralAlumnos");
+	    	reporte.generarReporteHorarioDocente(obtenerParametros(), obtenerCamposReporteGeneralAlumnos() );
+	//    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
+	//    		System.out.println(horario);
+	//    	}
+    	}else mostrarMensaje(20);
+    }
+    public void imprimirReporteGeneralTutor() throws Exception{
+    	System.out.println("entra a reporte de docente");
+    	if( !listAsistenciaTutoriaDocente.isEmpty()){
+	    	System.out.println("Impresion de reporte de horario:");
+	    	
+	    	ControladorReporte reporte =  new ControladorReporte();
+	    	reporte.setNombreReporte("ReporteGeneralProfesores");
+	    	reporte.generarReporteHorarioDocente(obtenerParametros(), obtenerCamposReporteGeneralAlumnos() );
+	//    	for(AsistenciaTutoriaModel horario : listAsistenciaTutoria){
+	//    		System.out.println(horario);
+	//    	}
+    	}else mostrarMensaje(20);
+    }
     private Map<Object, Object> obtenerParametrosAlumno() throws Exception{
     	Map<Object, Object> pars = new HashMap<Object, Object>();
     	//String ruta_imagen="classpath:reportes/";
@@ -1645,7 +1715,50 @@ public class RegistrarTutoriaMBean {
     	}
     	return list;
     }
-	
+    private ArrayList<Object> obtenerCamposReporteGeneralAlumnos(){
+    	ArrayList<Object> list = new ArrayList<Object>();
+    	for(AsistenciaTutoriaModel model : listAsistenciaTutoriaDocente){
+    		HorarioTutoria horarioDocente = new HorarioTutoria();
+    		horarioDocente.setCodCurso(model.getC_codigo());
+    		horarioDocente.setDia(model.getDia());
+    		horarioDocente.setHoraFin(model.getHoraFin());
+    		horarioDocente.setHoraIni(model.getHoraIni());
+    		horarioDocente.setNomCurso(model.getC_nombre());
+    		horarioDocente.setNomProfesor(model.getP_nombre()+" "+model.getP_apellidos());
+    		horarioDocente.setRepitencias(model.getRepitencia());
+    		horarioDocente.setCodAlu(model.getA_codigo());
+    		horarioDocente.setNomAlu(model.getP_nombre());   
+    		horarioDocente.setCiclo(model.gettAnio()+"-"+model.gettPeriodo());
+    		horarioDocente.setFrecuencia(model.getDescFrecuencia());
+    		horarioDocente.setNum_sesiones(model.getNum_sesiones());
+    		horarioDocente.setNum_asistencia_asistio(model.getNum_asistencia_asistio());
+    		horarioDocente.setNum_asistencia_falto(model.getNum_asistencia_falto());
+    		horarioDocente.setNum_asistencia_tardanza(model.getNum_asistencia_tardanza());
+    		horarioDocente.setNum_tareas_cerrado(model.getNum_tareas_cerrado());
+    		horarioDocente.setNum_tareas_parcialmente(model.getNum_tareas_parcialmente());
+    		horarioDocente.setNum_tareas_pendiente(model.getNum_tareas_pendiente());
+    		double porcentaje=((model.getNum_asistencia_asistio()+model.getNum_asistencia_tardanza()))*100/model.getNum_sesiones();
+    		System.out.println("porcentaje :" +porcentaje);
+    		DecimalFormat df = new DecimalFormat("#.##");      
+    		porcentaje = Double.valueOf(df.format(porcentaje));
+    		horarioDocente.setPorcentaje_asistencias(porcentaje);
+    		horarioDocente.setNum_actas(model.getNum_actas());
+    		list.add(horarioDocente);
+    	}
+    	return list;
+    }
+    
+    public int sumar(int a , int b){
+    	return a+b;
+    }
+    public int sumarTres(int a,int b , int c){
+    	return a+b+c;
+    }
+    public double porcentaje(int asistio,int tardanza , int sesiones){
+		double porcentaje=((asistio+tardanza))*100/sesiones;
+		DecimalFormat df = new DecimalFormat("#.##");      
+		return Double.valueOf(df.format(porcentaje));
+    }
 	public AsistenciaTutoriaModel getAsistenciaTutoriaModelSelect() {
         return asistenciaTutoriaModelSelect;
     }
