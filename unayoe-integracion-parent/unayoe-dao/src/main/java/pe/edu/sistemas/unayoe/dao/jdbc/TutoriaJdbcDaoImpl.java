@@ -440,6 +440,14 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 				horarioTutoria.setRepitencias(String.valueOf(rs.getInt(12)));
 				horarioTutoria.setDesc_frecuencia(rs.getString(13).trim());
 				horarioTutoria.setaNombre(rs.getString(14).trim());//deberia ser setPnombre por profesor pero en la tabla lo ponemos asi
+				horarioTutoria.setNum_asistencia_asistio(rs.getInt(15));
+				horarioTutoria.setNum_asistencia_falto(rs.getInt(16));
+				horarioTutoria.setNum_asistencia_tardanza(rs.getInt(17));
+				horarioTutoria.setNum_sesiones(rs.getInt(18));
+				horarioTutoria.setNum_tareas_pendiente(rs.getInt(19));
+				horarioTutoria.setNum_tareas_parcialmente(rs.getInt(20));
+				horarioTutoria.setNum_tareas_cerrado(rs.getInt(21));
+				horarioTutoria.setNum_actas(rs.getInt(22));
 				listaHorarioTutoria.add(horarioTutoria);
 			}			
 		} 
