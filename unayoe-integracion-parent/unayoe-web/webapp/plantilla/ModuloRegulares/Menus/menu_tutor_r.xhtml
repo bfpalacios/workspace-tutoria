@@ -46,6 +46,10 @@
 			</p:submenu>
 
 			<p:submenu label="Gestión de Actas de Tutoria">
+				<p:menuitem 
+					value="Cargar Actas" action="#{gestionarActasMBean.selectorCargaActas(2,3)}"
+					icon="ui-icon-arrowrefresh-1-w" />	
+				
 				<p:menuitem value="Descargar Actas"
 					action="#{gestionarActasMBean.selectorDescargaActas(2,3)}"
 					icon="ui-icon-arrowrefresh-1-w" />
