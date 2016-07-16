@@ -304,12 +304,18 @@ public class GestionarActasMBean {
 		String codDocente = "";
 		String codCurso = "";
 		if (MODO == MODO_ADMIN) {
-			codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
+//			codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
+			codCurso= (String) (e.getNewValue() == null ? "" : e.getNewValue());
 			codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		} else {
 			if (MODO == MODO_TUTOR) {
 				codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 				codDocente = obtenerUsuario().getUsername();
+			}else{
+//				if (MODO == MODO_UNAYOE) {
+//					codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
+//					codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
+//				}
 			}
 		}
 		List<AlumnoBO> listaAlumnos = alumnoServices.listarAlumnoTutoria(codDocente, codCurso, PROCESO, MODO);
@@ -717,6 +723,7 @@ public class GestionarActasMBean {
 				setDesactivarDescarga(true);
 				pagina = "/paginas/ModuloRegulares/unayoe/cargar/descargarActasTutoria.xhtml";
 				break;
+			
 			}
 			break;
 		}

@@ -7,45 +7,50 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-<!-- 	<h:form> -->
-		<p:panelMenu style="font-size:10px;" transient="true">
+	<!-- 	<h:form> -->
+	<p:panelMenu style="font-size:10px;" transient="true">
 
-			<p:submenu label="Registrar Datos de Tutoria">
-				<p:menuitem value="Registrar"
-					action="#{registrarTutoriaMBean.registrarDatosTutoriaDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-			</p:submenu>
+		<p:submenu label="Registrar Datos de Tutoria">
+			<p:menuitem value="Crear Tutoria"
+				action="#{registrarTutoriaMBean.selectorPaginasRegistroTutoria(1,3)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
+		<!-- action="#{registrarTutoriaMBean.registrarDatosTutoriaDirAca}" -->
+		<p:submenu label="Visualizar Horarios de Tutoría">
+			<p:menuitem value="De alumnos"
+				action="#{registrarTutoriaMBean.selectorPaginasConsultaTutoria(2,3)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+			<!-- 				<p:menuitem value="De tutor  " -->
+			<!-- 					action="#{registrarTutoriaMBean.visualizarHorarioDeTutoriaTutorDirAca}" -->
+			<!-- 					icon="ui-icon-arrowrefresh-1-w" /> -->
+			<!-- 				<p:menuitem value="General " -->
+			<!-- 					action="#{registrarTutoriaMBean.visualizarHorarioDeTutoriaSemanalDirAca}" -->
+			<!-- 					icon="ui-icon-arrowrefresh-1-w" /> -->
+		</p:submenu>
+		<p:submenu label="Visualizar Reporte de Asistencia del Alumno">
+			<p:menuitem value="De Alumnos a Tutoria"
+				action="#{registrarTutoriaMBean.selectorVisualizacionDatosTutoria(2,3)}"
+				icon="ui-icon-arrowrefresh-1-w" />
+			<p:menuitem value="De Alumnos a Clases "
+				action="#{visualizarReporteMBean.visualizarReporteAsistenciaAlumnosClaseDirAca}"
+				icon="ui-icon-arrowrefresh-1-w" />
+			<!-- 				<p:menuitem value="De Tutor " -->
+			<!-- 					action="#{visualizarReporteMBean.visualizarReporteAsistenciaDeTutorDirAca}" -->
+			<!-- 					icon="ui-icon-arrowrefresh-1-w" /> -->
+		</p:submenu>
+<!-- 		<p:submenu label="Gestión de Actas de Tutoria"> -->
+<!-- 			<p:menuitem value="Descargar Actas" -->
+<!-- 				action="#{gestionarActasMBean.selectorDescargaActas(2,1)}" -->
+<!-- 				icon="ui-icon-arrowrefresh-1-w" /> -->
+<!-- 		</p:submenu> -->
+		<p:submenu label="Salir del sistema">
+			<p:menuitem value="Cerrar Sesion"
+				url="#{request.contextPath}/j_spring_security_logout"
+				icon="ui-icon-arrowrefresh-1-w" />
 
-			<p:submenu label="Visualizar Horarios de Tutoría">
-				<p:menuitem value="De alumnos"
-					action="#{registrarTutoriaMBean.visualizarHorarioDeTutoriaAlumnoDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-				<p:menuitem value="De tutor  "
-					action="#{registrarTutoriaMBean.visualizarHorarioDeTutoriaTutorDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-				<p:menuitem value="General "
-					action="#{registrarTutoriaMBean.visualizarHorarioDeTutoriaSemanalDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-			</p:submenu>
-			<p:submenu label="Visualizar Reporte de Asistencia del Alumno">
-				<p:menuitem value="De Alumnos a Tutoria"
-					action="#{visualizarReporteMBean.visualizarReporteAsistenciaAlumnosTutoriaDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-				<p:menuitem value="De Alumnos a Clases "
-					action="#{visualizarReporteMBean.visualizarReporteAsistenciaAlumnosClaseDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-				<p:menuitem value="De Tutor "
-					action="#{visualizarReporteMBean.visualizarReporteAsistenciaDeTutorDirAca}"
-					icon="ui-icon-arrowrefresh-1-w" />
-			</p:submenu>
-			<p:submenu label="Salir del sistema">
-				<p:menuitem value="Cerrar Sesion"
-					url="#{request.contextPath}/j_spring_security_logout"
-					icon="ui-icon-arrowrefresh-1-w" />
+		</p:submenu>
 
-			</p:submenu>
-
-		</p:panelMenu>
-<!-- 	</h:form> -->
+	</p:panelMenu>
+	<!-- 	</h:form> -->
 </h:body>
 </html>
