@@ -1057,15 +1057,17 @@ Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,D
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('ADMINPAR','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('TUTOROBS','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('DIRECAD','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
+Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('DIRECADREG','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('UNAYOE','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
+Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('UNAYOEREG','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('OCAA','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
+Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('OCAAREG','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('ALUMNOREG','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('TUTOR02','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('TUTOR03','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
-Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('TUTORREG'
-    ,'601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
-Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('DECANO'
-    ,'601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
+Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('TUTORREG','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
+Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('DECANO','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
+Insert into DBTUTORIA.USUARIO (ID_USUARIO,CLAVE,NOMBRES,MATERNO,PATERNO,CORREO,DIRECCION,TELEFONO,ESTADO) values ('DECANOREG','601f1889667efaebb33b8c12572835da3f027f78',null,null,null,null,null,null,'A');
 
 REM INSERTING into DBTUTORIA.USUARIO_ROL
 SET DEFINE OFF;
@@ -1077,13 +1079,13 @@ Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('2','OCAA','RO
 Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('6','ADMINREG','ROLE_ADMIN_R');
 Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('5','TUTOR02','ROLE_TUTOR_O');
 Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('5','TUTOR03','ROLE_TUTOR_O');
-Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('7','OCAA','ROLE_OCAA_R');
---Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('8','DIRECAD','ROLE_DIR_ACA_R');
-Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('9','UNAYOE','ROLE_UNAYOE_R');
+Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('7','OCAAREG','ROLE_OCAA_R');
+Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('8','DIRECADREG','ROLE_DIR_ACA_R');
+Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('9','UNAYOEREG','ROLE_UNAYOE_R');
 Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('11','ALUMNOREG','ROLE_ALUMNO_R');
 Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('10','TUTORREG','ROLE_TUTOR_R');
 Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('12','DECANO','ROLE_DECANO_O');
-Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('13','DECANO','ROLE_DECANO_R');
+Insert into DBTUTORIA.USUARIO_ROL (ID_ROL,ID_USUARIO,ROL) values ('13','DECANOREG','ROLE_DECANO_R');
 REM INSERTING into DBTUTORIA.USUARIO_ROL_EQUIVALENCIA
 SET DEFINE OFF;
 Insert into DBTUTORIA.USUARIO_ROL_EQUIVALENCIA (COD_USUARIO,ROL_USUARIO,COD_SISTEMA) values ('TUTOROBS','ROLE_TUTOR_O','PR000001');
@@ -5403,7 +5405,7 @@ END LISTAR_HORARIOSTUTORIA_ALUMNO;
 --------------------------------------------------------
 set define off;
 
- create or replace PROCEDURE             "LISTAR_HORARIOSTUTORIA_DOCENTE" 
+create or replace PROCEDURE             "LISTAR_HORARIOSTUTORIA_DOCENTE" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : LISTAR_HORARIOSTUTORIA_DOCENTE                                */
 /* Objetivo  : Listar los horarios de tutor?s de los docentes               */
@@ -5731,7 +5733,7 @@ END LISTAR_SESIONES_CIERRE;
 --------------------------------------------------------
 set define off;
 
-  CREATE OR REPLACE PROCEDURE "DBTUTORIA"."LISTAR_SESIONES_TUTORIA" 
+ create or replace PROCEDURE             "LISTAR_SESIONES_TUTORIA" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : LISTAR_SESIONES_TUTORIA                                       */
 /* Objetivo  : Listar las sesiones de una tutor?                            */
@@ -5760,7 +5762,7 @@ BEGIN
                                   WHERE TUT.T_ANIO    = LISTAR_SESIONES_TUTORIA.ANIO 
                                     AND TUT.T_PERIODO = LISTAR_SESIONES_TUTORIA.PERIODO 
                                     AND TUT.C_CODIGO  = LISTAR_SESIONES_TUTORIA.COD_CURSO
-                                    AND TUT.P_CODIGO  = LISTAR_SESIONES_TUTORIA.COD_TUTOR
+                                    
                                     AND TUT.A_CODIGO  = LISTAR_SESIONES_TUTORIA.COD_ALUMNO
                                     AND TUT.T_TIPO_ALUMNO = LISTAR_SESIONES_TUTORIA.TIPO_ALUMNO)
               AND PRGT.ANIO    = LISTAR_SESIONES_TUTORIA.ANIO
@@ -5856,7 +5858,7 @@ END LISTAR_TUTORES_REGULARES;
 --------------------------------------------------------
 set define off;
 
-  CREATE OR REPLACE PROCEDURE "DBTUTORIA"."OBTENER_ACTA_TUTORIA" 
+create or replace PROCEDURE             "OBTENER_ACTA_TUTORIA" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : OBTENER_ACTA_TUTORIA                                          */
 /* Objetivo  : Obtener los datos del acta de una sesi? de tutor?           */
@@ -5886,7 +5888,7 @@ BEGIN
                                   WHERE TUT.T_ANIO    = OBTENER_ACTA_TUTORIA.ANIO 
                                     AND TUT.T_PERIODO = OBTENER_ACTA_TUTORIA.PERIODO 
                                     AND TUT.C_CODIGO  = OBTENER_ACTA_TUTORIA.COD_CURSO
-                                    AND TUT.P_CODIGO  = OBTENER_ACTA_TUTORIA.COD_TUTOR
+                                    
                                     AND TUT.A_CODIGO  = OBTENER_ACTA_TUTORIA.COD_ALUMNO
                                     AND TUT.T_TIPO_ALUMNO = OBTENER_ACTA_TUTORIA.TIPO_ALUMNO)
               AND PRGT.ANIO    = OBTENER_ACTA_TUTORIA.ANIO
