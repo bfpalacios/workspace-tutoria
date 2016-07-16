@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - miÈrcoles-julio-06-2016   
+-- Archivo creado  - mi√©rcoles-julio-06-2016   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence SEC_COD_ID_HORARIO
@@ -773,22 +773,22 @@ SET DEFINE OFF;
 Insert into DBTUTORIA.ALUMNO_REGULAR (ANIO,PERIODO,COD_ALUMNO,NOM_ALUMNO) values ('2016','1','10013167','CESAR CAMPOS CONTRERAS');
 REM INSERTING into DBTUTORIA.AREA_CONOCIMIENTO
 SET DEFINE OFF;
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0001','PROGRAMACI”N');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0002','CIENCIAS MATEM¡TICAS');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0003','CIENCIAS FÕSICAS');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0004','CIENCIAS ECON”MICAS');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0001','PROGRAMACI√ìN');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0002','CIENCIAS MATEM√ÅTICAS');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0003','CIENCIAS F√çSICAS');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0004','CIENCIAS ECON√ìMICAS');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0005','CIENCIAS COMPUTACIONALES');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0006','ELECTR”NICA');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0006','ELECTR√ìNICA');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0007','MODELAMIENTO Y BASES DE DATOS');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0008','ARQUITECTURA DEL COMPUTADOR');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0009','ESTADÕSTICA');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0009','ESTAD√çSTICA');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0010','SISTEMAS COMPUTACIONALES');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0011','DISE—O DE SISTEMAS');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0011','DISE√ëO DE SISTEMAS');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0012','INTELIGENCIA ARTIFICIAL');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0013','GESTI”N EMPRESARIAL');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0013','GESTI√ìN EMPRESARIAL');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0014','HISTORIA');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0015','TALLERES');
-Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0016','DIBUJO Y DISE—O');
+Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0016','DIBUJO Y DISE√ëO');
 Insert into DBTUTORIA.AREA_CONOCIMIENTO (COD_AREA,NOMBRE_AREA) values ('A0017','REDES DE COMPUTADORAS');
 REM INSERTING into DBTUTORIA.ASISTENCIA_C_ALUM
 SET DEFINE OFF;
@@ -821,73 +821,73 @@ REM INSERTING into DBTUTORIA.CONVOCATORIA_PAR
 SET DEFINE OFF;
 REM INSERTING into DBTUTORIA.CURSO
 SET DEFINE OFF;
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201001','ALGORÕTMICA I                                    ','4','A0001');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201001','ALGOR√çTMICA I                                    ','4','A0001');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201003','CALCULO I                                         ','4','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201004','MATEM¡TICA B¡SICA I                             ','4','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201007','COMPUTACI”N E INFORM¡TICA                       ','4','A0005');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201004','MATEM√ÅTICA B√ÅSICA I                             ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201007','COMPUTACI√ìN E INFORM√ÅTICA                       ','4','A0005');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201008','TEORIA DE SISTEMAS                                ','3','A0005');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201009','TALLER DE TECNICAS DE ESTUDIO                     ','3','A0015');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202001','ALGORÕTMICA II                                   ','4','A0001');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202003','C¡LCULO II                                       ','4','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202004','MATEM¡TICA B¡SICA II                            ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202001','ALGOR√çTMICA II                                   ','4','A0001');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202003','C√ÅLCULO II                                       ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202004','MATEM√ÅTICA B√ÅSICA II                            ','4','A0002');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202007','FISICA GENERAL                                    ','4','A0003');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202008','ESTRUCTURA DE DATOS                               ','4','A0001');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0202009','ECONOMIA                                          ','2','A0004');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203001','ALGORÕTMICA III                                  ','4','A0001');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203004','MATEM¡TICA DISCRETA                              ','4','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203005','ESTADÕSTICA I                                    ','4','A0009');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203006','DISE—O GR¡FICO                                  ','3','A0016');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203001','ALGOR√çTMICA III                                  ','4','A0001');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203004','MATEM√ÅTICA DISCRETA                              ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203005','ESTAD√çSTICA I                                    ','4','A0009');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203006','DISE√ëO GR√ÅFICO                                  ','3','A0016');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203007','ELECTROMAGNETISMO                                 ','3','A0003');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203008','ORGANIZACI”N Y ADMINISTRACI”N                   ','3','A0013');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204001','T…CNICAS DE MODELAMIENTO                         ','4','A0007');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204002','COMPUTACI”N GR¡FICA                             ','4','A0005');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0203008','ORGANIZACI√ìN Y ADMINISTRACI√ìN                   ','3','A0013');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204001','T√âCNICAS DE MODELAMIENTO                         ','4','A0007');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204002','COMPUTACI√ìN GR√ÅFICA                             ','4','A0005');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204004','ECUACIONES DIFERENCIALES                          ','4','A0002');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204006','ESTADISTICA II                                    ','4','A0009');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204007','CIRCUITOS DIGITALES                               ','4','A0006');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0204008','CONTABILIDAD GENERAL                              ','2','A0004');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205001','BASE DE DATOS                                     ','4','A0007');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205006','M…TODOS NUM…RICOS                               ','3','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205007','INVESTIGACI”N OPERATIVA I                        ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205006','M√âTODOS NUM√âRICOS                               ','3','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205007','INVESTIGACI√ìN OPERATIVA I                        ','4','A0002');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205008','SISTEMAS DIGITALES                                ','4','A0006');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205009','LENGUAJES Y TRADUCTORES                           ','3','A0005');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0205010','CONTABILIDAD GERENCIAL                            ','3','A0004');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206001','SISTEMAS OPERATIVOS                               ','4','A0010');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206007','AN¡LISIS DE SISTEMAS                             ','4','A0011');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206008','INVESTIGACI”N OPERATIVA II                       ','4','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206009','TRANSMISI”N DE DATOS                             ','4','A0017');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206007','AN√ÅLISIS DE SISTEMAS                             ','4','A0011');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206008','INVESTIGACI√ìN OPERATIVA II                       ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206009','TRANSMISI√ìN DE DATOS                             ','4','A0017');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206010','ARQUITECTURA DE COMPUTADORAS                      ','4','A0008');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0206011','TALLER DE PROYECTOS I                             ','3','A0015');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207002','REDES DE COMPUTADORAS                             ','4','A0017');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207003','DISE—O DE SISTEMAS                               ','4','A0011');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207007','DISE—O DE INTERFACE DE USUARIO                   ','3','A0011');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207003','DISE√ëO DE SISTEMAS                               ','4','A0011');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207007','DISE√ëO DE INTERFACE DE USUARIO                   ','3','A0011');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207008','INTELIGENCIA ARTIFICIAL                           ','4','A0012');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207009','MODELOS Y SIMULACI”N                             ','4','A0002');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207010','INGENIERÕA ECON”MICA                            ','3','A0004');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207009','MODELOS Y SIMULACI√ìN                             ','4','A0002');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0207010','INGENIER√çA ECON√ìMICA                            ','3','A0004');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208001','INGENIERIA DE INFORMACION                         ','4','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208003','SISTEMAS DISTRIBUIDOS                             ','4','A0010');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208007','INGENIERÕA DE SOFTWARE                           ','4','A0001');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208007','INGENIER√çA DE SOFTWARE                           ','4','A0001');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208008','METOD. PARA TESIS                                 ','2','A0015');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208009','TALLER DE PROYECTOS II                            ','3','A0015');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208010','INGENIERÕA DE CONTROL                            ','4','A0008');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C209001M','AUDIT. Y SEG. EN INFORM¡TICA                     ','3','A0013');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0208010','INGENIER√çA DE CONTROL                            ','4','A0008');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C209001M','AUDIT. Y SEG. EN INFORM√ÅTICA                     ','3','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0209003','INGENIERIA DE NEGOCIOS                            ','2','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C209005M','MARKETING                                         ','2','A0013');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0209006','DERECHO INFORM¡TICO                              ','2','A0013');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0209006','DERECHO INFORM√ÅTICO                              ','2','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0209007','PROYECTO DE TESIS I                               ','3','A0015');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0209008','FORM. Y EVAL. DE PROYECTOS                        ','3','A0013');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201101','GERENCIA INFORM¡TICA                             ','3','A0013');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201103','TENDENCIAS TECNOL”GICAS                          ','3','A0005');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201104','GESTION DE PROY. INFORM¡TICOS                    ','3','A0013');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201101','GERENCIA INFORM√ÅTICA                             ','3','A0013');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201103','TENDENCIAS TECNOL√ìGICAS                          ','3','A0005');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201104','GESTION DE PROY. INFORM√ÅTICOS                    ','3','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201105','PROYECTO DE TESIS II                              ','3','A0015');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201106','SEM. DE LA REALIDAD PERUANA                       ','2','A0014');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C201203M','DATAWAREHOUSE                                     ','2','A0007');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201204','SISTEMAS INTELIGENTES                             ','2','A0012');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201205','COMERCIO ELECTR”NICO                             ','2','A0004');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201205','COMERCIO ELECTR√ìNICO                             ','2','A0004');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201206','REDES NEURONALES                                  ','2','A0012');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201207','GESTI”N DEL CONOCIMIENTO                         ','2','A0013');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201207','GESTI√ìN DEL CONOCIMIENTO                         ','2','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201208','LIDERAZGO EMPRESARIAL                             ','2','A0013');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201209','ROBOTICA                                          ','2','A0006');
-Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201210','DISE—O DE UNA ARQUITECTURA WEB                   ','2','A0011');
+Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201210','DISE√ëO DE UNA ARQUITECTURA WEB                   ','2','A0011');
 Insert into DBTUTORIA.CURSO (C_CODIGO,NOMBRE,CREDITOS,AREA_C) values ('C0201211','PLAN. DE RECURSOS EMPRESARIALES                   ','2','A0013');
 REM INSERTING into DBTUTORIA.DIAS_CLASE
 SET DEFINE OFF;
@@ -951,12 +951,12 @@ SET DEFINE OFF;
 REM INSERTING into DBTUTORIA.ROL
 SET DEFINE OFF;
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('5','ROLE_TUTOR_O','Tutor Observado');
-Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('3','ROLE_DIR_ACA_O','DirecciÛn Academica');
+Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('3','ROLE_DIR_ACA_O','Direcci√≥n Academica');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('4','ROLE_UNAYOE_R','UNAYOE');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('2','ROLE_OCAA_O','OCAA');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('6','ROLE_ADMIN_R','Administrador Regulares');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('7','ROLE_OCAA_R','OCCA Regulares');
-Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('8','ROLE_DIR_ACA_R','DirecciÛn Academica');
+Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('8','ROLE_DIR_ACA_R','Direcci√≥n Academica');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('9','ROLE_UNAYOE_R','UNAYOE');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('1','ROLE_ADMIN_O','Administrador Observados');
 Insert into DBTUTORIA.ROL (ID_ROL,ROL_USUARIO,DESC_ROL) values ('10','ROLE_TUTOR_R','Tutor Regular');
@@ -1026,8 +1026,8 @@ Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CA
 Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ESTADOS_OBSERVACION','ESTADOS_TOTALES','3','CERRADO','1');
 Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ESTADOS_OBSERVACION','ESTADOS_PARCIALES','1','PARCIALMENTE LEVANTADO','1');
 Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ESTADOS_OBSERVACION','ESTADOS_PARCIALES','2','CERRADO','1');
-Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ASISTENCIA','OPC_ASISTENCIA','1','ASISTI”','1');
-Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ASISTENCIA','OPC_ASISTENCIA','2','FALT”','1');
+Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ASISTENCIA','OPC_ASISTENCIA','1','ASISTI√ì','1');
+Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ASISTENCIA','OPC_ASISTENCIA','2','FALT√ì','1');
 Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ASISTENCIA','OPC_ASISTENCIA','3','TARDANZA','1');
 Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ENCUESTA','CALIFICACION','1','MUY POSITIVO','1');
 Insert into DBTUTORIA.TABLA_MAESTRA (NOMBRE_TABLA,NOMBRE_CAMPO,ID_CAMPO,VALOR_CAMPO,ESTADO) values ('ENCUESTA','CALIFICACION','2','TENDENCIA -','1');
@@ -1097,39 +1097,39 @@ Insert into DBTUTORIA.USUARIO_ROL_EQUIVALENCIA (COD_USUARIO,ROL_USUARIO,COD_SIST
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (1, 'HABITOS_ESTUDIO', 'øCÛmo estudia usted?');
+   (1, 'HABITOS_ESTUDIO', '¬øC√≥mo estudia usted?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (2, 'HABITOS_ESTUDIO', 'øCÛmo hace sus tareas?');
+   (2, 'HABITOS_ESTUDIO', '¬øC√≥mo hace sus tareas?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (3, 'HABITOS_ESTUDIO', 'øCÛmo prepara sus ex·menes?');
+   (3, 'HABITOS_ESTUDIO', '¬øC√≥mo prepara sus ex√°menes?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (4, 'HABITOS_ESTUDIO', 'øCÛmo escucha sus clases?');
+   (4, 'HABITOS_ESTUDIO', '¬øC√≥mo escucha sus clases?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (5, 'HABITOS_ESTUDIO', 'øCÛmo acompaÒa sus momentos de estudio?');
+   (5, 'HABITOS_ESTUDIO', '¬øC√≥mo acompa√±a sus momentos de estudio?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (6, 'HABITOS_ESTUDIO', 'øComo realiza las exposiciones o presentaciones de sus trabajos?');
+   (6, 'HABITOS_ESTUDIO', '¬øComo realiza las exposiciones o presentaciones de sus trabajos?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (7, 'HABITOS_ESTUDIO', 'øComo elabora o redacta sus informes?');
+   (7, 'HABITOS_ESTUDIO', '¬øComo elabora o redacta sus informes?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (8, 'HABITOS_ESTUDIO', 'øComo cumple la entrega de sus tareas en los plazos establecidos?');
+   (8, 'HABITOS_ESTUDIO', '¬øComo cumple la entrega de sus tareas en los plazos establecidos?');
 Insert into DBTUTORIA.TABLA_PREGUNTAS
    (ID_PREGUNTA, TIPO_PREGUNTA, PREGUNTA)
  Values
-   (9, 'HABITOS_ESTUDIO', 'øCu·ntas veces ha sido observado?');
+   (9, 'HABITOS_ESTUDIO', '¬øCu√°ntas veces ha sido observado?');
 
 --------------------------------------------------------
 --  DDL for Index IDXALUMNO
@@ -4887,9 +4887,9 @@ set define off;
   CREATE OR REPLACE PROCEDURE "DBTUTORIA"."LISTAR_AREA_APROBADO_TUTOR" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : LISTAR_AREA_APROBADO_TUTOR                                       */
-/* Objetivo  : Listar todas las √°reas del conocimiento registradas por tutor y aprobados          */
+/* Objetivo  : Listar todas las √É¬°reas del conocimiento registradas por tutor y aprobados          */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: Alex Naupay                                          */
 /*---------------------------------------------------------------------------*/
 
@@ -4941,9 +4941,9 @@ set define off;
   CREATE OR REPLACE PROCEDURE "DBTUTORIA"."LISTAR_CURSO_APROBADO_TUTOR" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : LISTAR_CURSO_APROBADO_TUTOR                                      */
-/* Objetivo  : Listar todas las √°reas del conocimiento registradas por tutor y aprobados          */
+/* Objetivo  : Listar todas las √É¬°reas del conocimiento registradas por tutor y aprobados          */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: Alex Naupay                                          */
 /*---------------------------------------------------------------------------*/
 
@@ -5799,9 +5799,9 @@ set define off;
   CREATE OR REPLACE PROCEDURE "DBTUTORIA"."LISTAR_TEMA_APROBADO_TUTOR" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : LISTAR_TEMA_APROBADO_TUTOR                                       */
-/* Objetivo  : Listar todas las √°reas del conocimiento registradas por tutor y aprobados          */
+/* Objetivo  : Listar todas las √É¬°reas del conocimiento registradas por tutor y aprobados          */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: Alex Naupay                                          */
 /*---------------------------------------------------------------------------*/
 
@@ -5964,18 +5964,18 @@ BEGIN
     ELSE
         CAD_PROCESO := CAD_ENTRADA;
         
-        SELECT REPLACE(CAD_PROCESO, '√°', '·') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '√', '¡') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '¡©', 'È') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '¡', '…') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '…≠', 'Ì') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '…', 'Õ') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '√≥', 'Û') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, 'Õ≥', 'Û') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, 'Õ', '”') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, '√∫', '˙') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, 'Û', '⁄') INTO CAD_PROCESO FROM DUAL;
-        SELECT REPLACE(CAD_PROCESO, 'Û±', 'Ò') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√É¬°', '√°') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√É', '√Å') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√Å¬©', '√©') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√Å', '√â') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√â¬≠', '√≠') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√â', '√ç') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√É¬≥', '√≥') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√ç¬≥', '√≥') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√ç', '√ì') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√É¬∫', '√∫') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√≥', '√ö') INTO CAD_PROCESO FROM DUAL;
+        SELECT REPLACE(CAD_PROCESO, '√≥¬±', '√±') INTO CAD_PROCESO FROM DUAL;
         
         
         CAD_SALIDA := CAD_PROCESO;
@@ -6185,7 +6185,7 @@ set define off;
     DIA_AUX             TUTORIA.T_DIA%TYPE;
     
 BEGIN            
-    SELECT DECODE(DIA, 'MIERCOLES', 'MI…RCOLES', 'SABADO', 'S¡BADO', DIA)
+    SELECT DECODE(DIA, 'MIERCOLES', 'MI√âRCOLES', 'SABADO', 'S√ÅBADO', DIA)
       INTO DIA_AUX
       FROM DUAL;
     
@@ -6420,9 +6420,9 @@ set define off;
   CREATE OR REPLACE PROCEDURE "DBTUTORIA"."USP_BUSCAR_MATRICULA_PAR" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : USP_GUARDAR_MATRICULA_PAR                                             */
-/* Objetivo  : Guarada la matricula de un alumno a la actividad acad√©mica  */
+/* Objetivo  : Guarada la matricula de un alumno a la actividad acad√É¬©mica  */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: @alexh                                          */
 /*---------------------------------------------------------------------------*/
 (
@@ -6461,7 +6461,7 @@ set define off;
 /* Nombre    : USP_GUARDAR_ACTIVIDAD                                             */
 /* Objetivo  : Guarada una actividades academica de un usuario  */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: @alexh                                          */
 /*---------------------------------------------------------------------------*/
 (COD_TUTOR  ALUMNO_PAR.A_CODIGO%TYPE, 
@@ -6497,7 +6497,7 @@ set define off;
 /* Nombre    : USP_GUARDAR_HORARIO_PAR                                             */
 /* Objetivo  : Guarada un horario par de una actividad academica  */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: @alexh                                          */
 /*---------------------------------------------------------------------------*/
 (
@@ -6521,9 +6521,9 @@ set define off;
   CREATE OR REPLACE PROCEDURE "DBTUTORIA"."USP_GUARDAR_MATRICULA_PAR" 
 /*---------------------------------------------------------------------------*/
 /* Nombre    : USP_GUARDAR_MATRICULA_PAR                                             */
-/* Objetivo  : Guarada la matricula de un alumno a la actividad acad√©mica  */
+/* Objetivo  : Guarada la matricula de un alumno a la actividad acad√É¬©mica  */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: @alexh                                          */
 /*---------------------------------------------------------------------------*/
 (
@@ -6547,7 +6547,7 @@ set define off;
 /* Nombre    : USP_GUARDAR_SESION_PAR                                             */
 /* Objetivo  : Guarada una sesion par de una actividad academica  */
 /*---------------------------------------------------------------------------*/
-/*     Informaci√≥n:                                                          */
+/*     Informaci√É¬≥n:                                                          */
 /*     Autor: @alexh                                          */
 /*---------------------------------------------------------------------------*/
 (
