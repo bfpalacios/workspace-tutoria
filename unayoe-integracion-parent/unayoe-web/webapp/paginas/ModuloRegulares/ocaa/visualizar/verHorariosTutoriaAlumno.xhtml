@@ -8,7 +8,7 @@
 
 <ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_ocaa_r.xhtml">
 	<ui:define name="contenido">
-
+<h:form>
 		<p:panel header="Ver horarios de Tutoria de Alumnos"
 			style="width: 95%;border: 0px;">
 			<h:panelGrid id="pnlBuscador"
@@ -21,7 +21,7 @@
 					<p:spacer width="5px" />
 					<p:commandButton update="tablaResultado, a_nombre"
 						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
-						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
+						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(2)}" />
 				</p:outputPanel>
 				<p:spacer width="30px" />  
 				<h:outputText  value="Nombre de Alumno" />
@@ -74,6 +74,7 @@
 			</p:row>
 			<p:spacer width="30px" />			
 		</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 

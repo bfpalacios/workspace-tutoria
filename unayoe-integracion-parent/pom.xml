@@ -15,9 +15,9 @@
   </properties>
 
   <modules>
-    <module>unayoe-dao</module>
-    
+    <module>unayoe-dao</module>    
     <module>unayoe-web</module>
-    <module>../unayoe-services</module>
+
+    <module>unayoe-service</module>
   </modules>
 </project>

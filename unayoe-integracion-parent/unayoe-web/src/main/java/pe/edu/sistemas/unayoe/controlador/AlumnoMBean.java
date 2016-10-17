@@ -278,6 +278,7 @@ public class AlumnoMBean {
 	}
 
 	public String buscarAsistenciaAlumnosTutoria() {
+		System.out.println("busca asistencia");
 		String pagina = "";
 		try {
 			String fechaActual = new FormateadorFecha().formatoFechaDDMMAAAA(new Date());

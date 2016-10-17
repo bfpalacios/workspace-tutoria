@@ -46,4 +46,40 @@ public class RolDAOImpl implements RolDAO {
 		}
 		return roles;
 	}
+
+	@Override
+	public List<RolBO> getRolesByUser(String id) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+	//	String rol = null;
+		List<RolBO> roles = new ArrayList<RolBO>();
+
+		try {
+			conn = Conexion.obtenerConexion();
+			String sql = "SELECT UR.ID_ROL AS ID_ROL , UR.ROL AS ROL FROM USUARIO U, USUARIO_ROL UR "
+					+ " WHERE U.ID_USUARIO = UR.ID_USUARIO AND U.ID_USUARIO = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				RolBO rol = new RolBO();
+				rol.setId(rs.getInt("ID_ROL"));
+				rol.setNombre(rs.getString("ROL"));
+				roles.add(rol);
+			}
+		} catch (Exception err) {
+			err.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				conn.close();
+			} catch (Exception err2) {
+			}
+		}
+		System.out.println("tam " + roles.size());
+		return roles;
+		
+	}
 }

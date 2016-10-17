@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h:outputScript library="primefaces" name="jquery/jquery.js" />
+<script type="text/javascript" src="js/main.js">
+	$(document).ready(function() {
+		$("#formPrincipal\\:fileUpload .ui-fileupload-cancel").hide();
+	});
+</script>
+<style type="text/css">
+#formPrincipal\\:fileUpload .ui-fileupload-cancel {
+	display: none;
+}
+</style>
+</head>
+
+<ui:composition
+	template="/plantilla/ModuloObservados/Plantillas/plantilla_decano_o.xhtml">
+	<ui:define name="contenido">
+
+
+		<f:facet name="header">
+			<p:row>
+				<p:column colspan="3">Gestion de Actas de Tutoria >> Cargar actas</p:column>
+			</p:row>
+		</f:facet>
+		<h:form>
+			<p:panel header="Carga de actas de tutoria" style="width: 450px;">
+				<p:panelGrid id="pnlLoginAcceso" style="font-size: 12px;">
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="idCurso"
+								value="#{mensaje['unayoe.ingresar.datos.alumnos.label.curso']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="selectOneCurso"
+								value="#{gestionarActasMBean.tutoriaModelSelect.cCodigo}"
+								valueChangeListener="#{gestionarActasMBean.actualizarDocente}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el curso:" />
+								<f:selectItems
+									value="#{gestionarActasMBean.tutoriaModel.listarCursos}"
+									var="cursos" itemLabel="#{cursos.nombre}"
+									itemValue="#{cursos.cCodigo}" />
+								<f:ajax event="change" execute="@this"
+									render="selectOneProfesor selectOneAlumno selectOneSesion mostrarObservaciones" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="idTutor"
+								value="#{mensaje['unayoe.ingresar.datos.alumnos.label.docente']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="selectOneProfesor"
+								value="#{gestionarActasMBean.tutoriaModelSelect.pCodigo}"
+								valueChangeListener="#{gestionarActasMBean.actualizarAlumno}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el tutor: " />
+								<f:selectItems
+									value="#{gestionarActasMBean.tutoriaModel.listarTutores}"
+									var="profesor" itemLabel="#{profesor.pNombre}"
+									itemValue="#{profesor.pCodigo}" />
+								<f:ajax event="change" execute="@this"
+									render="selectOneAlumno selectOneSesion mostrarObservaciones" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="idAlumno"
+								value="#{mensaje['unayoe.ingresar.datos.alumnos.label.alumno']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="selectOneAlumno"
+								value="#{gestionarActasMBean.tutoriaModelSelect.aCodigo}"
+								valueChangeListener="#{gestionarActasMBean.actualizarSesion}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el alumno: " />
+								<f:selectItems
+									value="#{gestionarActasMBean.tutoriaModel.listarAlumnos}"
+									var="alumnos" itemLabel="#{alumnos.aNombre}"
+									itemValue="#{alumnos.aCodigo}" />
+								<f:ajax event="change" execute="@this" render="selectOneSesion mostrarObservaciones" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="idSesion"
+								value="#{mensaje['unayoe.tutoria.datos.sesion']}" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="selectOneSesion"
+								value="#{gestionarActasMBean.tutoriaModelSelect.sesion}"
+								valueChangeListener="#{gestionarActasMBean.validarCargaActas}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Elija la sesión: " />
+								<f:selectItems
+									value="#{gestionarActasMBean.tutoriaModel.listarSesiones}"
+									var="sesion" itemLabel="#{sesion.descSesion}"
+									itemValue="#{sesion.nroSesion}" />
+								<f:ajax event="change" execute="@this" render="fileUpload mostrarObservaciones" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+
+					<p:spacer width="50px" />
+
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn"
+							colspan="2">
+							<p:fileUpload id="fileUpload"
+								fileUploadListener="#{gestionarActasMBean.gestorCargaActas}"
+								mode="advanced" label="Elegir archivo" uploadLabel="Subir acta"
+								cancelLabel="cancelar" auto="false" skinSimple="true"
+								disabled="#{gestionarActasMBean.desactivarCarga}"
+								invalidSizeMessage="El tamaño del archivo cargado ha excedido el límite (2MB)"
+								invalidFileMessage="El archivo tiene que ser un archivo PDF (pdf)"
+								dragDropSupport="false" update="msgCargaActas"
+								sizeLimit="2097152" fileLimit="3" allowTypes="/(\.|\/)(pdf)$/" />
+							<p:growl id="msgCargaActas" showDetail="true" />
+						</p:column>
+
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<p:outputPanel id="agregarObservacion"
+				style="float:center;width:70%;margin-top:15px;margin-bottom:5px">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton id="botonAgregar" icon="ui-icon-circle-plus"
+							update="tablaObservaciones" value="Agregar tarea"
+							actionListener="#{gestionarActasMBean.agregarObservacion}"
+							ajax="true" />
+					</p:column>
+				</p:row>
+			</p:outputPanel>
+
+			<p:outputPanel id="mostrarObservaciones"
+				style="width:90%;margin-top:10spx">
+				<p:row id="filtablaObservaciones">
+					<p:column id="colObservaciones" colspan="3">
+						<p:dataTable id="tablaObservaciones" var="lista"
+							value="#{gestionarActasMBean.listaObservaciones}">
+							<f:facet name="header">
+								<h:outputLabel style="font-size: 12px;"
+									value="Tareas en tutoría" />
+							</f:facet>
+
+							<p:column headerText="Alumno" style="font-size:12px; width:8%">
+								<h:outputText
+									value="#{gestionarActasMBean.tutoriaModelSelect.aNombre}" />
+							</p:column>
+							<p:column headerText="Razon" style="font-size:12px; width:25%">
+								<p:inputTextarea id="razones" rows="4" cols="38"
+									value="#{lista.razon}" counter="display1" maxlength="150"
+									counterTemplate="{0} caracteres restantes." autoResize="false" />
+								<h:outputText id="display1" />
+							</p:column>
+							<p:column headerText="Tarea" style="font-size:12px; width:25%">
+								<p:inputTextarea id="tareas" rows="4" cols="38"
+									value="#{lista.observacion}" counter="display2" maxlength="150"
+									counterTemplate="{0} caracteres restantes." autoResize="false" />
+								<h:outputText id="display2" />
+							</p:column>
+							<p:column headerText="Fecha Inicio"
+								style="font-size:12px; width:9%">
+								<h:outputText value="#{gestionarActasMBean.fecha()}" />
+
+
+							</p:column>
+							<p:column headerText="Fecha Fin" style="font-size:12px; width:9%">
+								<p:calendar value="#{lista.fechaCumplimiento}" id="fechaCurso"
+									pattern="dd/MM/yyyy" mindate="#{gestionarActasMBean.fecha()}"
+									size="10" />
+
+							</p:column>
+							<p:column headerText="Fecha Cumplida"
+								style="font-size:12px; width:9%">
+								<h:outputText value="No registrado" />
+							</p:column>
+							<p:column headerText="Criticidad"
+								style="font-size:12px; width:9%">
+								<p:selectOneMenu value="#{lista.criticidad}">
+									<f:selectItem itemLabel="BAJA" itemValue="BAJA" />
+									<f:selectItem itemLabel="MEDIA" itemValue="MEDIA" />
+									<f:selectItem itemLabel="ALTA" itemValue="ALTA" />
+								</p:selectOneMenu>
+							</p:column>
+							<p:column headerText="Estado" style="font-size:12px; width:9%">
+								<h:outputText value="PENDIENTE" />
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:outputPanel>
+			<p:outputPanel id="guardar" icon="icon-ok"
+				style="float:center;width:70%;margin-top:15px;margin-bottom:5px">
+				<p:row>
+					<p:column colspan="3">
+						<p:commandButton id="botonGuardar" value="Guardar"
+							icon="ui-icon-disk" update="mostrarObservaciones,pnlLoginAcceso"
+							actionListener="#{gestionarActasMBean.cargarTareas}" ajax="true" />
+					</p:column>
+
+				</p:row>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

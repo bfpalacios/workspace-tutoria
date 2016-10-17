@@ -12,8 +12,8 @@
 </h:head>
 
 <h:body>
-	<form id="formLoginPrincipal" method="post"
-		action="${request.contextPath}/j_spring_security_check">
+	<h:form id="formLoginPrincipal" prependId="false" > <!-- method="post"
+	 	action="${request.contextPath}/j_spring_security_check" -->  
 		<p:layout fullPage="true">
 
 			<p:layoutUnit id="lytPlantillaLoginBanner" position="north"
@@ -37,6 +37,6 @@
 				</div>
 			</p:layoutUnit>
 		</p:layout>
-	</form>
+	</h:form>
 </h:body>
 </html>

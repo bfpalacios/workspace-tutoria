@@ -11,25 +11,25 @@
 		<p:panelMenu style="font-size:12px;" transient="true">
 			<p:submenu label="Datos de los Alumnos Observados">
 				<p:menuitem value="Cargar alumnos observados"
-					action="#{datosAlumnosMBean.selectorDatosAlumnos(1)}"
+					action="#{datosAlumnosMBean.selectorDatosAlumnos(5)}"
 					icon="ui-icon-arrowrefresh-1-w" />
 			</p:submenu>
 			<p:submenu label="Gestión de Actas de Tutoria">
 				<p:menuitem value="Cargar Actas"
-					action="#{gestionarActasMBean.selectorCargaActas(1,1)}"
+					action="#{gestionarActasMBean.selectorCargaActas(1,5)}"
 					icon="ui-icon-arrowrefresh-1-w" />
 				<p:menuitem value="Descargar Actas"
-					action="#{gestionarActasMBean.selectorDescargaActas(1,1)}"
+					action="#{gestionarActasMBean.selectorDescargaActas(1,5)}"
 					icon="ui-icon-arrowrefresh-1-w" />
 			</p:submenu>
 			<p:submenu label="Reporte de Asistencia a Tutoría">
 				<p:menuitem value="De Alumnos"
-					action="#{registrarTutoriaMBean.selectorVisualizacionDatosTutoria(1,1)}"
+					action="#{registrarTutoriaMBean.selectorVisualizacionDatosTutoria(1,6)}"
 					icon="ui-icon-arrowrefresh-1-w" />
 			</p:submenu>
 			<p:submenu label="Estadísticas del sistema">
 				<p:menuitem value="Estadísticas"
-					action="#{registrarTutoriaMBean.selectorPaginasIndicadores(1,1)}"
+					action="#{registrarTutoriaMBean.selectorPaginasIndicadores(1,4)}"
 					icon="ui-icon-arrowrefresh-1-w" />
 			</p:submenu>
 			<p:submenu label="Salir del sistema">

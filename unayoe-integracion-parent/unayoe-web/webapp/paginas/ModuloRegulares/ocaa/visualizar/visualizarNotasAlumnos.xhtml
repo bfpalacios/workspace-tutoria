@@ -8,9 +8,10 @@
 
 	<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_ocaa_r.xhtml">
 		<ui:define name="contenido">
+			<h:form>
 			<p:panel header="Visualizar Notas de Alumnos"
 				style="width: 95%;border: 0px;">
-			
+		
 				<h:panelGrid columns="3" cellspacing="5">
 					<h:outputText value="Ciclo" />
 					<p:spacer width="10px" />
@@ -90,6 +91,7 @@
 					</p:column>
 				</p:row>	
 			</p:panel>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </html>

@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-<!-- <h:form> -->
+ <h:form> 
 	<p:panelMenu style="font-size:10px;"
 		transient="true" >
 		<p:submenu label="Notas de los Alumnos">
@@ -18,11 +18,13 @@
 				value="Visualizar Notas" action="#{notasAlumnoMBean.selectorVisualizacionNotas(2,2)}"
 				icon="ui-icon-arrowrefresh-1-w" />
 		</p:submenu>
+		 
 		<p:submenu label="Registro de Usuarios">
 			<p:menuitem 
 				value="Nuevo Usuario" action="#{usuarioMBean.selectorRegistroUsuarios(2,2)}"
 				icon="ui-icon-arrowrefresh-1-w" />			 
-		</p:submenu>				
+		</p:submenu>	
+				
 		<p:submenu label="Disponibilidades">
 			<p:menuitem 
 				value="Visualizar Disp. Docente" action="#{disponibilidadMBean.selectorVisualizarDisponibilidad(2,1)}"
@@ -64,6 +66,6 @@
 				icon="ui-icon-arrowrefresh-1-w" />			 
 		</p:submenu>		
 	</p:panelMenu>
-<!-- 	</h:form> -->
+ 	</h:form> 
 </h:body>
 </html>

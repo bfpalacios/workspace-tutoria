@@ -8,6 +8,8 @@
 
 <ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_tutor_r.xhtml">
 	<ui:define name="contenido">
+	
+	<h:form>
 		<p:outputPanel id="pnlGridMensajes" style="width:400px;margin-top:5px;">
 			<p:row>
     			<p:column colspan="4" rowspan="2">
@@ -30,7 +32,7 @@
 					<p:spacer width="5px" />
 					<p:commandButton update="tablaResultado, a_nombre"
 						value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
-						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(1)}" />
+						actionListener="#{registrarTutoriaMBean.buscarHorariosTutoria(2)}" />
 				</p:outputPanel>
 				<p:spacer width="30px" />  
 				<h:outputText  value="Nombre del Alumno:" />
@@ -83,6 +85,8 @@
 				</p:column>
 			</p:row>				
 		</p:panel>
+		</h:form>
+	
 	</ui:define>
 </ui:composition>
 

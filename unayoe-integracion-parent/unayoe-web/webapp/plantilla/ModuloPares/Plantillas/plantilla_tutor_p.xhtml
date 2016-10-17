@@ -11,7 +11,7 @@
 	</h:head>
 	
 	<h:body>
-		<h:form id="formPrincipal">		
+		<!-- <h:form id="formPrincipal"> -->		
 			<p:layout fullPage="true">
 		 		<p:idleMonitor onactive="sessionTimeOutDialog.show();" timeout="#{session.maxInactiveInterval * 1000}" />
             	<p:dialog header="#{mensaje['error.sessionTimeOut.header']}" widgetVar="sessionTimeOutDialog"
@@ -36,10 +36,10 @@
 			        <ui:insert name="dialogos"/> 	
 			    </p:layoutUnit>  
 
-				<p:layoutUnit position="west" size="200">
+				<p:layoutUnit position="west" size="200" collapsible="true" header="Opciones" minSize="200">
 					<ui:include src="/plantilla/ModuloPares/Menus/menu_tutor_p.xhtml"/>
 				</p:layoutUnit>
 			</p:layout>
-		</h:form>
+	<!-- 	</h:form> -->
 	</h:body>
 </html>      

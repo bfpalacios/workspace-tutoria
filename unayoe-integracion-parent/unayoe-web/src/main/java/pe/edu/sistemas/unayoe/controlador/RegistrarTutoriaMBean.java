@@ -96,6 +96,7 @@ public class RegistrarTutoriaMBean {
 	private static int MODO_DIR_ACA = 3;
 	private static int MODO_UNAYOE = 4;
 	private static int MODO_TUTOR = 5;
+	private static int MODO_DECANO = 6;
 
 	private int PROCESO;
 	private static int PROCESO_OBSERVADOS = 1;
@@ -937,10 +938,12 @@ public class RegistrarTutoriaMBean {
 					: getTutoriaModelSelect().getHoraInicio();
 			String horaFin = getTutoriaModelSelect().getHoraFin() == "" ? "Invalido"
 					: getTutoriaModelSelect().getHoraFin();
-
+			System.out.println("antes del if ");
 			if (validarCamposTutoria(codAlumno, codCurso, codDocente, dia, horaInicio, horaFin)) {
+				System.out.println("antes de ciclo service");
 				CicloBO ciclo = comunServices.buscarCicloActual();
-
+				
+				
 				String tutoriaExistente = tutoriaServices.buscarTutoria(ciclo.getAnio(), ciclo.getPeriodo(), codCurso,
 						codAlumno, codDocente);
 				TutoriaBO tutoriabo = new TutoriaBO();
@@ -1338,7 +1341,7 @@ public class RegistrarTutoriaMBean {
 				break;
 			case 4:
 				MODO_USUARIO = MODO_UNAYOE;
-				pagina = "/paginas/ModuloObservados/unayoe/verHorariosTutoriaAlumno.xhtml";
+				pagina = "/paginas/ModuloObservados/unayoe/visualizar/verHorariosTutoriaAlumno.xhtml";
 				break;
 			case 5:
 				MODO_USUARIO = MODO_TUTOR;
@@ -1574,11 +1577,18 @@ public class RegistrarTutoriaMBean {
 				listarCursosxDocente();
 				pagina = "/paginas/ModuloObservados/tutor/visualizar/verAsistenciaTutoriaAlumnos.xhtml";
 				break;
+				
 			case 5:
 				MODO_USUARIO = MODO_ADMIN;
 				MODO_USUARIO_AUX = MODO_ADMIN;
 				listarCursos();
 				pagina = "/paginas/ModuloObservados/admin/visualizar/verHistorialTareasAlumno.xhtml";
+				break;
+			case 6:
+				MODO_USUARIO = MODO_ADMIN;
+				MODO_USUARIO_AUX = MODO_DECANO;
+				listarCursos();
+				pagina = "/paginas/ModuloObservados/decano/visualizar/verAsistenciaTutoriaAlumnos.xhtml";
 				break;
 			}
 			break;
@@ -1630,6 +1640,9 @@ public class RegistrarTutoriaMBean {
 				break;
 			case 3:
 				pagina = "/paginas/ModuloObservados/diraca/visualizar/verIndicadoresSistema.xhtml";
+				break;
+			case 4:
+				pagina = "/paginas/ModuloObservados/decano/visualizar/verIndicadoresSistema.xhtml";
 				break;
 			}
 			break;

@@ -87,6 +87,7 @@ public class GestionarActasMBean {
 	private static int MODO_TUTOR = 2;
 	private static int MODO_OCAA = 3;
 	private static int MODO_UNAYOE = 4;
+	private static int MODO_DECANO = 5;
 
 	// private static String REGISTRO_CORRECTO = "R";
 	// private static String REGISTRO_EXTEMPORANEO = "E";
@@ -103,6 +104,7 @@ public class GestionarActasMBean {
 		setDesactivarTarea(true);
 		System.out.println("TAREA : " + isDesactivarTarea());
 		date = new Date();
+		
 	}
 
 	public void inicializarClases() {
@@ -279,6 +281,7 @@ public class GestionarActasMBean {
 			listaProfesores = tutoriaServices.listarTutoresObservados(codCurso);
 			break;
 		case 2:
+			
 			listaProfesores = tutoriaServices.listarTutoresRegulares(codCurso);
 			break;
 		}
@@ -312,10 +315,10 @@ public class GestionarActasMBean {
 				codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 				codDocente = obtenerUsuario().getUsername();
 			}else{
-//				if (MODO == MODO_UNAYOE) {
-//					codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
-//					codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
-//				}
+	//			if (MODO == MODO_UNAYOE) {
+				//	codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue()););
+		//			codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
+		//		}
 			}
 		}
 		List<AlumnoBO> listaAlumnos = alumnoServices.listarAlumnoTutoria(codDocente, codCurso, PROCESO, MODO);
@@ -603,7 +606,14 @@ public class GestionarActasMBean {
 				System.out.println("ENTRO");
 				pagina = "/paginas/ModuloObservados/tutor/cargar/cargarActasTutoria.xhtml";
 				break;
-
+			case 5:
+				PROCESO = PROCESO_OBSERVADOS;
+				MODO = MODO_DECANO;
+				setDesactivarCarga(true);
+				setDesactivarTarea(true);
+				System.out.println("TAREA GG : " + isDesactivarTarea());
+				pagina = "/paginas/ModuloObservados/decano/cargar/cargarActasTutoria.xhtml";
+				break;
 			}
 			break;
 		case 2:
@@ -683,6 +693,14 @@ public class GestionarActasMBean {
 				listarCursos();
 				setDesactivarDescarga(true);
 				pagina = "/paginas/ModuloObservados/unayoe/cargar/descargarActasTutoria.xhtml?faces-redirect=true";
+				break;
+			case 5:
+				PROCESO = PROCESO_OBSERVADOS;
+				MODO = MODO_ADMIN;
+				MODO_AUX = MODO_DECANO;
+				listarCursos();
+				setDesactivarDescarga(true);
+				pagina = "/paginas/ModuloObservados/decano/cargar/descargarActasTutoria.xhtml?faces-redirect=true";
 				break;
 			}
 			break;

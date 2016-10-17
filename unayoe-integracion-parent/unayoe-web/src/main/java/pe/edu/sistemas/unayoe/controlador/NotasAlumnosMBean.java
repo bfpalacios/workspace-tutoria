@@ -5,12 +5,15 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -92,11 +95,12 @@ public class NotasAlumnosMBean {
 	private static int PROCESO_REGULARES = 2;			
 
 	public NotasAlumnosMBean(){
-		System.out.println("::::: LOADING ::::::::");	
+		System.out.println("::NOTAS ALUMNOS BEAN::");	
 		inicializarClases();
 	}
 	
 	private void inicializarClases(){
+		System.out.println("inicializa");
 		setAlumnoBuscarNotasModelSelect(new AlumnoModel());	
 		setClaseMaestraModelSelect(new ClaseMaestraModel());
 		setListNotasAlumnoBO(new ArrayList<NotasAlumnoBO>());
@@ -117,29 +121,35 @@ public class NotasAlumnosMBean {
 	}
 	
 	public String cargarNotasAlumnos(FileUploadEvent event) throws Exception {
+		System.out.println("carga1");
 		String pagina = "";
 		getNotasAlumnoExcelModels().clear();
-		UploadedFile archivoCargado = event.getFile();        
+		UploadedFile archivoCargado = event.getFile();  
 		if (setExcel(archivoCargado, event) == true){
+			System.out.println("ENTRAS AL IF");
 			InputStream file;
 	        try{        	 
 	        	file = event.getFile().getInputstream();       
 	        	XSSFWorkbook wb = new XSSFWorkbook(file);        
 	        	XSSFSheet ws = wb.getSheetAt(0);
+	        
 	        	int rowNum = ws.getLastRowNum() + 1;
+		        	//rowNum=rowNum-6;
+	        	rowNum=10;
 	        	limpiarListas();
 	        	getListNotasAlumnoBO().removeAll(getListNotasAlumnoBO());
 	        	existe = 0;
 	        	valido = 1;
-	        	
+	        	System.out.println("ENTRAS AL 2"+rowNum);
 	        	for(int i = 1; i <rowNum; i++){
-	        		XSSFRow row = ws.getRow(i);
+	        	
+	        	XSSFRow row = ws.getRow(i);
 	        		validarRegistro(row);        		
 	        		NotasAlumnoExcelModel dataModel = convertirAModelAlumno(row);
 	        		
 	        		if (valido == 0){
 	        			dataModel.setValido("No");
-	        		}
+	        				        		}
 	        		else{
 	        			dataModel.setValido("Si");
 	        		}
@@ -152,9 +162,10 @@ public class NotasAlumnosMBean {
 	        		}
 	        		
 	        		getNotasAlumnoExcelModelsGrid().add(dataModel);        		
-	        		
 	        		if (valido != 0 && existe != 1){
+	        			System.out.println("si se puede insertar");
 	        			getNotasAlumnoExcelModels().add(dataModel);
+	        			
 	        		}
 	        		existe = 0;
 	            	valido = 1;
@@ -167,11 +178,15 @@ public class NotasAlumnosMBean {
 	        	wb.close();
 	        }      
 	        catch (IOException e) {
-	        	mostrarMensaje(1);
-	        	e.printStackTrace();
+	        	//mostrarMensaje(1);
+	        	//e.printStackTrace();
 	        }
         } 
+		System.out.println("MODO"+MODO_USUARIO);
+		System.out.println("PROCE"+PROCESO);
+		
 		switch(PROCESO){
+		
 			case 1: switch(MODO_USUARIO){
 						case 1: pagina = "/paginas/ModuloObservados/admin/cargar/cargarNotasAlumnosObs.xhtml"; break;
 						case 2: pagina = "/paginas/ModuloObservados/admin/cargar/cargarNotasAlumnosObs.xhtml"; break;
@@ -181,17 +196,19 @@ public class NotasAlumnosMBean {
 						case 2: pagina = "/paginas/ModuloRegulares/admin/ingresar/ingresarNotasAlumnosReg.xhtml"; break;
 					} break;
 		}	
+		System.out.println("cargar "+pagina);
 		return pagina;
     }
 	
 	public boolean setExcel(UploadedFile excelCargado, FileUploadEvent event){
 		boolean archivoCargado = false;
-		if(excelCargado != null) {        	
+		if(excelCargado != null) {
+			System.out.println("EXCELCARGADO LA DVD");
 			archivoCargado = true;
             getArchivoModel().setNombre(excelCargado.getFileName());
-			mostrarMensaje(2);            
+			//mostrarMensaje(2);            
         }else{
-        	mostrarMensaje(3);
+        	//mostrarMensaje(3);
         }
 		return archivoCargado;
 	}
@@ -278,6 +295,7 @@ public class NotasAlumnosMBean {
 	}
 	
 	public void guardarNotas(){
+		System.out.println("GUARDARNOTAS");
 		try{
 			List<NotasAlumnoBO> listNotasAlumno = getListNotasAlumnoBO();
 			for (NotasAlumnoBO notasAlumno:listNotasAlumno){					
@@ -294,6 +312,8 @@ public class NotasAlumnosMBean {
 			mostrarMensaje(5);
 		}		
 	}
+	
+	
 	
 	public NotasAlumnoBO convertirANotasAlumnoBO(NotasAlumnoExcelModel notasAlumno){
 		NotasAlumnoBO notasAlumnoBO = new NotasAlumnoBO();
@@ -433,8 +453,11 @@ public class NotasAlumnosMBean {
     }
     
     public String selectorCargaNotas(int proceso, int modo) throws Exception{
-		 String pagina = "";
-		 
+    	System.out.println("selectorctm"); 
+    	System.out.println("proc"+proceso); 
+    	System.out.println("modo"+modo); 
+    	String pagina = "";
+
 		 switch(proceso){
 		 	case 1: switch(modo){ 
 		 				case 1: MODO_USUARIO = MODO_ADMIN;									
@@ -447,8 +470,8 @@ public class NotasAlumnosMBean {
 		 						pagina = "/paginas/ModuloObservados/ocaa/cargar/cargarNotasAlumnos.xhtml"; break;
 		 			} break;
 		 	case 2: switch(modo){ 
-						case 1: MODO_USUARIO = MODO_ADMIN;									
-								limpiarListas();
+						case 1: MODO_USUARIO = MODO_ADMIN;	
+							    limpiarListas();
 								inicializarClases();								
 								pagina = "/paginas/ModuloRegulares/admin/cargar/cargarNotasAlumnos.xhtml"; break;
 						case 2: MODO_USUARIO = MODO_OCAA;
@@ -535,9 +558,11 @@ public class NotasAlumnosMBean {
     
     public String selectorVisualizacionNotas(int proceso, int modoUsuario) throws Exception{
 		 String pagina = "";
-		 
+		   System.out.println("SelectorVisaulizaciones");
 		 inicializarClases();
 	     listarCiclo();
+	     System.out.println("procvisu"+proceso);
+	     System.out.println("mod_usuario"+modoUsuario);
 		 switch(proceso){
 		 	case 1: switch(modoUsuario){ 
 		 				case 1: MODO_USUARIO = MODO_ADMIN;

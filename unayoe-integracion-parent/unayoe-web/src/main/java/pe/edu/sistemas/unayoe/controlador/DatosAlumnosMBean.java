@@ -86,6 +86,7 @@ public class DatosAlumnosMBean {
 	private int MODO_USUARIO;
 	private static int MODO_ADMIN = 1;
 	private static int MODO_OCAA = 2;
+	private static int MODO_DECANO = 5;
 
 	public DatosAlumnosMBean() {
 		inicializarClases();
@@ -524,6 +525,14 @@ public class DatosAlumnosMBean {
 				getDatosAlumnoExcelModelGrid().removeAll(getDatosAlumnoExcelModelGrid());
 			}
 			pagina = "/paginas/ModuloObservados/ocaa/cargar/cargarDatosAlumnosObs.xhtml";
+			break;
+		case 5:
+			MODO_USUARIO = MODO_DECANO;
+			inicializarClases();
+			if (getDatosAlumnoExcelModelGrid() != null) {
+				getDatosAlumnoExcelModelGrid().removeAll(getDatosAlumnoExcelModelGrid());
+			}
+			pagina = "/paginas/ModuloObservados/decano/cargar/cargarDatosAlumnosObs.xhtml";
 			break;
 		}
 		return pagina;

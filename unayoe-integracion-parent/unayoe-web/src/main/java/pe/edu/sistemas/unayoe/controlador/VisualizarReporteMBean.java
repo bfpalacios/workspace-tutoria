@@ -624,8 +624,8 @@ public class VisualizarReporteMBean {
     	return pars;
     }
 	
-	private Collection obtenerCampos(){
-    	Collection list = new ArrayList();
+	private Collection<Asistencia> obtenerCampos(){
+    	Collection<Asistencia> list = new ArrayList<>();
     	for(AsistenciaAlumnosAClasesModel model : asistenciaClases){
     		Asistencia asistencia =new Asistencia();
     		asistencia.setFecha( model.getFecha());

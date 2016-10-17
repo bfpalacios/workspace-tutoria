@@ -14,11 +14,13 @@
     <context:component-scan base-package="pe.edu.sistemas.unayoe.core"/>
     <context:component-scan base-package="pe.edu.sistemas.unayoe.dao"/>    
     <context:component-scan base-package="pe.edu.sistemas.unayoe.dao.jdbc"/> 
+    <context:component-scan base-package="pe.edu.sistemas.unayoe.services"/>
     <context:component-scan base-package="pe.edu.sistemas.unayoe.services.impl"/>
     <context:component-scan base-package="pe.edu.sistemas.unayoe.services.transformer"/>
     <context:component-scan base-package="pe.edu.sistemas.unayoe.model"/>
     <context:component-scan base-package="pe.edu.sistemas.unayoe.controlador"/>
- 
+ 	<context:component-scan base-package="pe.edu.sistemas.unayoe.security"/>
+ 	
     <bean id="serviceProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <list>

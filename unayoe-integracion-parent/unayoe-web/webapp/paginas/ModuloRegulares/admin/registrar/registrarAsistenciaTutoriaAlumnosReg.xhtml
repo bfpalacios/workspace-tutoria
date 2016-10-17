@@ -10,6 +10,7 @@
 
     <ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_r.xhtml">
         <ui:define name="contenido">
+        <h:form>
             <p:outputPanel id="mensajePrimeraSesion" style="width:100%;margin-top:2px;margin-bottom:5px">
             	<h:outputLabel 
             		id="lblBienvenida" rendered="#{alumnoMBean.activarTablaNotas}"
@@ -295,7 +296,8 @@
 							ajax="true" />
 					</p:column>
             	</p:row>
-            </p:outputPanel>  
+            </p:outputPanel>
+              </h:form>
         </ui:define>
     </ui:composition>
 </html>
