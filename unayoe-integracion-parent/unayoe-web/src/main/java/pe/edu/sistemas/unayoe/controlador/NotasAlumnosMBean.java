@@ -133,9 +133,9 @@ public class NotasAlumnosMBean {
 	        	XSSFWorkbook wb = new XSSFWorkbook(file);        
 	        	XSSFSheet ws = wb.getSheetAt(0);
 	        
-	        	int rowNum = ws.getLastRowNum() + 1;
+	        	int rowNum = ws.getPhysicalNumberOfRows() + 1;
 		        	//rowNum=rowNum-6;
-	        	rowNum=10;
+	        	rowNum=9;
 	        	limpiarListas();
 	        	getListNotasAlumnoBO().removeAll(getListNotasAlumnoBO());
 	        	existe = 0;
@@ -396,6 +396,7 @@ public class NotasAlumnosMBean {
 	}
 	
 	public void imprimirReporteNotasAlumno() throws Exception{
+		System.out.println("imprimirpdf");
 		if(!getVisualizarNotasAlumnoGrid().isEmpty()){
 	    	System.out.println("Impresion de reporte de horario:");    	
 	    	ControladorReporte reporte = new ControladorReporte();
@@ -453,7 +454,7 @@ public class NotasAlumnosMBean {
     }
     
     public String selectorCargaNotas(int proceso, int modo) throws Exception{
-    	System.out.println("selectorctm"); 
+    	System.out.println("Selectorcargar"); 
     	System.out.println("proc"+proceso); 
     	System.out.println("modo"+modo); 
     	String pagina = "";
@@ -558,7 +559,7 @@ public class NotasAlumnosMBean {
     
     public String selectorVisualizacionNotas(int proceso, int modoUsuario) throws Exception{
 		 String pagina = "";
-		   System.out.println("SelectorVisaulizaciones");
+		   System.out.println("SelectorVisaulizarNotas");
 		 inicializarClases();
 	     listarCiclo();
 	     System.out.println("procvisu"+proceso);

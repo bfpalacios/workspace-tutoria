@@ -110,7 +110,7 @@ public class RegistrarTutoriaMBean {
 
 	public RegistrarTutoriaMBean() {
 		hoy = new GregorianCalendar();
-		System.out.println("::::: LOADING ::::::::");
+		System.out.println("::::: REGISTRAR TUTORIA ::::::::");
 		asistenciaTutoriaModelSelect = new AsistenciaTutoriaModel();
 		listAsistenciaTutoria = new ArrayList<AsistenciaTutoriaModel>();
 		listAsistenciaTutoriaDocente = new ArrayList<AsistenciaTutoriaModel>();

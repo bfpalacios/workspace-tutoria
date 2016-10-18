@@ -98,7 +98,7 @@ public class AlumnoMBean {
 	/*-------------------------------------------------------*/
 
 	public AlumnoMBean() {
-		System.out.println("::::: LOADING ::::::::");
+		System.out.println("::::: ALUMNOBEAN ::::::::");
 		listAsistenciaAlumnosTutoria = new ArrayList<AsistenciaTAlumBO>();
 		inicializarClases();
 		new Convertidor();

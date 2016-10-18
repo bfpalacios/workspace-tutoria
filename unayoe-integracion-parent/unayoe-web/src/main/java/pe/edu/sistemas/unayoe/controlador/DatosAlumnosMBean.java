@@ -157,7 +157,7 @@ public class DatosAlumnosMBean {
 
 	public String handleFileUpload(FileUploadEvent event) throws Exception {
 		String pagina = "";
-
+		System.out.println("cargar");
 		boolean formatoExcelValido = true; // Indica si el formato de la columnas del excel son validos
 		datosAlumnoExcelModels.clear();
 		UploadedFile archivoCargado = event.getFile();
@@ -168,9 +168,9 @@ public class DatosAlumnosMBean {
 			XSSFWorkbook wb = new XSSFWorkbook(file);
 
 			XSSFSheet ws = wb.getSheetAt(0);
-			int rowNum = ws.getLastRowNum() + 1; // Cantidad de fila del archivo
-													// excel
-
+			int rowNum = ws.getPhysicalNumberOfRows() + 1; // Cantidad de fila del archivo
+			rowNum=9;										// excel
+			System.out.println("rows"+rowNum);
 			/*
 			 * Se limpia los elementos que contiene la lista
 			 * "DatosAlumnoExcelModelGrid" para poder realizar la carga de la

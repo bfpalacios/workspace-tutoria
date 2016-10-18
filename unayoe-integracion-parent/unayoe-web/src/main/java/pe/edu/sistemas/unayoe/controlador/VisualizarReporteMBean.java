@@ -79,7 +79,7 @@ public class VisualizarReporteMBean {
   	
 
 	public VisualizarReporteMBean() {
-        System.out.println("::::: LOADING ::::::::");
+        System.out.println("::::: VISUALIZAR reporte ::::::::");
         asistenciaClases= new ArrayList<AsistenciaAlumnosAClasesModel>();
         tutoriaModelSelect = new TutoriaModel();
         listTutoria = new ArrayList<TutoriaModel>();

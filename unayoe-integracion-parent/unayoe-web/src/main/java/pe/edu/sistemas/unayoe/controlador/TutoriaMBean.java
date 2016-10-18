@@ -52,7 +52,7 @@ public class TutoriaMBean {
 	private FormateadorFecha fechaFormateada;
 
 	public TutoriaMBean() {
-		System.out.println("::::: LOADING ::::::::");
+		System.out.println("::::: TUTORIA MBEAN ::::::::");
 		tutoriaModelSelect = new TutoriaModel();
 		listTutoria = new ArrayList<TutoriaModel>();
 		listAsistenciaAlumnosTutoria = new ArrayList<AsistenciaTAlumBO>();

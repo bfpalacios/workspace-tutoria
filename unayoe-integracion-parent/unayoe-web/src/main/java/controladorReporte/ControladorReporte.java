@@ -1,6 +1,7 @@
 package controladorReporte;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;  
 import java.util.Collection;  
 import java.util.HashMap;  
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.util.ResourceUtils;
 
+import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.codec.Base64.OutputStream;
+
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;  
@@ -22,6 +26,9 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 public class ControladorReporte {
 	
@@ -71,9 +78,10 @@ public class ControladorReporte {
 			JRExporter exporter = new JRPdfExporter();
 			exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 			exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+			FacesContext.getCurrentInstance().responseComplete();
 			//exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(nombreReporte + ".pdf")); 
 			exporter.exportReport();     
-			System.out.println("Done!");
+			System.out.println("Done!"+nombreReporte);
 		}catch (Exception e){
 			System.out.println(e);
 			e.printStackTrace();
@@ -81,6 +89,7 @@ public class ControladorReporte {
 	}
 	
 	public void generarReporteNotasAlumno(Map<String,Object> parametros, ArrayList<Object> campos){
+		System.out.println("generarReportenotas_alumno");
 		JRBeanCollectionDataSource dataSource;
 		JasperReport jasperReport;
 		JasperPrint jasperPrint;
@@ -99,6 +108,7 @@ public class ControladorReporte {
 			
 			File archivo = ResourceUtils.getFile((new StringBuilder(ruta_arc)).append(nombreReporte).append(".jasper").toString());
 			if(archivo.exists()){
+				System.out.println("entroalif");
 				ArrayList<Object> lista = campos;
 				dataSource = new JRBeanCollectionDataSource(lista);
 				jasperReport =(JasperReport) JRLoader.loadObject(archivo);			
@@ -106,11 +116,12 @@ public class ControladorReporte {
 				JRPdfExporter exporter = new JRPdfExporter();
 				exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
 				exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+				FacesContext.getCurrentInstance().responseComplete();
 				//exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(nombreReporte + ".pdf")); 
 				//File pdf = File.createTempFile("e://output", ".pdf");
 				//JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));				
 				exporter.exportReport();     
-				System.out.println("Done!");
+				System.out.println("Done!"+nombreReporte);
 			}			
 		}catch (Exception e){
 			System.out.println(e);
