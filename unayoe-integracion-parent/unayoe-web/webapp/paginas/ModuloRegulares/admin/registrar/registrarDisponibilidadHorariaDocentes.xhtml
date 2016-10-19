@@ -26,6 +26,7 @@
 					<h:outputText 
 						value="#{mensaje['unayoe.ingresar.datos.usuario.label.area_conocimiento']}" 
 					    style="font-weight: bold;" />
+				
 					<p:selectOneMenu id="selectOneAreaConocimiento"
 						value="#{disponibilidadMBean.disponibilidadModelSelect.codAreaConocimiento}"
 						valueChangeListener="#{disponibilidadMBean.actualizarAreaConocimiento}"
@@ -53,6 +54,7 @@
 								itemValue="#{cursos.cCodigo}" />							
 					</p:selectOneMenu>
 				</h:panelGrid>
+			
 			
 				<h:panelGrid 
 					id="pnlgdDocentes"

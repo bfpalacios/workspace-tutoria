@@ -6,6 +6,9 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.application.FacesMessage;
 
 import org.springframework.stereotype.Controller;
+
+import com.lowagie.text.pdf.hyphenation.TernaryTree.Iterator;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,14 +51,15 @@ public class DisponibilidadMBean {
 	private List<DisponibilidadModel> listaDisponibilidad;
 	private List<DisponibilidadModel> listaDisponibilidadGrid;
 	
-	private int MODO;
-	private int PROCESO_REGISTRO;
-	private int PROCESO_BUSQUEDA;
 	
+	private int PROCESO_REGISTRO;// 1 docente , 2 alumno para registros 
+	private int PROCESO_BUSQUEDA;// 1 docente , 2 alumno para visualizaciones
+	private int MODO; // modo los siguentes
 	private static int MODO_ADMIN = 1;
 	private static int MODO_TUTOR = 2;
 	private static int MODO_ALUMNO = 3;
 	private static int MODO_OCAA = 4;
+	
 	private static int PROCESO_TUTOR = 1;
 	private static int PROCESO_ALUMNO = 2;	
 	
@@ -95,8 +99,15 @@ public class DisponibilidadMBean {
 	
 	public void listarDocenteRegular(){
 		try{
+			
 			List<ProfesorBO> listaTutoresRegulares = tutoriaServices.listarTutoresRegulares();
+			System.out.println("listadocenteregular");
 			getDisponibilidadModel().setListaTutoresRegulares(listaTutoresRegulares);
+			for (ProfesorBO v : listaTutoresRegulares)
+			{  System.out.print(v.getpCodigo() + " ");
+			   }
+			
+			
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -107,6 +118,10 @@ public class DisponibilidadMBean {
 		try{
 			List<AlumnoBO> listaAlumnosRegulares = tutoriaServices.listarAlumnosRegulares();
 			getDisponibilidadModel().setListaAlumnosRegulares(listaAlumnosRegulares);
+			System.out.println("listarAlumnosRegular");
+			for (AlumnoBO v : listaAlumnosRegulares)
+			{  System.out.print(v.getaCodigo() + " ");
+			   }
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -163,12 +178,14 @@ public class DisponibilidadMBean {
 	public void actualizarDocente(ValueChangeEvent e) throws Exception{		
 		String codCurso = (String) (e.getNewValue()==null?"": e.getNewValue());		
 		List<ProfesorBO> listaProfesores = new ArrayList<ProfesorBO>();
-		System.out.println("PROCESO DE BUSQUEDA "+PROCESO_BUSQUEDA);
+		System.out.println("PROCESO DE BUSQUEDA_docente "+PROCESO_BUSQUEDA);
 		PROCESO_BUSQUEDA=1;
 		switch(PROCESO_BUSQUEDA){
 			case 2: listaProfesores = tutoriaServices.listarTutoresObservados(codCurso); break;
 			case 1: listaProfesores = tutoriaServices.listarTutoresRegulares(codCurso); break;
 		}		
+		//se añadio esto
+		PROCESO_BUSQUEDA=2;
 		getDisponibilidadModel().setListaTutoresRegulares(listaProfesores);
 	}
 	
@@ -177,7 +194,7 @@ public class DisponibilidadMBean {
 		String codDocente = (String) (e.getNewValue()==null?"": e.getNewValue());
 		
 		List<AlumnoBO> listaAlumnos = alumnoServices.listarAlumnoTutoria(codDocente, codCurso, 2, 1);
-		
+		System.out.println(" size "+ listaAlumnos.size());
 		getDisponibilidadModel().setListaAlumnosRegulares(listaAlumnos);
 	}
 	
@@ -222,6 +239,8 @@ public class DisponibilidadMBean {
 					disponibilidadHoraria.setHoraFin(getDisponibilidadModelSelect().getHoraFin() + ":00");
 					disponibilidadHoraria.setCodDocente(getDisponibilidadModelSelect().getCodDocente());
 					disponibilidadHoraria.setCodAlumno(getDisponibilidadModelSelect().getCodAlumno());
+					System.out.println("codDocente"+getDisponibilidadModelSelect().getCodDocente());
+					System.out.println("codAlmnno"+getDisponibilidadModelSelect().getCodAlumno());
 					getListaDisponibilidadGrid().add(disponibilidadHoraria);
 				}
 			}		
@@ -250,17 +269,20 @@ public class DisponibilidadMBean {
 		try{
 			String codCurso = getDisponibilidadModelSelect().getCodCurso()==""?"Invalido":getDisponibilidadModelSelect().getCodCurso();
 			String codDocente = getDisponibilidadModelSelect().getCodDocente()==""?"Invalido":getDisponibilidadModelSelect().getCodDocente();
-			
+			System.out.println("p_busq"+PROCESO_BUSQUEDA);
+			System.out.println("p_alum"+PROCESO_ALUMNO);
 			if (PROCESO_BUSQUEDA == PROCESO_ALUMNO){
-				codAlumno = getDisponibilidadModelSelect().getCodAlumno()==""?"Invalido":getDisponibilidadModelSelect().getCodAlumno();
+		codAlumno = getDisponibilidadModelSelect().getCodAlumno()==""?"Invalido":getDisponibilidadModelSelect().getCodAlumno();
 			}
-						
+			System.out.println("codC"+codCurso);
+			System.out.println("codD"+codDocente);
+			System.out.println("codA"+getDisponibilidadModelSelect().getCodAlumno());		
 			if (validarCamposDisponibilidad("", codCurso, "", "", "", codDocente, codAlumno)){
 				switch(PROCESO_BUSQUEDA){
 					case 1: codUsuario = codDocente; tipoUsuario = 1; break;
 					case 2: codUsuario = codAlumno; tipoUsuario = 2; break;
 				}			
-				List<DisponibilidadBO> listaDisponibilidades = tutoriaServices.listarDisponibilidades(codCurso, codUsuario, tipoUsuario);			
+				List<DisponibilidadBO> listaDisponibilidades = tutoriaServices.listarDisponibilidades(codCurso, codUsuario, tipoUsuario);											
 				setListaDisponibilidades(listaDisponibilidades);
 			}
 		}
@@ -470,16 +492,20 @@ public class DisponibilidadMBean {
 	}
 	
 	public String selectorVisualizarDisponibilidad(int modoUsuario, int procesoBusqueda) throws Exception{
+		
 		String pagina = "";
 		inicializarClases();		
 		listarCursos();
+		System.out.println("proc_busqueda"+procesoBusqueda);
 		switch(modoUsuario){
 			case 1: switch(procesoBusqueda){
 						case 1: MODO = MODO_ADMIN;
 								PROCESO_BUSQUEDA = PROCESO_TUTOR;
+								System.out.println("proc_busqueda"+PROCESO_BUSQUEDA);
 								pagina = "/paginas/ModuloRegulares/admin/visualizar/visualizarDisponibilidadDocente.xhtml"; break;
 						case 2: MODO = MODO_ADMIN;
-								PROCESO_BUSQUEDA = PROCESO_ALUMNO;								
+								PROCESO_BUSQUEDA = PROCESO_ALUMNO;	
+								System.out.println("proc_busqueda"+PROCESO_BUSQUEDA);
 								pagina = "/paginas/ModuloRegulares/admin/visualizar/visualizarDisponibilidadAlumno.xhtml"; break;
 					} break;
 			case 2: switch(procesoBusqueda){
