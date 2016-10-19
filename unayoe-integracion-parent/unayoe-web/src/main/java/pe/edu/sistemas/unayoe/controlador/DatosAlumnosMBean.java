@@ -170,7 +170,11 @@ public class DatosAlumnosMBean {
 			XSSFSheet ws = wb.getSheetAt(0);
 			int rowNum = ws.getPhysicalNumberOfRows(); // Cantidad de fila del archivo
 			//rowNum=9;										// excel
+<<<<<<< HEAD
 			System.out.println("rows "+ rowNum);
+=======
+			System.out.println("rows"+rowNum);
+>>>>>>> origin/master
 			/*
 			 * Se limpia los elementos que contiene la lista
 			 * "DatosAlumnoExcelModelGrid" para poder realizar la carga de la
