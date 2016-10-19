@@ -31,18 +31,18 @@
 							<p:selectOneMenu 
                     			id="selectOneCurso" 
                     			value="#{disponibilidadMBean.disponibilidadModelSelect.codCurso}" 
-                    			valueChangeListener="#{disponibilidadMBean.actualizarDocente}"
+                    			valueChangeListener="#{disponibilidadMBean.actualizarAlumno}"
                     			styleClass="ui-column-label-spij styleAlignRightColumn">
                         		<f:selectItem itemLabel="Seleccione el curso:"/>
                         		<f:selectItems 
                         			value="#{disponibilidadMBean.disponibilidadModel.listaCursos}"
                                     var="cursos" itemLabel="#{cursos.nombre}"
                                     itemValue="#{cursos.cCodigo}" />
-                        		<f:ajax event="change" execute="@this" render="selectOneProfesor"/>
+                        		<f:ajax event="change" execute="@this" render="selectOneAlumno"/>
                     		</p:selectOneMenu>
 						</p:column>
 					</p:row>
-                    
+                    <!-- 
                     <p:row>
                     	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
 							<h:outputText 
@@ -64,7 +64,7 @@
 							</p:selectOneMenu>
 						</p:column>
                     </p:row>
-                    
+                    -->
                     <p:row>
                     	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
 							<h:outputText 

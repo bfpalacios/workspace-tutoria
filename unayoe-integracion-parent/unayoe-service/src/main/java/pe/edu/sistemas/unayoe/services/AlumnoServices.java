@@ -22,4 +22,5 @@ public interface AlumnoServices {
 	public void actualizarListaAsistenciaClases(List<AsistenciaCAlumnoBO> lista, String curso, String fecha) throws Exception;
 	public List<AlumnoBO> listarAlumnoTutoria(String usuarioDocente, String codCurso, int tipoAlumno, int modo) throws Exception;
 	public int validarCargaNotas(int anio, int periodo, int plan, String cod_curso, String cod_alumno, int nota_final) throws Exception;
+	public List<AlumnoBO> listarAlumnoDisponibilidad(String codCurso);
 }

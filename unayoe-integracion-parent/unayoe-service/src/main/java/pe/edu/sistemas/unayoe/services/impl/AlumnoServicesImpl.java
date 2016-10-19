@@ -109,4 +109,9 @@ public class AlumnoServicesImpl implements AlumnoServices{
 	public void setTutoriaDAO(TutoriaDaoImpl tutoriaDAO) {
 		this.tutoriaDAO = tutoriaDAO;
 	}
+
+	@Override
+	public List<AlumnoBO> listarAlumnoDisponibilidad(String codCurso) {
+		return alumnoDAO.listarAlumnoDisponibilidad(codCurso);
+	}
 }

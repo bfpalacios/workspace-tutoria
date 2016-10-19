@@ -133,9 +133,10 @@ public class NotasAlumnosMBean {
 	        	XSSFWorkbook wb = new XSSFWorkbook(file);        
 	        	XSSFSheet ws = wb.getSheetAt(0);
 	        
-	        	int rowNum = ws.getPhysicalNumberOfRows() + 1;
+	        	int rowNum = ws.getPhysicalNumberOfRows();
+	        	System.out.println("row " + rowNum);
 		        	//rowNum=rowNum-6;
-	        	rowNum=9;
+	        	//rowNum=9;
 	        	limpiarListas();
 	        	getListNotasAlumnoBO().removeAll(getListNotasAlumnoBO());
 	        	existe = 0;
