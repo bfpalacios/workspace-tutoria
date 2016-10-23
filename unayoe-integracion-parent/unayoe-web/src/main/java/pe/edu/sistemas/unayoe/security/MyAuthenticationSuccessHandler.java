@@ -21,22 +21,21 @@ import pe.edu.sistemas.unayoe.services.RolServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 
 @Component("myAuthenticationSuccessHandler")
-public class MyAuthenticationSuccessHandler extends
-		SimpleUrlAuthenticationSuccessHandler {
+public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-	
+
 	@Autowired
 	private UsuarioServices usuarioService;
-	
+
 	@Autowired
 	private RolServices rolService;
-	
+
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request,
-			HttpServletResponse response, Authentication authentication)
-			throws IOException, ServletException {
-		if(authentication.isAuthenticated()){
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+		if (authentication.isAuthenticated()) {
+			System.out.println("en successhandler");
 			UsuarioBO usuarioBO = null;
 			try {
 				User user = (User) authentication.getPrincipal();
@@ -104,23 +103,25 @@ public class MyAuthenticationSuccessHandler extends
 					}
 
 					setDefaultTargetUrl(url);
-
+System.out.println("url " + url);
 				} else {
 					// para antes de agregarlo deberia configurarse el spring
 					// security
 					// si es super admin se le mustra el home
-				/*	if (roles.size() == 3) {
-						setDefaultTargetUrl("/home.xhtml");
-					}*/
+					/*
+					 * if (roles.size() == 3) {
+					 * setDefaultTargetUrl("/home.xhtml"); }
+					 */
 				}
 				// si se quire regresar a lo anterior :
 				// comentar el if de arriba y descomentar la linea de abajo izi
-			//	setDefaultTargetUrl("/home.xhtml");
+				// setDefaultTargetUrl("/home.xhtml");
+				
 				redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 				setDefaultTargetUrl("/login.xhtml");
 			}
-		}	
+		}
 	}
 }

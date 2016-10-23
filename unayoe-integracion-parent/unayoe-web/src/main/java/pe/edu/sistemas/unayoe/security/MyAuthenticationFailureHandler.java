@@ -7,7 +7,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,9 +23,9 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
-@ManagedBean
-@SessionScoped
+
 @Component("myAuthenticationFailureHandler")
+@ViewScoped
 public class MyAuthenticationFailureHandler extends
 		SimpleUrlAuthenticationFailureHandler {
 	
@@ -39,11 +42,19 @@ public class MyAuthenticationFailureHandler extends
 		
 		if(exception instanceof BadCredentialsException){			
 			System.out.println("Usuario o pass incorrecta");
-			 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_WARN,"Usuario o password incorrecto.", "");
+			 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL,"Combinación errónea de usuario y clave.", "");
 			 System.out.println("msj "+msj);
-			 FacesContext.getCurrentInstance().addMessage("", msj);
-        	System.out.println("Usuario o pass incorrecta x2");
-		     setDefaultFailureUrl("/login.xhtml");
+			 
+			 
+			 FacesContext facesContext = FacesContext.getCurrentInstance();
+			/* Flash flash = facesContext.getExternalContext().getFlash();
+			 flash.setKeepMessages(true);
+			 flash.setRedirect(true);*/
+			 
+        	facesContext.addMessage(null, msj);
+        	
+		   //  setDefaultFailureUrl("/login.xhtml");
+		     
 		     redirectStrategy.sendRedirect(request, response, "/login.xhtml");
 		}
 	}

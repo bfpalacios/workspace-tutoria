@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
@@ -33,7 +34,7 @@ import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 
 @Controller("loginMBean")
 @ViewScoped
-public class LoginMBean implements PhaseListener{
+public class LoginMBean /*implements PhaseListener*/ {
 
 	@Autowired
 	private LoginModel loginModel;
@@ -132,47 +133,33 @@ public class LoginMBean implements PhaseListener{
 		return "/login.xhtml";
 	}
 
-	public String doLogin() throws ServletException, IOException{
-	//	try{
+	public String doLogin() throws ServletException, IOException {
+		// try{
 		System.out.println("do login");
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		String password = shaPasswordEncoder.encodePassword(loginModel.getClave(), null);
 		System.out.println(password);
-		
+
 		RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher(
 				"/j_spring_security_check?j_username=" + loginModel.getUsuario() + "&j_password=" + password);
-//		try{
+		// try{
 		dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
 		FacesContext.getCurrentInstance().responseComplete();
-	/*	}catch(Exception e){
-			mostrarError(e.getMessage());
-		}
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		facesContext.getExternalContext().getSessionMap().put("user", loginModel);
-		
-		return "";
-		
-		}catch(Exception e){
-			
-		}*/
+		/*
+		 * }catch(Exception e){ mostrarError(e.getMessage()); } FacesContext
+		 * facesContext = FacesContext.getCurrentInstance();
+		 * facesContext.getExternalContext().getSessionMap().put("user",
+		 * loginModel);
+		 * 
+		 * return "";
+		 * 
+		 * }catch(Exception e){
+		 * 
+		 * }
+		 */
 		return null;
 
 	}
-	
-	public void beforePhase(PhaseEvent event) {
-        Exception e = (Exception) FacesContext.getCurrentInstance().
-          getExternalContext().getSessionMap().get(WebAttributes.AUTHENTICATION_EXCEPTION);
- System.out.println("antes de bad");
-        if (e instanceof BadCredentialsException) {   
-        	
-        	System.out.println("bad sdads");
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
-                    WebAttributes.AUTHENTICATION_EXCEPTION, null);
-            FacesContext.getCurrentInstance().addMessage(null,
-              new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Username or password not valid.", "Username or password not valid"));
-        }
-    }
 
 	public List<RolBO> getlistaRoles() {
 		return this.rolServices.listarRoles();
@@ -199,22 +186,53 @@ public class LoginMBean implements PhaseListener{
 	public void setRoles(String[] roles) {
 		this.roles = roles;
 	}
-	
-	public static void mostrarError(String msjResumen) {
-        FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, msjResumen,
-                "Credenciales no válidas");
-        FacesContext.getCurrentInstance().addMessage("", msj);
-    }
 
+	public static void mostrarError(String msjResumen) {
+		FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, msjResumen, "Credenciales no válidas");
+		FacesContext.getCurrentInstance().addMessage("", msj);
+	}
+	/*
+	 * @Override public void afterPhase(PhaseEvent event) {
+	 * 
+	 * 
+	 * }
+	 * 
+	 * @Override public PhaseId getPhaseId() { return PhaseId.RENDER_RESPONSE; }
+	 */
+/*
 	@Override
 	public void afterPhase(PhaseEvent event) {
-		
-		
+		Exception e = (Exception) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get(WebAttributes.AUTHENTICATION_EXCEPTION);
+		System.out.println("antes de bad");
+		if (e instanceof BadCredentialsException) {
+
+			System.out.println("user incorrecto ");
+			/*FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.put(WebAttributes.AUTHENTICATION_EXCEPTION, null);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username or password not valid.", ""));
+			*/FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Usuario o password incorrecto.", "");
+
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+		/*	
+			  Flash flash = facesContext.getExternalContext().getFlash();
+			  flash.setKeepMessages(true); flash.setRedirect(true);*/
+			 
+
+		/*	facesContext.addMessage(null, msj);
+		}
+
+	}*/
+/*
+	@Override
+	public void beforePhase(PhaseEvent event) {
+	
 	}
 
 	@Override
 	public PhaseId getPhaseId() {
 		return PhaseId.RENDER_RESPONSE;
-	}
+	}*/
 
 }
