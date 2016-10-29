@@ -178,8 +178,37 @@
 			<artifactId>jasperreports</artifactId>
 			<version>${jasper.version}</version>
 		</dependency>
+		
+		<dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>glass-x</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+	
+	  <dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>dot-luv</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+
+<dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>humanity</artifactId>
+		<version>1.0.6</version>
+	</dependency>
+
 
 	</dependencies>
+	
+	<repositories>
+    <repository>
+        <id>prime-repo</id>
+        <name>PrimeFaces Maven Repository</name>
+        <url>http://repository.primefaces.org</url>
+        <layout>default</layout>
+    </repository>
+  </repositories>
+	
 
 	<build>
 		<finalName>${finalName}</finalName>
