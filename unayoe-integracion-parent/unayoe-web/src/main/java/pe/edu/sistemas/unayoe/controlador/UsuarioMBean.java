@@ -340,7 +340,7 @@ public class UsuarioMBean {
 					FacesContext.getCurrentInstance().addMessage(null, message); break;
 			case 9: message = new FacesMessage(FacesMessage.SEVERITY_FATAL,"", "Hubo un error al guardar el usuario");
 					FacesContext.getCurrentInstance().addMessage(null, message); break;
-		}
+					}
 	}
 	
 	private void limpiarObjetos(){

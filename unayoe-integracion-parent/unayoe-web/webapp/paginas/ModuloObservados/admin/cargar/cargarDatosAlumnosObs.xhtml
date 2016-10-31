@@ -73,7 +73,12 @@
 						style="font-weight:bold;font-size:15px;color:red;">#{mensaje['unayoe.ingresar.grilla']}</p:column>
 				</p:row>
 
+				
+						
+				
+				
 				<p:row id="filTabla">
+				
 					<p:column id="colTabla"
 						styleClass="ui-column-label-spij styleAlignRightColumn"
 						colspan="3">
@@ -81,28 +86,31 @@
 							value="#{datosAlumnosMBean.datosAlumnoExcelModelGrid}"
 							var="registro" binding="#{tabla}"
 							emptyMessage="Sin datos para cargar" paginator="true" rows="20">
-							<p:column headerText="Fila">
+							<f:facet name="header" style="font-weight:bold;font-size:150px;color:black;">
+           			 		CICLO 2016-1
+        					</f:facet>
+							<p:column headerText="Fila" style="width:30px;">
 								<h:outputText value="#{tabla.rowIndex + 1}" />
 							</p:column>
 
-							<p:column headerText="Codigo(*)">
-								<h:outputText value="#{registro.cod_alumno}" />
+							<p:column headerText="Codigo(*)" style="font-weight:bold;color:black;width:60px;">
+								<h:outputText style="font-weight:normal;color:black;" value="#{registro.cod_alumno}" />
 							</p:column>
 
-							<p:column headerText="Apellido paterno(*)">
-								<h:outputText value="#{registro.ap_paterno}" />
+							<p:column headerText="Apellido paterno(*)" style="font-weight:bold;color:black;width:80px;">
+								<h:outputText style="font-weight:normal;color:black;" value="#{registro.ap_paterno}" />
 							</p:column>
 
-							<p:column headerText="Apellido materno(*)">
-								<h:outputText value="#{registro.ap_materno}" />
+							<p:column headerText="Apellido materno(*)" style="font-weight:bold;color:black;width:80px;">
+								<h:outputText style="font-weight:normal;color:black;" value="#{registro.ap_materno}" />
 							</p:column>
 
-							<p:column headerText="Nombres(*)">
-								<h:outputText value="#{registro.nombres}" />
+							<p:column headerText="Nombres(*)" style="font-weight:bold;color:black;width:80px;">
+								<h:outputText style="font-weight:normal;color:black;" value="#{registro.nombres}" />
 							</p:column>
 
-							<p:column headerText="Plan(*)">
-								<h:outputText value="#{registro.cod_plan}" />
+							<p:column headerText="Plan(*)" style="font-weight:bold;color:black;width:40px;">
+								<h:outputText style="font-weight:normal;color:black;" value="#{registro.cod_plan}" />
 							</p:column>
 							
 
@@ -110,7 +118,7 @@
 
 
 
-<p:column headerText="Codigo de Curso(*)">
+<p:column headerText="Codigo de Curso(*)" style="font-weight:bold;color:black;width:90px;">
 
 <p:commandButton id="cursoBtn" type="button" value="#{registro.cod_curso}"/>
     			
@@ -130,7 +138,7 @@
     </p:overlayPanel>
 </p:column>		
 
-   		   					<p:column headerText="Cod. Docente(*)">
+   		   					<p:column headerText="Cod. Docente(*)" style="font-weight:bold;color:black;width:90px;">
 			<p:commandButton id="docenteBtn" type="button" value="#{registro.cod_docente}"/>
     		<p:overlayPanel id="docentePanel" for="docenteBtn" hideEffect="fade" dynamic="true" style="width:300px">
    			<p:panelGrid  columns="2" columnClasses="label,value">		
@@ -152,16 +160,16 @@
     </p:overlayPanel>		
 </p:column>
 
-							<p:column headerText="Hora Inicio(*)">
-								<h:outputText value="#{registro.hora_inicio}" />
+							<p:column headerText="Hora Inicio(*)" style="font-weight:bold;color:black;width:60px;">
+								<h:outputText style="font-weight:normal;" value="#{registro.hora_inicio}" />
 							</p:column>
 
-							<p:column headerText="Hora Fin(*)">
-								<h:outputText value="#{registro.hora_fin}" />
+							<p:column headerText="Hora Fin(*)" style="font-weight:bold;color:black;width:60px;">
+								<h:outputText style="font-weight:normal;" value="#{registro.hora_fin}" />
 							</p:column>
 
 							<p:column headerText="Existe">
-								<h:outputText value="#{registro.existe}" />
+								<h:outputText style="font-weight:normal;" value="#{registro.existe}" />
 							</p:column>
 
 							<p:column headerText="Válido">

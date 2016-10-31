@@ -180,8 +180,8 @@ public class NotasAlumnosMBean {
 	        	wb.close();
 	        }      
 	        catch (IOException e) {
-	        	//mostrarMensaje(1);
-	        	//e.printStackTrace();
+	        	mostrarMensaje(1);
+	        	e.printStackTrace();
 	        }
         } 
 		System.out.println("MODO"+MODO_USUARIO);
@@ -208,9 +208,9 @@ public class NotasAlumnosMBean {
 			System.out.println("EXCELCARGADO LA DVD");
 			archivoCargado = true;
             getArchivoModel().setNombre(excelCargado.getFileName());
-			//mostrarMensaje(2);            
+			mostrarMensaje(2);            
         }else{
-        	//mostrarMensaje(3);
+        	mostrarMensaje(3);
         }
 		return archivoCargado;
 	}
