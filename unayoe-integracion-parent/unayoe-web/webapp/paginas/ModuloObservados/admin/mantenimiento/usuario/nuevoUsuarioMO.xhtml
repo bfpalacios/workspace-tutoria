@@ -28,7 +28,8 @@
 							</p:column>
 	
 							<p:column>
-								<p:inputText id="usuarioId" size="40"					
+								<p:inputText id="usuarioId" size="40" required="true"
+									requiredMessage="#{mensaje['general.error.requerido']}"			
 									value="#{usuarioMBean.usuarioModel.idUsuario}" />
 								<p:message for="usuarioId"/>
 							</p:column>
@@ -43,7 +44,8 @@
 	
 							<p:column styleClass="styleAlignLeftColumn">
 								<p:password 
-									id="clave" size="40" 								
+									id="clave" size="40" required="true"
+									requiredMessage="#{mensaje['general.error.requerido']}"							
 									value="#{usuarioMBean.usuarioModel.clave}" />
 								<p:message for="clave" />
 							</p:column>

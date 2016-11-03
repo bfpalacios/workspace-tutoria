@@ -8,14 +8,16 @@
 
 	<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_r.xhtml">
 		<ui:define name="contenido">
+		
+		
+		<f:facet name="header">
+			<p:row>
+				<p:column colspan="3">Registro de Usuario >> Nuevo Usuario</p:column>
+			</p:row>
+			</f:facet>
+		
 		<h:form>
-			<p:outputPanel id="pnlGridMensajes" style="width:500px;margin-top:5px;">
-				<p:row>
-    				<p:column colspan="4" rowspan="2">
-    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-   					</p:column>
-   				</p:row>
-   			</p:outputPanel>
+			
 			
 			<p:panel header="Mantenimiento de Usuarios" style="width: 400px;">					
 				<p:panelGrid id="pnlGridLoginAcceso">
@@ -27,7 +29,7 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="usuarioId" size="40"
+							<p:inputText id="usuarioId" size="40" required="true"
 								requiredMessage="#{mensaje['general.error.requerido']}"
 								value="#{usuarioMBean.usuarioModel.idUsuario}" />
 							<p:message for="usuarioId" />
@@ -43,7 +45,7 @@
 
 						<p:column styleClass="styleAlignLeftColumn">
 							<p:password 
-								id="clave" size="40"
+								id="clave" size="40" required="true"
 								requiredMessage="#{mensaje['general.error.requerido']}"
 								value="#{usuarioMBean.usuarioModel.clave}" />
 							<p:message for="clave" />
@@ -57,8 +59,8 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="nombresUsuario" size="40"
-								requiredMessage="#{mensaje['general.error.requerido']}"
+							<p:inputText id="nombresUsuario" size="40" required="true"
+								requiredMessage="#{mensaje['general.error.nombre']}"
 								value="#{usuarioMBean.usuarioModel.nombres}" />
 							<p:message for="nombresUsuario" />
 						</p:column>
@@ -72,8 +74,8 @@
 
 						<p:column>
 							<p:inputText 
-								id="apellidoPaternoUsuario" size="40"
-								requiredMessage="#{mensaje['general.error.requerido']}"
+								id="apellidoPaternoUsuario" size="40" required="true"
+								requiredMessage="#{mensaje['general.error.ap']}"
 								value="#{usuarioMBean.usuarioModel.paterno}" />
 							<p:message for="apellidoPaternoUsuario" />
 						</p:column>
@@ -86,8 +88,8 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="apellidoMaternoUsuario" size="40"
-								requiredMessage="#{mensaje['general.error.requerido']}"
+							<p:inputText id="apellidoMaternoUsuario" size="40" required="true"
+								requiredMessage="#{mensaje['general.error.am']}"
 								value="#{usuarioMBean.usuarioModel.materno}" />
 							<p:message for="apellidoMaternoUsuario" />
 						</p:column>
@@ -100,8 +102,10 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="correoUsuario" size="40"						
-								value="#{usuarioMBean.usuarioModel.correo}" />					
+							<p:inputText id="correoUsuario" size="40"	required="true"
+								requiredMessage="#{mensaje['general.error.correo']}"					
+								value="#{usuarioMBean.usuarioModel.correo}" />		
+							<p:message for= "correoUsuario"/>			
 						</p:column>
 					</p:row>
 			
@@ -124,8 +128,10 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="telefonoUsuario" size="40"						
-								value="#{usuarioMBean.usuarioModel.telefono}" />					
+							<p:inputText id="telefonoUsuario" size="40"	required="true"
+								requiredMessage="#{mensaje['general.error.telefono']}"					
+								value="#{usuarioMBean.usuarioModel.telefono}" />		
+								<p:message for="telefonoUsuario" />			
 						</p:column>
 					</p:row>
 			
@@ -189,13 +195,19 @@
 				</p:panelGrid>
 			</p:panel>
 			
+			<p:panelGrid>
+				<p:row>
+					<p:column colspan="1" style="font-weight:bold;font-size:13px;color:red;">Advertencia:Los campos que están con (*) son obligatorios</p:column>
+				</p:row>
+				</p:panelGrid>
+			
 			<p:outputPanel id="pnlGuardar" style="width:400x;margin-top:px;">
 				<p:row>
 					<p:column colspan="2" styleClass="styleAlignRightColumn">
 						<p:commandButton 
 							id="botonGuardar" value="Guardar" 
 							actionListener="#{usuarioMBean.guardarNuevoUsuarioMR}" 
-							update="usuarioId, clave, nombresUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, correoUsuario, direccionUsuario, telefonoUsuario, codigoAlumno"
+							update="pnlGridLoginAcceso,usuarioId, clave, nombresUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, correoUsuario, direccionUsuario, telefonoUsuario, codigoAlumno"
 							ajax="true" />							
 					</p:column>
 				</p:row>
