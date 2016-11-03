@@ -192,7 +192,7 @@ public class DatosAlumnosMBean {
 			formatoExcelValido = validarFormatoColumnasExcel(ws.getRow(0));
 			if (formatoExcelValido) {
 				for (int i = 1; i < rowNum; i++) {
-
+					
 					/*
 					 * Realiza la validacion inicial del codigo de alumno
 					 */
@@ -200,11 +200,20 @@ public class DatosAlumnosMBean {
 
 					if (row.getCell(COD_ALUMNO) == null || row.getCell(COD_ALUMNO).toString() == "") {
 						continue;
+						
+						
 					}
+					
+					// validando repitencias
+					Integer repitencias = validarDatoEntero(row.getCell(REPITENCIAS));	
+					if(repitencias!=2 && repitencias != 3){
+						continue;
+					}
+					
 					/*
 					 * Fin validacion del codigo del alumno
 					 */
-
+					
 					/*
 					 * Empieza la carga de los datos del alumno
 					 */

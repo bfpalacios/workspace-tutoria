@@ -42,7 +42,7 @@ public class MyAuthenticationFailureHandler extends
 		
 		if(exception instanceof BadCredentialsException){			
 			System.out.println("Usuario o pass incorrecta");
-			 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL,"Combinación errónea de usuario y clave.", "");
+			 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL,"Usuario y/o contraseña incorrecta.", "");
 			 System.out.println("msj "+msj);
 			 
 			 

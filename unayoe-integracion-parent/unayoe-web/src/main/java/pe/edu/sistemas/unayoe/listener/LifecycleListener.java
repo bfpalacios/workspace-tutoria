@@ -65,15 +65,7 @@ public class LifecycleListener  implements PhaseListener {
 			
 			Exception e = (Exception) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 					.get(WebAttributes.AUTHENTICATION_EXCEPTION);
-			System.out.println("antes de bad");
-		/*	if (e instanceof BadCredentialsException) {
-
-				System.out.println("user incorrecto ");
-				FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Usuario o password incorrecto.", "");	 
-
-				facesContext.addMessage(null, msj);
-			}
-			*/
+			
 			saveMessages(facesContext);
 		}
  
