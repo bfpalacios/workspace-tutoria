@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="/plantilla/ModuloObservados/Plantillas/plantilla_o.xhtml">
+	<ui:composition template="/plantilla/ModuloPares/Plantillas/plantilla_p.xhtml">
 		<ui:define name="contenido">
 		
 			<f:facet name="header">
@@ -171,7 +171,7 @@
 						<p:column colspan="2" styleClass="styleAlignRightColumn">
 							<p:commandButton 
 								id="botonGuardar" value="Guardar" 
-								actionListener="#{usuarioMBean.guardarNuevoUsuarioMO}"
+								actionListener="#{usuarioMBean.guardarNuevoUsuarioMP}"
 								update="pnlGridLoginAcceso,usuarioId, clave, nombresUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, correoUsuario, direccionUsuario, telefonoUsuario,
 								pnlGridMensajes,messages" 
 								ajax="true"/>								

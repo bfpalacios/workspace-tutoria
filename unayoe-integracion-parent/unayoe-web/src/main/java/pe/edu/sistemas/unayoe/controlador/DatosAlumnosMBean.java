@@ -104,7 +104,6 @@ public class DatosAlumnosMBean {
 	}
 
 	private boolean validarFormatoColumnasExcel(XSSFRow fila_alumno) {
-
 		if (fila_alumno.getCell(COD_ALUMNO) == null)
 			return false;
 		else if (!fila_alumno.getCell(COD_ALUMNO).toString().toUpperCase().equals(FormatoExcel.COLUMNA_1.getTituloColum())) return false;
@@ -200,13 +199,11 @@ public class DatosAlumnosMBean {
 
 					if (row.getCell(COD_ALUMNO) == null || row.getCell(COD_ALUMNO).toString() == "") {
 						continue;
-						
-						
 					}
 					
 					// validando repitencias
 					Integer repitencias = validarDatoEntero(row.getCell(REPITENCIAS));	
-					if(repitencias!=2 && repitencias != 3){
+					if(esRepitenciaInvalida(repitencias)){
 						continue;
 					}
 					
@@ -216,6 +213,9 @@ public class DatosAlumnosMBean {
 					
 					/*
 					 * Empieza la carga de los datos del alumno
+					 * al convertir tambien hace una validacion de todos los campos 
+					 * asi que se vuelve a validar las repitencias
+					 * para ponerle el valor de valido = Si o No
 					 */
 					DatosAlumnoExcelModel dataModel = convertirAModelAlumno(row);
 
@@ -227,11 +227,16 @@ public class DatosAlumnosMBean {
 					}
 
 					datosAlumnoExcelModelGrid.add(dataModel);
-
+					System.out.println("existe " + dataModel.getExiste());
+					System.out.println("valido " + dataModel.getValido());
 					if (dataModel.getExiste() != "Si" && dataModel.getValido() != "No") {
 						datosAlumnoExcelModels.add(dataModel);
+						System.out.println("se añade a datosalumnosexcelmodels");
+					}else{
+						System.out.println("NO se añade a datosalumnosexcelmodels");
 					}
 				}
+				
 				setExcel(archivoCargado, event);      //Valida si excel fue cargado , muestra un mensaje
 			}else{
 				getArchivoModel().setNombre("");
@@ -321,12 +326,17 @@ public class DatosAlumnosMBean {
 		return datos;
 	}
 
+	private boolean esRepitenciaInvalida(Integer iRepitencias){
+		return (iRepitencias!=2 && iRepitencias!=3);
+	}
+	
 	private DatosAlumnoExcelModel validarRegistroTutoria(DatosAlumnoExcelModel datos) {
+		System.out.println("valida " + Integer.parseInt(datos.getRepitencias()));
 		if (datos.getCod_alumno() == "" || datos.getCod_alumno().length() > 8 || datos.getAp_paterno() == ""
 				|| datos.getAp_materno() == "" || datos.getNombres() == "" || datos.getCod_plan() == "0"
 				|| datos.getCod_curso() == "" || datos.getRepitencias() == "0" || datos.getCod_docente() == ""
 				|| datos.getCod_frecuencia() == "0" || datos.getDia() == "" || datos.getHora_inicio() == ""
-				|| datos.getHora_fin() == "" || Integer.parseInt(datos.getRepitencias()) < 4) {
+				|| datos.getHora_fin() == "" || esRepitenciaInvalida(Integer.parseInt(datos.getRepitencias())) ) {
 			datos.setValido("No");
 		} else {
 			datos.setValido("Si");
@@ -347,8 +357,11 @@ public class DatosAlumnosMBean {
 		try {
 			int validador = 0;
 			List<TutoriaBO> listaTutorias = convertirATutoriaBO(datosAlumnoExcelModels);
+			System.out.println("lista de excel "+ datosAlumnoExcelModels.size());
 			CicloBO ciclo = comunServices.buscarCicloActual();
 			for (TutoriaBO tutoria : listaTutorias) {
+				System.out.println("hallado " + tutoriaServices.buscarTutoria(ciclo.getAnio(), ciclo.getPeriodo(), tutoria.getcCodigo(),
+						tutoria.getaCodigo(), tutoria.getpCodigo()) );
 				if (tutoriaServices.buscarTutoria(ciclo.getAnio(), ciclo.getPeriodo(), tutoria.getcCodigo(),
 						tutoria.getaCodigo(), tutoria.getpCodigo()) == "") {
 					tutoriaServices.procesarTutoriaObservados(tutoria, obtenerUsuario(), ALUMNO_OBSERVADO);
