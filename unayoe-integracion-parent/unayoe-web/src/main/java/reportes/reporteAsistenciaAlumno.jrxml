@@ -212,7 +212,7 @@
 			<staticText>
 				<reportElement x="178" y="24" width="254" height="20" uuid="d7bb5471-0aa2-4b6d-8d29-bc9df1a04dd6"/>
 				<textElement>
-					<font fontName="Aparajita" size="16"/>
+					<font fontName="Arial" size="16"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE ASISTENCIA A TUTORIA]]></text>
 			</staticText>

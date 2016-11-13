@@ -19,7 +19,7 @@ public class FormateadorFecha {
 
 			DateFormat fecha = new SimpleDateFormat(formato);
 			convertido = fecha.format(date);
-			System.out.println(convertido);
+			System.out.println("GG"+convertido);
 		    return convertido;
 		}
 	}

@@ -283,17 +283,20 @@ public class AlumnoMBean {
 		try {
 			String fechaActual = new FormateadorFecha().formatoFechaDDMMAAAA(new Date());
 			String fechaElegida = "";
-
+			System.out.println("MODO1:"+MODO);
 			if (MODO == MODO_ADMIN) {
+				System.out.println("15");
 				fechaElegida = new FormateadorFecha()
 						.formatoFechaDDMMAAAA(getDate() == null ? new Date(Long.MIN_VALUE) : getDate());
 			} else {
-				//fechaElegida="09/07/2015";
-				fechaElegida = new FormateadorFecha().formatoFechaDDMMAAAA(new Date());
+				System.out.println("16");
+				fechaElegida = new FormateadorFecha().formatoFechaDDMMAAAA(getDate() == null ? new Date(Long.MIN_VALUE) : getDate());
 			}
 
 			if (ValidarFecha(fechaElegida) == true) {
+				System.out.println("18");
 				if (compararFechas(fechaActual, fechaElegida) == 2) {
+					System.out.println("17");
 					mostrarMensaje(5);
 				} else {
 					String usuarioDocente = "";
@@ -307,12 +310,14 @@ public class AlumnoMBean {
 					if (getListaAsistenciaAlumnosTutoriaGrid() != null) {
 						getListaAsistenciaAlumnosTutoriaGrid().clear();
 					}
-
+System.out.println("MODO2:"+MODO);
 					if (MODO == MODO_ADMIN) {
+						System.out.println("21");
 						usuarioDocente = getAlumnoModelSelect().getpCodigo() == null ? ""
 								: getAlumnoModelSelect().getpCodigo();
 					} else {
 						if (MODO == MODO_TUTOR) {
+							System.out.println("20");
 							usuarioDocente = obtenerUsuario();
 						}
 					}
@@ -334,11 +339,19 @@ public class AlumnoMBean {
 								break;
 							} else {
 								if (tutoria.getSesion() == 1) {
+									System.out.println("1");
+									TIPO_SESION=1;
+									System.out.println("MODO"+MODO);
+									System.out.println("tipo1"+TIPO_SESION);
+									System.out.println("p_sesio1"+PRIMERA_SESION);
 									if (TIPO_SESION == PRIMERA_SESION) {
+										System.out.println("2");
 										if (PROCESO == PROCESO_REGULARES) {
+											System.out.println("3");
 											List<EncuestaBO> listaEncuestas = tutoriaServices
 													.buscarDatosEncuesta(codTutoria);
 											if (listaEncuestas.size() > 0) {
+												System.out.println("4");
 												tutoria.setListaAsistencia(listaComboAsistencia);
 												setListaAsistenciaAlumnosTutoria(listarTutorias);
 												setListaAsistenciaAlumnosTutoriaGrid(listarTutorias);
@@ -348,23 +361,33 @@ public class AlumnoMBean {
 												mostrarMensaje(9);
 											}
 										} else {
+											System.out.println("5");
 											tutoria.setListaAsistencia(listaComboAsistencia);
 											setListaAsistenciaAlumnosTutoria(listarTutorias);
 											setListaAsistenciaAlumnosTutoriaGrid(listarTutorias);
 											buscarNotasAlumno(tutoria.getaCodigo());
 											setActivarTablaNotas(true);
+											PRIMERA_SESION=0;
 										}
 									} else {
 										mostrarMensaje(10);
 									}
 								} else {
+									System.out.println("11");
+									System.out.println("MODO"+MODO);
+									System.out.println("tipo2"+TIPO_SESION);
+									System.out.println("p_sesio2"+PRIMERA_SESION);
 									if (TIPO_SESION == PRIMERA_SESION) {
+										System.out.println("6");
 										if (MODO != MODO_ADMIN) {
 											mostrarMensaje(12);
 										}
 									} else {
+										System.out.println("7");
 										if (tutoria.getSesion() == ultimaSesion) {
+											System.out.println("9");
 											if (TIPO_SESION == ULTIMA_SESION) {
+												System.out.println("8");
 												tutoria.setListaAsistencia(listaComboAsistencia);
 												setListaAsistenciaAlumnosTutoria(listarTutorias);
 												setListaAsistenciaAlumnosTutoriaGrid(listarTutorias);
@@ -372,7 +395,11 @@ public class AlumnoMBean {
 												mostrarMensaje(11);
 											}
 										} else {
+											System.out.println("MODO3"+MODO);
+											System.out.println("tipo3"+TIPO_SESION);
+											System.out.println("p_sesio3"+PRIMERA_SESION);
 											if (TIPO_SESION == ULTIMA_SESION) {
+												System.out.println("10");
 												if (MODO != MODO_ADMIN) {
 													mostrarMensaje(13);
 												}
