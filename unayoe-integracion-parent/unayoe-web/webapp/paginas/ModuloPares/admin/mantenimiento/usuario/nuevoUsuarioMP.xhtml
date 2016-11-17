@@ -66,8 +66,11 @@
 	
 							<p:column>
 								<p:inputText id="nombresUsuario" required="true" size="40"	
-								requiredMessage="#{mensaje['general.error.nombre']}"
-								value="#{usuarioMBean.usuarioModel.nombres}" />
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.nombre']}" 
+								value="#{usuarioMBean.usuarioModel.nombres}" >
+								 <f:validateRegex pattern="[a-zA-Z]+"/>
+								 </p:inputText>
 								<p:message for="nombresUsuario"/>
 							</p:column>
 						</p:row>
@@ -81,8 +84,11 @@
 							<p:column>
 								<p:inputText 
 									id="apellidoPaternoUsuario" size="40" required="true"
-									requiredMessage="#{mensaje['general.error.ap']}"								
-									value="#{usuarioMBean.usuarioModel.paterno}" />
+									requiredMessage="#{mensaje['general.error.requerido']}" 
+									validatorMessage="#{mensaje['general.error.ap']}"																	
+									value="#{usuarioMBean.usuarioModel.paterno}" >
+									<f:validateRegex pattern="[a-zA-Z]+"/>
+									</p:inputText>
 								<p:message for="apellidoPaternoUsuario" />
 							</p:column>
 						</p:row>
@@ -95,8 +101,11 @@
 	
 							<p:column>
 								<p:inputText id="apellidoMaternoUsuario" size="40" required="true"
-								requiredMessage="#{mensaje['general.error.am']}"									
-									value="#{usuarioMBean.usuarioModel.materno}" />
+								requiredMessage="#{mensaje['general.error.requerido']}"	 
+								validatorMessage="#{mensaje['general.error.am']}" 								
+									value="#{usuarioMBean.usuarioModel.materno}" > 
+									<f:validateRegex pattern="[a-zA-Z]+"/>
+									</p:inputText>
 								<p:message for="apellidoMaternoUsuario" />
 							</p:column>
 						</p:row>
@@ -109,8 +118,11 @@
 	
 							<p:column>
 								<p:inputText id="correoUsuario" size="40" required="true"
-								requiredMessage="#{mensaje['general.error.correo']}"						
-									value="#{usuarioMBean.usuarioModel.correo}" />
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.correo']}" 						
+									value="#{usuarioMBean.usuarioModel.correo}" >
+									 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>  
+									</p:inputText>
 										<p:message for="correoUsuario" />					
 							</p:column>
 						</p:row>
@@ -135,8 +147,11 @@
 	
 							<p:column>
 								<p:inputText id="telefonoUsuario" size="40"	 required="true"
-									requiredMessage="#{mensaje['general.error.telefono']}"		
-									value="#{usuarioMBean.usuarioModel.telefono}" />
+									requiredMessage="#{mensaje['general.error.requerido']}" 
+									validatorMessage="#{mensaje['general.error.telefono']}" 		
+									value="#{usuarioMBean.usuarioModel.telefono}" >
+									 <f:validateRegex pattern="[0-9]+"/>
+									</p:inputText>
 										<p:message for="telefonoUsuario" />					
 							</p:column>
 						</p:row>
