@@ -9,7 +9,6 @@ import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
  * @author Bruno Palacios
  *
  */
-
 public interface CursoServices {
 	public List<CursoBO> listarCursos() throws Exception;
 	public void          guardarCursos(List<CursoBO> lista) throws Exception;
