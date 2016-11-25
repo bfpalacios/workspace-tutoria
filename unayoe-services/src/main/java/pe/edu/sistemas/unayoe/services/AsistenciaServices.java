@@ -4,7 +4,11 @@ import java.util.List;
 
 import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaCAlumnoBO;
 
- 
+ /**
+ * Atributos para buscarAsistencia
+ * @author Bruno Palacios
+ *
+ */
 
 public interface AsistenciaServices {
 
