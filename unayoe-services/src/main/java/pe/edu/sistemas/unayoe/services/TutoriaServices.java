@@ -15,6 +15,12 @@ import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaTAlumBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaTProfBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.AreaConocimientoBO;
 
+/**
+ * Interfaz Services de Tutoría
+ * @author Bruno Palacios
+ *
+ */
+
 public interface TutoriaServices {
 	public List<ProfesorBO>   		listarProfesores() throws Exception;
 	public List<AlumnoBO>           listarAlumnosRegulares() throws Exception;
