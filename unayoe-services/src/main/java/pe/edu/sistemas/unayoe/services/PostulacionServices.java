@@ -4,6 +4,12 @@ import java.util.List;
 
 import pe.edu.sistemas.unayoe.unayoe.bo.PostulacionBO;
 
+/**
+ * Interfaz Servicios de Postulación
+ * @author Bruno Palacios
+ *
+ */
+
 public interface PostulacionServices {
 
 	public boolean registrarPostulacion(PostulacionBO postulacion);
