@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package pe.edu.sistemas.unayoe.dao;
 
 import java.math.BigInteger;
@@ -19,19 +22,32 @@ import pe.edu.sistemas.unayoe.dao.dominio.Curso;
 import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CursoDaoImpl.
+ */
 @Repository("cursoDao")
 @Transactional
 public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursos()
+	 */
 	public List<Curso> listarCursos() throws Exception {
 		//devuelve toda la informacion de los cursos
 		return super.listarTodos(Curso.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#obtenerCurso(java.lang.String)
+	 */
 	public Curso obtenerCurso(String codigo) throws Exception{
 		return super.obtenerEntidadPorId(Curso.class,codigo);
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursosxDocenteRegular(java.lang.String)
+	 */
 	public List<CursoBO> listarCursosxDocenteRegular(String codDocente) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -61,6 +77,9 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 		return listaCursos;
 	 }
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursosDocente(java.lang.String, int, int)
+	 */
 	public List<CursoBO> listarCursosDocente(String codDocente, int proceso, int modo) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -92,6 +111,9 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 		return listaCursos;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursosPorAreaConocimiento(java.lang.String)
+	 */
 	public List<CursoBO> listarCursosPorAreaConocimiento(String codigoAreaConocimiento) {
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -122,6 +144,9 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 		return listaCursos;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursosAprobadosPorAreaConocimiento(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public List<CursoBO> listarCursosAprobadosPorAreaConocimiento( String codigoTutor,String codigoAreaConocimiento) throws Exception {
 		Connection con = null;
@@ -154,6 +179,9 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 		return listaCursos;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#obtenerCursoTema(int)
+	 */
 	@Override
 	public CursoBO obtenerCursoTema(int codigoTema) {
 		Connection con = null;
@@ -184,6 +212,9 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursosPorConvocatoria(java.lang.Integer)
+	 */
 	@Override
 	public List<CursoBO> listarCursosPorConvocatoria(Integer idConvocatoria) {
 		Connection conn = null;
@@ -211,6 +242,9 @@ public class CursoDaoImpl extends DAOImpl<Curso,String> implements CursoIDao{
 		return cursos;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.CursoIDao#listarCursosTutorias()
+	 */
 	@Override
 	public List<CursoBO> listarCursosTutorias() {
 		Connection con = null;

@@ -44,58 +44,115 @@ import pe.edu.sistemas.unayoe.unayoe.bo.ProfesorBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.SesionBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GestionarActasMBean.
+ */
 @Controller("gestionarActasMBean")
 @ViewScoped
 public class GestionarActasMBean {
+	
+	/** The alumno model. */
 	@Autowired
 	private AlumnoModel alumnoModel;
+	
+	/** The tutoria model. */
 	@Autowired
 	private TutoriaModel tutoriaModel;
+	
+	/** The comun services. */
 	@Autowired
 	private ComunServices comunServices;
+	
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
+	
+	/** The alumno services. */
 	@Autowired
 	private AlumnoServices alumnoServices;
+	
+	/** The tutoria services. */
 	@Autowired
 	private TutoriaServices tutoriaServices;
+	
+	/** The usuario services. */
 	@Autowired
 	private UsuarioServices usuarioServices;
 
+	/** The tutoria model select. */
 	private TutoriaModel tutoriaModelSelect;
+	
+	/** The desactivar carga. */
 	private boolean desactivarCarga;
+	
+	/** The desactivar descarga. */
 	private boolean desactivarDescarga;
+	
+	/** The desactivar tarea. */
 	private boolean desactivarTarea;
+	
+	/** The file. */
 	private StreamedContent file;
 
+	/** The lista observaciones. */
 	private List<TutoriaModel> listaObservaciones;
 	/*-------------------------------------------------------*/
+	/** The proceso. */
 	/*
 	 * Estas variables no deben ser accedidas por ninguna clase por ello, no
 	 * tendrán métodos GET y SET
 	 */
 	private int PROCESO;
+	
+	/** The modo. */
 	private int MODO;
+	
+	/** The modo aux. */
 	private int MODO_AUX;
+	
+	/** The anio actual. */
 	private int ANIO_ACTUAL;
+	
+	/** The periodo actual. */
 	private int PERIODO_ACTUAL;
 
+	/** The proceso observados. */
 	private static int PROCESO_OBSERVADOS = 1;
+	
+	/** The proceso regulares. */
 	private static int PROCESO_REGULARES = 2;
 
+	/** The modo admin. */
 	private static int MODO_ADMIN = 1;
+	
+	/** The modo tutor. */
 	private static int MODO_TUTOR = 2;
+	
+	/** The modo ocaa. */
 	private static int MODO_OCAA = 3;
+	
+	/** The modo unayoe. */
 	private static int MODO_UNAYOE = 4;
+	
+	/** The modo decano. */
 	private static int MODO_DECANO = 5;
 
 	// private static String REGISTRO_CORRECTO = "R";
+	/** The registro faltante. */
 	// private static String REGISTRO_EXTEMPORANEO = "E";
 	private static String REGISTRO_FALTANTE = "F";
+	
+	/** The date. */
 	/*-------------------------------------------------------*/
 	private Date date;
+	
+	/** The acta. */
 	private UploadedFile acta;
 
+	/**
+	 * Instantiates a new gestionar actas M bean.
+	 */
 	public GestionarActasMBean() {
 		setTutoriaModelSelect(new TutoriaModel());
 		System.out.println("carga : " + getDesactivarCarga());
@@ -107,6 +164,9 @@ public class GestionarActasMBean {
 		
 	}
 
+	/**
+	 * Inicializar clases.
+	 */
 	public void inicializarClases() {
 		if (getTutoriaModelSelect() != null) {
 			setTutoriaModelSelect(null);
@@ -124,6 +184,9 @@ public class GestionarActasMBean {
 		setListaObservaciones(new ArrayList<TutoriaModel>());
 	}
 
+	/**
+	 * Listar cursos.
+	 */
 	public void listarCursos() {
 		System.out.println("Listando los cursos:");
 		List<CursoBO> listarCursos = null;
@@ -135,6 +198,12 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Formatear fecha.
+	 *
+	 * @param fecha the fecha
+	 * @return the string
+	 */
 	public String formatearFecha(String fecha) {
 		String fechaFormateada = "";
 		try {
@@ -148,10 +217,16 @@ public class GestionarActasMBean {
 		return fechaFormateada;
 	}
 
+	/**
+	 * Algo.
+	 */
 	public void algo() {
 		System.out.println("Hola gg");
 	}
 
+	/**
+	 * Cargar tareas.
+	 */
 	public void cargarTareas() {
 
 		try {
@@ -189,6 +264,9 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Cargar tareas tutor.
+	 */
 	public void cargarTareasTutor() {
 
 		try {
@@ -226,6 +304,11 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Gestor carga actas.
+	 *
+	 * @param e the e
+	 */
 	public void gestorCargaActas(FileUploadEvent e) {
 		try {
 			UploadedFile archivoPDF = e.getFile();
@@ -272,6 +355,12 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Actualizar docente.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarDocente(ValueChangeEvent e) throws Exception {
 		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
@@ -288,6 +377,12 @@ public class GestionarActasMBean {
 		getTutoriaModel().setListarTutores(listaProfesores);
 	}
 
+	/**
+	 * Actualizar alumno.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarAlumno(ValueChangeEvent e) throws Exception {
 		String codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		getTutoriaModelSelect().setpCodigo(codDocente);
@@ -302,6 +397,12 @@ public class GestionarActasMBean {
 		getTutoriaModel().setListarAlumnos(listaAlumnos);
 	}
 
+	/**
+	 * Actualizar alumno generico.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarAlumnoGenerico(ValueChangeEvent e) throws Exception {
 		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codDocente = "";
@@ -325,6 +426,11 @@ public class GestionarActasMBean {
 		getTutoriaModel().setListarAlumnos(listaAlumnos);
 	}
 
+	/**
+	 * Listar cursosx docente.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarCursosxDocente() throws Exception {
 		String codDocente = "";
 		if (MODO == MODO_ADMIN) {
@@ -339,6 +445,12 @@ public class GestionarActasMBean {
 		getTutoriaModel().setListarCursos(listaCursos);
 	}
 
+	/**
+	 * Actualizar sesion.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarSesion(ValueChangeEvent e) throws Exception {
 		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codDocente = "";
@@ -369,6 +481,11 @@ public class GestionarActasMBean {
 
 	}
 
+	/**
+	 * Obtener usuario.
+	 *
+	 * @return the user
+	 */
 	public User obtenerUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User usuario = null;
@@ -378,6 +495,12 @@ public class GestionarActasMBean {
 		return usuario;
 	}
 
+	/**
+	 * Validar carga actas.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void validarCargaActas(ValueChangeEvent e) throws Exception {
 		try {
 			setListaObservaciones(new ArrayList<TutoriaModel>());
@@ -413,6 +536,9 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Agregar observacion.
+	 */
 	public void agregarObservacion() {
 		System.out.println("TAREA : " + isDesactivarTarea());
 		if (!isDesactivarTarea()) {
@@ -426,11 +552,22 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Validar sesion.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void validarSesion(ValueChangeEvent e) throws Exception {
 		int sesion = (Integer) (e.getNewValue() == null ? 0 : e.getNewValue());
 		getTutoriaModelSelect().setSesion(sesion);
 	}
 
+	/**
+	 * Descargar acta.
+	 *
+	 * @return the string
+	 */
 	public String descargarActa() {
 		String pagina = "";
 		String codProfesor = "";
@@ -503,6 +640,12 @@ public class GestionarActasMBean {
 		return pagina;
 	}
 
+	/**
+	 * Obtener PDF.
+	 *
+	 * @return the streamed content
+	 * @throws FileNotFoundException the file not found exception
+	 */
 	public StreamedContent obtenerPDF() throws FileNotFoundException {
 		String codProfesor = "";
 		try {
@@ -543,6 +686,15 @@ public class GestionarActasMBean {
 		return file;
 	}
 
+	/**
+	 * Validar opciones.
+	 *
+	 * @param codCurso the cod curso
+	 * @param codProfesor the cod profesor
+	 * @param codAlumno the cod alumno
+	 * @param sesion the sesion
+	 * @return true, if successful
+	 */
 	private boolean validarOpciones(String codCurso, String codProfesor, String codAlumno, int sesion) {
 		boolean valido = true;
 
@@ -568,6 +720,14 @@ public class GestionarActasMBean {
 		return valido;
 	}
 
+	/**
+	 * Selector carga actas.
+	 *
+	 * @param proceso the proceso
+	 * @param modo the modo
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorCargaActas(int proceso, int modo) throws Exception {
 		String pagina = "";
 
@@ -649,6 +809,14 @@ public class GestionarActasMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector descarga actas.
+	 *
+	 * @param proceso the proceso
+	 * @param modo the modo
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorDescargaActas(int proceso, int modo) throws Exception {
 		String pagina = "";
 
@@ -748,6 +916,11 @@ public class GestionarActasMBean {
 		return pagina;
 	}
 
+	/**
+	 * Mostrar mensaje.
+	 *
+	 * @param opcionMensaje the opcion mensaje
+	 */
 	private void mostrarMensaje(int opcionMensaje) {
 		FacesMessage message = null;
 
@@ -810,104 +983,229 @@ public class GestionarActasMBean {
 		}
 	}
 
+	/**
+	 * Gets the alumno model.
+	 *
+	 * @return the alumno model
+	 */
 	public AlumnoModel getAlumnoModel() {
 		return alumnoModel;
 	}
 
+	/**
+	 * Sets the alumno model.
+	 *
+	 * @param alumnoModel the new alumno model
+	 */
 	public void setAlumnoModel(AlumnoModel alumnoModel) {
 		this.alumnoModel = alumnoModel;
 	}
 
+	/**
+	 * Gets the tutoria model.
+	 *
+	 * @return the tutoria model
+	 */
 	public TutoriaModel getTutoriaModel() {
 		return tutoriaModel;
 	}
 
+	/**
+	 * Sets the tutoria model.
+	 *
+	 * @param tutoriaModel the new tutoria model
+	 */
 	public void setTutoriaModel(TutoriaModel tutoriaModel) {
 		this.tutoriaModel = tutoriaModel;
 	}
 
+	/**
+	 * Gets the tutoria model select.
+	 *
+	 * @return the tutoria model select
+	 */
 	public TutoriaModel getTutoriaModelSelect() {
 		return tutoriaModelSelect;
 	}
 
+	/**
+	 * Sets the tutoria model select.
+	 *
+	 * @param tutoriaModelSelect the new tutoria model select
+	 */
 	public void setTutoriaModelSelect(TutoriaModel tutoriaModelSelect) {
 		this.tutoriaModelSelect = tutoriaModelSelect;
 	}
 
+	/**
+	 * Gets the desactivar carga.
+	 *
+	 * @return the desactivar carga
+	 */
 	public boolean getDesactivarCarga() {
 		return desactivarCarga;
 	}
 
+	/**
+	 * Sets the desactivar carga.
+	 *
+	 * @param desactivarCarga the new desactivar carga
+	 */
 	public void setDesactivarCarga(boolean desactivarCarga) {
 		this.desactivarCarga = desactivarCarga;
 	}
 
+	/**
+	 * Checks if is desactivar descarga.
+	 *
+	 * @return true, if is desactivar descarga
+	 */
 	public boolean isDesactivarDescarga() {
 		return desactivarDescarga;
 	}
 
+	/**
+	 * Sets the desactivar descarga.
+	 *
+	 * @param desactivarDescarga the new desactivar descarga
+	 */
 	public void setDesactivarDescarga(boolean desactivarDescarga) {
 		this.desactivarDescarga = desactivarDescarga;
 	}
 
+	/**
+	 * Gets the file.
+	 *
+	 * @return the file
+	 */
 	public StreamedContent getFile() {
 		return file;
 	}
 
+	/**
+	 * Sets the file.
+	 *
+	 * @param file the new file
+	 */
 	public void setFile(StreamedContent file) {
 		this.file = file;
 	}
 
+	/**
+	 * Gets the usuario services.
+	 *
+	 * @return the usuario services
+	 */
 	public UsuarioServices getUsuarioServices() {
 		return usuarioServices;
 	}
 
+	/**
+	 * Sets the usuario services.
+	 *
+	 * @param usuarioServices the new usuario services
+	 */
 	public void setUsuarioServices(UsuarioServices usuarioServices) {
 		this.usuarioServices = usuarioServices;
 	}
 
+	/**
+	 * Gets the lista observaciones.
+	 *
+	 * @return the lista observaciones
+	 */
 	public List<TutoriaModel> getListaObservaciones() {
 		return listaObservaciones;
 	}
 
+	/**
+	 * Sets the lista observaciones.
+	 *
+	 * @param listaObservaciones the new lista observaciones
+	 */
 	public void setListaObservaciones(List<TutoriaModel> listaObservaciones) {
 		this.listaObservaciones = listaObservaciones;
 	}
 
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
 	public Date getDate() {
 		return date;
 	}
 
+	/**
+	 * Sets the date.
+	 *
+	 * @param date the new date
+	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
+	/**
+	 * Fecha.
+	 *
+	 * @return the string
+	 */
 	public String fecha() {
 		Date ahora = new Date();
 		SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
 		return formateador.format(ahora);
 	}
 
+	/**
+	 * Gets the acta.
+	 *
+	 * @return the acta
+	 */
 	public UploadedFile getActa() {
 		return acta;
 	}
 
+	/**
+	 * Sets the acta.
+	 *
+	 * @param acta the new acta
+	 */
 	public void setActa(UploadedFile acta) {
 		this.acta = acta;
 	}
 
+	/**
+	 * Gets the tutoria services.
+	 *
+	 * @return the tutoria services
+	 */
 	public TutoriaServices getTutoriaServices() {
 		return tutoriaServices;
 	}
 
+	/**
+	 * Sets the tutoria services.
+	 *
+	 * @param tutoriaServices the new tutoria services
+	 */
 	public void setTutoriaServices(TutoriaServices tutoriaServices) {
 		this.tutoriaServices = tutoriaServices;
 	}
 
+	/**
+	 * Checks if is desactivar tarea.
+	 *
+	 * @return true, if is desactivar tarea
+	 */
 	public boolean isDesactivarTarea() {
 		return desactivarTarea;
 	}
 
+	/**
+	 * Sets the desactivar tarea.
+	 *
+	 * @param desactivarTarea the new desactivar tarea
+	 */
 	public void setDesactivarTarea(boolean desactivarTarea) {
 		this.desactivarTarea = desactivarTarea;
 	}

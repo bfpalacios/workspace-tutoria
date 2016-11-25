@@ -10,13 +10,23 @@ import org.springframework.stereotype.Component;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoParBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AlumnoParDAOImpl.
+ */
 @Component("alumnoParDao")
 public class AlumnoParDAOImpl implements AlumnoParDAO {
 	
+	/**
+	 * Instantiates a new alumno par DAO impl.
+	 */
 	public AlumnoParDAOImpl() {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.AlumnoParDAO#createAlumno(pe.edu.sistemas.unayoe.unayoe.bo.AlumnoParBO)
+	 */
 	@Override
 	public boolean createAlumno(AlumnoParBO alumno) {
 		boolean ok = true;
@@ -48,6 +58,9 @@ public class AlumnoParDAOImpl implements AlumnoParDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.AlumnoParDAO#deleteAlumno(java.lang.String)
+	 */
 	@Override
 	public boolean deleteAlumno(String codigo) {
 		boolean ok = true;
@@ -68,6 +81,9 @@ public class AlumnoParDAOImpl implements AlumnoParDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.AlumnoParDAO#getAlumno(java.lang.String)
+	 */
 	public AlumnoParBO getAlumno(String codigo) {
 		AlumnoParBO alumno = new AlumnoParBO();
 		try {
@@ -100,6 +116,9 @@ public class AlumnoParDAOImpl implements AlumnoParDAO {
 		return alumno;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.AlumnoParDAO#getAlumnoPorUsuario(java.lang.String)
+	 */
 	public AlumnoParBO getAlumnoPorUsuario(String usuario) {
 		AlumnoParBO alumno = new AlumnoParBO();
 		try {
@@ -133,6 +152,9 @@ public class AlumnoParDAOImpl implements AlumnoParDAO {
 		return alumno;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.AlumnoParDAO#updateAlumno(pe.edu.sistemas.unayoe.unayoe.bo.AlumnoParBO)
+	 */
 	@Override
 	public boolean updateAlumno(AlumnoParBO alumno) {
 		return false;

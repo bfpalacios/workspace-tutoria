@@ -4,8 +4,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Convertidor.
+ */
 public class Convertidor {
 
+	/**
+	 * Convertir fecha A periodo.
+	 *
+	 * @param mes the mes
+	 * @return the string
+	 */
 	public String convertirFechaAPeriodo(String mes) {
 		int mesPeriod = Integer.parseInt(mes);
 		String periodo = null;
@@ -29,6 +39,12 @@ public class Convertidor {
 
 	}
 
+	/**
+	 * Convertir dia.
+	 *
+	 * @param dia the dia
+	 * @return the string
+	 */
 	public String convertirDia(Date dia) {
 
 		int diaElegido = FormateadorFecha.getDayOfTheWeek(dia);
@@ -67,6 +83,12 @@ public class Convertidor {
 
 	}
 
+	/**
+	 * Convertir fecha en hora.
+	 *
+	 * @param d the d
+	 * @return the string
+	 */
 	public String convertirFechaEnHora(Date d) {
 
 		DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
@@ -75,9 +97,11 @@ public class Convertidor {
 	}
 	
 	/**
+	 * Formato numero.
+	 *
 	 * @param numero Numero que se desea formatear long
 	 * @param nroDig Cantidad de digitos del numero
-	 * @return
+	 * @return the string
 	 */
 	public static String formatoNumero(long numero,int nroDig ){
 		String num = String.valueOf(numero);

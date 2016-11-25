@@ -31,41 +31,86 @@ import pe.edu.sistemas.unayoe.model.DisponibilidadModel;
 import pe.edu.sistemas.unayoe.unayoe.bo.DisponibilidadBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.AreaConocimientoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DisponibilidadMBean.
+ */
 @Controller("disponibilidadMBean")
 @ViewScoped
 public class DisponibilidadMBean {
+	
+	/** The disponibilidad model. */
 	@Autowired
 	private DisponibilidadModel disponibilidadModel;
+	
+	/** The tutoria services. */
 	@Autowired
 	private TutoriaServices tutoriaServices;
+	
+	/** The comun services. */
 	@Autowired
 	private ComunServices comunServices;
+	
+	/** The alumno services. */
 	@Autowired
 	private AlumnoServices alumnoServices;
+	
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
 
+	/** The listar cursos. */
 	private List<ClaseMaestra> listarCursos;
+	
+	/** The lista disponibilidades. */
 	private List<DisponibilidadBO> listaDisponibilidades;
+	
+	/** The disponibilidad model select. */
 	private DisponibilidadModel disponibilidadModelSelect;
+	
+	/** The lista disponibilidad. */
 	private List<DisponibilidadModel> listaDisponibilidad;
+	
+	/** The lista disponibilidad grid. */
 	private List<DisponibilidadModel> listaDisponibilidadGrid;
 
+	/** The proceso registro. */
 	private int PROCESO_REGISTRO;// 1 docente , 2 alumno para registros
+	
+	/** The proceso busqueda. */
 	private int PROCESO_BUSQUEDA;// 1 docente , 2 alumno para visualizaciones
+	
+	/** The modo. */
 	private int MODO; // modo los siguentes
+	
+	/** The modo admin. */
 	private static int MODO_ADMIN = 1;
+	
+	/** The modo tutor. */
 	private static int MODO_TUTOR = 2;
+	
+	/** The modo alumno. */
 	private static int MODO_ALUMNO = 3;
+	
+	/** The modo ocaa. */
 	private static int MODO_OCAA = 4;
 
+	/** The proceso tutor. */
 	private static int PROCESO_TUTOR = 1;
+	
+	/** The proceso alumno. */
 	private static int PROCESO_ALUMNO = 2;
 
+	/**
+	 * Instantiates a new disponibilidad M bean.
+	 */
 	public DisponibilidadMBean() {
 		inicializarClases();
 	}
 
+	/**
+	 * Inicializar clases.
+	 */
 	public void inicializarClases() {
 		setListarCursos(new ArrayList<ClaseMaestra>());
 		setDisponibilidadModelSelect(new DisponibilidadModel());
@@ -74,6 +119,9 @@ public class DisponibilidadMBean {
 		setListaDisponibilidadGrid(new ArrayList<DisponibilidadModel>());
 	}
 
+	/**
+	 * Limpiar clases.
+	 */
 	public void limpiarClases() {
 		if (getDisponibilidadModel() != null) {
 			setDisponibilidadModel(null);
@@ -86,6 +134,9 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Listar area conocimiento.
+	 */
 	public void listarAreaConocimiento() {
 		try {
 			List<AreaConocimientoBO> listaAreaConocimiento = tutoriaServices.listarAreaConocimiento();
@@ -95,6 +146,9 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Listar docente regular.
+	 */
 	public void listarDocenteRegular() {
 		try {
 
@@ -110,6 +164,9 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Listar alumno regular.
+	 */
 	public void listarAlumnoRegular() {
 		try {
 			List<AlumnoBO> listaAlumnosRegulares = tutoriaServices.listarAlumnosRegulares();
@@ -123,6 +180,9 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Listar hora inicio.
+	 */
 	public void listarHoraInicio() {
 		List<ClaseMaestra> listaHoraInicio = null;
 		try {
@@ -136,6 +196,9 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Listar cursos.
+	 */
 	public void listarCursos() {
 		List<CursoBO> listarCursos = null;
 		try {
@@ -146,6 +209,11 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Actualizar area conocimiento.
+	 *
+	 * @param e the e
+	 */
 	public void actualizarAreaConocimiento(ValueChangeEvent e) {
 		try {
 			String codAreaConocimiento = (String) (e.getNewValue() == null ? "" : e.getNewValue());
@@ -156,6 +224,11 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Actualizar hora fin.
+	 *
+	 * @param e the e
+	 */
 	public void actualizarHoraFin(ValueChangeEvent e) {
 		try {
 			int idHoraInicio = Integer.parseInt((String) (e.getNewValue() == null ? "0" : e.getNewValue()));
@@ -168,6 +241,12 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Actualizar docente.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarDocente(ValueChangeEvent e) throws Exception {
 		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		List<ProfesorBO> listaProfesores = new ArrayList<ProfesorBO>();
@@ -186,6 +265,12 @@ public class DisponibilidadMBean {
 		getDisponibilidadModel().setListaTutoresRegulares(listaProfesores);
 	}
 
+	/**
+	 * Actualizar alumno.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarAlumno(ValueChangeEvent e) throws Exception {
 		String codCurso = getDisponibilidadModelSelect().getCodCurso() == null ? ""
 				: getDisponibilidadModelSelect().getCodCurso();
@@ -198,6 +283,11 @@ public class DisponibilidadMBean {
 		getDisponibilidadModel().setListaAlumnosRegulares(listaAlumnos);
 	}
 
+	/**
+	 * Agregar disponibilidad.
+	 *
+	 * @return the string
+	 */
 	public String agregarDisponibilidad() {
 		String pagina = "";
 		try {
@@ -276,6 +366,11 @@ public class DisponibilidadMBean {
 		return pagina;
 	}
 
+	/**
+	 * Mostrar disponibilidad.
+	 *
+	 * @return the string
+	 */
 	public String mostrarDisponibilidad() {
 		String pagina = "";
 		String codAlumno = "";
@@ -343,6 +438,18 @@ public class DisponibilidadMBean {
 		return pagina;
 	}
 
+	/**
+	 * Validar campos disponibilidad.
+	 *
+	 * @param codAreaConocimiento the cod area conocimiento
+	 * @param codCurso the cod curso
+	 * @param dia the dia
+	 * @param horaInicio the hora inicio
+	 * @param horaFin the hora fin
+	 * @param codDocente the cod docente
+	 * @param codAlumno the cod alumno
+	 * @return true, if successful
+	 */
 	private boolean validarCamposDisponibilidad(String codAreaConocimiento, String codCurso, String dia,
 			String horaInicio, String horaFin, String codDocente, String codAlumno) {
 		boolean valido = true;
@@ -390,6 +497,11 @@ public class DisponibilidadMBean {
 		return valido;
 	}
 
+	/**
+	 * Mostrar mensaje.
+	 *
+	 * @param opcionMensaje the opcion mensaje
+	 */
 	private void mostrarMensaje(int opcionMensaje) {
 		FacesMessage message = null;
 
@@ -445,6 +557,12 @@ public class DisponibilidadMBean {
 		}
 	}
 
+	/**
+	 * Convertir A disponibilidad BO.
+	 *
+	 * @param disponibilidad the disponibilidad
+	 * @return the disponibilidad BO
+	 */
 	public DisponibilidadBO convertirADisponibilidadBO(DisponibilidadModel disponibilidad) {
 		DisponibilidadBO disponibilidadUsuario = new DisponibilidadBO();
 
@@ -462,6 +580,11 @@ public class DisponibilidadMBean {
 		return disponibilidadUsuario;
 	}
 
+	/**
+	 * Guardar registro disponibilidad.
+	 *
+	 * @return the string
+	 */
 	public String guardarRegistroDisponibilidad() {
 		String pagina = "";
 		String usuario = "";
@@ -519,6 +642,11 @@ public class DisponibilidadMBean {
 		return pagina;
 	}
 
+	/**
+	 * Obtener usuario.
+	 *
+	 * @return the string
+	 */
 	public String obtenerUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nombre = "";
@@ -529,6 +657,14 @@ public class DisponibilidadMBean {
 		return nombre;
 	}
 
+	/**
+	 * Buscar lista.
+	 *
+	 * @param <T> the generic type
+	 * @param lista the lista
+	 * @param m the m
+	 * @return the list
+	 */
 	public static <T> List<T> buscarLista(List<T> lista, Matcher m) {
 		List<T> resultado = new ArrayList<T>();
 		for (T t : lista) {
@@ -539,6 +675,14 @@ public class DisponibilidadMBean {
 		return resultado;
 	}
 
+	/**
+	 * Selector registro disponibilidad.
+	 *
+	 * @param modoUsuario the modo usuario
+	 * @param tipoBusqueda the tipo busqueda
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorRegistroDisponibilidad(int modoUsuario, int tipoBusqueda) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -573,6 +717,14 @@ public class DisponibilidadMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector visualizar disponibilidad.
+	 *
+	 * @param modoUsuario the modo usuario
+	 * @param procesoBusqueda the proceso busqueda
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorVisualizarDisponibilidad(int modoUsuario, int procesoBusqueda) throws Exception {
 
 		String pagina = "";
@@ -614,50 +766,110 @@ public class DisponibilidadMBean {
 		return pagina;
 	}
 
+	/**
+	 * Gets the disponibilidad model.
+	 *
+	 * @return the disponibilidad model
+	 */
 	public DisponibilidadModel getDisponibilidadModel() {
 		return disponibilidadModel;
 	}
 
+	/**
+	 * Sets the disponibilidad model.
+	 *
+	 * @param disponibilidadModel the new disponibilidad model
+	 */
 	public void setDisponibilidadModel(DisponibilidadModel disponibilidadModel) {
 		this.disponibilidadModel = disponibilidadModel;
 	}
 
+	/**
+	 * Gets the disponibilidad model select.
+	 *
+	 * @return the disponibilidad model select
+	 */
 	public DisponibilidadModel getDisponibilidadModelSelect() {
 		return disponibilidadModelSelect;
 	}
 
+	/**
+	 * Sets the disponibilidad model select.
+	 *
+	 * @param disponibilidadModelSelect the new disponibilidad model select
+	 */
 	public void setDisponibilidadModelSelect(DisponibilidadModel disponibilidadModelSelect) {
 		this.disponibilidadModelSelect = disponibilidadModelSelect;
 	}
 
+	/**
+	 * Gets the lista disponibilidad.
+	 *
+	 * @return the lista disponibilidad
+	 */
 	public List<DisponibilidadModel> getListaDisponibilidad() {
 		return listaDisponibilidad;
 	}
 
+	/**
+	 * Sets the lista disponibilidad.
+	 *
+	 * @param listaDisponibilidad the new lista disponibilidad
+	 */
 	public void setListaDisponibilidad(List<DisponibilidadModel> listaDisponibilidad) {
 		this.listaDisponibilidad = listaDisponibilidad;
 	}
 
+	/**
+	 * Gets the lista disponibilidad grid.
+	 *
+	 * @return the lista disponibilidad grid
+	 */
 	public List<DisponibilidadModel> getListaDisponibilidadGrid() {
 		return listaDisponibilidadGrid;
 	}
 
+	/**
+	 * Sets the lista disponibilidad grid.
+	 *
+	 * @param listaDisponibilidadGrid the new lista disponibilidad grid
+	 */
 	public void setListaDisponibilidadGrid(List<DisponibilidadModel> listaDisponibilidadGrid) {
 		this.listaDisponibilidadGrid = listaDisponibilidadGrid;
 	}
 
+	/**
+	 * Gets the lista disponibilidades.
+	 *
+	 * @return the lista disponibilidades
+	 */
 	public List<DisponibilidadBO> getListaDisponibilidades() {
 		return listaDisponibilidades;
 	}
 
+	/**
+	 * Sets the lista disponibilidades.
+	 *
+	 * @param listaDisponibilidades the new lista disponibilidades
+	 */
 	public void setListaDisponibilidades(List<DisponibilidadBO> listaDisponibilidades) {
 		this.listaDisponibilidades = listaDisponibilidades;
 	}
 
+	/**
+	 * Gets the listar cursos.
+	 *
+	 * @return the listar cursos
+	 */
 	public List<ClaseMaestra> getListarCursos() {
 		return listarCursos;
 	}
 
+	/**
+	 * Sets the listar cursos.
+	 *
+	 * @param listarCursos the new listar cursos
+	 */
 	public void setListarCursos(List<ClaseMaestra> listarCursos) {
 		this.listarCursos = listarCursos;
 	}

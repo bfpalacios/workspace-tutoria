@@ -37,68 +37,145 @@ import pe.edu.sistemas.unayoe.unayoe.bo.NotasAlumnoBO;
 import controladorReporte.ControladorReporte;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotasAlumnosMBean.
+ */
 @Controller("notasAlumnoMBean")
 @ViewScoped
 public class NotasAlumnosMBean {
+	
+	/** The archivo model. */
 	@Autowired
 	private ArchivoModel archivoModel;
+	
+	/** The comun services. */
 	@Autowired
 	private ComunServices comunServices;
+	
+	/** The alumno services. */
 	@Autowired
 	private AlumnoServices alumnoServices;
+	
+	/** The clase maestra model. */
 	@Autowired 
 	private ClaseMaestraModel claseMaestraModel;
+	
+	/** The notas alumno excel model. */
 	@Autowired
 	private NotasAlumnoExcelModel notasAlumnoExcelModel;
+	
+	/** The notas alumno excel models. */
 	@Autowired
 	private List<NotasAlumnoExcelModel> notasAlumnoExcelModels;	
+	
+	/** The notas alumno buscar model. */
 	@Autowired
 	private List<NotasAlumnoExcelModel> notasAlumnoBuscarModel;
 	
+	/** The list notas alumno BO. */
 	private List<NotasAlumnoBO> listNotasAlumnoBO;	
+	
+	/** The alumno buscar notas model select. */
 	private AlumnoModel alumnoBuscarNotasModelSelect;
+	
+	/** The clase maestra model select. */
 	private ClaseMaestraModel claseMaestraModelSelect;
+	
+	/** The visualizar notas alumno grid. */
 	private List<NotasAlumnoExcelModel> visualizarNotasAlumnoGrid;
+	
+	/** The notas alumno excel models grid. */
 	private List<NotasAlumnoExcelModel> notasAlumnoExcelModelsGrid;
 		
+	/** The existe. */
 	private int existe = 0;
+	
+	/** The valido. */
 	private int valido = 1;
 	
+	/** The modo usuario. */
 	private int MODO_USUARIO;
+	
+	/** The modo admin. */
 	private static int MODO_ADMIN = 1;
+	
+	/** The modo ocaa. */
 	private static int MODO_OCAA = 2;
+	
+	/** The modo dir aca. */
 	private static int MODO_DIR_ACA = 3;
+	
+	/** The modo unayoe. */
 	private static int MODO_UNAYOE = 4;
+	
+	/** The modo tutor. */
 	private static int MODO_TUTOR = 5;
 	
+	/** The proceso. */
 	private int PROCESO;	
 	
+	/** The anio. */
 	private static int ANIO=0;
+	
+	/** The periodo. */
 	private static int PERIODO=1;
+	
+	/** The plan. */
 	private static int PLAN=2;
+	
+	/** The cod curso. */
 	private static int COD_CURSO=3;
+	
+	/** The nom curso. */
 	private static int NOM_CURSO=4;
+	
+	/** The creditos. */
 	private static int CREDITOS=5;
+	
+	/** The cod alumno. */
 	private static int COD_ALUMNO=6;
+	
+	/** The nom alumno. */
 	private static int NOM_ALUMNO=7;
+	
+	/** The nom docente. */
 	private static int NOM_DOCENTE=8;
+	
+	/** The nota final. */
 	private static int NOTA_FINAL=9; 
 	
 	
 
+	/** The modo. */
 	private int MODO;
+	
+	/** The modo aux. */
 	private int MODO_AUX;
+	
+	/** The anio actual. */
 	private int ANIO_ACTUAL;
+	
+	/** The periodo actual. */
 	private int PERIODO_ACTUAL;	
 	
+	/** The proceso observados. */
 	private static int PROCESO_OBSERVADOS = 1;
+	
+	/** The proceso regulares. */
 	private static int PROCESO_REGULARES = 2;			
 
+	/**
+	 * Instantiates a new notas alumnos M bean.
+	 */
 	public NotasAlumnosMBean(){
 		System.out.println("::NOTAS ALUMNOS BEAN::");	
 		inicializarClases();
 	}
 	
+	/**
+	 * Inicializar clases.
+	 */
 	private void inicializarClases(){
 		System.out.println("inicializa");
 		setAlumnoBuscarNotasModelSelect(new AlumnoModel());	
@@ -108,6 +185,12 @@ public class NotasAlumnosMBean {
 		setNotasAlumnoExcelModelsGrid(new ArrayList<NotasAlumnoExcelModel>());
 	}
 	
+	/**
+	 * Valida numero.
+	 *
+	 * @param valor the valor
+	 * @return the string
+	 */
 	public String validaNumero(String valor){
 		String esNumerico = "-1";
 		try{
@@ -120,6 +203,13 @@ public class NotasAlumnosMBean {
 		return esNumerico;
 	}
 	
+	/**
+	 * Cargar notas alumnos.
+	 *
+	 * @param event the event
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String cargarNotasAlumnos(FileUploadEvent event) throws Exception {
 		System.out.println("carga1");
 		String pagina = "";
@@ -202,6 +292,13 @@ public class NotasAlumnosMBean {
 		return pagina;
     }
 	
+	/**
+	 * Sets the excel.
+	 *
+	 * @param excelCargado the excel cargado
+	 * @param event the event
+	 * @return true, if successful
+	 */
 	public boolean setExcel(UploadedFile excelCargado, FileUploadEvent event){
 		boolean archivoCargado = false;
 		if(excelCargado != null) {
@@ -215,6 +312,9 @@ public class NotasAlumnosMBean {
 		return archivoCargado;
 	}
 	
+	/**
+	 * Limpiar listas.
+	 */
 	private void limpiarListas(){
 		if (getNotasAlumnoExcelModels() != null){
 			getNotasAlumnoExcelModels().removeAll(getNotasAlumnoExcelModels());
@@ -225,6 +325,12 @@ public class NotasAlumnosMBean {
 		}
 	}
 	
+	/**
+	 * Validar registro.
+	 *
+	 * @param fila the fila
+	 * @throws Exception the exception
+	 */
 	private void validarRegistro(XSSFRow fila) throws Exception{
 		try {			
 			int anio = fila.getCell(ANIO)!=null?validarDatoEntero(fila.getCell(ANIO)):-1;
@@ -253,6 +359,12 @@ public class NotasAlumnosMBean {
 		}		
 	}
 	
+	/**
+	 * Validar dato entero.
+	 *
+	 * @param valorCelda the valor celda
+	 * @return the integer
+	 */
 	public Integer validarDatoEntero(XSSFCell  valorCelda){
 		 String valorCadena="";
 		 Double valorNumerico=0D;
@@ -264,6 +376,12 @@ public class NotasAlumnosMBean {
 		 }
 	 }
 	
+	/**
+	 * Validar dato cadena.
+	 *
+	 * @param valorCelda the valor celda
+	 * @return the string
+	 */
 	public String validarDatoCadena(XSSFCell  valorCelda){
 		 String valorCadena="";
 		 int valorNumerico=0;
@@ -275,6 +393,12 @@ public class NotasAlumnosMBean {
 		 }
 	 }
 	
+	/**
+	 * Convertir A model alumno.
+	 *
+	 * @param notas the notas
+	 * @return the notas alumno excel model
+	 */
 	public NotasAlumnoExcelModel  convertirAModelAlumno(XSSFRow notas){
 		NotasAlumnoExcelModel datos = new NotasAlumnoExcelModel();
 		
@@ -296,6 +420,9 @@ public class NotasAlumnosMBean {
 		return datos;
 	}
 	
+	/**
+	 * Guardar notas.
+	 */
 	public void guardarNotas(){
 		System.out.println("GUARDARNOTAS");
 		try{
@@ -317,6 +444,12 @@ public class NotasAlumnosMBean {
 	
 	
 	
+	/**
+	 * Convertir A notas alumno BO.
+	 *
+	 * @param notasAlumno the notas alumno
+	 * @return the notas alumno BO
+	 */
 	public NotasAlumnoBO convertirANotasAlumnoBO(NotasAlumnoExcelModel notasAlumno){
 		NotasAlumnoBO notasAlumnoBO = new NotasAlumnoBO();
 				
@@ -338,6 +471,11 @@ public class NotasAlumnosMBean {
 		return notasAlumnoBO;
 	}
 
+	/**
+	 * Listar ciclo.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarCiclo() throws Exception{
     	System.out.println("Listando los ciclos:");
     	
@@ -353,6 +491,11 @@ public class NotasAlumnosMBean {
         }
     }
 	
+	/**
+	 * Buscar notas alumno.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void buscarNotasAlumno() throws Exception{
 		try{
 			int ciclo = claseMaestraModelSelect.getIdCampo();
@@ -381,6 +524,12 @@ public class NotasAlumnosMBean {
 		}		
 	}
 	
+	/**
+	 * Convertir A notas alumno model.
+	 *
+	 * @param notasAlumno the notas alumno
+	 * @return the notas alumno excel model
+	 */
 	public NotasAlumnoExcelModel convertirANotasAlumnoModel(NotasAlumnoBO notasAlumno){
 		NotasAlumnoExcelModel notasAlumnoModel = new NotasAlumnoExcelModel();
 		notasAlumnoModel.setAnio(notasAlumno.getAnio());
@@ -397,6 +546,11 @@ public class NotasAlumnosMBean {
 		return notasAlumnoModel;
 	}
 	
+	/**
+	 * Imprimir reporte notas alumno.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteNotasAlumno() throws Exception{
 		System.out.println("imprimirpdf");
 		if(!getVisualizarNotasAlumnoGrid().isEmpty()){
@@ -408,6 +562,12 @@ public class NotasAlumnosMBean {
     		mostrarMensaje(6);
     }
 
+    /**
+     * Obtener parametros.
+     *
+     * @return the map
+     * @throws Exception the exception
+     */
     private Map<String,Object> obtenerParametros() throws Exception{
     	Map<String,Object> pars = new HashMap<String,Object>();    	
     	String ciclo = alumnoServices.buscarCicloAcademico(getClaseMaestraModelSelect().getIdCampo());
@@ -420,6 +580,11 @@ public class NotasAlumnosMBean {
     	return pars;
     }
     
+    /**
+     * Obtener campos.
+     *
+     * @return the array list
+     */
     private ArrayList<Object> obtenerCampos(){
     	ArrayList<Object> list = new ArrayList<Object>();
     	List<NotasAlumnoExcelModel> listNotasAlumno = getVisualizarNotasAlumnoGrid();
@@ -436,6 +601,11 @@ public class NotasAlumnosMBean {
     	return list;
     }	
     
+    /**
+     * Mostrar mensaje.
+     *
+     * @param opcionMensaje the opcion mensaje
+     */
     private void mostrarMensaje(int opcionMensaje){
 		FacesMessage message = null;		
 		
@@ -455,6 +625,14 @@ public class NotasAlumnosMBean {
 		}
     }
     
+    /**
+     * Selector carga notas.
+     *
+     * @param proceso the proceso
+     * @param modo the modo
+     * @return the string
+     * @throws Exception the exception
+     */
     public String selectorCargaNotas(int proceso, int modo) throws Exception{
     	System.out.println("Selectorcargar"); 
     	System.out.println("proc"+proceso); 
@@ -486,6 +664,9 @@ public class NotasAlumnosMBean {
 		 return pagina;		
 	} 
     
+    /**
+     * Listar cursos.
+     */
     public void listarCursos() {
 		System.out.println("Listando los cursos:");
 		List<CursoBO> listarCursos = null;
@@ -498,10 +679,20 @@ public class NotasAlumnosMBean {
 		}
 	}
     
+    /**
+     * Sets the desactivar descarga.
+     *
+     * @param desactivarDescarga the new desactivar descarga
+     */
     public void setDesactivarDescarga(boolean desactivarDescarga) {
 //		this.desactivarDescarga = desactivarDescarga;
 	}
     
+    /**
+     * Listar cursosx docente.
+     *
+     * @throws Exception the exception
+     */
     public void listarCursosxDocente() throws Exception{
 		String codDocente = "";
 		if (MODO == MODO_ADMIN){
@@ -559,7 +750,15 @@ public class NotasAlumnosMBean {
 //		return pagina;		
 //	}	
     
-    public String selectorVisualizacionNotas(int proceso, int modoUsuario) throws Exception{
+    /**
+ * Selector visualizacion notas.
+ *
+ * @param proceso the proceso
+ * @param modoUsuario the modo usuario
+ * @return the string
+ * @throws Exception the exception
+ */
+public String selectorVisualizacionNotas(int proceso, int modoUsuario) throws Exception{
 		 String pagina = "";
 		   System.out.println("SelectorVisaulizarNotas");
 		 inicializarClases();
@@ -595,85 +794,185 @@ public class NotasAlumnosMBean {
 		 return pagina;		
 	}
     
+    /**
+     * Gets the notas alumno excel models.
+     *
+     * @return the notas alumno excel models
+     */
     public List<NotasAlumnoExcelModel> getNotasAlumnoExcelModels() {
 		return notasAlumnoExcelModels;
 	}
 
+	/**
+	 * Sets the notas alumno excel models.
+	 *
+	 * @param notasAlumnoExcelModels the new notas alumno excel models
+	 */
 	public void setNotasAlumnoExcelModels(List<NotasAlumnoExcelModel> notasAlumnoExcelModels) {
 		this.notasAlumnoExcelModels = notasAlumnoExcelModels;
 	}	
 
+	/**
+	 * Gets the notas alumno excel model.
+	 *
+	 * @return the notas alumno excel model
+	 */
 	public NotasAlumnoExcelModel getNotasAlumnoExcelModel() {
 		return notasAlumnoExcelModel;
 	}
 
+	/**
+	 * Sets the notas alumno excel model.
+	 *
+	 * @param notasAlumnoExcelModel the new notas alumno excel model
+	 */
 	public void setNotasAlumnoExcelModel(NotasAlumnoExcelModel notasAlumnoExcelModel) {
 		this.notasAlumnoExcelModel = notasAlumnoExcelModel;
 	}
 
+	/**
+	 * Gets the list notas alumno BO.
+	 *
+	 * @return the list notas alumno BO
+	 */
 	public List<NotasAlumnoBO> getListNotasAlumnoBO() {
 		return listNotasAlumnoBO;
 	}
 
+	/**
+	 * Sets the list notas alumno BO.
+	 *
+	 * @param listNotasAlumnoBO the new list notas alumno BO
+	 */
 	public void setListNotasAlumnoBO(List<NotasAlumnoBO> listNotasAlumnoBO) {
 		this.listNotasAlumnoBO = listNotasAlumnoBO;
 	}
 	
+	/**
+	 * Gets the clase maestra model select.
+	 *
+	 * @return the clase maestra model select
+	 */
 	public ClaseMaestraModel getClaseMaestraModelSelect() {
 		return claseMaestraModelSelect;
 	}
 
+	/**
+	 * Sets the clase maestra model select.
+	 *
+	 * @param claseMaestraModelSelect the new clase maestra model select
+	 */
 	public void setClaseMaestraModelSelect(ClaseMaestraModel claseMaestraModelSelect) {
 		this.claseMaestraModelSelect = claseMaestraModelSelect;
 	}
 
+	/**
+	 * Gets the clase maestra model.
+	 *
+	 * @return the clase maestra model
+	 */
 	public ClaseMaestraModel getClaseMaestraModel() {
 		return claseMaestraModel;
 	}
 
+	/**
+	 * Sets the clase maestra model.
+	 *
+	 * @param claseMaestraModel the new clase maestra model
+	 */
 	public void setClaseMaestraModel(ClaseMaestraModel claseMaestraModel) {
 		this.claseMaestraModel = claseMaestraModel;
 	}
 
+	/**
+	 * Gets the alumno buscar notas model select.
+	 *
+	 * @return the alumno buscar notas model select
+	 */
 	public AlumnoModel getAlumnoBuscarNotasModelSelect() {
 		return alumnoBuscarNotasModelSelect;
 	}
 
+	/**
+	 * Sets the alumno buscar notas model select.
+	 *
+	 * @param alumnoBuscarNotasModelSelect the new alumno buscar notas model select
+	 */
 	public void setAlumnoBuscarNotasModelSelect(
 			AlumnoModel alumnoBuscarNotasModelSelect) {
 		this.alumnoBuscarNotasModelSelect = alumnoBuscarNotasModelSelect;
 	}
 
+	/**
+	 * Gets the notas alumno buscar model.
+	 *
+	 * @return the notas alumno buscar model
+	 */
 	public List<NotasAlumnoExcelModel> getNotasAlumnoBuscarModel() {
 		return notasAlumnoBuscarModel;
 	}
 
+	/**
+	 * Sets the notas alumno buscar model.
+	 *
+	 * @param notasAlumnoBuscarModel the new notas alumno buscar model
+	 */
 	public void setNotasAlumnoBuscarModel(List<NotasAlumnoExcelModel> notasAlumnoBuscarModel) {
 		this.notasAlumnoBuscarModel = notasAlumnoBuscarModel;
 	}
 
+	/**
+	 * Gets the notas alumno excel models grid.
+	 *
+	 * @return the notas alumno excel models grid
+	 */
 	public List<NotasAlumnoExcelModel> getNotasAlumnoExcelModelsGrid() {
 		return notasAlumnoExcelModelsGrid;
 	}
 
+	/**
+	 * Sets the notas alumno excel models grid.
+	 *
+	 * @param notasAlumnoExcelModelsGrid the new notas alumno excel models grid
+	 */
 	public void setNotasAlumnoExcelModelsGrid(
 			List<NotasAlumnoExcelModel> notasAlumnoExcelModelsGrid) {
 		this.notasAlumnoExcelModelsGrid = notasAlumnoExcelModelsGrid;
 	}
 
+	/**
+	 * Gets the visualizar notas alumno grid.
+	 *
+	 * @return the visualizar notas alumno grid
+	 */
 	public List<NotasAlumnoExcelModel> getVisualizarNotasAlumnoGrid() {
 		return visualizarNotasAlumnoGrid;
 	}
 
+	/**
+	 * Sets the visualizar notas alumno grid.
+	 *
+	 * @param visualizarNotasAlumnoGrid the new visualizar notas alumno grid
+	 */
 	public void setVisualizarNotasAlumnoGrid(
 			List<NotasAlumnoExcelModel> visualizarNotasAlumnoGrid) {
 		this.visualizarNotasAlumnoGrid = visualizarNotasAlumnoGrid;
 	}
 
+	/**
+	 * Gets the archivo model.
+	 *
+	 * @return the archivo model
+	 */
 	public ArchivoModel getArchivoModel() {
 		return archivoModel;
 	}
 
+	/**
+	 * Sets the archivo model.
+	 *
+	 * @param archivoModel the new archivo model
+	 */
 	public void setArchivoModel(ArchivoModel archivoModel) {
 		this.archivoModel = archivoModel;
 	}	

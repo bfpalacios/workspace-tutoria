@@ -13,12 +13,22 @@ import pe.edu.sistemas.unayoe.core.util.IOUtils;
 import pe.edu.sistemas.unayoe.unayoe.bo.DisponibilidadTutoriaParBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.PostulacionBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostulacionDAOImpl.
+ */
 @Component("postulacionDao")
 public class PostulacionDAOImpl implements PostulacionDAO {
 
+	/**
+	 * Instantiates a new postulacion DAO impl.
+	 */
 	public PostulacionDAOImpl() {
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#deletePostulacion(java.lang.Integer)
+	 */
 	public boolean deletePostulacion(Integer id) {
 		boolean ok = true;
 		try {
@@ -35,10 +45,16 @@ public class PostulacionDAOImpl implements PostulacionDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#updatePostulacion(pe.edu.sistemas.unayoe.unayoe.bo.PostulacionBO)
+	 */
 	public boolean updatePostulacion(PostulacionBO postulacion) {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#getPostulacion(java.lang.Integer)
+	 */
 	@Override
 	public PostulacionBO getPostulacion(Integer id) {
 		PostulacionBO postulacion = new PostulacionBO();
@@ -64,6 +80,9 @@ public class PostulacionDAOImpl implements PostulacionDAO {
 		return postulacion;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#createPostulacion(pe.edu.sistemas.unayoe.unayoe.bo.PostulacionBO)
+	 */
 	public boolean createPostulacion(PostulacionBO postulacion) {
 
 		boolean ok = true;
@@ -123,6 +142,9 @@ public class PostulacionDAOImpl implements PostulacionDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#getPostulaciones()
+	 */
 	public List<PostulacionBO> getPostulaciones() {
 		List<PostulacionBO> postulaciones = new ArrayList<PostulacionBO>();
 		try {
@@ -146,6 +168,9 @@ public class PostulacionDAOImpl implements PostulacionDAO {
 		return postulaciones;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#getPostulacionesPorConvocatoriaTema(java.lang.Integer, java.lang.Integer)
+	 */
 	public List<PostulacionBO> getPostulacionesPorConvocatoriaTema(Integer idConvocatoria, Integer idTema) {
 		List<PostulacionBO> postulaciones = new ArrayList<PostulacionBO>();
 		try {
@@ -176,6 +201,9 @@ public class PostulacionDAOImpl implements PostulacionDAO {
 		return postulaciones;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PostulacionDAO#aprobarPostulante(java.lang.Integer, java.lang.Integer)
+	 */
 	@Override
 	public boolean aprobarPostulante(Integer idPostulacion, Integer idTema) {
 		boolean ok = true;

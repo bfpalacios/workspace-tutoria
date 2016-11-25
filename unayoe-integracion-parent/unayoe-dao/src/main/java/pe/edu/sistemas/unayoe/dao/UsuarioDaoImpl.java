@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package pe.edu.sistemas.unayoe.dao;
 
 import java.sql.CallableStatement;
@@ -17,14 +20,24 @@ import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UsuarioDaoImpl.
+ */
 @Repository("usuarioDao")
 @Transactional
 public class UsuarioDaoImpl extends DAOImpl<Usuario,String> implements UsuarioIDao {
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.UsuarioIDao#obtenerUsuario(java.lang.String)
+	 */
 	public Usuario obtenerUsuario(String usuario) throws Exception {
 		return super.obtenerEntidadPorId(Usuario.class,usuario);
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.UsuarioIDao#grabarUsuarioObservados(pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO)
+	 */
 	public void grabarUsuarioObservados(UsuarioBO usuarioNuevo) throws SQLException{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -44,6 +57,9 @@ public class UsuarioDaoImpl extends DAOImpl<Usuario,String> implements UsuarioID
 		cstm.execute();
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.UsuarioIDao#obtenerTutorActividad(int)
+	 */
 	@Override
 	public AlumnoParBO obtenerTutorActividad(int codigoActividad) {
 		Connection con = null;
@@ -73,6 +89,9 @@ public class UsuarioDaoImpl extends DAOImpl<Usuario,String> implements UsuarioID
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.UsuarioIDao#grabarUsuarioRegulares(pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO)
+	 */
 	public void grabarUsuarioRegulares(UsuarioBO usuarioNuevo) throws SQLException{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -94,6 +113,9 @@ public class UsuarioDaoImpl extends DAOImpl<Usuario,String> implements UsuarioID
 		cstm.execute();
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.UsuarioIDao#buscarUsuario(java.lang.String)
+	 */
 	public String buscarUsuario(String codUsuario) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -115,6 +137,9 @@ public class UsuarioDaoImpl extends DAOImpl<Usuario,String> implements UsuarioID
 		return codigoUsuario;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.UsuarioIDao#buscarUsuarioEquivalencia(java.lang.String)
+	 */
 	public String buscarUsuarioEquivalencia(String codUsuario) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;

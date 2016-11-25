@@ -34,39 +34,60 @@ import pe.edu.sistemas.unayoe.unayoe.bo.DisponibilidadTutoriaParBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.PostulacionBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TemaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostulacionMBean.
+ */
 @Controller("postulacionMBean")
 @ViewScoped
 public class PostulacionMBean implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The postulacion model. */
 	@Autowired
 	private PostulacionModel postulacionModel;
 
+	/** The disponibilidad tutoria par model. */
 	@Autowired
 	private DisponibilidadTutoriaParModel disponibilidadTutoriaParModel;
 
+	/** The convocatoria services. */
 	@Autowired
 	private ConvocatoriaServices convocatoriaServices;
 
+	/** The tema services. */
 	@Autowired
 	private TemaServices temaServices;
 
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
 
+	/** The postulacion services. */
 	@Autowired
 	private PostulacionServices postulacionServices;
 
+	/** The alumno par services. */
 	@Autowired
 	private AlumnoParServices alumnoParServices;
 
+	/** The alumno. */
 	private AlumnoParBO alumno;
 
+	/**
+	 * Instantiates a new postulacion M bean.
+	 */
 	public PostulacionMBean() {
 		this.alumno = null;
 	}
 
+	/**
+	 * Obtener usuario.
+	 *
+	 * @return the string
+	 */
 	public String obtenerUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nombre = "";
@@ -77,18 +98,33 @@ public class PostulacionMBean implements Serializable {
 		return nombre;
 	}
 
+	/**
+	 * Gets the nombre.
+	 *
+	 * @return the nombre
+	 */
 	public String getNombre() {
 		String usuario = obtenerUsuario();
 		this.alumno = alumnoParServices.getAlumnoPorUsuario(usuario);
 		return this.alumno.getNombre();
 	}
 
+	/**
+	 * Gets the apellidos.
+	 *
+	 * @return the apellidos
+	 */
 	public String getApellidos() {
 		String usuario = obtenerUsuario();
 		this.alumno = alumnoParServices.getAlumnoPorUsuario(usuario);
 		return this.alumno.getApellidos();
 	}
 
+	/**
+	 * Gets the edad.
+	 *
+	 * @return the edad
+	 */
 	public Integer getEdad() {
 		String usuario = obtenerUsuario();
 		this.alumno = alumnoParServices.getAlumnoPorUsuario(usuario);
@@ -98,15 +134,30 @@ public class PostulacionMBean implements Serializable {
 
 	}
 
+	/**
+	 * Info message.
+	 *
+	 * @param title the title
+	 * @param detail the detail
+	 */
 	public void infoMessage(String title, String detail) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, title, detail));
 	}
 
+	/**
+	 * Error message.
+	 *
+	 * @param title the title
+	 * @param detail the detail
+	 */
 	public void errorMessage(String title, String detail) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_ERROR, title, detail));
 	}
 
+	/**
+	 * Registrar postulacion.
+	 */
 	public void registrarPostulacion() {
 
 		Integer idConvocatoria = this.postulacionModel.getCodigoConvocatoria();
@@ -183,6 +234,11 @@ public class PostulacionMBean implements Serializable {
 
 	}
 
+	/**
+	 * Gets the convocatoria actual.
+	 *
+	 * @return the convocatoria actual
+	 */
 	public String getConvocatoriaActual() {
 		ConvocatoriaBO convocatoria = this.convocatoriaServices.getConvocatoriaActual();
 		if (convocatoria == null) {
@@ -195,11 +251,21 @@ public class PostulacionMBean implements Serializable {
 		return convocatoria.getNombre();
 	}
 
+	/**
+	 * Gets the lista cursos.
+	 *
+	 * @return the lista cursos
+	 */
 	public List<CursoBO> getListaCursos() {
 		Integer idConvocatoria = this.convocatoriaServices.getConvocatoriaActual().getId();
 		return this.cursoServices.listarCursosPorConvocatoria(idConvocatoria);
 	}
 
+	/**
+	 * Gets the lista temas.
+	 *
+	 * @return the lista temas
+	 */
 	public List<TemaBO> getListaTemas() {
 		Integer codigoConvocatoria = this.postulacionModel.getCodigoConvocatoria();
 		if (codigoConvocatoria == null) {
@@ -218,10 +284,18 @@ public class PostulacionMBean implements Serializable {
 		return temasCurso;
 	}
 
+	/**
+	 * Cambiar archivo CV.
+	 */
 	public void cambiarArchivoCV() {
 		this.postulacionModel.setArchivoCV(null);
 	}
 
+	/**
+	 * Subir CV.
+	 *
+	 * @param event the event
+	 */
 	public void subirCV(FileUploadEvent event) {
 		UploadedFile archivoCV = event.getFile();
 
@@ -240,23 +314,48 @@ public class PostulacionMBean implements Serializable {
 
 	}
 
+	/**
+	 * Gets the lista postulaciones.
+	 *
+	 * @return the lista postulaciones
+	 */
 	public List<PostulacionBO> getListaPostulaciones() {
 		List<PostulacionBO> postulaciones = new ArrayList<PostulacionBO>();
 		return postulaciones;
 	}
 
+	/**
+	 * Gets the postulacion model.
+	 *
+	 * @return the postulacion model
+	 */
 	public PostulacionModel getPostulacionModel() {
 		return postulacionModel;
 	}
 
+	/**
+	 * Sets the postulacion model.
+	 *
+	 * @param postulacionModel the new postulacion model
+	 */
 	public void setPostulacionModel(PostulacionModel postulacionModel) {
 		this.postulacionModel = postulacionModel;
 	}
 
+	/**
+	 * Gets the disponibilidad tutoria par model.
+	 *
+	 * @return the disponibilidad tutoria par model
+	 */
 	public DisponibilidadTutoriaParModel getDisponibilidadTutoriaParModel() {
 		return disponibilidadTutoriaParModel;
 	}
 
+	/**
+	 * Sets the disponibilidad tutoria par model.
+	 *
+	 * @param disponibilidadTutoriaParModel the new disponibilidad tutoria par model
+	 */
 	public void setDisponibilidadTutoriaParModel(DisponibilidadTutoriaParModel disponibilidadTutoriaParModel) {
 		this.disponibilidadTutoriaParModel = disponibilidadTutoriaParModel;
 	}

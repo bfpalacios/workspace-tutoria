@@ -24,10 +24,21 @@ import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaCAlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaTAlumBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.NotasAlumnoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AlumnoDAO.
+ */
 @Repository("alumnoDAO")
 @Transactional
 public class AlumnoDAO extends BaseDAO {
 
+	/**
+	 * Insertar.
+	 *
+	 * @param alumno the alumno
+	 * @return the alumno
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public Alumno insertar(Alumno alumno) throws DAOExcepcion {
 		String query = "insert into alumno(a_codigo,a_nombre,a_apellidos,a_fnacimiento,a_direccion,a_email,a_telefono,a_dni) values (?,?,?,?,?,?,?,?)";
 		Connection con = null;
@@ -77,6 +88,11 @@ public class AlumnoDAO extends BaseDAO {
 		return alumno;
 	}
 
+	/**
+	 * Insertar lista.
+	 *
+	 * @param lista the lista
+	 */
 	public void insertarLista(List<Alumno> lista) {
 		for (Alumno alumno : lista) {
 			try {
@@ -89,6 +105,13 @@ public class AlumnoDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Insertar actualizar.
+	 *
+	 * @param alumno the alumno
+	 * @return the alumno
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public Alumno insertarActualizar(Alumno alumno) throws DAOExcepcion {
 		// String query = "insert into
 		// alumno(a_codigo,a_nombre,a_apellidos,a_fnacimiento,a_direccion,a_email,a_telefono,a_dni)
@@ -142,6 +165,13 @@ public class AlumnoDAO extends BaseDAO {
 		return alumno;
 	}
 
+	/**
+	 * Actualizar lista asistencia clases.
+	 *
+	 * @param lista the lista
+	 * @param curso the curso
+	 * @param fecha the fecha
+	 */
 	public void actualizarListaAsistenciaClases(List<AsistenciaCAlumnoBO> lista, String curso, String fecha) {
 		System.out.println("tAMAÑO DE LA LISTA ENVIADA " + lista.size());
 		for (AsistenciaCAlumnoBO alumno : lista) {
@@ -154,6 +184,14 @@ public class AlumnoDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Actualizar asistencia clases.
+	 *
+	 * @param asistenciaCAlumnoBO the asistencia C alumno BO
+	 * @param curso the curso
+	 * @param fecha the fecha
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public void actualizarAsistenciaClases(AsistenciaCAlumnoBO asistenciaCAlumnoBO, String curso, String fecha)
 			throws DAOExcepcion {
 		String query = "update ASISTENCIA_C_ALUM ACA set ACA.ASISTENCIA =? WHERE  ACA.A_CODIGO =? AND ACA.C_CODIGO =? and TO_CHAR(ACA.FECHA,'dd/mm/yyyy') =?";
@@ -183,6 +221,13 @@ public class AlumnoDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Actualizar lista asistencia tutoria.
+	 *
+	 * @param lista the lista
+	 * @param curso the curso
+	 * @param fecha the fecha
+	 */
 	public void actualizarListaAsistenciaTutoria(List<AsistenciaTAlumBO> lista, String curso, String fecha) {
 		System.out.println("tAMAÑO DE LA LISTA ENVIADA " + lista.size());
 		for (AsistenciaTAlumBO alumno : lista) {
@@ -195,6 +240,14 @@ public class AlumnoDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Actualizar asistencia tutoria.
+	 *
+	 * @param asistenciaDocenteTutoriaBO the asistencia docente tutoria BO
+	 * @param curso the curso
+	 * @param fecha the fecha
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public void actualizarAsistenciaTutoria(AsistenciaTAlumBO asistenciaDocenteTutoriaBO, String curso, String fecha)
 			throws DAOExcepcion {
 		String query = "update ASISTENCIA_C_PROF ACP set ACP.ASISTENCIA =? WHERE ACP.P_CODIGO =? AND ACP.C_CODIGO =? AND TO_CHAR(ACP.FECHA,'dd/mm/yyyy') =?";
@@ -223,6 +276,17 @@ public class AlumnoDAO extends BaseDAO {
 		}
 	}
 
+	/**
+	 * Validar carga notas.
+	 *
+	 * @param anio the anio
+	 * @param periodo the periodo
+	 * @param plan the plan
+	 * @param cod_curso the cod curso
+	 * @param cod_alumno the cod alumno
+	 * @param nota_final the nota final
+	 * @return the int
+	 */
 	public int validarCargaNotas(int anio, int periodo, int plan, String cod_curso, String cod_alumno, int nota_final) {
 		Connection con = null;
 		int validacion = 0;
@@ -247,6 +311,12 @@ public class AlumnoDAO extends BaseDAO {
 		return validacion;
 	}
 
+	/**
+	 * Guardar carga notas.
+	 *
+	 * @param notasAlumno the notas alumno
+	 * @throws SQLException the SQL exception
+	 */
 	public void guardarCargaNotas(NotasAlumnoBO notasAlumno) throws SQLException {
 		Connection con = null;
 
@@ -265,6 +335,13 @@ public class AlumnoDAO extends BaseDAO {
 		cstm.execute();
 	}
 
+	/**
+	 * Buscar notas alumno.
+	 *
+	 * @param ciclo the ciclo
+	 * @param codAlumno the cod alumno
+	 * @return the list
+	 */
 	public List<NotasAlumnoBO> buscarNotasAlumno(int ciclo, String codAlumno) {
 		Connection con = null;
 		ResultSet rs = null;
@@ -305,6 +382,15 @@ public class AlumnoDAO extends BaseDAO {
 		return listNotasAlumno;
 	}
 
+	/**
+	 * Buscar notas alumno tutoria.
+	 *
+	 * @param anio the anio
+	 * @param periodo the periodo
+	 * @param codAlumno the cod alumno
+	 * @return the list
+	 * @throws Exception the exception
+	 */
 	public List<NotasAlumnoBO> buscarNotasAlumnoTutoria(int anio, int periodo, String codAlumno) throws Exception {
 		Connection con = null;
 		ResultSet rs = null;
@@ -346,6 +432,12 @@ public class AlumnoDAO extends BaseDAO {
 		return listNotasAlumnoTutoria;
 	}
 
+	/**
+	 * Listar alumno disponibilidad.
+	 *
+	 * @param codCurso the cod curso
+	 * @return the list
+	 */
 	public List<AlumnoBO> listarAlumnoDisponibilidad(String codCurso) {
 		Connection con = null;
 		ResultSet rs = null;

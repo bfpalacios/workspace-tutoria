@@ -18,10 +18,22 @@ import pe.edu.sistemas.unayoe.core.util.DAOExcepcion;
 import pe.edu.sistemas.unayoe.dao.dominio.Curso;
 import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CursoDAO.
+ */
 @Repository("cursoDAO")
 @Transactional
 public class CursoDAO extends BaseDAO {	
-	 public boolean existe(Curso curso) throws DAOExcepcion {
+	 
+ 	/**
+ 	 * Existe.
+ 	 *
+ 	 * @param curso the curso
+ 	 * @return true, if successful
+ 	 * @throws DAOExcepcion the DAO excepcion
+ 	 */
+ 	public boolean existe(Curso curso) throws DAOExcepcion {
 		 boolean existe=false;
          String query = "select  C_CODIGO, NOMBRE , CREDITOS  from  CURSO  WHERE TRIM(C_CODIGO) = ?";
          Connection con = null;
@@ -48,7 +60,12 @@ public class CursoDAO extends BaseDAO {
          return existe;
 	 }
 	 
-	 public void insertarLista(List<Curso>  lista){
+	 /**
+ 	 * Insertar lista.
+ 	 *
+ 	 * @param lista the lista
+ 	 */
+ 	public void insertarLista(List<Curso>  lista){
 		 for(Curso curso : lista){
 			 try {
 				//curso=insertar(curso);
@@ -60,7 +77,15 @@ public class CursoDAO extends BaseDAO {
 			}
 		 }
 	 }
-	 public Curso insertarActualizar(Curso curso) throws DAOExcepcion {
+	 
+ 	/**
+ 	 * Insertar actualizar.
+ 	 *
+ 	 * @param curso the curso
+ 	 * @return the curso
+ 	 * @throws DAOExcepcion the DAO excepcion
+ 	 */
+ 	public Curso insertarActualizar(Curso curso) throws DAOExcepcion {
 		 curso.setCCodigo(curso.getCCodigo()+"  ");
          String queryMerge="MERGE INTO curso c " +
                  "USING (SELECT ? c_codigo, ? nombre, ? creditos  FROM dual) curso " +
@@ -97,7 +122,14 @@ public class CursoDAO extends BaseDAO {
          return curso;
 	 }
 	 
-	 public List<CursoBO> listarCursosxDocenteRegular(String codDocente) throws Exception{
+	 /**
+ 	 * Listar cursosx docente regular.
+ 	 *
+ 	 * @param codDocente the cod docente
+ 	 * @return the list
+ 	 * @throws Exception the exception
+ 	 */
+ 	public List<CursoBO> listarCursosxDocenteRegular(String codDocente) throws Exception{
 		 Connection con = null;
 			CallableStatement cstm = null;
 			ResultSet rs = null;

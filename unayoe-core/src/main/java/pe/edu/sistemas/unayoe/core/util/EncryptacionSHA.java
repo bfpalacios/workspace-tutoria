@@ -1,5 +1,9 @@
 package pe.edu.sistemas.unayoe.core.util;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EncryptacionSHA.
+ */
 public class EncryptacionSHA {
 	
 	/**

@@ -12,12 +12,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Created by alexh on 03/12/15.
  */
 @Repository
 public class MatriculaParDaoImpl extends BaseDAO implements MatriculaParDao {
 
+    /* (non-Javadoc)
+     * @see pe.edu.sistemas.unayoe.dao.MatriculaParDao#matricularAlumno(pe.edu.sistemas.unayoe.unayoe.bo.MatriculaParBO)
+     */
     @Override
     public MatriculaParBO matricularAlumno(MatriculaParBO matriculaParBO) {
         Connection con = null;
@@ -48,6 +52,9 @@ public class MatriculaParDaoImpl extends BaseDAO implements MatriculaParDao {
         }
     }
 
+    /* (non-Javadoc)
+     * @see pe.edu.sistemas.unayoe.dao.MatriculaParDao#buscarMatriculaPar(java.lang.String, int)
+     */
     @Override
     public MatriculaParBO buscarMatriculaPar(String codigoAlumno, int codigoActividad) {
         Connection con = null;

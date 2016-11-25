@@ -20,39 +20,76 @@ import pe.edu.sistemas.unayoe.services.UsuarioServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UsuarioMBean.
+ */
 @Controller("usuarioMBean")
 @ViewScoped
 public class UsuarioMBean {
 
+	/** The usuario model. */
 	@Autowired
 	private UsuarioModel usuarioModel;
+	
+	/** The usuario services. */
 	@Autowired
 	private UsuarioServices usuarioServices;
+	
+	/** The comun services. */
 	@Autowired
 	private ComunServices comunServices;
 
+	/** The btn guardar. */
 	private UIComponent btnGuardar;
+	
+	/** The usuario model select. */
 	private UsuarioModel usuarioModelSelect;
 
+	/** The modo usuario. */
 	private int MODO_USUARIO;
+	
+	/** The modo admin. */
 	private static int MODO_ADMIN = 1;
+	
+	/** The modo ocaa. */
 	private static int MODO_OCAA = 2;
+	
+	/** The proceso. */
 	private int PROCESO;
+	
+	/** The proceso observados. */
 	private static int PROCESO_OBSERVADOS = 1;
+	
+	/** The proceso regulares. */
 	private static int PROCESO_REGULARES = 2;
+	
+	/** The proceso par. */
 	private static int PROCESO_PAR = 3;
+	
+	/** The rol alumno regular. */
 	private static int ROL_ALUMNO_REGULAR = 11;
 
+	/** The Constant PATTERN_EMAIL. */
 	private static final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
+	/** The Constant PATTERN_STRING. */
 	private static final String PATTERN_STRING = "([a-z]|[A-Z]|\\s)+";
 
+	/** The es alumno. */
 	private boolean esAlumno = true;
 
+	/**
+	 * Instantiates a new usuario M bean.
+	 */
 	public UsuarioMBean() {
 		usuarioModel = new UsuarioModel();
 	}
 
+	/**
+	 * Limpiar campos.
+	 */
 	private void limpiarCampos() {
 		if (getUsuarioModel() != null) {
 			setUsuarioModel(null);
@@ -60,6 +97,9 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Llenar roles observados.
+	 */
 	private void llenarRolesObservados() {
 		List<UsuarioBO> usuarioRoles = new ArrayList<UsuarioBO>();
 		try {
@@ -70,6 +110,9 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Llenar roles pares.
+	 */
 	private void llenarRolesPares() {
 		List<UsuarioBO> usuarioRoles = new ArrayList<UsuarioBO>();
 		try {
@@ -80,6 +123,9 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Llenar roles regulares.
+	 */
 	private void llenarRolesRegulares() {
 		List<UsuarioBO> usuarioRoles = new ArrayList<UsuarioBO>();
 		try {
@@ -90,6 +136,11 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Listar planes.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarPlanes() throws Exception {
 		System.out.println("Listando los ciclos:");
 
@@ -104,6 +155,12 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Valida numero.
+	 *
+	 * @param valor the valor
+	 * @return true, if successful
+	 */
 	public boolean validaNumero(String valor) {
 		boolean esNumerico = false;
 		try {
@@ -115,6 +172,12 @@ public class UsuarioMBean {
 		return esNumerico;
 	}
 
+	/**
+	 * Valida cadena.
+	 *
+	 * @param valor the valor
+	 * @return true, if successful
+	 */
 	public boolean validaCadena(String valor) {
 		boolean esCadena = false;
 		try {
@@ -127,6 +190,12 @@ public class UsuarioMBean {
 		return esCadena;
 	}
 
+	/**
+	 * Valida correo.
+	 *
+	 * @param correo the correo
+	 * @return true, if successful
+	 */
 	public boolean validaCorreo(String correo) {
 		boolean correoValido = false;
 		try {
@@ -139,6 +208,12 @@ public class UsuarioMBean {
 		return correoValido;
 	}
 
+	/**
+	 * Activar alumno.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void activarAlumno(ValueChangeEvent e) throws Exception {
 		int rolUsuario = Integer.parseInt((String) (e.getNewValue() == null ? "0" : e.getNewValue()));
 		if (rolUsuario == ROL_ALUMNO_REGULAR) {
@@ -148,6 +223,12 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Buscar usuario.
+	 *
+	 * @param usuario the usuario
+	 * @return the string
+	 */
 	private String buscarUsuario(String usuario) {
 		String codUsuario = "";
 		try {
@@ -158,6 +239,11 @@ public class UsuarioMBean {
 		return codUsuario;
 	}
 
+	/**
+	 * Guardar nuevo usuario MO.
+	 *
+	 * @return the string
+	 */
 	public String guardarNuevoUsuarioMO() {
 		String pagina = "";
 		try {
@@ -239,6 +325,12 @@ public class UsuarioMBean {
 		return pagina;
 	}
 
+	/**
+	 * Guardar nuevo usuario MR.
+	 *
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String guardarNuevoUsuarioMR() throws Exception {
 		String pagina = "";
 		try {
@@ -330,6 +422,11 @@ public class UsuarioMBean {
 		return pagina;
 	}
 
+	/**
+	 * Guardar nuevo usuario MP.
+	 *
+	 * @return the string
+	 */
 	public String guardarNuevoUsuarioMP() {
 		String pagina = "";
 		try {
@@ -392,6 +489,18 @@ public class UsuarioMBean {
 		return pagina;
 	}
 
+	/**
+	 * Validar campos.
+	 *
+	 * @param nombres the nombres
+	 * @param apellidoPaterno the apellido paterno
+	 * @param apellidoMaterno the apellido materno
+	 * @param correo the correo
+	 * @param telefono the telefono
+	 * @param codAlumno the cod alumno
+	 * @param idRol the id rol
+	 * @return true, if successful
+	 */
 	private boolean validarCampos(String nombres, String apellidoPaterno, String apellidoMaterno, String correo,
 			String telefono, String codAlumno, int idRol) {
 		boolean apto = true;
@@ -431,6 +540,11 @@ public class UsuarioMBean {
 		return apto;
 	}
 
+	/**
+	 * Mostrar mensaje.
+	 *
+	 * @param opcionMensaje the opcion mensaje
+	 */
 	private void mostrarMensaje(int opcionMensaje) {
 		FacesMessage message = null;
 
@@ -480,11 +594,22 @@ public class UsuarioMBean {
 		}
 	}
 
+	/**
+	 * Limpiar objetos.
+	 */
 	private void limpiarObjetos() {
 		setUsuarioModel(null);
 		setUsuarioModel(new UsuarioModel());
 	}
 
+	/**
+	 * Selector registro usuarios.
+	 *
+	 * @param proceso the proceso
+	 * @param modo the modo
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorRegistroUsuarios(int proceso, int modo) throws Exception {
 		String pagina = "";
 		setUsuarioModelSelect(new UsuarioModel());
@@ -540,34 +665,74 @@ public class UsuarioMBean {
 		return pagina;
 	}
 
+	/**
+	 * Gets the usuario model.
+	 *
+	 * @return the usuario model
+	 */
 	public UsuarioModel getUsuarioModel() {
 		return usuarioModel;
 	}
 
+	/**
+	 * Sets the usuario model.
+	 *
+	 * @param usuarioModel the new usuario model
+	 */
 	public void setUsuarioModel(UsuarioModel usuarioModel) {
 		this.usuarioModel = usuarioModel;
 	}
 
+	/**
+	 * Gets the usuario model select.
+	 *
+	 * @return the usuario model select
+	 */
 	public UsuarioModel getUsuarioModelSelect() {
 		return usuarioModelSelect;
 	}
 
+	/**
+	 * Sets the usuario model select.
+	 *
+	 * @param usuarioModelSelect the new usuario model select
+	 */
 	public void setUsuarioModelSelect(UsuarioModel usuarioModelSelect) {
 		this.usuarioModelSelect = usuarioModelSelect;
 	}
 
+	/**
+	 * Checks if is es alumno.
+	 *
+	 * @return true, if is es alumno
+	 */
 	public boolean isEsAlumno() {
 		return esAlumno;
 	}
 
+	/**
+	 * Sets the es alumno.
+	 *
+	 * @param esAlumno the new es alumno
+	 */
 	public void setEsAlumno(boolean esAlumno) {
 		this.esAlumno = esAlumno;
 	}
 
+	/**
+	 * Gets the btn guardar.
+	 *
+	 * @return the btn guardar
+	 */
 	public UIComponent getBtnGuardar() {
 		return btnGuardar;
 	}
 
+	/**
+	 * Sets the btn guardar.
+	 *
+	 * @param btnGuardar the new btn guardar
+	 */
 	public void setBtnGuardar(UIComponent btnGuardar) {
 		this.btnGuardar = btnGuardar;
 	}

@@ -11,12 +11,19 @@ import pe.edu.sistemas.unayoe.dao.dominio.Profesor;
 import pe.edu.sistemas.unayoe.unayoe.bo.ProfesorBO;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfesorTransformerToBo.
+ */
 @Component("profesorTransformerToBo")
 @Scope("singleton")
 public class ProfesorTransformerToBo implements  Transformer<Profesor,ProfesorBO> {
 	 
 
 	  
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.lang.Object)
+	 */
 	public ProfesorBO transformer(Profesor profesor) {
 		ProfesorBO profesorBO = null;
 		if(profesor!=null){
@@ -29,6 +36,9 @@ public class ProfesorTransformerToBo implements  Transformer<Profesor,ProfesorBO
 		return profesorBO;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.util.List)
+	 */
 	public List<ProfesorBO> transformer(List<Profesor> lista) {
 		List<ProfesorBO> listaProfesorBO = new ArrayList<ProfesorBO>();
 		for (Profesor profesor : lista) {

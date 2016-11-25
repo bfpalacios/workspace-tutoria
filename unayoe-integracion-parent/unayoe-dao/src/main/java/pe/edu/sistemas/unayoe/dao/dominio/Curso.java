@@ -17,7 +17,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class Curso.
  *
  * @author bpalacios
  */
@@ -30,53 +32,108 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Curso.findByNombre", query = "SELECT c FROM Curso c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Curso.findByCreditos", query = "SELECT c FROM Curso c WHERE c.creditos = :creditos")})
 public class Curso implements Serializable {
+    
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The c codigo. */
     @Id
     @Basic(optional = false)
     @Column(name = "C_CODIGO")
     private String cCodigo;
+    
+    /** The nombre. */
     @Column(name = "NOMBRE")
     private String nombre;
+    
+    /** The creditos. */
     @Basic(optional = false)
     @Column(name = "CREDITOS")
     private BigInteger creditos;
 
+    /**
+     * Instantiates a new curso.
+     */
     public Curso() {
     }
 
+    /**
+     * Instantiates a new curso.
+     *
+     * @param cCodigo the c codigo
+     */
     public Curso(String cCodigo) {
         this.cCodigo = cCodigo;
     }
 
+    /**
+     * Instantiates a new curso.
+     *
+     * @param cCodigo the c codigo
+     * @param creditos the creditos
+     */
     public Curso(String cCodigo, BigInteger creditos) {
         this.cCodigo = cCodigo;
         this.creditos = creditos;
     }
 
+    /**
+     * Gets the c codigo.
+     *
+     * @return the c codigo
+     */
     public String getCCodigo() {
         return cCodigo;
     }
 
+    /**
+     * Sets the c codigo.
+     *
+     * @param cCodigo the new c codigo
+     */
     public void setCCodigo(String cCodigo) {
         this.cCodigo = cCodigo;
     }
 
+    /**
+     * Gets the nombre.
+     *
+     * @return the nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Sets the nombre.
+     *
+     * @param nombre the new nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Gets the creditos.
+     *
+     * @return the creditos
+     */
     public BigInteger getCreditos() {
         return creditos;
     }
 
+    /**
+     * Sets the creditos.
+     *
+     * @param creditos the new creditos
+     */
     public void setCreditos(BigInteger creditos) {
         this.creditos = creditos;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -84,6 +141,9 @@ public class Curso implements Serializable {
         return hash;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -97,6 +157,9 @@ public class Curso implements Serializable {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         return "DBTUTORIA.Curso[ cCodigo=" + cCodigo + " ]";

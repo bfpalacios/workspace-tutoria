@@ -12,9 +12,16 @@ import org.springframework.stereotype.Component;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 import pe.edu.sistemas.unayoe.unayoe.bo.ConvocatoriaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConvocatoriaDAOImpl.
+ */
 @Component("convocatoriaDao")
 public class ConvocatoriaDAOImpl implements ConvocatoriaDAO {
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.ConvocatoriaDAO#createConvocatoria(pe.edu.sistemas.unayoe.unayoe.bo.ConvocatoriaBO)
+	 */
 	@Override
 	public boolean createConvocatoria(ConvocatoriaBO convocatoria) {
 		boolean ok = true;
@@ -56,6 +63,9 @@ public class ConvocatoriaDAOImpl implements ConvocatoriaDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.ConvocatoriaDAO#deleteConvocatoria(java.lang.Integer)
+	 */
 	@Override
 	public boolean deleteConvocatoria(Integer id) {
 		boolean ok = true;
@@ -82,6 +92,9 @@ public class ConvocatoriaDAOImpl implements ConvocatoriaDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.ConvocatoriaDAO#getConvocatoria(java.lang.Integer)
+	 */
 	@Override
 	public ConvocatoriaBO getConvocatoria(Integer id) {
 		ConvocatoriaBO convocatoria = new ConvocatoriaBO();
@@ -109,6 +122,9 @@ public class ConvocatoriaDAOImpl implements ConvocatoriaDAO {
 		return convocatoria;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.ConvocatoriaDAO#getConvocatorias()
+	 */
 	@Override
 	public List<ConvocatoriaBO> getConvocatorias() {
 		List<ConvocatoriaBO> convocatorias = new ArrayList<ConvocatoriaBO>();
@@ -136,12 +152,18 @@ public class ConvocatoriaDAOImpl implements ConvocatoriaDAO {
 		return convocatorias;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.ConvocatoriaDAO#updateConvocatoria(pe.edu.sistemas.unayoe.unayoe.bo.ConvocatoriaBO)
+	 */
 	@Override
 	public boolean updateConvocatoria(ConvocatoriaBO convocatoria) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.ConvocatoriaDAO#getConvocatoriaActual()
+	 */
 	@Override
 	public ConvocatoriaBO getConvocatoriaActual() {
 		ConvocatoriaBO convocatoria = new ConvocatoriaBO();

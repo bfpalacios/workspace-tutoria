@@ -6,8 +6,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FormateadorFecha.
+ */
 public class FormateadorFecha {
 	
+	/**
+	 * Formato fecha DDMMAAAA.
+	 *
+	 * @param date the date
+	 * @return the string
+	 */
 	public  String formatoFechaDDMMAAAA(Date date) {
 		String convertido = "";
 		
@@ -24,6 +34,12 @@ public class FormateadorFecha {
 		}
 	}
 	
+	/**
+	 * Gets the day of the week.
+	 *
+	 * @param d the d
+	 * @return the day of the week
+	 */
 	public static  int getDayOfTheWeek(Date d){
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTime(d);

@@ -38,64 +38,136 @@ import org.primefaces.model.UploadedFile;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DatosAlumnosMBean.
+ */
 @Controller("datosAlumnosMBean")
 @ViewScoped
 public class DatosAlumnosMBean {
 
+	/** The alumno services. */
 	@Autowired
 	private AlumnoServices alumnoServices;
+	
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
+	
+	/** The grupo services. */
 	@Autowired
 	private GrupoServices grupoServices;
+	
+	/** The matricula services. */
 	@Autowired
 	private MatriculaServices matriculaServices;
+	
+	/** The tutoria services. */
 	@Autowired
 	private TutoriaServices tutoriaServices;
+	
+	/** The comun services. */
 	@Autowired
 	private ComunServices comunServices;
+	
+	/** The datos alumno excel models. */
 	@Autowired
 	private List<DatosAlumnoExcelModel> datosAlumnoExcelModels;
+	
+	/** The datos alumno excel model. */
 	@Autowired
 	private DatosAlumnoExcelModel datosAlumnoExcelModel;
+	
+	/** The archivo model. */
 	@Autowired
 	private ArchivoModel archivoModel;
 
+	/** The datos alumno excel model grid. */
 	private List<DatosAlumnoExcelModel> datosAlumnoExcelModelGrid;
+	
+	/** The nombre archivo. */
 	private String nombreArchivo;
+	
+	/** The file. */
 	private UploadedFile file;
 
+	/** The cod alumno. */
 	private static int COD_ALUMNO = 0;
+	
+	/** The ape paterno. */
 	private static int APE_PATERNO = 1;
+	
+	/** The ape materno. */
 	private static int APE_MATERNO = 2;
+	
+	/** The nom alumno. */
 	private static int NOM_ALUMNO = 3;
+	
+	/** The cod plan. */
 	private static int COD_PLAN = 4;
+	
+	/** The cod curso. */
 	private static int COD_CURSO = 5;
+	
+	/** The nom curso. */
 	private static int NOM_CURSO = 6;
+	
+	/** The num cred. */
 	private static int NUM_CRED = 7;
+	
+	/** The repitencias. */
 	private static int REPITENCIAS = 8;
+	
+	/** The cod docente. */
 	private static int COD_DOCENTE = 9;
+	
+	/** The nom docente. */
 	private static int NOM_DOCENTE = 10;
+	
+	/** The frecuencia. */
 	private static int FRECUENCIA = 11;
+	
+	/** The dia. */
 	private static int DIA = 12;
+	
+	/** The hora inicio. */
 	private static int HORA_INICIO = 13;
+	
+	/** The hora fin. */
 	private static int HORA_FIN = 14;
 
+	/** The alumno observado. */
 	private static int ALUMNO_OBSERVADO = 1;
 
+	/** The modo usuario. */
 	private int MODO_USUARIO;
+	
+	/** The modo admin. */
 	private static int MODO_ADMIN = 1;
+	
+	/** The modo ocaa. */
 	private static int MODO_OCAA = 2;
+	
+	/** The modo decano. */
 	private static int MODO_DECANO = 5;
 
+	/**
+	 * Instantiates a new datos alumnos M bean.
+	 */
 	public DatosAlumnosMBean() {
 		inicializarClases();
 	}
 
+	/**
+	 * Inicializar clases.
+	 */
 	private void inicializarClases() {
 		setDatosAlumnoExcelModelGrid(new ArrayList<DatosAlumnoExcelModel>());
 	}
 
+	/**
+	 * Reiniciar clases.
+	 */
 	private void reiniciarClases() {
 		if (getDatosAlumnoExcelModelGrid() != null) {
 			getDatosAlumnoExcelModelGrid().removeAll(getDatosAlumnoExcelModelGrid());
@@ -103,6 +175,12 @@ public class DatosAlumnosMBean {
 		datosAlumnoExcelModels.clear();
 	}
 
+	/**
+	 * Validar formato columnas excel.
+	 *
+	 * @param fila_alumno the fila alumno
+	 * @return true, if successful
+	 */
 	private boolean validarFormatoColumnasExcel(XSSFRow fila_alumno) {
 		if (fila_alumno.getCell(COD_ALUMNO) == null)
 			return false;
@@ -154,6 +232,13 @@ public class DatosAlumnosMBean {
 		return true;
 	}
 
+	/**
+	 * Handle file upload.
+	 *
+	 * @param event the event
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String handleFileUpload(FileUploadEvent event) throws Exception {
 		String pagina = "";
 		System.out.println("cargar");
@@ -264,11 +349,10 @@ public class DatosAlumnosMBean {
 
 	/**
 	 * Metodo que muestra un mensaje si el archivo excel se ingreso de manera
-	 * correcta
-	 * 
-	 * @param excelCargado
-	 *            archivo excel
-	 * @param event
+	 * correcta.
+	 *
+	 * @param excelCargado            archivo excel
+	 * @param event the event
 	 */
 	public void setExcel(UploadedFile excelCargado, FileUploadEvent event) {
 		if (excelCargado != null) {
@@ -283,6 +367,12 @@ public class DatosAlumnosMBean {
 		}
 	}
 
+	/**
+	 * Convertir A model alumno.
+	 *
+	 * @param fila_alumno the fila alumno
+	 * @return the datos alumno excel model
+	 */
 	public DatosAlumnoExcelModel convertirAModelAlumno(XSSFRow fila_alumno) {
 		DatosAlumnoExcelModel datos = new DatosAlumnoExcelModel();
 
@@ -326,10 +416,22 @@ public class DatosAlumnosMBean {
 		return datos;
 	}
 
+	/**
+	 * Es repitencia invalida.
+	 *
+	 * @param iRepitencias the i repitencias
+	 * @return true, if successful
+	 */
 	private boolean esRepitenciaInvalida(Integer iRepitencias){
 		return (iRepitencias!=2 && iRepitencias!=3);
 	}
 	
+	/**
+	 * Validar registro tutoria.
+	 *
+	 * @param datos the datos
+	 * @return the datos alumno excel model
+	 */
 	private DatosAlumnoExcelModel validarRegistroTutoria(DatosAlumnoExcelModel datos) {
 		System.out.println("valida " + Integer.parseInt(datos.getRepitencias()));
 		if (datos.getCod_alumno() == "" || datos.getCod_alumno().length() > 8 || datos.getAp_paterno() == ""
@@ -344,6 +446,12 @@ public class DatosAlumnosMBean {
 		return datos;
 	}
 
+	/**
+	 * Convertir A alumno BO.
+	 *
+	 * @param alumnoData the alumno data
+	 * @return the alumno BO
+	 */
 	public AlumnoBO convertirAAlumnoBO(DatosAlumnoExcelModel alumnoData) {
 		AlumnoBO abo = new AlumnoBO();
 		abo.setaCodigo(alumnoData.getCod_alumno());
@@ -352,6 +460,11 @@ public class DatosAlumnosMBean {
 		return abo;
 	}
 
+	/**
+	 * Guardar tutoria observados.
+	 *
+	 * @return the string
+	 */
 	public String guardarTutoriaObservados() {
 		String pagina = "";
 		try {
@@ -391,6 +504,12 @@ public class DatosAlumnosMBean {
 		return pagina;
 	}
 
+	/**
+	 * Convertir A tutoria BO.
+	 *
+	 * @param datosTutoriaModel the datos tutoria model
+	 * @return the list
+	 */
 	private List<TutoriaBO> convertirATutoriaBO(List<DatosAlumnoExcelModel> datosTutoriaModel) {
 		List<TutoriaBO> listaTutorias = new ArrayList<TutoriaBO>();
 		for (DatosAlumnoExcelModel tutoriaModel : datosTutoriaModel) {
@@ -416,6 +535,11 @@ public class DatosAlumnosMBean {
 		return listaTutorias;
 	}
 
+	/**
+	 * Obtener usuario.
+	 *
+	 * @return the string
+	 */
 	public String obtenerUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nombre = "";
@@ -426,6 +550,9 @@ public class DatosAlumnosMBean {
 		return nombre;
 	}
 
+	/**
+	 * Mostrar.
+	 */
 	public void mostrar() {
 		if (file != null) {
 			FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
@@ -437,11 +564,20 @@ public class DatosAlumnosMBean {
 		nombreArchivo = "un nombre";
 	}
 
+	/**
+	 * Actualizar datatable.
+	 */
 	public void actualizarDatatable() {
 		RequestContext context = RequestContext.getCurrentInstance();
 		context.reset("pnlGridLoginAcceso:tablaAlumnos");
 	}
 
+	/**
+	 * Validar dato entero.
+	 *
+	 * @param valorCelda the valor celda
+	 * @return the integer
+	 */
 	public Integer validarDatoEntero(XSSFCell valorCelda) {
 		String valorCadena = "";
 		Double valorNumerico = 0D;
@@ -474,6 +610,12 @@ public class DatosAlumnosMBean {
 		}
 	}
 
+	/**
+	 * Validar dato cadena.
+	 *
+	 * @param valorCelda the valor celda
+	 * @return the string
+	 */
 	public String validarDatoCadena(XSSFCell valorCelda) {
 		String valorCadena = "";
 		int valorNumerico = 0;
@@ -507,6 +649,11 @@ public class DatosAlumnosMBean {
 		}
 	}
 
+	/**
+	 * Mostrar mensaje.
+	 *
+	 * @param opcionMensaje the opcion mensaje
+	 */
 	private void mostrarMensaje(int opcionMensaje) {
 		FacesMessage message = null;
 
@@ -530,6 +677,13 @@ public class DatosAlumnosMBean {
 		}
 	}
 
+	/**
+	 * Selector datos alumnos.
+	 *
+	 * @param modo the modo
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorDatosAlumnos(int modo) throws Exception {
 		String pagina = "";
 
@@ -562,56 +716,119 @@ public class DatosAlumnosMBean {
 		return pagina;
 	}
 
+	/**
+	 * Validar datos alumnos cargados.
+	 */
 	public void validarDatosAlumnosCargados() {
 		if (datosAlumnoExcelModelGrid.isEmpty()) {
 			mostrarMensaje(4);
 		}
 	}
 
+	/**
+	 * Gets the file.
+	 *
+	 * @return the file
+	 */
 	public UploadedFile getFile() {
 		return file;
 	}
 
+	/**
+	 * Sets the file.
+	 *
+	 * @param file the new file
+	 */
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
 
+	/**
+	 * Gets the datos alumno excel models.
+	 *
+	 * @return the datos alumno excel models
+	 */
 	public List<DatosAlumnoExcelModel> getDatosAlumnoExcelModels() {
 		return datosAlumnoExcelModels;
 	}
 
+	/**
+	 * Sets the datos alumno excel models.
+	 *
+	 * @param DatosAlumnoExcelModels the new datos alumno excel models
+	 */
 	public void setDatosAlumnoExcelModels(List<DatosAlumnoExcelModel> DatosAlumnoExcelModels) {
 		this.datosAlumnoExcelModels = DatosAlumnoExcelModels;
 	}
 
+	/**
+	 * Gets the datos alumno excel model.
+	 *
+	 * @return the datos alumno excel model
+	 */
 	public DatosAlumnoExcelModel getDatosAlumnoExcelModel() {
 		return datosAlumnoExcelModel;
 	}
 
+	/**
+	 * Sets the datos alumno excel model.
+	 *
+	 * @param DatosAlumnoExcelModel the new datos alumno excel model
+	 */
 	public void setDatosAlumnoExcelModel(DatosAlumnoExcelModel DatosAlumnoExcelModel) {
 		this.datosAlumnoExcelModel = DatosAlumnoExcelModel;
 	}
 
+	/**
+	 * Gets the nombre archivo.
+	 *
+	 * @return the nombre archivo
+	 */
 	public String getNombreArchivo() {
 		return nombreArchivo;
 	}
 
+	/**
+	 * Sets the nombre archivo.
+	 *
+	 * @param nombreArchivo the new nombre archivo
+	 */
 	public void setNombreArchivo(String nombreArchivo) {
 		this.nombreArchivo = nombreArchivo;
 	}
 
+	/**
+	 * Gets the archivo model.
+	 *
+	 * @return the archivo model
+	 */
 	public ArchivoModel getArchivoModel() {
 		return archivoModel;
 	}
 
+	/**
+	 * Sets the archivo model.
+	 *
+	 * @param archivoModel the new archivo model
+	 */
 	public void setArchivoModel(ArchivoModel archivoModel) {
 		this.archivoModel = archivoModel;
 	}
 
+	/**
+	 * Gets the datos alumno excel model grid.
+	 *
+	 * @return the datos alumno excel model grid
+	 */
 	public List<DatosAlumnoExcelModel> getDatosAlumnoExcelModelGrid() {
 		return datosAlumnoExcelModelGrid;
 	}
 
+	/**
+	 * Sets the datos alumno excel model grid.
+	 *
+	 * @param datosAlumnoExcelModelGrid the new datos alumno excel model grid
+	 */
 	public void setDatosAlumnoExcelModelGrid(List<DatosAlumnoExcelModel> datosAlumnoExcelModelGrid) {
 		this.datosAlumnoExcelModelGrid = datosAlumnoExcelModelGrid;
 	}

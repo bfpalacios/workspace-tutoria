@@ -17,11 +17,22 @@ import pe.edu.sistemas.unayoe.core.util.DAOExcepcion;
 import pe.edu.sistemas.unayoe.dao.dominio.Alumno;
 import pe.edu.sistemas.unayoe.unayoe.bo.GrupoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GrupoDAO.
+ */
 @Repository("grupoDAO")
 @Transactional
 public class GrupoDAO extends BaseDAO {
 	
-	 public Alumno insertar(Alumno alumno) throws DAOExcepcion {
+	 /**
+ 	 * Insertar.
+ 	 *
+ 	 * @param alumno the alumno
+ 	 * @return the alumno
+ 	 * @throws DAOExcepcion the DAO excepcion
+ 	 */
+ 	public Alumno insertar(Alumno alumno) throws DAOExcepcion {
          String query = "insert into alumno(a_codigo,a_nombre,a_apellidos,a_fnacimiento,a_direccion,a_email,a_telefono,a_dni) values (?,?,?,?,?,?,?,?)";
          Connection con = null;
          PreparedStatement stmt = null;
@@ -72,7 +83,12 @@ public class GrupoDAO extends BaseDAO {
          return alumno;
 	 }
 	 
-	 public void insertarLista(List<GrupoBO>  lista){
+	 /**
+ 	 * Insertar lista.
+ 	 *
+ 	 * @param lista the lista
+ 	 */
+ 	public void insertarLista(List<GrupoBO>  lista){
 		 for(GrupoBO grupo : lista){
 			 try {
 				//alumno=insertar(alumno);
@@ -86,7 +102,13 @@ public class GrupoDAO extends BaseDAO {
 	 
 	 
 
-	 public void insertarActualizar(GrupoBO grupobo) throws DAOExcepcion {
+	 /**
+ 	 * Insertar actualizar.
+ 	 *
+ 	 * @param grupobo the grupobo
+ 	 * @throws DAOExcepcion the DAO excepcion
+ 	 */
+ 	public void insertarActualizar(GrupoBO grupobo) throws DAOExcepcion {
   
          String queryMerge="MERGE INTO grupo g " +
                  "USING (SELECT ? ANIO, ? PERIODO, ? GRUPO ,? C_CODIGO , ? P_CODIGO  FROM dual) grupo " +

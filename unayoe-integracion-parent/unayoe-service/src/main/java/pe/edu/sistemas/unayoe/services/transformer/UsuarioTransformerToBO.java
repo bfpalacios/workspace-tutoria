@@ -11,10 +11,17 @@ import pe.edu.sistemas.unayoe.dao.dominio.Usuario;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
  
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UsuarioTransformerToBO.
+ */
 @Component("usuarioTransformerToBO")
 @Scope("singleton")
 public class UsuarioTransformerToBO implements Transformer<Usuario,UsuarioBO> {
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.lang.Object)
+	 */
 	public UsuarioBO transformer(final Usuario usuario) {
 		UsuarioBO usuarioBO = null;
 		if(usuario!=null){
@@ -25,6 +32,9 @@ public class UsuarioTransformerToBO implements Transformer<Usuario,UsuarioBO> {
 		return usuarioBO;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.util.List)
+	 */
 	public List<UsuarioBO> transformer(final List<Usuario> lista) {
 		List<UsuarioBO> listaUsuarioBO = new ArrayList<UsuarioBO>();
 		for (Usuario usuario : lista) {

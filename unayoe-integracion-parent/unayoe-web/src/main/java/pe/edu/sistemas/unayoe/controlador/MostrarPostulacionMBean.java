@@ -22,31 +22,49 @@ import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.PostulacionBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TemaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MostrarPostulacionMBean.
+ */
 @Controller("mostrarPostulacionMBean")
 @ViewScoped
 public class MostrarPostulacionMBean implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -1094056852928420585L;
 
+	/** The mostrar postulacion model. */
 	@Autowired
 	private MostrarPostulacionModel mostrarPostulacionModel;
 
+	/** The convocatoria services. */
 	@Autowired
 	private ConvocatoriaServices convocatoriaServices;
 
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
 
+	/** The postulacion services. */
 	@Autowired
 	private PostulacionServices postulacionServices;
 
+	/** The tema services. */
 	@Autowired
 	private TemaServices temaServices;
 
+	/**
+	 * Instantiates a new mostrar postulacion M bean.
+	 */
 	public MostrarPostulacionMBean() {
 
 	}
 
+	/**
+	 * Gets the convocatoria actual.
+	 *
+	 * @return the convocatoria actual
+	 */
 	public String getConvocatoriaActual() {
 		ConvocatoriaBO convocatoria = convocatoriaServices.getConvocatoriaActual();
 		if (convocatoria == null) {
@@ -56,6 +74,11 @@ public class MostrarPostulacionMBean implements Serializable {
 		return convocatoria.getNombre();
 	}
 
+	/**
+	 * Gets the lista postulaciones.
+	 *
+	 * @return the lista postulaciones
+	 */
 	public List<PostulacionBO> getListaPostulaciones() {
 		Integer idConvocatoria = this.mostrarPostulacionModel.getIdConvocatoria();
 		if (idConvocatoria == null) {
@@ -81,6 +104,11 @@ public class MostrarPostulacionMBean implements Serializable {
 		return postulaciones;
 	}
 
+	/**
+	 * Gets the lista cursos.
+	 *
+	 * @return the lista cursos
+	 */
 	public List<CursoBO> getListaCursos() {
 		Integer idConvocatoria = this.mostrarPostulacionModel.getIdConvocatoria();
 		if (idConvocatoria == null) {
@@ -89,6 +117,11 @@ public class MostrarPostulacionMBean implements Serializable {
 		return this.cursoServices.listarCursosPorConvocatoria(idConvocatoria);
 	}
 
+	/**
+	 * Gets the lista temas.
+	 *
+	 * @return the lista temas
+	 */
 	public List<TemaBO> getListaTemas() {
 		Integer idConvocatoria = this.mostrarPostulacionModel.getIdConvocatoria();
 		String codigoCurso = this.mostrarPostulacionModel.getCodigoCurso();
@@ -99,6 +132,12 @@ public class MostrarPostulacionMBean implements Serializable {
 		return this.temaServices.getTemasPorConvocatoriaCurso(idConvocatoria, codigoCurso);
 	}
 
+	/**
+	 * Descargar CV.
+	 *
+	 * @param idPostulacion the id postulacion
+	 * @return the streamed content
+	 */
 	public StreamedContent descargarCV(Integer idPostulacion) {
 		System.out.println("Descargando CV: " + idPostulacion);
 
@@ -119,6 +158,11 @@ public class MostrarPostulacionMBean implements Serializable {
 		return file;
 	}
 
+	/**
+	 * Aprobar postulante.
+	 *
+	 * @param idPostulacion the id postulacion
+	 */
 	public void aprobarPostulante(Integer idPostulacion) {
 		Integer idTema = this.mostrarPostulacionModel.getIdTema();
 
@@ -132,10 +176,20 @@ public class MostrarPostulacionMBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Gets the mostrar postulacion model.
+	 *
+	 * @return the mostrar postulacion model
+	 */
 	public MostrarPostulacionModel getMostrarPostulacionModel() {
 		return mostrarPostulacionModel;
 	}
 
+	/**
+	 * Sets the mostrar postulacion model.
+	 *
+	 * @param mostrarPostulacionModel the new mostrar postulacion model
+	 */
 	public void setMostrarPostulacionModel(MostrarPostulacionModel mostrarPostulacionModel) {
 		this.mostrarPostulacionModel = mostrarPostulacionModel;
 	}

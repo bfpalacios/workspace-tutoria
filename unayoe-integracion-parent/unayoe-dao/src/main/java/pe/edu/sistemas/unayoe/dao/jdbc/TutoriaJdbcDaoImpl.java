@@ -32,9 +32,16 @@ import pe.edu.sistemas.unayoe.unayoe.bo.SesionBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TutoriaJdbcDaoImpl.
+ */
 @Repository("asistenciaTutoriaJdbcDao")
 public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#llenarCombo(java.lang.String, java.lang.String)
+	 */
 	public List<ClaseMaestra> llenarCombo(String tabla, String campo){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -71,6 +78,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarAsistenciaDeAlumnosTutoria(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	//obtiene la informacion del role_admin
 	public List<AsistenciaTAlumBO> buscarAsistenciaDeAlumnosTutoria(
 			String periodo, String anio, String dia, String curso, String fecha) throws Exception {
@@ -133,6 +143,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarAsistenciaDeAlumnosTutoriaUser(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	//obtiene la informacion del user role_user
 		public List<AsistenciaTAlumBO> buscarAsistenciaDeAlumnosTutoriaUser(
 				String periodo, String anio, String dia, String curso, String codigoUser, String horaIni, String horaFin) throws Exception {
@@ -200,6 +213,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 			return listaAsistenciaAlumnoTutoria;
 		}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarAsistenciaDocenteTutoria(java.lang.String, java.lang.String)
+	 */
 	public List<AsistenciaTProfBO> buscarAsistenciaDocenteTutoria(
 			String fecha, String codigoCurso) throws Exception {
 		String query = "SELECT C.NOMBRE, P.P_CODIGO, P.P_NOMBRE, P.P_APELLIDOS,ACP.ASISTENCIA "
@@ -254,6 +270,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaAsistenciaAlumnoTutoria;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#insertarTutoria(pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO)
+	 */
 	public void insertarTutoria(TutoriaBO tutoriabo) throws Exception{
 		boolean esNuevo=false;// para actualizar
 		
@@ -356,6 +375,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 	
 
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarHorariosDeTutoria(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, int)
+	 */
 	public List<TutoriaBO> listarHorariosDeTutoria(Integer anio, Integer periodo, String a_codigo, String codUsuario, int procesoTutoria)throws Exception{
 		List<TutoriaBO> listaHorarioTutoria = new ArrayList<TutoriaBO>();
 		
@@ -406,6 +428,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaHorarioTutoria;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarHorariosDeTutoriaProfesor(java.lang.Integer, java.lang.Integer, java.lang.String)
+	 */
 	public List<TutoriaBO> listarHorariosDeTutoriaProfesor(Integer anio, Integer periodo, String p_codigo) throws Exception{
 		List<TutoriaBO> listaHorarioTutoria = new ArrayList<TutoriaBO>();
 		
@@ -463,6 +488,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaHorarioTutoria;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarHorariosDeTutoriaxSemana(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String)
+	 */
 	public List<TutoriaBO> listarHorariosDeTutoriaxSemana(Integer anio , Integer periodo ,String c_codigo , String dia)throws Exception{
 		List<TutoriaBO> listaHorarioTutoria = new ArrayList<TutoriaBO>();
 		
@@ -512,6 +540,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaHorarioTutoria;		
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarTutoresRegulares(java.lang.String)
+	 */
 	public List<ProfesorBO> listarTutoresRegulares(String codCurso){		
 		Connection con = null;
 		ResultSet rs = null;
@@ -547,6 +578,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaProfesores;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarTutoresObservados(java.lang.String)
+	 */
 	public List<ProfesorBO> listarTutoresObservados(String codCurso) throws Exception{
 		Connection con = null;
 		ResultSet rs = null;
@@ -582,6 +616,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaTutores;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#actualizarHoraFin(int)
+	 */
 	public List<ClaseMaestra> actualizarHoraFin(int idHoraInicio){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -616,6 +653,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaHoraFin;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarDatosAlumno(java.lang.String)
+	 */
 	public AlumnoBO buscarDatosAlumno(String codAlumno){		
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -653,6 +693,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return datosAlumno;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarTutoria(int, int, java.lang.String, java.lang.String, java.lang.String)
+	 */
 	public String buscarTutoria(int anio, int periodo, String codCurso, String codAlumno, String codDocente) throws SQLException{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -685,6 +728,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return codtutoria;		
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#procesarTutoriaRegulares(pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO, int)
+	 */
 	public void procesarTutoriaRegulares(TutoriaBO tutoriaBO, int modo) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -715,6 +761,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#procesarTutoriaObservados(pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO, java.lang.String, int)
+	 */
 	public void procesarTutoriaObservados(TutoriaBO tutoria, String codUsuario, int tipoAlumno){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -748,6 +797,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarAsistenciaAlumnosTutoria(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, int)
+	 */
 	public List<TutoriaBO> buscarAsistenciaAlumnosTutoria(String codDocente, String codCurso, String codAlumno, String fechaTutoria, int tipoAlumno, int modo){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -795,6 +847,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaTutoriasAlumno;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#guardarRegistroAsistencia(pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO, java.lang.String, int, int)
+	 */
 	public void guardarRegistroAsistencia(TutoriaBO asistenciaTutorias, String fecha, int tipoAlumno, int modo){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -823,6 +878,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarAreaConocimiento()
+	 */
 	public List<AreaConocimientoBO> listarAreaConocimiento(){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -857,6 +915,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaAreaConocimiento;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarCursosxAreaConocimiento(java.lang.String)
+	 */
 	public List<CursoBO> listarCursosxAreaConocimiento(String codAreaConocimiento){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -892,6 +953,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaCursos;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarSesionTutoria(int, int, java.lang.String, java.lang.String, java.lang.String, int, int)
+	 */
 	public List<SesionBO> listarSesionTutoria(int anio, int periodo, String codCurso, String codDocente, String codAlumno, int procesoTutoria, int modo){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -938,6 +1002,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaSesiones;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#obtenerActaTutoria(int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int)
+	 */
 	public SesionBO obtenerActaTutoria(int anio, int periodo, String codCurso, String codDocente, String codAlumno, int sesion, int procesoTutoria, int modo) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -990,6 +1057,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return actaSesion;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#guardarActaTutoria(int, int, java.lang.String, int, byte[], java.lang.String, int)
+	 */
 	public void guardarActaTutoria(int anio, int periodo, String codTutoria, int sesion, byte[] actaTutoria, String nombre, int estadoActa) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1009,6 +1079,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		cstm.execute();		
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#guardarRegistroDisponibilidad(pe.edu.sistemas.unayoe.unayoe.bo.DisponibilidadBO, java.lang.String, int, int)
+	 */
 	public void  guardarRegistroDisponibilidad (DisponibilidadBO disponibilidad, String usuario, int modo, int procesoRegistro) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1027,6 +1100,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		cstm.execute();	
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarTutoresRegulares()
+	 */
 	public List<ProfesorBO> listarTutoresRegulares() throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1060,6 +1136,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaTutores;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarAlumnosRegulares()
+	 */
 	public List<AlumnoBO> listarAlumnosRegulares() throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1093,6 +1172,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaAlumnos;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarCursosxAlumnoRegular(java.lang.String)
+	 */
 	public List<CursoBO> listarCursosxAlumnoRegular(String codAlumno) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1127,6 +1209,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaCursos;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarPreguntas(java.lang.String)
+	 */
 	public List<EncuestaBO> listarPreguntas(String tipoPregunta) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1161,6 +1246,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaPreguntas;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarTutoriaxCodigoAlumno(java.lang.String, int)
+	 */
 	public List<TutoriaBO> buscarTutoriaxCodigoAlumno(String codAlumno, int tipoAlumno){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1203,6 +1291,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaTutorias;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#guardarEncuestaInicial(pe.edu.sistemas.unayoe.unayoe.bo.EncuestaBO, java.lang.String, int)
+	 */
 	public void guardarEncuestaInicial(EncuestaBO encuesta, String codTutoria, int modo) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1221,6 +1312,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		cstm.execute();
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarTutoriaEncuesta(java.lang.String)
+	 */
 	public String buscarTutoriaEncuesta(String codTutoria) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1248,6 +1342,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return tutoriaEncuesta;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarAlumnosRegularesxCurso(java.lang.String)
+	 */
 	public List<AlumnoBO> listarAlumnosRegularesxCurso(String codCurso) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1282,6 +1379,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaAlumnos;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarDatosEncuesta(java.lang.String)
+	 */
 	public List<EncuestaBO> buscarDatosEncuesta(String codTutoria) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1323,6 +1423,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaEncuestas;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarTutoriaxCodigoAlumnoRegular(java.lang.String)
+	 */
 	public List<TutoriaBO> buscarTutoriaxCodigoAlumnoRegular(String codAlumno) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1364,6 +1467,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaTutorias;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#guardarObservacionesAsistencia(java.lang.String, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)
+	 */
 	public void guardarObservacionesAsistencia(String codTutoria, String observacion, String criticidad, int sesion,String razon,String fechaCumplimiento) throws SQLException{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1381,6 +1487,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		cstm.execute();
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#buscarSesionTutoria(int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int)
+	 */
 	public SesionBO buscarSesionTutoria(int anio, int periodo, String codCurso, String codDocente, String codAlumno, int sesion, int procesoTutoria, int modo) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1426,6 +1535,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return sesionTutoria;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarObservaciones(java.lang.String, java.lang.String, java.lang.String, int)
+	 */
 	public List<ObservacionBO> listarObservaciones(String codCurso, String codDocente, String codAlumno, int procesoTutoria) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1473,6 +1585,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaObservaciones;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#actualizarEstadoObservacion(pe.edu.sistemas.unayoe.unayoe.bo.ObservacionBO, int)
+	 */
 	public void actualizarEstadoObservacion(ObservacionBO observacion, int indicadorObservacion) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1489,6 +1604,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		cstm.execute();
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarSesionesCierre(java.lang.String, int)
+	 */
 	public List<SesionBO> listarSesionesCierre(String codTutoria, int sesion) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1523,6 +1641,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaSesionesCierre;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarDisponibilidades(java.lang.String, java.lang.String, int)
+	 */
 	public List<DisponibilidadBO> listarDisponibilidades(String codCurso, String codUsuario, int tipoUsuario) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1560,6 +1681,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaDisponibilidades;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#listarDatosTutoria(java.lang.String, java.lang.String, java.lang.String, int, int)
+	 */
 	public List<TutoriaBO> listarDatosTutoria(String codCurso, String codDocente, String codAlumno, int procesoTutoria, int modoUsuario) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -1610,6 +1734,9 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		return listaDatosTutoria;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIJdbcDao#verificarExistenciaObservacion(java.lang.String, int)
+	 */
 	public int verificarExistenciaObservacion(String codTutoria, int sesion) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;

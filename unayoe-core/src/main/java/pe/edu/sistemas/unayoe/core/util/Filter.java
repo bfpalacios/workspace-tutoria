@@ -4,18 +4,34 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
 /**
+ * The Class Filter.
+ *
  * @author alexh
  * @version 0.0.1
- *
  */
 @Component
 public class Filter {
+    
+    /**
+     * Date.
+     *
+     * @param date the date
+     * @param format the format
+     * @return the string
+     */
     public String date(Date date, String format){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
         return simpleDateFormat.format(date);
     }
 
+    /**
+     * Day of week text.
+     *
+     * @param date the date
+     * @return the string
+     */
     public String dayOfWeekText(Date date){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("u"); // 1..7
         String day = simpleDateFormat.format(date);

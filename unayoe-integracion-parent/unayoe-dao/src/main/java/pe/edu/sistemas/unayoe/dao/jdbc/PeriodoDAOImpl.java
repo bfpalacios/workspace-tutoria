@@ -11,13 +11,23 @@ import org.springframework.stereotype.Component;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 import pe.edu.sistemas.unayoe.unayoe.bo.PeriodoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PeriodoDAOImpl.
+ */
 @Component("periodoDao")
 public class PeriodoDAOImpl implements PeriodoDAO {
 
+	/**
+	 * Instantiates a new periodo DAO impl.
+	 */
 	public PeriodoDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PeriodoDAO#getPeriodo(java.lang.Integer)
+	 */
 	@Override
 	public PeriodoBO getPeriodo(Integer id) {
 		PeriodoBO periodo = new PeriodoBO();
@@ -42,6 +52,9 @@ public class PeriodoDAOImpl implements PeriodoDAO {
 		return periodo;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PeriodoDAO#getPeriodoActual()
+	 */
 	@Override
 	public PeriodoBO getPeriodoActual() {
 		PeriodoBO periodo = new PeriodoBO();
@@ -65,6 +78,9 @@ public class PeriodoDAOImpl implements PeriodoDAO {
 		return periodo;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.PeriodoDAO#getPeriodos()
+	 */
 	@Override
 	public List<PeriodoBO> getPeriodos() {
 		List<PeriodoBO> periodos = new ArrayList<PeriodoBO>();

@@ -24,6 +24,11 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.stereotype.Component;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MyAuthenticationFailureHandler.
+ * @author ULLOA
+ */
 @Component("myAuthenticationFailureHandler")
 @ViewScoped
 public class MyAuthenticationFailureHandler extends
@@ -35,6 +40,9 @@ public class MyAuthenticationFailureHandler extends
 
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler#onAuthenticationFailure(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.core.AuthenticationException)
+	 */
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request,
 			HttpServletResponse response, AuthenticationException exception)

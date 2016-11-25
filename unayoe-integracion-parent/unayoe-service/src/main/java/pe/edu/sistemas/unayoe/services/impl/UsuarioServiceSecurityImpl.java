@@ -19,16 +19,26 @@ import pe.edu.sistemas.unayoe.services.RolServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServiceSecurity;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UsuarioServiceSecurityImpl.
+ */
 @SuppressWarnings("deprecation")
 @Service("usuarioServiceSecurity")
 @Transactional(value="transactionManager")
 public class UsuarioServiceSecurityImpl implements UsuarioServiceSecurity {
 
+	/** The usuario service. */
 	@Autowired
 	private UsuarioServices usuarioService;
+	
+	/** The rol service. */
 	@Autowired
 	private RolServices rolService;
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String usuario)
 			throws UsernameNotFoundException {
@@ -44,11 +54,23 @@ public class UsuarioServiceSecurityImpl implements UsuarioServiceSecurity {
 		return  makeUser(usuarioBO);
 	}
 
+	/**
+	 * Make user.
+	 *
+	 * @param usuario the usuario
+	 * @return the user
+	 */
 	private User makeUser(UsuarioBO usuario){
 		return new User(usuario.getIdUsuario(), usuario.getContrasenia(),
                 true, true, true, true, makeGrantedAuthorities(usuario));
 	}
 
+	/**
+	 * Make granted authorities.
+	 *
+	 * @param usuario the usuario
+	 * @return the collection
+	 */
 	private Collection<GrantedAuthority> makeGrantedAuthorities(UsuarioBO usuario){
 		Collection<GrantedAuthority> result = new ArrayList<GrantedAuthority>();
 		List<RolBO> listRol = rolService.getRolesByUser(usuario.getIdUsuario());

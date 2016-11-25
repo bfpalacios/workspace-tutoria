@@ -14,6 +14,19 @@ import javax.faces.event.PhaseListener;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.web.WebAttributes;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving lifecycle events.
+ * The class that is interested in processing a lifecycle
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addLifecycleListener<code> method. When
+ * the lifecycle event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see LifecycleEvent
+ * @author ULLOA
+ */
 public class LifecycleListener  implements PhaseListener {
 	private static final long serialVersionUID = 1L;
  
@@ -22,6 +35,8 @@ public class LifecycleListener  implements PhaseListener {
 	/**
 	 * Return the identifier of the request processing phase during which this
 	 * listener is interested in processing PhaseEvent events.
+	 *
+	 * @return the phase id
 	 */
 	public PhaseId getPhaseId() {
 		return PhaseId.ANY_PHASE;
@@ -30,6 +45,8 @@ public class LifecycleListener  implements PhaseListener {
 	/**
 	 * Handle a notification that the processing for a particular phase of the
 	 * request processing lifecycle is about to begin.
+	 *
+	 * @param event the event
 	 */
 	public void beforePhase(PhaseEvent event) {
  
@@ -54,6 +71,8 @@ public class LifecycleListener  implements PhaseListener {
 	/**
 	 * Handle a notification that the processing for a particular phase has just
 	 * been completed.
+	 *
+	 * @param event the event
 	 */
 	public void afterPhase(PhaseEvent event) {
  

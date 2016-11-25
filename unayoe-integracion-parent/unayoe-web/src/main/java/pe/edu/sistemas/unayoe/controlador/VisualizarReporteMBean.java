@@ -40,44 +40,88 @@ import java.io.InputStream;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
  
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VisualizarReporteMBean.
+ */
 @Controller("visualizarReporteMBean")
 @ViewScoped
 public class VisualizarReporteMBean {
 
+    /** The curso services. */
     @Autowired
     private CursoServices cursoServices;
+    
+    /** The tutoria services. */
     @Autowired
     private TutoriaServices tutoriaServices;
+    
+    /** The alumno services. */
     @Autowired
     private AlumnoServices alumnoServices;
+    
+    /** The tutoria model. */
     @Autowired
     private TutoriaModel tutoriaModel;
+    
+    /** The asistencia services. */
     @Autowired
     private AsistenciaServices  asistenciaServices;
     
-    /*************************Atributos**********************/
+    /** ***********************Atributos*********************. */
     private Date dateDesde;
+    
+    /** The date hasta. */
     private Date dateHasta;
+    
+    /** The reporte. */
     private StreamedContent reporte;
+    
+    /** The asistencia clases. */
     private  List<AsistenciaAlumnosAClasesModel> asistenciaClases;
+    
+    /** The c alumno. */
     private String c_alumno;
+    
+    /** The n alumno. */
     private String n_alumno;
+    
+    /** The periodo. */
     private Integer periodo;
     
-    /*************************************************/
+    /** **********************************************. */
     
     // atributos para la seleccion del combo
     private String nombre;
+    
+    /** The descripcion. */
     private String descripcion;
+    
+    /** The select. */
     private boolean select;
+    
+    /** The asistencia tutoria model. */
     private AsistenciaTutoriaModel asistenciaTutoriaModel;
+    
+    /** The tutoria model select. */
     private TutoriaModel tutoriaModelSelect;
+    
+    /** The list tutoria. */
     private List<TutoriaModel> listTutoria;
+    
+    /** The list asistencia alumnos tutoria. */
     private List<AlumnoBO> listAsistenciaAlumnosTutoria;
+    
+    /** The list visualizar asistencia tutoria. */
     private List<TutoriaBO>  listVisualizarAsistenciaTutoria;
+    
+    /** The list asistencia docente tutoria. */
     private List<AsistenciaTProfBO> listAsistenciaDocenteTutoria;
   	
 
+	/**
+	 * Instantiates a new visualizar reporte M bean.
+	 */
 	public VisualizarReporteMBean() {
         System.out.println("::::: VISUALIZAR reporte ::::::::");
         asistenciaClases= new ArrayList<AsistenciaAlumnosAClasesModel>();
@@ -90,6 +134,11 @@ public class VisualizarReporteMBean {
         reporte = new DefaultStreamedContent(in, "application/pdf","downloaded_file.pdf");
     }
     
+	/**
+	 * Obtener periodo.
+	 *
+	 * @return the integer
+	 */
 	private Integer obtenerPeriodo(){
     	Integer periodo=0;
     	Date fecha_actual=new Date();
@@ -103,6 +152,11 @@ public class VisualizarReporteMBean {
     	return periodo;
     }
     
+    /**
+     * On row select.
+     *
+     * @param event the event
+     */
     // metodos que domina de la pantallas
     public void onRowSelect(SelectEvent event) {
         System.out.println("entra a la seleccion");
@@ -113,6 +167,11 @@ public class VisualizarReporteMBean {
     }
 
 
+    /**
+     * Visualizar reporte asistencia alumnos tutoria user.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosTutoriaUser() {
 		System.out.println("visualizarReporteAsistenciaAlumnosTutoria");
 		listarCursos();
@@ -125,6 +184,11 @@ public class VisualizarReporteMBean {
 
 	}
 
+    /**
+     * Visualizar reporte asistencia alumnos tutoria dir aca.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosTutoriaDirAca() {
 		System.out.println("visualizarReporteAsistenciaAlumnosTutoriaDirAca");
 		listarCursos();
@@ -137,6 +201,11 @@ public class VisualizarReporteMBean {
 
 	}
     
+    /**
+     * Visualizar reporte asistencia alumnos tutoria unayoe.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosTutoriaUnayoe() {
 		System.out.println("visualizarReporteAsistenciaAlumnosTutoria");
 		listarCursos();
@@ -148,6 +217,12 @@ public class VisualizarReporteMBean {
 		return "/paginas/unayoe/visualizar/reportes_asistencia/visualizarReporteAsistenciaAlumnosTutoria.xhtml";
 
 	}
+    
+    /**
+     * Visualizar reporte asistencia alumnos tutoria.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosTutoria() {
 		System.out.println("visualizarReporteAsistenciaAlumnosTutoria");
 		listarCursos();
@@ -160,6 +235,11 @@ public class VisualizarReporteMBean {
 
 	}
 
+    /**
+     * Visualizar reporte asistencia de tutor user.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaDeTutorUser() {
 		System.out.println("visualizarReporteAsistenciaDeTutor");
 		listarCursos();
@@ -172,6 +252,11 @@ public class VisualizarReporteMBean {
 
     }
 
+    /**
+     * Visualizar reporte asistencia de tutor dir aca.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaDeTutorDirAca() {
 		System.out.println("visualizarReporteAsistenciaDeTutorDirAca");
 		listarCursos();
@@ -183,6 +268,12 @@ public class VisualizarReporteMBean {
 		return "/paginas/diraca/visualizar/reportes_asistencia/visualizarReporteAsistenciaDeTutor.xhtml";
 
     }
+    
+    /**
+     * Visualizar reporte asistencia de tutor unayoe.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaDeTutorUnayoe() {
 		System.out.println("visualizarReporteAsistenciaDeTutor");
 		listarCursos();
@@ -194,6 +285,12 @@ public class VisualizarReporteMBean {
 		return "/paginas/unayoe/visualizar/reportes_asistencia/visualizarReporteAsistenciaDeTutor.xhtml";
 
     }
+    
+    /**
+     * Visualizar reporte asistencia de tutor.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaDeTutor() {
 		System.out.println("visualizarReporteAsistenciaDeTutor");
 		listarCursos();
@@ -206,6 +303,11 @@ public class VisualizarReporteMBean {
 
     }
     
+    /**
+     * Visualizar reporte asistencia alumnos clase.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosClase() {
 		System.out.println("visualizarReporteAsistenciaAlumnosClase");
 		listarCursos();
@@ -218,6 +320,11 @@ public class VisualizarReporteMBean {
 
     }
 
+    /**
+     * Visualizar reporte asistencia alumnos clase user.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosClaseUser() {
 		System.out.println("visualizarReporteAsistenciaAlumnosClase");
 		listarCursos();
@@ -229,6 +336,12 @@ public class VisualizarReporteMBean {
 		return "/paginas/user/visualizar/reportes_asistencia/visualizarReporteAsistenciaAlumnosClase.xhtml";
 
     }
+    
+    /**
+     * Visualizar reporte asistencia alumnos clase dir aca.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosClaseDirAca() {
 		System.out.println("visualizarReporteAsistenciaAlumnosClaseDirAca");
 		listarCursos();
@@ -242,6 +355,11 @@ public class VisualizarReporteMBean {
     }
     
 
+    /**
+     * Visualizar reporte asistencia alumnos clase unayoe.
+     *
+     * @return the string
+     */
     public String visualizarReporteAsistenciaAlumnosClaseUnayoe() {
 		System.out.println("visualizarReporteAsistenciaAlumnosClase");
 		listarCursos();
@@ -254,6 +372,11 @@ public class VisualizarReporteMBean {
 
     }
     
+    /**
+     * Visualizar horario de tutoria semanal.
+     *
+     * @return the string
+     */
     public String visualizarHorarioDeTutoriaSemanal() {
     	listarCursos();
     	if(asistenciaClases!=null)
@@ -266,6 +389,11 @@ public class VisualizarReporteMBean {
 
 	}
 
+    /**
+     * Imprimir.
+     *
+     * @return the string
+     */
     public String imprimir() {
 		System.out.println("imprimir");
 		 
@@ -275,6 +403,9 @@ public class VisualizarReporteMBean {
     
 
      
+    /**
+     * Listar cursos.
+     */
     public void listarCursos() {
         System.out.println("Listando los cursos:");
 
@@ -290,6 +421,9 @@ public class VisualizarReporteMBean {
 
     } 
 
+    /**
+     * Asistencia alumno tutoria.
+     */
     public void asistenciaAlumnoTutoria(){
     	System.out.println("datos"+asistenciaTutoriaModel);
     	System.out.println(dateDesde);
@@ -316,6 +450,9 @@ public class VisualizarReporteMBean {
     	
     }
     
+    /**
+     * Asistencia alumno clase.
+     */
     public void asistenciaAlumnoClase(){
     	System.out.println("datos"+asistenciaTutoriaModel);
     	System.out.println(dateDesde);
@@ -342,6 +479,9 @@ public class VisualizarReporteMBean {
 		}
     }
     
+    /**
+     * Asistencia tutor.
+     */
     public void asistenciaTutor(){
     	System.out.println("datos"+asistenciaTutoriaModel);
     	System.out.println(dateDesde);
@@ -367,165 +507,330 @@ public class VisualizarReporteMBean {
 		}
     }
 
+    /**
+     * Sets the nombre.
+     *
+     * @param nombre the new nombre
+     */
     // metodos get y set
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Gets the date desde.
+     *
+     * @return the date desde
+     */
     public Date getDateDesde() {
 		return dateDesde;
 	}
 
+	/**
+	 * Sets the date desde.
+	 *
+	 * @param dateDesde the new date desde
+	 */
 	public void setDateDesde(Date dateDesde) {
 		this.dateDesde = dateDesde;
 	}
 
+	/**
+	 * Gets the date hasta.
+	 *
+	 * @return the date hasta
+	 */
 	public Date getDateHasta() {
 		return dateHasta;
 	}
 
 
+	/**
+	 * Sets the date hasta.
+	 *
+	 * @param dateHasta the new date hasta
+	 */
 	public void setDateHasta(Date dateHasta) {
 		this.dateHasta = dateHasta;
 	}
 
 
+	/**
+	 * Gets the descripcion.
+	 *
+	 * @return the descripcion
+	 */
 	public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Sets the descripcion.
+     *
+     * @param descripcion the new descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * Checks if is select.
+     *
+     * @return true, if is select
+     */
     public boolean isSelect() {
         return select;
     }
 
+    /**
+     * Sets the select.
+     *
+     * @param select the new select
+     */
     public void setSelect(boolean select) {
         this.select = select;
     }
 
 
+	/**
+	 * Gets the tutoria model.
+	 *
+	 * @return the tutoria model
+	 */
 	public TutoriaModel getTutoriaModel() {
 		return tutoriaModel;
 	}
 
 
+	/**
+	 * Sets the tutoria model.
+	 *
+	 * @param tutoriaModel the new tutoria model
+	 */
 	public void setTutoriaModel(TutoriaModel tutoriaModel) {
 		this.tutoriaModel = tutoriaModel;
 	}
 
 
+	/**
+	 * Gets the tutoria model select.
+	 *
+	 * @return the tutoria model select
+	 */
 	public TutoriaModel getTutoriaModelSelect() {
 		return tutoriaModelSelect;
 	}
 
 
+	/**
+	 * Sets the tutoria model select.
+	 *
+	 * @param tutoriaModelSelect the new tutoria model select
+	 */
 	public void setTutoriaModelSelect(TutoriaModel tutoriaModelSelect) {
 		this.tutoriaModelSelect = tutoriaModelSelect;
 	}
 
 
+	/**
+	 * Gets the list tutoria.
+	 *
+	 * @return the list tutoria
+	 */
 	public List<TutoriaModel> getListTutoria() {
 		return listTutoria;
 	}
 
 
+	/**
+	 * Sets the list tutoria.
+	 *
+	 * @param listTutoria the new list tutoria
+	 */
 	public void setListTutoria(List<TutoriaModel> listTutoria) {
 		this.listTutoria = listTutoria;
 	}
  
 
 
+	/**
+	 * Gets the nombre.
+	 *
+	 * @return the nombre
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 	   
+    /**
+     * Gets the list asistencia alumnos tutoria.
+     *
+     * @return the list asistencia alumnos tutoria
+     */
     public List<AlumnoBO> getListAsistenciaAlumnosTutoria() {
 		return listAsistenciaAlumnosTutoria;
 	}
 
 
+	/**
+	 * Sets the list asistencia alumnos tutoria.
+	 *
+	 * @param listAsistenciaAlumnosTutoria the new list asistencia alumnos tutoria
+	 */
 	public void setListAsistenciaAlumnosTutoria(
 			List<AlumnoBO> listAsistenciaAlumnosTutoria) {
 		this.listAsistenciaAlumnosTutoria = listAsistenciaAlumnosTutoria;
 	}
 
 
+	/**
+	 * Gets the reporte.
+	 *
+	 * @return the reporte
+	 */
 	public StreamedContent getReporte() {
 		return reporte;
 	}
 
 
+	/**
+	 * Sets the reporte.
+	 *
+	 * @param reporte the new reporte
+	 */
 	public void setReporte(StreamedContent reporte) {
 		this.reporte = reporte;
 	}
     
 
 
+    /**
+     * Gets the list asistencia docente tutoria.
+     *
+     * @return the list asistencia docente tutoria
+     */
     public List<AsistenciaTProfBO> getListAsistenciaDocenteTutoria() {
 		return listAsistenciaDocenteTutoria;
 	}
 
 
+	/**
+	 * Sets the list asistencia docente tutoria.
+	 *
+	 * @param listAsistenciaDocenteTutoria the new list asistencia docente tutoria
+	 */
 	public void setListAsistenciaDocenteTutoria(
 			List<AsistenciaTProfBO> listAsistenciaDocenteTutoria) {
 		this.listAsistenciaDocenteTutoria = listAsistenciaDocenteTutoria;
 	}
 
 
+	/**
+	 * Gets the list visualizar asistencia tutoria.
+	 *
+	 * @return the list visualizar asistencia tutoria
+	 */
 	public List<TutoriaBO> getListVisualizarAsistenciaTutoria() {
 		return listVisualizarAsistenciaTutoria;
 	}
 
 
+	/**
+	 * Sets the list visualizar asistencia tutoria.
+	 *
+	 * @param listVisualizarAsistenciaTutoria the new list visualizar asistencia tutoria
+	 */
 	public void setListVisualizarAsistenciaTutoria(
 			List<TutoriaBO> listVisualizarAsistenciaTutoria) {
 		this.listVisualizarAsistenciaTutoria = listVisualizarAsistenciaTutoria;
 	}
 
 
+	/**
+	 * Gets the asistencia clases.
+	 *
+	 * @return the asistencia clases
+	 */
 	public List<AsistenciaAlumnosAClasesModel> getAsistenciaClases() {
 		return asistenciaClases;
 	}
 
 
+	/**
+	 * Sets the asistencia clases.
+	 *
+	 * @param asistenciaClases the new asistencia clases
+	 */
 	public void setAsistenciaClases(
 			List<AsistenciaAlumnosAClasesModel> asistenciaClases) {
 		this.asistenciaClases = asistenciaClases;
 	}
 
 
+	/**
+	 * Gets the c alumno.
+	 *
+	 * @return the c alumno
+	 */
 	public String getC_alumno() {
 		return c_alumno;
 	}
 
 
+	/**
+	 * Sets the c alumno.
+	 *
+	 * @param c_alumno the new c alumno
+	 */
 	public void setC_alumno(String c_alumno) {
 		this.c_alumno = c_alumno;
 	}
 
 
+	/**
+	 * Gets the n alumno.
+	 *
+	 * @return the n alumno
+	 */
 	public String getN_alumno() {
 		return n_alumno;
 	}
 
 
+	/**
+	 * Sets the n alumno.
+	 *
+	 * @param n_alumno the new n alumno
+	 */
 	public void setN_alumno(String n_alumno) {
 		this.n_alumno = n_alumno;
 	}
 
 
+	/**
+	 * Gets the periodo.
+	 *
+	 * @return the periodo
+	 */
 	public Integer getPeriodo() {
 		return periodo;
 	}
 
 
+	/**
+	 * Sets the periodo.
+	 *
+	 * @param periodo the new periodo
+	 */
 	public void setPeriodo(Integer periodo) {
 		this.periodo = periodo;
 	}
 	
+	/**
+	 * Cancelar.
+	 *
+	 * @return the string
+	 */
 	public String cancelar() {
 		System.out.println("cancelar");
 
@@ -533,6 +838,11 @@ public class VisualizarReporteMBean {
 
 	}
 	
+	/**
+	 * Mostrar asistencias.
+	 *
+	 * @param lista the lista
+	 */
 	void mostrarAsistencias(List<AsistenciaCAlumnoBO> lista){
 		asistenciaClases.clear();
 		for(AsistenciaCAlumnoBO  abo : lista){
@@ -549,6 +859,11 @@ public class VisualizarReporteMBean {
 		}
 	}
 	
+	/**
+	 * Llenar data asistencia ejemplo.
+	 *
+	 * @param TIPO_ASI the tipo asi
+	 */
 	void llenarDataAsistenciaEjemplo(String TIPO_ASI){
 		asistenciaClases.clear();
 		
@@ -582,6 +897,9 @@ public class VisualizarReporteMBean {
 		
 	}
 	
+	/**
+	 * Imprimir reporte asistencia alumno tutoria.
+	 */
 	public void imprimirReporteAsistenciaAlumnoTutoria(){
     	ControladorReporte reporte =  new ControladorReporte();
     	reporte.setNombreReporte("reporteAsistencia");
@@ -589,6 +907,9 @@ public class VisualizarReporteMBean {
     	
     }
 	
+	/**
+	 * Imprimir reporte asistencia alumno clase.
+	 */
 	public void imprimirReporteAsistenciaAlumnoClase(){
     	ControladorReporte reporte =  new ControladorReporte();
     	reporte.setNombreReporte("reporteAsistencia");
@@ -596,6 +917,9 @@ public class VisualizarReporteMBean {
     	
     }
 	
+	/**
+	 * Imprimir reporte asistencia tutor tutoria.
+	 */
 	public void imprimirReporteAsistenciaTutorTutoria(){
     	ControladorReporte reporte =  new ControladorReporte();
     	reporte.setNombreReporte("reporteAsistencia");
@@ -603,6 +927,12 @@ public class VisualizarReporteMBean {
     	
     }
 	
+	/**
+	 * Obtener parametros.
+	 *
+	 * @param TIPO_ASI the tipo asi
+	 * @return the map
+	 */
 	private Map obtenerParametros(String TIPO_ASI){
     	Map pars = new HashMap();
     	
@@ -624,6 +954,11 @@ public class VisualizarReporteMBean {
     	return pars;
     }
 	
+	/**
+	 * Obtener campos.
+	 *
+	 * @return the collection
+	 */
 	private Collection<Asistencia> obtenerCampos(){
     	Collection<Asistencia> list = new ArrayList<>();
     	for(AsistenciaAlumnosAClasesModel model : asistenciaClases){

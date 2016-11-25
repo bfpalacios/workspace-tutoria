@@ -12,12 +12,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
- * Created by Alex on 06/11/2015
+ * Created by Alex on 06/11/2015.
  */
 @Repository("areaConocimientoDao")
 public class AreaConocimientoDaoImpl extends BaseDAO implements pe.edu.sistemas.unayoe.dao.AreaConocimientoDao {
 
+    /* (non-Javadoc)
+     * @see pe.edu.sistemas.unayoe.dao.AreaConocimientoDao#listarTodos()
+     */
     public List<AreaConocimientoBO> listarTodos() throws Exception {
         Connection con = null;
         CallableStatement cstm = null;
@@ -52,6 +56,9 @@ public class AreaConocimientoDaoImpl extends BaseDAO implements pe.edu.sistemas.
         return listaAreaConocimiento;
     }
 
+    /* (non-Javadoc)
+     * @see pe.edu.sistemas.unayoe.dao.AreaConocimientoDao#listarAreasAprobadasTutor(java.lang.String)
+     */
     @Override
     public List<AreaConocimientoBO> listarAreasAprobadasTutor(String codigoTutor) throws Exception {
         Connection con = null;
@@ -88,6 +95,9 @@ public class AreaConocimientoDaoImpl extends BaseDAO implements pe.edu.sistemas.
         return listaAreaConocimiento;
     }
 
+    /* (non-Javadoc)
+     * @see pe.edu.sistemas.unayoe.dao.AreaConocimientoDao#obtnerAreaTema(int)
+     */
     @Override
     public AreaConocimientoBO obtnerAreaTema(int codigoTema) {
         Connection con = null;

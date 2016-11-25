@@ -12,10 +12,17 @@ import pe.edu.sistemas.unayoe.dao.dominio.Curso;
 import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CursoTransformerToENTIDAD.
+ */
 @Component("cursoTransformerToENTIDAD")
 @Scope("singleton")
 public class CursoTransformerToENTIDAD implements Transformer<CursoBO,Curso> {
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.lang.Object)
+	 */
 	public Curso transformer(final CursoBO cursoBO) {
 		Curso curso = new Curso();
 		if(cursoBO!=null){
@@ -26,6 +33,9 @@ public class CursoTransformerToENTIDAD implements Transformer<CursoBO,Curso> {
 		return curso;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.util.List)
+	 */
 	public List<Curso> transformer(final List<CursoBO> lista) {
 		List<Curso> listaCurso = new ArrayList<Curso>();
 		for (CursoBO cursoBO : lista) {

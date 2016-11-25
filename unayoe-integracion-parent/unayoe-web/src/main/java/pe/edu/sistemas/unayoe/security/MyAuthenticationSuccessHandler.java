@@ -20,17 +20,28 @@ import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 import pe.edu.sistemas.unayoe.services.RolServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MyAuthenticationSuccessHandler.
+ * @author ULLOA
+ */
 @Component("myAuthenticationSuccessHandler")
 public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
+	/** The redirect strategy. */
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+	/** The usuario service. */
 	@Autowired
 	private UsuarioServices usuarioService;
 
+	/** The rol service. */
 	@Autowired
 	private RolServices rolService;
 
+	/* (non-Javadoc)
+	 * @see org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler#onAuthenticationSuccess(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.core.Authentication)
+	 */
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {

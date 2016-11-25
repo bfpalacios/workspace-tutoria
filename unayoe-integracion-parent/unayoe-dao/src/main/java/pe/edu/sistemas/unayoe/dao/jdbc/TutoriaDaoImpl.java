@@ -18,14 +18,24 @@ import pe.edu.sistemas.unayoe.dao.dominio.Profesor;
 import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TutoriaDaoImpl.
+ */
 @Repository("asistenciaTutoriaDao")
 @Transactional
 public class TutoriaDaoImpl extends DAOImpl<Profesor,String> implements TutoriaIDao{
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIDao#listarProfesores()
+	 */
 	public List<Profesor> listarProfesores() throws Exception {		 
 		return super.listarTodos(Profesor.class);		 
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.TutoriaIDao#listarCursosDocente(java.lang.String)
+	 */
 	public List<CursoBO> listarCursosDocente(String usuarioDocente){
 		Connection con = null;
 		ResultSet rs = null;
@@ -55,6 +65,15 @@ public class TutoriaDaoImpl extends DAOImpl<Profesor,String> implements TutoriaI
 		return listaCursosDocente;
 	}
 	
+	/**
+	 * Listar alumno tutoria.
+	 *
+	 * @param usuarioDocente the usuario docente
+	 * @param codCurso the cod curso
+	 * @param tipoAlumno the tipo alumno
+	 * @param modo the modo
+	 * @return the list
+	 */
 	public List<AlumnoBO> listarAlumnoTutoria(String usuarioDocente, String codCurso, int tipoAlumno, int modo){
 		Connection con = null;
 		ResultSet rs = null;

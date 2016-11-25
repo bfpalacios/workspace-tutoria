@@ -21,31 +21,49 @@ import pe.edu.sistemas.unayoe.services.CursoServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.ActividadAcademicaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MostrarTutoriasAlumnoMBean.
+ */
 @Controller("mostrarTutoriasAlumnoMBean")
 @ViewScoped
 public class MostrarTutoriasAlumnoMBean implements Serializable {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -3925196291459547082L;
 
+	/** The actividad academica services. */
 	@Autowired
 	private ActividadAcademicaServices actividadAcademicaServices;
 
+	/** The usuario services. */
 	@Autowired
 	private UsuarioServices usuarioServices;
 
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
 
+	/** The area conocimiento services. */
 	@Autowired
 	private AreaConocimientoServices areaConocimientoServices;
 
+	/** The alumno par services. */
 	@Autowired
 	private AlumnoParServices alumnoParServices;
 
+	/**
+	 * Instantiates a new mostrar tutorias alumno M bean.
+	 */
 	public MostrarTutoriasAlumnoMBean() {
 
 	}
 
+	/**
+	 * Obtener usuario.
+	 *
+	 * @return the string
+	 */
 	public String obtenerUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nombre = "";
@@ -56,6 +74,11 @@ public class MostrarTutoriasAlumnoMBean implements Serializable {
 		return nombre;
 	}
 
+	/**
+	 * Gets the actividades academicas matriculadas.
+	 *
+	 * @return the actividades academicas matriculadas
+	 */
 	public List<ActividadAcademicaModel> getActividadesAcademicasMatriculadas() {
 
 		List<ActividadAcademicaModel> models = new ArrayList<ActividadAcademicaModel>();

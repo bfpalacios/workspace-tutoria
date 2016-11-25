@@ -15,34 +15,60 @@ import pe.edu.sistemas.unayoe.services.TemaServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TemaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TemaMBean.
+ */
 @Controller("temaMBean")
 @ViewScoped
 public class TemaMBean {
 
+	/** The tema model. */
 	@Autowired
 	private TemaModel temaModel;
 
+	/** The tema services. */
 	@Autowired
 	private TemaServices temaServices;
 
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
 
+	/** The codigo curso seleccionado. */
 	private String codigoCursoSeleccionado;
 
+	/**
+	 * Instantiates a new tema M bean.
+	 */
 	public TemaMBean() {
 		this.codigoCursoSeleccionado = null;
 	}
 
+	/**
+	 * Info message.
+	 *
+	 * @param title the title
+	 * @param detail the detail
+	 */
 	public void infoMessage(String title, String detail) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, title, detail));
 	}
 
+	/**
+	 * Error message.
+	 *
+	 * @param title the title
+	 * @param detail the detail
+	 */
 	public void errorMessage(String title, String detail) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_ERROR, title, detail));
 	}
 
+	/**
+	 * Crear tema.
+	 */
 	public void crearTema() {
 		String nombre = this.getTemaModel().getNombre();
 		if (nombre == null || nombre.compareTo("") == 0) {
@@ -75,10 +101,18 @@ public class TemaMBean {
 		}
 	}
 	
+	/**
+	 * Limpiar tema.
+	 */
 	public void limpiarTema() {
 		this.temaModel.inicializar();
 	}
 
+	/**
+	 * Gets the lista temas.
+	 *
+	 * @return the lista temas
+	 */
 	public List<TemaBO> getListaTemas() {
 		if (this.codigoCursoSeleccionado != "" && this.codigoCursoSeleccionado != null) {
 			return temaServices.getTemas(this.codigoCursoSeleccionado);
@@ -86,6 +120,11 @@ public class TemaMBean {
 		return null;
 	}
 
+	/**
+	 * Gets the lista cursos.
+	 *
+	 * @return the lista cursos
+	 */
 	public List<CursoBO> getListaCursos() {
 		try {
 			return this.cursoServices.listarCursos();
@@ -95,6 +134,11 @@ public class TemaMBean {
 		}
 	}
 
+	/**
+	 * Eliminar tema.
+	 *
+	 * @param id the id
+	 */
 	public void eliminarTema(Integer id) {
 		if (this.temaServices.deleteTema(id)) {
 			this.infoMessage("Tema Eliminado", "El tema se ha eliminado correctamente.");
@@ -103,18 +147,38 @@ public class TemaMBean {
 		}
 	}
 
+	/**
+	 * Gets the tema model.
+	 *
+	 * @return the tema model
+	 */
 	public TemaModel getTemaModel() {
 		return temaModel;
 	}
 
+	/**
+	 * Sets the tema model.
+	 *
+	 * @param temaModel the new tema model
+	 */
 	public void setTemaModel(TemaModel temaModel) {
 		this.temaModel = temaModel;
 	}
 
+	/**
+	 * Gets the codigo curso seleccionado.
+	 *
+	 * @return the codigo curso seleccionado
+	 */
 	public String getCodigoCursoSeleccionado() {
 		return codigoCursoSeleccionado;
 	}
 
+	/**
+	 * Sets the codigo curso seleccionado.
+	 *
+	 * @param codigoCursoSeleccionado the new codigo curso seleccionado
+	 */
 	public void setCodigoCursoSeleccionado(String codigoCursoSeleccionado) {
 		this.codigoCursoSeleccionado = codigoCursoSeleccionado;
 	}

@@ -17,24 +17,35 @@ import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.GrupoBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GrupoServicesImpl.
+ */
 @Service("grupoServices") 	
 public class GrupoServicesImpl implements GrupoServices{
 	
+	/** The curso I dao. */
 	@Autowired
 	private CursoIDao cursoIDao;
 	
+	/** The grupo DAO. */
 	@Autowired
 	private GrupoDAO grupoDAO;
 	
+	/** The curso transformer to BO. */
 	@Autowired
 	private CursoTransformerToBO cursoTransformerToBO;
 
+	/** The curso transformer to ENTIDAD. */
 	@Autowired
 	private CursoTransformerToENTIDAD  cursoTransformerToENTIDAD;
 	 
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.services.GrupoServices#guardarGrupos(java.util.List)
+	 */
 	public void  guardarGrupos(List<GrupoBO> lista)throws Exception {
 		grupoDAO.insertarLista(lista);
 	}

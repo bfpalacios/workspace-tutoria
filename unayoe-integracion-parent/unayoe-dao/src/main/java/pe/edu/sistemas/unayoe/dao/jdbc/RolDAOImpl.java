@@ -11,9 +11,16 @@ import org.springframework.stereotype.Repository;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 import pe.edu.sistemas.unayoe.unayoe.bo.RolBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RolDAOImpl.
+ */
 @Repository("rolDao")
 public class RolDAOImpl implements RolDAO {
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.RolDAO#listarRoles()
+	 */
 	@Override
 	public List<RolBO> listarRoles() {
 		Connection conn = null;
@@ -47,6 +54,9 @@ public class RolDAOImpl implements RolDAO {
 		return roles;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.RolDAO#getRolesByUser(java.lang.String)
+	 */
 	@Override
 	public List<RolBO> getRolesByUser(String id) {
 		Connection conn = null;

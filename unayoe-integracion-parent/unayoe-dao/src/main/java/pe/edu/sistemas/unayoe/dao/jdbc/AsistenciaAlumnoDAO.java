@@ -17,10 +17,25 @@ import pe.edu.sistemas.unayoe.dao.dominio.Curso;
 import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaCAlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AsistenciaAlumnoDAO.
+ */
 @Repository("asistenciaAlumnoDAO")
 @Transactional
 public class AsistenciaAlumnoDAO extends BaseDAO  {
 
+	/**
+	 * Buscar asistencia alumno clase.
+	 *
+	 * @param a_codigo the a codigo
+	 * @param anio the anio
+	 * @param periodo the periodo
+	 * @param fdesde the fdesde
+	 * @param fhasta the fhasta
+	 * @return the list
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public List<AsistenciaCAlumnoBO> buscarAsistenciaAlumnoClase(String a_codigo ,Integer anio ,Integer periodo ,String fdesde ,String fhasta ) throws DAOExcepcion {
 		 List<AsistenciaCAlumnoBO> lista = new ArrayList<AsistenciaCAlumnoBO>();
         String queryAsistencia="SELECT CLA.FECHA as F, DI.DIA  as D , CLA.C_CODIGO as C, CUR.NOMBRE as N, MAT.REPITENCIAS as R , CLA.ASISTENCIA as A , CLA.OBSERVACION as O FROM ASISTENCIA_C_ALUM CLA "+ 
@@ -79,6 +94,15 @@ public class AsistenciaAlumnoDAO extends BaseDAO  {
         return lista;
 	 }
 	
+	/**
+	 * Buscar asistencia alumno tutotria.
+	 *
+	 * @param a_codigo the a codigo
+	 * @param fdesde the fdesde
+	 * @param fhasta the fhasta
+	 * @return the list
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public List<AsistenciaCAlumnoBO> buscarAsistenciaAlumnoTutotria(String a_codigo , String fdesde ,String fhasta ) throws DAOExcepcion {
 		 List<AsistenciaCAlumnoBO> lista = new ArrayList<AsistenciaCAlumnoBO>();
        String queryAsistencia="SELECT TUT.FECHA_T as F, TU.DIA as D, TU.C_CODIGO as C, CUR.NOMBRE as N, MAT.REPITENCIAS as R, TUT.ASISTENCIA_T  as A, TUT.OBSERVACION_t as O FROM ASISTENCIA_T_ALUM TUT "+
@@ -132,6 +156,15 @@ public class AsistenciaAlumnoDAO extends BaseDAO  {
        return lista;
 	 }
 	
+	/**
+	 * Buscar asistencia tutor tutotria.
+	 *
+	 * @param a_codigo the a codigo
+	 * @param fdesde the fdesde
+	 * @param fhasta the fhasta
+	 * @return the list
+	 * @throws DAOExcepcion the DAO excepcion
+	 */
 	public List<AsistenciaCAlumnoBO> buscarAsistenciaTutorTutotria(String a_codigo , String fdesde ,String fhasta ) throws DAOExcepcion {
 		 List<AsistenciaCAlumnoBO> lista = new ArrayList<AsistenciaCAlumnoBO>();
       String queryAsistencia="SELECT TUT.FECHA_T as T, TU.DIA as D, TU.C_CODIGO as C, CUR.NOMBRE as N, TUT.ASISTENCIA_T as A, TUT.OBSERVACION_t as O FROM ASISTENCIA_T_PROF TUT "+

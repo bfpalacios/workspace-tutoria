@@ -49,65 +49,145 @@ import pe.edu.sistemas.unayoe.unayoe.bo.ObservacionBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ProfesorBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegistrarTutoriaMBean.
+ */
 @Controller("registrarTutoriaMBean")
 @ViewScoped
 public class RegistrarTutoriaMBean {
+	
+	/** The comun services. */
 	@Autowired
 	private ComunServices comunServices;
+	
+	/** The curso services. */
 	@Autowired
 	private CursoServices cursoServices;
+	
+	/** The alumno services. */
 	@Autowired
 	private AlumnoServices alumnoServices;
+	
+	/** The usuario services. */
 	@Autowired
 	private UsuarioServices usuarioServices;
+	
+	/** The tutoria services. */
 	@Autowired
 	private TutoriaServices tutoriaServices;
+	
+	/** The clase maestra model. */
 	@Autowired
 	private ClaseMaestraModel claseMaestraModel;
+	
+	/** The matricula services. */
 	@Autowired
 	private MatriculaServices matriculaServices;
+	
+	/** The asistencia tutoria model. */
 	@Autowired
 	private AsistenciaTutoriaModel asistenciaTutoriaModel;
 
+	/** The hoy. */
 	Calendar hoy;
+	
+	/** The date. */
 	private Date date;
+	
+	/** The dia. */
 	private String dia;
-	private TutoriaModel tutoriaModel; /*
+	
+	/** The tutoria model. */
+	private TutoriaModel tutoriaModel; 
+ /** The tutoria model grid. */
+ /*
 										 * visualizar las tutorias en el reporte
 										 * de asistencia
 										 */
 	private TutoriaModel tutoriaModelGrid;
+	
+	/** The tutoria model select. */
 	private TutoriaModel tutoriaModelSelect;
+	
+	/** The listar ciclos. */
 	private List<ClaseMaestra> listarCiclos;
+	
+	/** The tutoria model select grid. */
 	private TutoriaModel tutoriaModelSelectGrid;
+	
+	/** The clase maestra frecuencia. */
 	private ClaseMaestraModel claseMaestraFrecuencia;
+	
+	/** The clase maestra model select. */
 	private ClaseMaestraModel claseMaestraModelSelect;
+	
+	/** The clase maestra frecuencia select. */
 	private ClaseMaestraModel claseMaestraFrecuenciaSelect;
+	
+	/** The lista observaciones pendientes. */
 	private List<ObservacionBO> listaObservacionesPendientes;
+	
+	/** The lista observaciones finalizadas. */
 	private List<ObservacionBO> listaObservacionesFinalizadas;
+	
+	/** The list asistencia tutoria. */
 	private List<AsistenciaTutoriaModel> listAsistenciaTutoria;
+	
+	/** The list asistencia tutoria docente. */
 	private List<AsistenciaTutoriaModel> listAsistenciaTutoriaDocente;
+	
+	/** The asistencia tutoria model select. */
 	private AsistenciaTutoriaModel asistenciaTutoriaModelSelect;
 
+	/** The modo usuario. */
 	private int MODO_USUARIO;
+	
+	/** The modo usuario aux. */
 	private int MODO_USUARIO_AUX;
+	
+	/** The modo admin. */
 	private static int MODO_ADMIN = 1;
+	
+	/** The modo ocaa. */
 	private static int MODO_OCAA = 2;
+	
+	/** The modo dir aca. */
 	private static int MODO_DIR_ACA = 3;
+	
+	/** The modo unayoe. */
 	private static int MODO_UNAYOE = 4;
+	
+	/** The modo tutor. */
 	private static int MODO_TUTOR = 5;
+	
+	/** The modo decano. */
 	private static int MODO_DECANO = 6;
 
+	/** The proceso. */
 	private int PROCESO;
+	
+	/** The proceso observados. */
 	private static int PROCESO_OBSERVADOS = 1;
+	
+	/** The proceso regulares. */
 	private static int PROCESO_REGULARES = 2;
 
+	/** The registro faltante. */
 	private static String REGISTRO_FALTANTE = "F";
 
+	/** The nombre origen. */
 	private String nombreOrigen = "Nombre Tutor";
+	
+	/** The curso buscado. */
 	private String cursoBuscado = "";
+	
+	/** The profesor buscado. */
 	private String profesorBuscado = "";
 
+	/**
+	 * Instantiates a new registrar tutoria M bean.
+	 */
 	public RegistrarTutoriaMBean() {
 		hoy = new GregorianCalendar();
 		System.out.println("::::: REGISTRAR TUTORIA ::::::::");
@@ -117,6 +197,9 @@ public class RegistrarTutoriaMBean {
 		inicializarClases();
 	}
 
+	/**
+	 * Inicializar clases.
+	 */
 	private void inicializarClases() {
 		setTutoriaModel(new TutoriaModel());
 		setTutoriaModelGrid(new TutoriaModel());
@@ -136,6 +219,9 @@ public class RegistrarTutoriaMBean {
 		profesorBuscado = "";
 	}
 
+	/**
+	 * Limpiar clases.
+	 */
 	private void limpiarClases() {
 		if (getTutoriaModel() != null) {
 			setTutoriaModel(null);
@@ -148,6 +234,11 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar ciclo todos.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarCicloTodos() throws Exception {
 		System.out.println("Listando los ciclos:");
 
@@ -162,6 +253,11 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar ciclo.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarCiclo() throws Exception {
 		List<ClaseMaestra> listarCiclo = null;
 		try {
@@ -174,6 +270,11 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar frecuencia.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarFrecuencia() throws Exception {
 		List<ClaseMaestra> listaFrecuencias = null;
 		try {
@@ -186,6 +287,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar cursos.
+	 */
 	public void listarCursos() {
 		List<CursoBO> listarCursos = null;
 		try {
@@ -206,6 +310,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar profesores.
+	 */
 	public void listarProfesores() {
 		List<ProfesorBO> listarProfesores = null;
 		try {
@@ -224,6 +331,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar hora inicio.
+	 */
 	public void listarHoraInicio() {
 		System.out.println("Listando los inicios de tutoría:");
 
@@ -238,6 +348,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar preguntas encuesta.
+	 */
 	public void listarPreguntasEncuesta() {
 		String tipoPregunta = "HABITOS_ESTUDIO";
 		try {
@@ -248,12 +361,22 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Listar cursosx docente regular.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarCursosxDocenteRegular() throws Exception {
 		String codDocente = obtenerUsuario().getUsername();
 		List<CursoBO> cursos = cursoServices.listarCursosxDocenteRegular(codDocente);
 		getTutoriaModel().setListarCursos(cursos);
 	}
 
+	/**
+	 * Listar calificacion.
+	 *
+	 * @return the list
+	 */
 	private List<ClaseMaestra> listarCalificacion() {
 		List<ClaseMaestra> listaCalificaciones = null;
 		try {
@@ -266,6 +389,11 @@ public class RegistrarTutoriaMBean {
 		return listaCalificaciones;
 	}
 
+	/**
+	 * Listar cursosx docente.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void listarCursosxDocente() throws Exception {
 		String codDocente = "";
 		if (MODO_USUARIO == MODO_ADMIN) {
@@ -280,6 +408,12 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListarCursos(listaCursos);
 	}
 
+	/**
+	 * Actualizar docente.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarDocente(ValueChangeEvent e) throws Exception {
 		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		List<ProfesorBO> listaTutores = new ArrayList<ProfesorBO>();
@@ -287,6 +421,12 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListarTutores(listaTutores);
 	}
 
+	/**
+	 * Actualizar hora fin.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarHoraFin(ValueChangeEvent e) throws Exception {
 		int idHoraInicio = Integer.parseInt((String) (e.getNewValue() == null ? "0" : e.getNewValue()));
 		List<ClaseMaestra> listaHoraFin = new ArrayList<ClaseMaestra>();
@@ -295,6 +435,12 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListaHoraFin(listaHoraFin);
 	}
 
+	/**
+	 * Actualizar alumno.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarAlumno(ValueChangeEvent e) throws Exception {
 		String codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		String codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
@@ -302,6 +448,12 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListarAlumnos(listaAlumnos);
 	}
 
+	/**
+	 * Actualizar alumno generico.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarAlumnoGenerico(ValueChangeEvent e) throws Exception {
 		String codDocente = "";
 		String codCurso = "";
@@ -318,12 +470,24 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListarAlumnos(listaAlumnos);
 	}
 
+	/**
+	 * Actualizar alumno regular.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarAlumnoRegular(ValueChangeEvent e) throws Exception {
 		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		List<AlumnoBO> listaAlumnos = tutoriaServices.listarAlumnosRegularesxCurso(codCurso);
 		getTutoriaModel().setListarAlumnos(listaAlumnos);
 	}
 
+	/**
+	 * Actualizar docente generico.
+	 *
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public void actualizarDocenteGenerico(ValueChangeEvent e) throws Exception {
 
 		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
@@ -341,6 +505,11 @@ public class RegistrarTutoriaMBean {
 		getTutoriaModel().setListarTutores(listaTutores);
 	}
 
+	/**
+	 * Obtener usuario.
+	 *
+	 * @return the user
+	 */
 	public User obtenerUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User usuario = null;
@@ -350,6 +519,13 @@ public class RegistrarTutoriaMBean {
 		return usuario;
 	}
 
+	/**
+	 * Diferencia fechas en dias.
+	 *
+	 * @param fecha1 the fecha 1
+	 * @param fecha2 the fecha 2
+	 * @return the long
+	 */
 	public static long diferenciaFechasEnDias(String fecha1, String fecha2) {
 		long diasDiferencia = 0;
 		final long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000;
@@ -369,6 +545,11 @@ public class RegistrarTutoriaMBean {
 		return diasDiferencia;
 	}
 
+	/**
+	 * Buscar datos alumno.
+	 *
+	 * @return the string
+	 */
 	public String buscarDatosAlumno() {
 		String pagina = "";
 		try {
@@ -407,6 +588,11 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Buscar encuesta inicial.
+	 *
+	 * @return the string
+	 */
 	public String buscarEncuestaInicial() {
 		String pagina = "";
 
@@ -463,6 +649,9 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Buscar tareas tutoria.
+	 */
 	public void buscarTareasTutoria() {
 
 		try {
@@ -519,6 +708,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Guardar control tareas.
+	 */
 	public void guardarControlTareas() {
 
 		try {
@@ -551,6 +743,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Guardar control tareas tutor.
+	 */
 	public void guardarControlTareasTutor() {
 
 		try {
@@ -583,6 +778,9 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Buscar tareas tutoria profesor.
+	 */
 	public void buscarTareasTutoriaProfesor() {
 
 		try {
@@ -653,6 +851,12 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Estado tarea.
+	 *
+	 * @param estadoObservacion the estado observacion
+	 * @return the string
+	 */
 	public String estadoTarea(int estadoObservacion) {
 		if (estadoObservacion == 1) {
 			return "PENDIENTE";
@@ -665,6 +869,11 @@ public class RegistrarTutoriaMBean {
 
 	}
 
+	/**
+	 * Buscar observaciones tutoria.
+	 *
+	 * @return the string
+	 */
 	public String buscarObservacionesTutoria() {
 		String pagina = "";
 
@@ -745,6 +954,11 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Guardar control observaciones.
+	 *
+	 * @return the string
+	 */
 	public String guardarControlObservaciones() {
 		String pagina = "";
 
@@ -797,6 +1011,12 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Valida numero.
+	 *
+	 * @param valor the valor
+	 * @return true, if successful
+	 */
 	public boolean validaNumero(String valor) {
 		boolean esNumerico = false;
 		try {
@@ -808,6 +1028,12 @@ public class RegistrarTutoriaMBean {
 		return esNumerico;
 	}
 
+	/**
+	 * Asistencia model.
+	 *
+	 * @param tutoriaBO the tutoria BO
+	 * @return the asistencia tutoria model
+	 */
 	public AsistenciaTutoriaModel asistenciaModel(TutoriaBO tutoriaBO) {
 		AsistenciaTutoriaModel horario = new AsistenciaTutoriaModel();
 		horario.setC_codigo(tutoriaBO.getcCodigo());
@@ -835,6 +1061,11 @@ public class RegistrarTutoriaMBean {
 		return horario;
 	}
 
+	/**
+	 * Buscar horarios tutoria.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 */
 	public void buscarHorariosTutoria(int procesoTutoria) {
 
 		List<TutoriaBO> listaHorarios = new ArrayList<TutoriaBO>();
@@ -871,6 +1102,11 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Buscar horarios tutoria docente.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 */
 	/* ver tutoria docente */
 	public void buscarHorariosTutoriaDocente(int procesoTutoria) {
 		listAsistenciaTutoriaDocente.clear();
@@ -902,6 +1138,9 @@ public class RegistrarTutoriaMBean {
 
 	}
 
+	/**
+	 * Buscar horarios tutoria semanal.
+	 */
 	/* fin ver tutoria docente */
 	public void buscarHorariosTutoriaSemanal() {
 		listarProfesores();
@@ -924,6 +1163,11 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Guardar.
+	 *
+	 * @return the string
+	 */
 	public String guardar() {
 		String pagina = "";
 		try {
@@ -989,6 +1233,11 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Buscar datos asistencia tutoria.
+	 *
+	 * @return the string
+	 */
 	public String buscarDatosAsistenciaTutoria() {
 		String pagina = "";
 
@@ -1067,6 +1316,17 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Validar campos tutoria.
+	 *
+	 * @param codAlumno the cod alumno
+	 * @param codCurso the cod curso
+	 * @param codDocente the cod docente
+	 * @param dia the dia
+	 * @param horaInicio the hora inicio
+	 * @param horaFin the hora fin
+	 * @return true, if successful
+	 */
 	private boolean validarCamposTutoria(String codAlumno, String codCurso, String codDocente, String dia,
 			String horaInicio, String horaFin) {
 		boolean valido = true;
@@ -1103,6 +1363,14 @@ public class RegistrarTutoriaMBean {
 		return valido;
 	}
 
+	/**
+	 * Validar campos principales tutoria.
+	 *
+	 * @param codCurso the cod curso
+	 * @param codDocente the cod docente
+	 * @param codAlumno the cod alumno
+	 * @return true, if successful
+	 */
 	private boolean validarCamposPrincipalesTutoria(String codCurso, String codDocente, String codAlumno) {
 		boolean valido = true;
 
@@ -1123,6 +1391,11 @@ public class RegistrarTutoriaMBean {
 		return valido;
 	}
 
+	/**
+	 * Guardar encuesta.
+	 *
+	 * @return the string
+	 */
 	public String guardarEncuesta() {
 		try {
 			String codAlumno = obtenerUsuario().getUsername();
@@ -1149,6 +1422,11 @@ public class RegistrarTutoriaMBean {
 		return "/paginas/ModuloRegulares/alumno/registrar/registrarEncuestaInicial.xhtml";
 	}
 
+	/**
+	 * Calificar encuesta.
+	 *
+	 * @return the string
+	 */
 	public String calificarEncuesta() {
 		String pagina = "";
 
@@ -1180,6 +1458,9 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Buscar indicadores.
+	 */
 	public void buscarIndicadores() {
 		try {
 			List<IndicadoresBO> listaIndicadores = new ArrayList<IndicadoresBO>();
@@ -1194,6 +1475,11 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Mostrar mensaje.
+	 *
+	 * @param opcionMensaje the opcion mensaje
+	 */
 	private void mostrarMensaje(int opcionMensaje) {
 		FacesMessage message = null;
 		switch (opcionMensaje) {
@@ -1285,6 +1571,14 @@ public class RegistrarTutoriaMBean {
 		}
 	}
 
+	/**
+	 * Selector paginas registro tutoria.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 * @param modo the modo
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorPaginasRegistroTutoria(int procesoTutoria, int modo) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1319,6 +1613,14 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector paginas consulta tutoria.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 * @param tipoUsuario the tipo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorPaginasConsultaTutoria(int procesoTutoria, int tipoUsuario) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1377,6 +1679,14 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector paginas reportes.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 * @param tipoUsuario the tipo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorPaginasReportes(int procesoTutoria, int tipoUsuario) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1436,6 +1746,14 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector paginas consulta tutoria semanal.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 * @param tipoUsuario the tipo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorPaginasConsultaTutoriaSemanal(int procesoTutoria, int tipoUsuario) throws Exception {
 		String pagina = "";
 		listarCursos();
@@ -1484,6 +1802,13 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector registro encuesta.
+	 *
+	 * @param tipoUsuario the tipo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorRegistroEncuesta(int tipoUsuario) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1506,6 +1831,14 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector control observaciones.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 * @param tipoUsuario the tipo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorControlObservaciones(int procesoTutoria, int tipoUsuario) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1546,6 +1879,14 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector visualizacion datos tutoria.
+	 *
+	 * @param procesoTutoria the proceso tutoria
+	 * @param tipoUsuario the tipo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorVisualizacionDatosTutoria(int procesoTutoria, int tipoUsuario) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1625,6 +1966,14 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Selector paginas indicadores.
+	 *
+	 * @param proceso the proceso
+	 * @param modoUsuario the modo usuario
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	public String selectorPaginasIndicadores(int proceso, int modoUsuario) throws Exception {
 		String pagina = "";
 		inicializarClases();
@@ -1663,6 +2012,11 @@ public class RegistrarTutoriaMBean {
 		return pagina;
 	}
 
+	/**
+	 * Imprimir reporte horario alumno.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteHorarioAlumno() throws Exception {
 		if (!listAsistenciaTutoria.isEmpty()) {
 			System.out.println("Impresion de reporte de horario:");
@@ -1677,6 +2031,11 @@ public class RegistrarTutoriaMBean {
 			mostrarMensaje(19);
 	}
 
+	/**
+	 * Imprimir reporte tareas tutoria.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteTareasTutoria() throws Exception {
 		System.out.println("Impresion de reporte de horario:");
 
@@ -1688,6 +2047,11 @@ public class RegistrarTutoriaMBean {
 		// }
 	}
 
+	/**
+	 * Imprimir reporte tareas tutoria tutor.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteTareasTutoriaTutor() throws Exception {
 		System.out.println("Impresion de reporte de horario:");
 
@@ -1699,6 +2063,12 @@ public class RegistrarTutoriaMBean {
 		// }
 	}
 
+	/**
+	 * Obtener parametros tareas tutor.
+	 *
+	 * @return the map
+	 * @throws Exception the exception
+	 */
 	private Map<Object, Object> obtenerParametrosTareasTutor() throws Exception {
 		Map<Object, Object> pars = new HashMap<Object, Object>();
 		String alumno = "";
@@ -1733,6 +2103,12 @@ public class RegistrarTutoriaMBean {
 		return pars;
 	}
 
+	/**
+	 * Obtener parametros tareas.
+	 *
+	 * @return the map
+	 * @throws Exception the exception
+	 */
 	private Map<Object, Object> obtenerParametrosTareas() throws Exception {
 		Map<Object, Object> pars = new HashMap<Object, Object>();
 		String alumno = "";
@@ -1764,6 +2140,11 @@ public class RegistrarTutoriaMBean {
 		return pars;
 	}
 
+	/**
+	 * Obtener campos tareas.
+	 *
+	 * @return the array list
+	 */
 	private ArrayList<Object> obtenerCamposTareas() {
 		ArrayList<Object> list = new ArrayList<Object>();
 		for (ObservacionBO model : tutoriaModel.getListaObservacionesFinalizadas()) {
@@ -1793,6 +2174,11 @@ public class RegistrarTutoriaMBean {
 		return list;
 	}
 
+	/**
+	 * Imprimir reporte asistencia tutoria alumno.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteAsistenciaTutoriaAlumno() throws Exception {
 		System.out.println("Impresion de reporte de horario:");
 
@@ -1802,6 +2188,12 @@ public class RegistrarTutoriaMBean {
 
 	}
 
+	/**
+	 * Obtener parametros asistencia alumno.
+	 *
+	 * @return the map
+	 * @throws Exception the exception
+	 */
 	private Map<Object, Object> obtenerParametrosAsistenciaAlumno() throws Exception {
 		Map<Object, Object> pars = new HashMap<Object, Object>();
 		// String ruta_imagen="classpath:reportes/";
@@ -1851,6 +2243,11 @@ public class RegistrarTutoriaMBean {
 		return pars;
 	}
 
+	/**
+	 * Obtener campos asistencia alumno.
+	 *
+	 * @return the array list
+	 */
 	private ArrayList<Object> obtenerCamposAsistenciaAlumno() {
 		ArrayList<Object> list = new ArrayList<Object>();
 		System.out.println("Tamaño de la lista1 :" + getTutoriaModel().getListaTutorias().size());
@@ -1871,6 +2268,11 @@ public class RegistrarTutoriaMBean {
 		return list;
 	}
 
+	/**
+	 * Imprimir reporte horario docente.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteHorarioDocente() throws Exception {
 		System.out.println("entra a reporte de docente");
 		if (!listAsistenciaTutoriaDocente.isEmpty()) {
@@ -1886,6 +2288,11 @@ public class RegistrarTutoriaMBean {
 			mostrarMensaje(20);
 	}
 
+	/**
+	 * Imprimir reporte general alumno.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteGeneralAlumno() throws Exception {
 		System.out.println("entra a reporte de docente");
 		if (!listAsistenciaTutoriaDocente.isEmpty()) {
@@ -1901,6 +2308,11 @@ public class RegistrarTutoriaMBean {
 			mostrarMensaje(20);
 	}
 
+	/**
+	 * Imprimir reporte general tutor.
+	 *
+	 * @throws Exception the exception
+	 */
 	public void imprimirReporteGeneralTutor() throws Exception {
 		System.out.println("entra a reporte de docente");
 		if (!listAsistenciaTutoriaDocente.isEmpty()) {
@@ -1916,6 +2328,12 @@ public class RegistrarTutoriaMBean {
 			mostrarMensaje(20);
 	}
 
+	/**
+	 * Obtener parametros alumno.
+	 *
+	 * @return the map
+	 * @throws Exception the exception
+	 */
 	private Map<Object, Object> obtenerParametrosAlumno() throws Exception {
 		Map<Object, Object> pars = new HashMap<Object, Object>();
 		// String ruta_imagen="classpath:reportes/";
@@ -1935,6 +2353,12 @@ public class RegistrarTutoriaMBean {
 		return pars;
 	}
 
+	/**
+	 * Obtener parametros.
+	 *
+	 * @return the map
+	 * @throws Exception the exception
+	 */
 	private Map<Object, Object> obtenerParametros() throws Exception {
 		Map<Object, Object> pars = new HashMap<Object, Object>();
 		// String ruta_imagen="classpath:reportes/";
@@ -1955,6 +2379,11 @@ public class RegistrarTutoriaMBean {
 		return pars;
 	}
 
+	/**
+	 * Obtener campos alumno.
+	 *
+	 * @return the array list
+	 */
 	private ArrayList<Object> obtenerCamposAlumno() {
 		ArrayList<Object> list = new ArrayList<Object>();
 		for (AsistenciaTutoriaModel model : listAsistenciaTutoria) {
@@ -1976,6 +2405,11 @@ public class RegistrarTutoriaMBean {
 		return list;
 	}
 
+	/**
+	 * Obtener campos.
+	 *
+	 * @return the array list
+	 */
 	private ArrayList<Object> obtenerCampos() {
 		ArrayList<Object> list = new ArrayList<Object>();
 		for (AsistenciaTutoriaModel model : listAsistenciaTutoriaDocente) {
@@ -1996,6 +2430,11 @@ public class RegistrarTutoriaMBean {
 		return list;
 	}
 
+	/**
+	 * Obtener campos reporte general alumnos.
+	 *
+	 * @return the array list
+	 */
 	private ArrayList<Object> obtenerCamposReporteGeneralAlumnos() {
 		ArrayList<Object> list = new ArrayList<Object>();
 		for (AsistenciaTutoriaModel model : listAsistenciaTutoriaDocente) {
@@ -2030,184 +2469,417 @@ public class RegistrarTutoriaMBean {
 		return list;
 	}
 
+	/**
+	 * Sumar.
+	 *
+	 * @param a the a
+	 * @param b the b
+	 * @return the int
+	 */
 	public int sumar(int a, int b) {
 		return a + b;
 	}
 
+	/**
+	 * Sumar tres.
+	 *
+	 * @param a the a
+	 * @param b the b
+	 * @param c the c
+	 * @return the int
+	 */
 	public int sumarTres(int a, int b, int c) {
 		return a + b + c;
 	}
 
+	/**
+	 * Porcentaje.
+	 *
+	 * @param asistio the asistio
+	 * @param tardanza the tardanza
+	 * @param sesiones the sesiones
+	 * @return the double
+	 */
 	public double porcentaje(int asistio, int tardanza, int sesiones) {
 		double porcentaje = ((asistio + tardanza)) * 100 / sesiones;
 		DecimalFormat df = new DecimalFormat("#.##");
 		return Double.valueOf(df.format(porcentaje));
 	}
 
+	/**
+	 * Gets the asistencia tutoria model select.
+	 *
+	 * @return the asistencia tutoria model select
+	 */
 	public AsistenciaTutoriaModel getAsistenciaTutoriaModelSelect() {
 		return asistenciaTutoriaModelSelect;
 	}
 
+	/**
+	 * Gets the asistencia tutoria model.
+	 *
+	 * @return the asistencia tutoria model
+	 */
 	public AsistenciaTutoriaModel getAsistenciaTutoriaModel() {
 		return asistenciaTutoriaModel;
 	}
 
+	/**
+	 * Sets the asistencia tutoria model select.
+	 *
+	 * @param asistenciaTutoriaModelSelect the new asistencia tutoria model select
+	 */
 	public void setAsistenciaTutoriaModelSelect(AsistenciaTutoriaModel asistenciaTutoriaModelSelect) {
 		this.asistenciaTutoriaModelSelect = asistenciaTutoriaModelSelect;
 	}
 
+	/**
+	 * Gets the list asistencia tutoria.
+	 *
+	 * @return the list asistencia tutoria
+	 */
 	public List<AsistenciaTutoriaModel> getListAsistenciaTutoria() {
 		return listAsistenciaTutoria;
 	}
 
+	/**
+	 * Sets the list asistencia tutoria.
+	 *
+	 * @param listAsistenciaTutoria the new list asistencia tutoria
+	 */
 	public void setListAsistenciaTutoria(List<AsistenciaTutoriaModel> listAsistenciaTutoria) {
 		this.listAsistenciaTutoria = listAsistenciaTutoria;
 	}
 
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
 	public Date getDate() {
 		return date;
 	}
 
+	/**
+	 * Sets the date.
+	 *
+	 * @param date the new date
+	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
+	/**
+	 * Sets the asistencia tutoria model.
+	 *
+	 * @param asistenciaTutoriaModel the new asistencia tutoria model
+	 */
 	public void setAsistenciaTutoriaModel(AsistenciaTutoriaModel asistenciaTutoriaModel) {
 		this.asistenciaTutoriaModel = asistenciaTutoriaModel;
 	}
 
+	/**
+	 * Gets the dia.
+	 *
+	 * @return the dia
+	 */
 	public String getDia() {
 		return dia;
 	}
 
+	/**
+	 * Sets the dia.
+	 *
+	 * @param dia the new dia
+	 */
 	public void setDia(String dia) {
 		this.dia = dia;
 	}
 
+	/**
+	 * Gets the clase maestra model.
+	 *
+	 * @return the clase maestra model
+	 */
 	public ClaseMaestraModel getClaseMaestraModel() {
 		return claseMaestraModel;
 	}
 
+	/**
+	 * Sets the clase maestra model.
+	 *
+	 * @param claseMaestraModel the new clase maestra model
+	 */
 	public void setClaseMaestraModel(ClaseMaestraModel claseMaestraModel) {
 		this.claseMaestraModel = claseMaestraModel;
 	}
 
+	/**
+	 * Gets the clase maestra model select.
+	 *
+	 * @return the clase maestra model select
+	 */
 	public ClaseMaestraModel getClaseMaestraModelSelect() {
 		return claseMaestraModelSelect;
 	}
 
+	/**
+	 * Sets the clase maestra model select.
+	 *
+	 * @param claseMaestraModelSelect the new clase maestra model select
+	 */
 	public void setClaseMaestraModelSelect(ClaseMaestraModel claseMaestraModelSelect) {
 		this.claseMaestraModelSelect = claseMaestraModelSelect;
 	}
 
+	/**
+	 * Gets the comun services.
+	 *
+	 * @return the comun services
+	 */
 	public ComunServices getComunServices() {
 		return comunServices;
 	}
 
+	/**
+	 * Sets the comun services.
+	 *
+	 * @param comunServices the new comun services
+	 */
 	public void setComunServices(ComunServices comunServices) {
 		this.comunServices = comunServices;
 	}
 
+	/**
+	 * Gets the clase maestra frecuencia.
+	 *
+	 * @return the clase maestra frecuencia
+	 */
 	public ClaseMaestraModel getClaseMaestraFrecuencia() {
 		return claseMaestraFrecuencia;
 	}
 
+	/**
+	 * Sets the clase maestra frecuencia.
+	 *
+	 * @param claseMaestraFrecuencia the new clase maestra frecuencia
+	 */
 	public void setClaseMaestraFrecuencia(ClaseMaestraModel claseMaestraFrecuencia) {
 		this.claseMaestraFrecuencia = claseMaestraFrecuencia;
 	}
 
+	/**
+	 * Gets the clase maestra frecuencia select.
+	 *
+	 * @return the clase maestra frecuencia select
+	 */
 	public ClaseMaestraModel getClaseMaestraFrecuenciaSelect() {
 		return claseMaestraFrecuenciaSelect;
 	}
 
+	/**
+	 * Sets the clase maestra frecuencia select.
+	 *
+	 * @param claseMaestraFrecuenciaSelect the new clase maestra frecuencia select
+	 */
 	public void setClaseMaestraFrecuenciaSelect(ClaseMaestraModel claseMaestraFrecuenciaSelect) {
 		this.claseMaestraFrecuenciaSelect = claseMaestraFrecuenciaSelect;
 	}
 
+	/**
+	 * Gets the tutoria model select.
+	 *
+	 * @return the tutoria model select
+	 */
 	public TutoriaModel getTutoriaModelSelect() {
 		return tutoriaModelSelect;
 	}
 
+	/**
+	 * Sets the tutoria model select.
+	 *
+	 * @param tutoriaModelSelect the new tutoria model select
+	 */
 	public void setTutoriaModelSelect(TutoriaModel tutoriaModelSelect) {
 		this.tutoriaModelSelect = tutoriaModelSelect;
 	}
 
+	/**
+	 * Gets the tutoria model.
+	 *
+	 * @return the tutoria model
+	 */
 	public TutoriaModel getTutoriaModel() {
 		return tutoriaModel;
 	}
 
+	/**
+	 * Sets the tutoria model.
+	 *
+	 * @param tutoriaModel the new tutoria model
+	 */
 	public void setTutoriaModel(TutoriaModel tutoriaModel) {
 		this.tutoriaModel = tutoriaModel;
 	}
 
+	/**
+	 * Gets the listar ciclos.
+	 *
+	 * @return the listar ciclos
+	 */
 	public List<ClaseMaestra> getListarCiclos() {
 		return listarCiclos;
 	}
 
+	/**
+	 * Sets the listar ciclos.
+	 *
+	 * @param listarCiclos the new listar ciclos
+	 */
 	public void setListarCiclos(List<ClaseMaestra> listarCiclos) {
 		this.listarCiclos = listarCiclos;
 	}
 
+	/**
+	 * Gets the tutoria model select grid.
+	 *
+	 * @return the tutoria model select grid
+	 */
 	public TutoriaModel getTutoriaModelSelectGrid() {
 		return tutoriaModelSelectGrid;
 	}
 
+	/**
+	 * Sets the tutoria model select grid.
+	 *
+	 * @param tutoriaModelSelectGrid the new tutoria model select grid
+	 */
 	public void setTutoriaModelSelectGrid(TutoriaModel tutoriaModelSelectGrid) {
 		this.tutoriaModelSelectGrid = tutoriaModelSelectGrid;
 	}
 
+	/**
+	 * Gets the lista observaciones pendientes.
+	 *
+	 * @return the lista observaciones pendientes
+	 */
 	public List<ObservacionBO> getListaObservacionesPendientes() {
 		return listaObservacionesPendientes;
 	}
 
+	/**
+	 * Sets the lista observaciones pendientes.
+	 *
+	 * @param listaObservacionesPendientes the new lista observaciones pendientes
+	 */
 	public void setListaObservacionesPendientes(List<ObservacionBO> listaObservacionesPendientes) {
 		this.listaObservacionesPendientes = listaObservacionesPendientes;
 	}
 
+	/**
+	 * Gets the lista observaciones finalizadas.
+	 *
+	 * @return the lista observaciones finalizadas
+	 */
 	public List<ObservacionBO> getListaObservacionesFinalizadas() {
 		return listaObservacionesFinalizadas;
 	}
 
+	/**
+	 * Sets the lista observaciones finalizadas.
+	 *
+	 * @param listaObservacionesFinalizadas the new lista observaciones finalizadas
+	 */
 	public void setListaObservacionesFinalizadas(List<ObservacionBO> listaObservacionesFinalizadas) {
 		this.listaObservacionesFinalizadas = listaObservacionesFinalizadas;
 	}
 
+	/**
+	 * Gets the tutoria model grid.
+	 *
+	 * @return the tutoria model grid
+	 */
 	public TutoriaModel getTutoriaModelGrid() {
 		return tutoriaModelGrid;
 	}
 
+	/**
+	 * Sets the tutoria model grid.
+	 *
+	 * @param tutoriaModelGrid the new tutoria model grid
+	 */
 	public void setTutoriaModelGrid(TutoriaModel tutoriaModelGrid) {
 		this.tutoriaModelGrid = tutoriaModelGrid;
 	}
 
+	/**
+	 * Gets the nombre origen.
+	 *
+	 * @return the nombre origen
+	 */
 	public String getNombreOrigen() {
 		return nombreOrigen;
 	}
 
+	/**
+	 * Sets the nombre origen.
+	 *
+	 * @param nombreOrigen the new nombre origen
+	 */
 	public void setNombreOrigen(String nombreOrigen) {
 		this.nombreOrigen = nombreOrigen;
 	}
 
+	/**
+	 * Gets the curso buscado.
+	 *
+	 * @return the curso buscado
+	 */
 	public String getCursoBuscado() {
 		return cursoBuscado;
 	}
 
+	/**
+	 * Sets the curso buscado.
+	 *
+	 * @param cursoBuscado the new curso buscado
+	 */
 	public void setCursoBuscado(String cursoBuscado) {
 		this.cursoBuscado = cursoBuscado;
 	}
 
+	/**
+	 * Gets the profesor buscado.
+	 *
+	 * @return the profesor buscado
+	 */
 	public String getProfesorBuscado() {
 		return profesorBuscado;
 	}
 
+	/**
+	 * Sets the profesor buscado.
+	 *
+	 * @param profesorBuscado the new profesor buscado
+	 */
 	public void setProfesorBuscado(String profesorBuscado) {
 		this.profesorBuscado = profesorBuscado;
 	}
 
+	/**
+	 * Gets the list asistencia tutoria docente.
+	 *
+	 * @return the list asistencia tutoria docente
+	 */
 	public List<AsistenciaTutoriaModel> getListAsistenciaTutoriaDocente() {
 		return listAsistenciaTutoriaDocente;
 	}
 
+	/**
+	 * Sets the list asistencia tutoria docente.
+	 *
+	 * @param listAsistenciaTutoriaDocente the new list asistencia tutoria docente
+	 */
 	public void setListAsistenciaTutoriaDocente(List<AsistenciaTutoriaModel> listAsistenciaTutoriaDocente) {
 		this.listAsistenciaTutoriaDocente = listAsistenciaTutoriaDocente;
 	}

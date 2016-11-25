@@ -13,10 +13,17 @@ import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
  
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AlumnoTransformerToBO.
+ */
 @Component("alumnoTransformerToBO")
 @Scope("singleton")
 public class AlumnoTransformerToBO implements Transformer<Alumno,AlumnoBO> {
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.lang.Object)
+	 */
 	public AlumnoBO transformer(final Alumno alumno) {
 		AlumnoBO alumnoBO = null;
 		if(alumno!=null){
@@ -29,6 +36,9 @@ public class AlumnoTransformerToBO implements Transformer<Alumno,AlumnoBO> {
 		return alumnoBO;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.core.transformer.Transformer#transformer(java.util.List)
+	 */
 	public List<AlumnoBO> transformer(final List<Alumno> lista) {
 		List<AlumnoBO> listaAlumnoBO = new ArrayList<AlumnoBO>();
 		for (Alumno alumno : lista) {

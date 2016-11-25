@@ -20,12 +20,23 @@ import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.GrupoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.MatriculaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MatriculaDAO.
+ */
 @Repository("matriculaDAO")
 @Transactional
 public class MatriculaDAO extends BaseDAO {
 	
 	
-	 public Alumno insertar(Alumno alumno) throws DAOExcepcion {
+	 /**
+ 	 * Insertar.
+ 	 *
+ 	 * @param alumno the alumno
+ 	 * @return the alumno
+ 	 * @throws DAOExcepcion the DAO excepcion
+ 	 */
+ 	public Alumno insertar(Alumno alumno) throws DAOExcepcion {
          String query = "insert into alumno(a_codigo,a_nombre,a_apellidos,a_fnacimiento,a_direccion,a_email,a_telefono,a_dni) values (?,?,?,?,?,?,?,?)";
          Connection con = null;
          PreparedStatement stmt = null;
@@ -76,7 +87,13 @@ public class MatriculaDAO extends BaseDAO {
          return alumno;
 	 }
 	 
-	 public int insertarLista(List<MatriculaBO>  lista){
+	 /**
+ 	 * Insertar lista.
+ 	 *
+ 	 * @param lista the lista
+ 	 * @return the int
+ 	 */
+ 	public int insertarLista(List<MatriculaBO>  lista){
 		 int resul=0;
 		 for(MatriculaBO matriculabo : lista){
 			 try {
@@ -92,7 +109,14 @@ public class MatriculaDAO extends BaseDAO {
 	 
 	 
 
-	 public int insertarActualizar(MatriculaBO matriculabo) throws DAOExcepcion {
+	 /**
+ 	 * Insertar actualizar.
+ 	 *
+ 	 * @param matriculabo the matriculabo
+ 	 * @return the int
+ 	 * @throws DAOExcepcion the DAO excepcion
+ 	 */
+ 	public int insertarActualizar(MatriculaBO matriculabo) throws DAOExcepcion {
 		 int resultado=1;//insert correcto
          String querySiNoExiste = "INSERT INTO matricula ( a_codigo, anio, periodo, c_codigo,  grupo,repitencias )"+
         		 		"select ?, ? , ?, ?, ? ,? from dual  where not exists("+
@@ -150,7 +174,16 @@ public class MatriculaDAO extends BaseDAO {
          return resultado;
 	 }
 	 
-	 public  List<MatriculaBO> obtenerMatriculaAlumnoPorPeriodo(String cod_alumno ,Integer anio ,Integer periodo) throws Exception {
+	 /**
+ 	 * Obtener matricula alumno por periodo.
+ 	 *
+ 	 * @param cod_alumno the cod alumno
+ 	 * @param anio the anio
+ 	 * @param periodo the periodo
+ 	 * @return the list
+ 	 * @throws Exception the exception
+ 	 */
+ 	public  List<MatriculaBO> obtenerMatriculaAlumnoPorPeriodo(String cod_alumno ,Integer anio ,Integer periodo) throws Exception {
 		 	MatriculaBO matri=new MatriculaBO();
 			List<MatriculaBO> listaMatricula = new ArrayList<MatriculaBO>();
 			String query = "SELECT 	M.A_CODIGO, M.REPITENCIAS, M.ANIO, M.PERIODO , "

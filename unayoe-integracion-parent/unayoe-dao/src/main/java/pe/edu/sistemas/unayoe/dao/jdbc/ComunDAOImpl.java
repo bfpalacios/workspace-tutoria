@@ -20,7 +20,15 @@ import pe.edu.sistemas.unayoe.unayoe.bo.MatriculaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ComunDAOImpl.
+ */
 public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
+	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#llenarCombo(java.lang.String, java.lang.String)
+	 */
 	public List<ClaseMaestra> llenarCombo(String tabla, String campo){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -56,6 +64,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return listaTablaMaestra;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#buscarCicloAcademico(java.lang.Integer)
+	 */
 	public String buscarCicloAcademico(Integer idCiclo){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -80,6 +91,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return cicloAcademico;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#obtenerRoles(int)
+	 */
 	public List<UsuarioBO> obtenerRoles(int proceso){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -114,6 +128,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return rolesUsuarios;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#buscarCiclo(java.lang.Integer)
+	 */
 	public MatriculaBO buscarCiclo(Integer idCiclo){		
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -146,6 +163,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return datosCiclo;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#actualizarHoraFin(java.lang.Integer)
+	 */
 	public List<ClaseMaestra> actualizarHoraFin(Integer idHoraInicio){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -180,6 +200,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return listaHoraFin;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#buscarDatosAreaConocimiento(java.lang.String)
+	 */
 	public AreaConocimientoBO buscarDatosAreaConocimiento(String codArea){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -212,6 +235,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return areaConocimiento;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#buscarDatosCurso(java.lang.String)
+	 */
 	public CursoBO buscarDatosCurso(String codCurso){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -244,6 +270,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return curso;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#buscarCicloActual()
+	 */
 	public CicloBO buscarCicloActual() {		
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -275,6 +304,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return ciclo;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#obtenerDatosFrecuencia(int)
+	 */
 	public ClaseMaestra obtenerDatosFrecuencia(int codFrecuencia){
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -307,6 +339,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return datosFrecuencia;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#obtenerSesionTutoria(int, int, java.lang.String, java.lang.String, java.lang.String, int, int, int)
+	 */
 	public TutoriaBO obtenerSesionTutoria(int anio, int periodo, String codCurso, String codTutor, 
 			                              String codAlumno, int sesionTutoria, int modo, int tipoAlumno) throws SQLException, Exception{
 		Connection con = null;
@@ -348,6 +383,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return sesionTutoriaBO;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#obtenerUltimaSesionTutoria(java.lang.String)
+	 */
 	public int obtenerUltimaSesionTutoria(String codTutoria) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -374,6 +412,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 		return ultimaSesionTutoria;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#buscarIndicador(int)
+	 */
 	public IndicadoresBO buscarIndicador(int codIndicador) throws Exception{
 		Connection con = null;
 		CallableStatement cstm = null;
@@ -403,6 +444,9 @@ public class ComunDAOImpl extends BaseDAO implements ComunIDAO{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ComunIDAO#listarTablaMaestra(java.lang.String, java.lang.String)
+	 */
 	public List<ClaseMaestra> listarTablaMaestra(String tabla, String campo){
 		Connection con = null;
 		CallableStatement cstm = null;

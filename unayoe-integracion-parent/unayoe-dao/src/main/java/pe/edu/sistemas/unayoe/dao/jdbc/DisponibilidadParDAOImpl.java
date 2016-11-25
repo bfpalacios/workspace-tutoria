@@ -11,13 +11,23 @@ import org.springframework.stereotype.Component;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 import pe.edu.sistemas.unayoe.unayoe.bo.DisponibilidadTutoriaParBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DisponibilidadParDAOImpl.
+ */
 @Component("disponibilidadParDao")
 public class DisponibilidadParDAOImpl implements DisponibilidadParDAO {
 
+	/**
+	 * Instantiates a new disponibilidad par DAO impl.
+	 */
 	public DisponibilidadParDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.DisponibilidadParDAO#getDisponibilidad(java.lang.Integer)
+	 */
 	@Override
 	public List<DisponibilidadTutoriaParBO> getDisponibilidad(Integer idPostulacion) {
 		List<DisponibilidadTutoriaParBO> disponibilidad = new ArrayList<DisponibilidadTutoriaParBO>();

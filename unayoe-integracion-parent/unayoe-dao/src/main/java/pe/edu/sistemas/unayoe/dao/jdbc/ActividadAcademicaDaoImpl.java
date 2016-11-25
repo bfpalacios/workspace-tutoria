@@ -18,11 +18,19 @@ import pe.edu.sistemas.unayoe.unayoe.bo.ActividadAcademicaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.HorarioBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.SesionParBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ActividadAcademicaDaoImpl.
+ */
 @Repository
 public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcademicaDao {
 
+	/** The connection. */
 	private Connection connection;
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#guardarActividadAcademica(pe.edu.sistemas.unayoe.unayoe.bo.ActividadAcademicaBO, java.util.List, java.util.List)
+	 */
 	@Override
 	public boolean guardarActividadAcademica(ActividadAcademicaBO actividadAcademica, List<HorarioBO> horarios,
 			List<SesionParBO> sesiones) {
@@ -69,6 +77,12 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 
 	}
 
+	/**
+	 * Guardar actividad academica.
+	 *
+	 * @param actividadAcademica the actividad academica
+	 * @return the actividad academica BO
+	 */
 	public ActividadAcademicaBO guardarActividadAcademica(ActividadAcademicaBO actividadAcademica) {
 		Connection con = null;
 		try {
@@ -99,6 +113,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#listarActividadesPorAlumnoMatriculado(java.lang.String)
+	 */
 	@Override
 	public List<ActividadAcademicaBO> listarActividadesPorAlumnoMatriculado(String codAlumno) {
 		Connection conn = null;
@@ -140,6 +157,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		return actividades;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#guardarHorarioActividad(pe.edu.sistemas.unayoe.unayoe.bo.HorarioBO)
+	 */
 	@Override
 	public HorarioBO guardarHorarioActividad(HorarioBO horarioBO) {
 		Connection con = null;
@@ -169,6 +189,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#guardarSesionPar(pe.edu.sistemas.unayoe.unayoe.bo.SesionParBO)
+	 */
 	@Override
 	public SesionParBO guardarSesionPar(SesionParBO sesionParBO) {
 		Connection conn = null;
@@ -191,6 +214,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#listarActividades()
+	 */
 	@Override
 	public List<ActividadAcademicaBO> listarActividades() {
 		Connection con = null;
@@ -224,6 +250,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#obtenerActividad(int)
+	 */
 	@Override
 	public ActividadAcademicaBO obtenerActividad(int codigoActividad) {
 		Connection con = null;
@@ -256,6 +285,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#listarActividadesPorTutor(java.lang.String)
+	 */
 	@Override
 	public List<ActividadAcademicaBO> listarActividadesPorTutor(String codTutor) {
 		Connection con = null;
@@ -289,6 +321,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#listarActividadesPorAlumno(java.lang.String)
+	 */
 	@Override
 	public List<ActividadAcademicaBO> listarActividadesPorAlumno(String codAlumno) {
 		Connection con = null;
@@ -322,6 +357,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#horariosPorActividad(int)
+	 */
 	@Override
 	public List<HorarioBO> horariosPorActividad(int codigoActividad) {
 		Connection con = null;
@@ -360,6 +398,9 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.ActividadAcademicaDao#sesionesPorActividad(int)
+	 */
 	@Override
 	public List<SesionParBO> sesionesPorActividad(int codigoActividad) {
 		Connection con = null;
@@ -398,6 +439,13 @@ public class ActividadAcademicaDaoImpl extends BaseDAO implements ActividadAcade
 		}
 	}
 
+	/**
+	 * Buil activity.
+	 *
+	 * @param rs the rs
+	 * @return the actividad academica BO
+	 * @throws SQLException the SQL exception
+	 */
 	private ActividadAcademicaBO builActivity(ResultSet rs) throws SQLException {
 		ActividadAcademicaBO actividad = new ActividadAcademicaBO();
 		actividad.setCodigo(rs.getInt("COD_PROGR"));

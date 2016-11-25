@@ -32,30 +32,49 @@ import pe.edu.sistemas.unayoe.services.UsuarioServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.RolBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginMBean.
+ */
 @Controller("loginMBean")
 @ViewScoped
 public class LoginMBean /*implements PhaseListener*/ {
 
+	/** The login model. */
 	@Autowired
 	private LoginModel loginModel;
 
+	/** The usuario services. */
 	@Autowired
 	private UsuarioServices usuarioServices;
 
+	/** The rol. */
 	private String rol = "0";
+	
+	/** The roles. */
 	private String[] roles = null;
 
+	/** The rol services. */
 	@Autowired
 	private RolServices rolServices;
 
+	/** The sha password encoder. */
 	@Autowired
 	private ShaPasswordEncoder shaPasswordEncoder;
 
+	/**
+	 * Instantiates a new login M bean.
+	 */
 	public LoginMBean() {
 		System.out.println(":::::::INICIO :::::::::");
 		rol = "0";
 	}
 
+	/**
+	 * Obtiene rol.
+	 *
+	 * @return the string
+	 */
 	public String obtieneRol() {
 		System.out.println("::::::::::::::: ENTRO ACA1 ::::::::::::::::");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -78,6 +97,11 @@ public class LoginMBean /*implements PhaseListener*/ {
 		return "0";
 	}
 
+	/**
+	 * Obtiene roles.
+	 *
+	 * @return the string[]
+	 */
 	public String[] obtieneRoles() {
 		System.out.println("::::::::::::::: ENTRA EN GET ROLES ::::::::::::::::");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -102,6 +126,11 @@ public class LoginMBean /*implements PhaseListener*/ {
 		return null;
 	}
 
+	/**
+	 * Entrar.
+	 *
+	 * @return the string
+	 */
 	public String entrar() {
 		try {
 			System.out.println(" INICIO DE ENTRAR");
@@ -133,6 +162,13 @@ public class LoginMBean /*implements PhaseListener*/ {
 		return "/login.xhtml";
 	}
 
+	/**
+	 * Do login.
+	 *
+	 * @return the string
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public String doLogin() throws ServletException, IOException {
 		// try{
 		System.out.println("do login");
@@ -161,32 +197,67 @@ public class LoginMBean /*implements PhaseListener*/ {
 
 	}
 
+	/**
+	 * Gets the lista roles.
+	 *
+	 * @return the lista roles
+	 */
 	public List<RolBO> getlistaRoles() {
 		return this.rolServices.listarRoles();
 	}
 
+	/**
+	 * Gets the login model.
+	 *
+	 * @return the login model
+	 */
 	public LoginModel getLoginModel() {
 		return loginModel;
 	}
 
+	/**
+	 * Gets the rol.
+	 *
+	 * @return the rol
+	 */
 	public String getRol() {
 		rol = obtieneRol();
 		return this.rol;
 	}
 
+	/**
+	 * Sets the rol.
+	 *
+	 * @param rol the new rol
+	 */
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
 
+	/**
+	 * Gets the roles.
+	 *
+	 * @return the roles
+	 */
 	public String[] getRoles() {
 		this.roles = obtieneRoles();
 		return this.roles;
 	}
 
+	/**
+	 * Sets the roles.
+	 *
+	 * @param roles the new roles
+	 */
 	public void setRoles(String[] roles) {
 		this.roles = roles;
 	}
 
+	/**
+	 * Mostrar error.
+	 *
+	 * @param msjResumen the msj resumen
+	 */
 	public static void mostrarError(String msjResumen) {
 		FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_ERROR, msjResumen, "Credenciales no válidas");
 		FacesContext.getCurrentInstance().addMessage("", msj);
@@ -199,7 +270,8 @@ public class LoginMBean /*implements PhaseListener*/ {
 	 * 
 	 * @Override public PhaseId getPhaseId() { return PhaseId.RENDER_RESPONSE; }
 	 */
-/*
+/** The msj. */
+	/*
 	@Override
 	public void afterPhase(PhaseEvent event) {
 		Exception e = (Exception) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
@@ -214,6 +286,7 @@ public class LoginMBean /*implements PhaseListener*/ {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Username or password not valid.", ""));
 			*/FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL, "Usuario o password incorrecto.", "");
 
+			/** The faces context. */
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 		/*	
 			  Flash flash = facesContext.getExternalContext().getFlash();

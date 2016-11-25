@@ -14,13 +14,23 @@ import pe.edu.sistemas.unayoe.core.dao.jdbc.BaseDAO;
 import pe.edu.sistemas.unayoe.core.dao.jdbc.Conexion;
 import pe.edu.sistemas.unayoe.unayoe.bo.TemaBO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TemaDAOImpl.
+ */
 @Component("temaDAO")
 public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 
+	/**
+	 * Instantiates a new tema DAO impl.
+	 */
 	public TemaDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#createTema(pe.edu.sistemas.unayoe.unayoe.bo.TemaBO)
+	 */
 	@Override
 	public boolean createTema(TemaBO tema) {
 		boolean ok = true;
@@ -47,6 +57,9 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#deleteTema(java.lang.Integer)
+	 */
 	@Override
 	public boolean deleteTema(Integer id) {
 		boolean ok = true;
@@ -64,12 +77,18 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 		return ok;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#updateTema(pe.edu.sistemas.unayoe.unayoe.bo.TemaBO)
+	 */
 	@Override
 	public boolean updateTema(TemaBO tema) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#getTema(java.lang.Integer)
+	 */
 	@Override
 	public TemaBO getTema(Integer id) {
 		TemaBO tema = new TemaBO();
@@ -95,6 +114,9 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 		return tema;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#getTemas()
+	 */
 	@Override
 	public List<TemaBO> getTemas() {
 		List<TemaBO> temas = new ArrayList<TemaBO>();
@@ -119,6 +141,9 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 		return temas;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#getTemasPorConvocatoria(java.lang.Integer)
+	 */
 	@Override
 	public List<TemaBO> getTemasPorConvocatoria(Integer idConvocatoria) {
 		List<TemaBO> temas = new ArrayList<TemaBO>();
@@ -147,6 +172,9 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 		return temas;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#getTemasPorCurso(java.lang.String)
+	 */
 	@Override
 	public List<TemaBO> getTemasPorCurso(String codigoCurso) {
 		List<TemaBO> temas = new ArrayList<TemaBO>();
@@ -172,6 +200,9 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 		return temas;
 	}
 
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#listarTemasAprobadosPorCurso(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public List<TemaBO> listarTemasAprobadosPorCurso(String codigoTutor,String codigoCurso) {
 		Connection con = null;
@@ -210,6 +241,9 @@ public class TemaDAOImpl extends BaseDAO implements TemaDAO {
 		return temas;
 	}
 	
+	/* (non-Javadoc)
+	 * @see pe.edu.sistemas.unayoe.dao.jdbc.TemaDAO#getTemasPorConvocatoriaCurso(java.lang.Integer, java.lang.String)
+	 */
 	@Override
 	public List<TemaBO> getTemasPorConvocatoriaCurso(Integer idConvocatoria, String codigoCurso) {
 		List<TemaBO> temas = new ArrayList<TemaBO>();

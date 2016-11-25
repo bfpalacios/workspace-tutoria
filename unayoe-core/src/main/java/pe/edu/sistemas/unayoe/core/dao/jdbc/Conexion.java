@@ -4,8 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Conexion.
+ */
 public class Conexion {
 	
+	/**
+	 * Obtener conexion.
+	 *
+	 * @return the connection
+	 * @throws SQLException the SQL exception
+	 */
 	public static Connection obtenerConexion() throws SQLException {
 
 		Connection con = null;
