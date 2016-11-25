@@ -4,7 +4,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.io.Serializable;
-
+/**
+ * En esta clase se definen los atributos que tendrá la actividad académica
+ * @author Bruno Palacios
+ *
+ */
 public class ActividadAcademicaBO implements Serializable {
     private static final long serialVersionUID = 1L;
     private int codigo; //De la actividad
