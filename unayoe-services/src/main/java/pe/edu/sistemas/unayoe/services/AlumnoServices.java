@@ -8,6 +8,11 @@ import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.NotasAlumnoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
 
+/**
+ * Interfaz para listas de funcinalidades
+ * @author Bruno Palacios
+ *
+ */
 
 public interface AlumnoServices {	
 	public AlumnoBO obtenerAlumno(String usuario) throws Exception;
