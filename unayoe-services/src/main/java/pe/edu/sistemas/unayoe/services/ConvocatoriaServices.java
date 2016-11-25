@@ -8,7 +8,6 @@ import pe.edu.sistemas.unayoe.unayoe.bo.ConvocatoriaBO;
  * @author Bruno Palacios
  *
  */
-
 public interface ConvocatoriaServices {
 
 	public boolean createConvocatoria(ConvocatoriaBO convocatoria);
