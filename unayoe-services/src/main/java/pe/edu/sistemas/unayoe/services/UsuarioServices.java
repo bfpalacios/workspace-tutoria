@@ -4,7 +4,11 @@ import java.util.List;
 
 import pe.edu.sistemas.unayoe.unayoe.bo.AlumnoParBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
-
+/**
+ * Interfaz de Servicios de Usuario
+ * @author Bruno Palacios
+ *
+ */
 public interface UsuarioServices {
 	public String buscarUsuario(String codUsuario) throws Exception;
 	public UsuarioBO obtenerUsuario(String usuario) throws Exception;
