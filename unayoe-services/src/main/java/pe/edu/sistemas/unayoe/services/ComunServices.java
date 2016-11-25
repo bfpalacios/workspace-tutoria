@@ -9,7 +9,11 @@ import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.MatriculaBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.ClaseMaestra;
 import pe.edu.sistemas.unayoe.unayoe.bo.AreaConocimientoBO;
-
+/**
+ * Interaz para búsqueda de ciclo
+ * @author Bruno Palacios
+ *
+ */
 public interface ComunServices {
 	CicloBO buscarCicloActual() throws Exception;
 	MatriculaBO buscarCiclo(int codCiclo) throws Exception;
