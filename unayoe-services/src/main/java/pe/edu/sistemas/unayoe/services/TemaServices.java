@@ -4,6 +4,12 @@ import java.util.List;
 
 import pe.edu.sistemas.unayoe.unayoe.bo.TemaBO;
 
+/**
+ * Interfaz Servicios de Tema (GET,CREATE,UPDATE,DELETE)
+ * @author Bruno Palacios
+ *
+ */
+
 public interface TemaServices {
 
 	public List<TemaBO> getTemas();
