@@ -7,6 +7,12 @@ import pe.edu.sistemas.unayoe.unayoe.bo.CursoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.GrupoBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.MatriculaBO;
 
+/**
+ * Interfaz Servicios de Matrícula
+ * @author Bruno Palacios
+ *
+ */
+
 public interface MatriculaServices {
 	
 	public int  guardarMatriculas(List<MatriculaBO> lista) throws Exception;
