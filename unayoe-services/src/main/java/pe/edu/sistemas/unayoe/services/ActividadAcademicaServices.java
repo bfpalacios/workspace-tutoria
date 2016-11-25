@@ -5,7 +5,11 @@ import pe.edu.sistemas.unayoe.unayoe.bo.HorarioBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.SesionParBO;
 
 import java.util.List;
-
+/**
+ * Interface donde se enlista las actividades por rol
+ * @author Bruno Palacios
+ *
+ */
 public interface ActividadAcademicaServices {
 
     boolean guardarActividadAcademica(ActividadAcademicaBO actividadAcademica, List<HorarioBO> horarios, List<SesionParBO> sesiones);
