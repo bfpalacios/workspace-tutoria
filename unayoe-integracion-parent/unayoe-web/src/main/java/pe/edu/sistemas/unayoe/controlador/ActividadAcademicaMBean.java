@@ -23,56 +23,78 @@ import javax.faces.event.ValueChangeEvent;
 
 import java.util.*;
 
+// TODO: Auto-generated Javadoc
 /**
- * Created by Alex on 31/10/2015
- *
+ * Created by Alex on 31/10/2015.
  */
 @Controller
 public class ActividadAcademicaMBean {
 
+    /** The actividad academica model. */
     @Autowired
     private ActividadAcademicaModel actividadAcademicaModel;
 
+    /** The horario model. */
     @Autowired
     private HorarioModel horarioModel;
 
+    /** The sesion model. */
     @Autowired
     private SesionModel sesionModel;
 
+    /** The area conocimiento services. */
     @Autowired
     private AreaConocimientoServices areaConocimientoServices;
 
+    /** The curso services. */
     @Autowired
     private CursoServices cursoServices;
 
+    /** The tema services. */
     @Autowired
     private TemaServices temaServices;
 
+    /** The comun services. */
     @Autowired
     private ComunServices comunServices;
 
+    /** The usuario services. */
     @Autowired
     private UsuarioServices usuarioServices;
 
+    /** The actividad academica services. */
     @Autowired
     private ActividadAcademicaServices actividadAcademicaServices;
 
+    /** The matricula par services. */
     @Autowired
     MatriculaParServices matriculaParServices;
 
+    /** The filter. */
     @Autowired
     private Filter filter;
 
+    /** The codigo area. */
     private String codigoArea;
+    
+    /** The codigo curso. */
     private String codigoCurso;
 
+    /** The codigo sistema. */
     private String codigoSistema; //Código en el sistema del usuario
 
+    /** The filtro todos. */
     private static int FILTRO_TODOS = 1; // Mostrar todas las actividades académicas
+    
+    /** The Constant MODO_ALUMNO. */
     private static final int MODO_ALUMNO = 1;
 
+    /** The actividad academica models. */
     private List<ActividadAcademicaModel> actividadAcademicaModels;
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     public void init(){
         actividadAcademicaModels = new ArrayList<>();
@@ -80,6 +102,12 @@ public class ActividadAcademicaMBean {
     }
     
 
+    /**
+     * Guardar actividad.
+     *
+     * @return the string
+     * @throws Exception the exception
+     */
     public String guardarActividad() throws Exception{
         if (validarActividad()){
             ActividadAcademicaBO academicaBO = new ActividadAcademicaBO();
@@ -99,6 +127,11 @@ public class ActividadAcademicaMBean {
         return null;
     }
 
+    /**
+     * Obtener usuario.
+     *
+     * @return the string
+     */
     public String obtenerUsuario() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nombre = "";
@@ -109,12 +142,23 @@ public class ActividadAcademicaMBean {
         return nombre;
     }
 
+    /**
+     * Obtener codigo sistema.
+     *
+     * @return the string
+     * @throws Exception the exception
+     */
     public String obtenerCodigoSistema() throws Exception {
         String username = obtenerUsuario();
         codigoSistema = usuarioServices.buscarUsuarioEquivalencia(username);
         return  codigoSistema;
     }
 
+    /**
+     * Validar actividad.
+     *
+     * @return true, if successful
+     */
     public boolean validarActividad(){
         boolean isOk = true;
         if (actividadAcademicaModel.getCodigoTema() < 1){
@@ -144,22 +188,47 @@ public class ActividadAcademicaMBean {
         return isOk;
     }
 
+    /**
+     * Gets the codigo area.
+     *
+     * @return the codigo area
+     */
     public String getCodigoArea(){
         return codigoArea;
     }
 
+    /**
+     * Sets the codigo area.
+     *
+     * @param codigoArea the new codigo area
+     */
     public void setCodigoArea(String codigoArea) {
         this.codigoArea = codigoArea;
     }
 
+    /**
+     * Gets the codigo curso.
+     *
+     * @return the codigo curso
+     */
     public String getCodigoCurso() {
         return codigoCurso;
     }
 
+    /**
+     * Sets the codigo curso.
+     *
+     * @param codigoCurso the new codigo curso
+     */
     public void setCodigoCurso(String codigoCurso) {
         this.codigoCurso = codigoCurso;
     }
 
+    /**
+     * On change area.
+     *
+     * @param e the e
+     */
     public void onChangeArea(ValueChangeEvent e){
         try {
             String codigoArea = (String)e.getNewValue(); //Código de área
@@ -171,6 +240,11 @@ public class ActividadAcademicaMBean {
         }
     }
 
+    /**
+     * On change curso.
+     *
+     * @param e the e
+     */
     public void onChangeCurso(ValueChangeEvent e){
         try {
             String codigoCurso = (String)e.getNewValue(); //Código de curso
@@ -182,6 +256,11 @@ public class ActividadAcademicaMBean {
         }
     }
 
+    /**
+     * On change tema.
+     *
+     * @param e the e
+     */
     public void onChangeTema(ValueChangeEvent e){
         
         int codigoTema = e.getNewValue()!=null?(int)e.getNewValue():0 ;
@@ -192,6 +271,11 @@ public class ActividadAcademicaMBean {
 
     }
 
+    /**
+     * On change hora inicio.
+     *
+     * @param e the e
+     */
     public void onChangeHoraInicio(ValueChangeEvent e){
         String codigoHora = (String)e.getNewValue();
         try {
@@ -203,6 +287,9 @@ public class ActividadAcademicaMBean {
 
     }
 
+    /**
+     * Actualizar orden sesiones.
+     */
     public void actualizarOrdenSesiones(){
         int tamano = actividadAcademicaModel.getSesiones().size();
         for (int index=0; index<tamano; index++){
@@ -210,10 +297,16 @@ public class ActividadAcademicaMBean {
         }
     }
 
+    /**
+     * On row reorder sesion.
+     */
     public void onRowReorderSesion(){
         actualizarOrdenSesiones();
     }
 
+    /**
+     * Adds the horario.
+     */
     public void addHorario() {
         HorarioBO horarioBO = new HorarioBO();
         horarioBO.setDia(horarioModel.getDia());
@@ -227,6 +320,9 @@ public class ActividadAcademicaMBean {
 
     }
 
+    /**
+     * Adds the sesion.
+     */
     public void addSesion(){
         SesionParBO sesionParBO = new SesionParBO();
         sesionParBO.setNumero(actividadAcademicaModel.getSesiones().size()+1);
@@ -245,15 +341,31 @@ public class ActividadAcademicaMBean {
         }
     }
 
+    /**
+     * Eliminar horario.
+     *
+     * @param horarioBO the horario BO
+     */
     public void eliminarHorario(HorarioBO horarioBO){
         actividadAcademicaModel.getHorarios().remove(horarioBO);
     }
 
+    /**
+     * Eliminar sesion.
+     *
+     * @param sesionParBO the sesion par BO
+     */
     public void eliminarSesion(SesionParBO sesionParBO){
         actividadAcademicaModel.getSesiones().remove(sesionParBO);
         actualizarOrdenSesiones();
     }
 
+    /**
+     * Validar sesion.
+     *
+     * @param sesionParBO the sesion par BO
+     * @return true, if successful
+     */
     public boolean validarSesion(SesionParBO sesionParBO){
         boolean isOk = true;
         if (sesionParBO.getFecha() == null){
@@ -264,6 +376,12 @@ public class ActividadAcademicaMBean {
         return isOk;
     }
 
+    /**
+     * Validar horario.
+     *
+     * @param horarioBO the horario BO
+     * @return true, if successful
+     */
     public boolean validarHorario(HorarioBO horarioBO){
         boolean isOk = true;
         if (StringUtils.isEmpty(horarioBO.getDia())){
@@ -275,6 +393,12 @@ public class ActividadAcademicaMBean {
         return isOk;
     }
 
+    /**
+     * Fecha en horario.
+     *
+     * @param fecha the fecha
+     * @return true, if successful
+     */
     private  boolean fechaEnHorario(Date fecha){
         for (HorarioBO horarioBO : actividadAcademicaModel.getHorarios()){
             if (horarioBO.getDia().equalsIgnoreCase(filter.dayOfWeekText(fecha)))
@@ -283,6 +407,12 @@ public class ActividadAcademicaMBean {
         return false;
     }
 
+    /**
+     * Navigation.
+     *
+     * @return the string
+     * @throws Exception the exception
+     */
     public String navigation() throws Exception {
         actividadAcademicaModel.reset();
 
@@ -294,6 +424,14 @@ public class ActividadAcademicaMBean {
         return "/paginas/ModuloPares/tutor/registrarActividadAcademica.xhtml";
     }
 
+    /**
+     * Selector mostrar actividades.
+     *
+     * @param modo the modo
+     * @param filtro the filtro
+     * @return the string
+     * @throws Exception the exception
+     */
     public String selectorMostrarActividades(int modo,int filtro) throws Exception{
         codigoSistema = obtenerCodigoSistema(); //Del usuario conectado actualmente
 
@@ -333,6 +471,13 @@ public class ActividadAcademicaMBean {
     }
 
 
+    /**
+     * Selector detalle.
+     *
+     * @param modo the modo
+     * @param codigoActividad the codigo actividad
+     * @return the string
+     */
     public String selectorDetalle(int modo,int codigoActividad){
         actividadAcademicaModel.reset();
         sesionModel.reset();
@@ -359,6 +504,12 @@ public class ActividadAcademicaMBean {
             return "/paginas/ModuloPares/tutor/detalleActividadAcademica.xhtml";
     }
 
+    /**
+     * Matricular alumno.
+     *
+     * @param codigoProgramacion the codigo programacion
+     * @throws Exception the exception
+     */
     public void matricularAlumno(int codigoProgramacion) throws Exception {
         MatriculaParBO matriculaParBO = new MatriculaParBO();
         matriculaParBO.setCodigoAlumno(obtenerCodigoSistema());
@@ -372,24 +523,53 @@ public class ActividadAcademicaMBean {
 
     }
 
+    /**
+     * Checks if is matriculado.
+     *
+     * @param codigoActividad the codigo actividad
+     * @return true, if is matriculado
+     * @throws Exception the exception
+     */
     public boolean isMatriculado(int codigoActividad) throws Exception {
         return matriculaParServices.buscarMatriculaPar(obtenerCodigoSistema(),codigoActividad) != null;
     }
 
 
+    /**
+     * Info message.
+     *
+     * @param title the title
+     * @param detail the detail
+     */
     public void infoMessage(String title, String detail) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, title, detail));
     }
 
+    /**
+     * Error message.
+     *
+     * @param title the title
+     * @param detail the detail
+     */
     public void errorMessage(String title, String detail) {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, title, detail));
     }
 
+    /**
+     * Gets the actividad academica models.
+     *
+     * @return the actividad academica models
+     */
     public List<ActividadAcademicaModel> getActividadAcademicaModels() {
         return actividadAcademicaModels;
     }
 
+    /**
+     * Sets the actividad academica models.
+     *
+     * @param actividadAcademicaModels the new actividad academica models
+     */
     public void setActividadAcademicaModels(List<ActividadAcademicaModel> actividadAcademicaModels) {
         this.actividadAcademicaModels = actividadAcademicaModels;
     }
