@@ -35,6 +35,8 @@ import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 // TODO: Auto-generated Javadoc
 /**
  * The Class LoginMBean.
+ * Esta clase se encarga de gestionar el ingreso al sistema 
+ * 
  */
 @Controller("loginMBean")
 @ViewScoped

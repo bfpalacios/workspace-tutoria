@@ -23,6 +23,11 @@ import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 // TODO: Auto-generated Javadoc
 /**
  * The Class UsuarioMBean.
+ * Esta clase se encarga de gestionar el mantenimiento de usuarios
+ * a traves de los services
+ * desde todos los modulos observados, regulares y pares
+ * por parte de los admin ADMINOBS, ADMINREG y ADMINPAR
+ * 
  */
 @Controller("usuarioMBean")
 @ViewScoped

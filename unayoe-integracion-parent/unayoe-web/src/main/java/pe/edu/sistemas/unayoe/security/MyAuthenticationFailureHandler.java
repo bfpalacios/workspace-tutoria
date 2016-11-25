@@ -27,6 +27,12 @@ import org.springframework.stereotype.Component;
 // TODO: Auto-generated Javadoc
 /**
  * The Class MyAuthenticationFailureHandler.
+ * Esta clase se encarga de enviar un mensaje de error para ser
+ * mostrado en el login, si es que el usuario que ingresó
+ * es incorrecto
+ * se redirige al login.xhtmk y además envia el mensaje que se mostrado
+ * en el login
+ * 
  * @author ULLOA
  */
 @Component("myAuthenticationFailureHandler")

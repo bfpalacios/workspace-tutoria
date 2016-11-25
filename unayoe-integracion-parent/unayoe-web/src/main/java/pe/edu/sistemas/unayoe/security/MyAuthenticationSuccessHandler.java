@@ -23,6 +23,9 @@ import pe.edu.sistemas.unayoe.services.UsuarioServices;
 // TODO: Auto-generated Javadoc
 /**
  * The Class MyAuthenticationSuccessHandler.
+ * Esta clase se encarga de redirigir a las vistas correspondientes
+ * de acuerdo al rol del usuario logueado
+ * 
  * @author ULLOA
  */
 @Component("myAuthenticationSuccessHandler")

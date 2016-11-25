@@ -41,6 +41,11 @@ import javax.faces.context.FacesContext;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DatosAlumnosMBean.
+ * Esta clase se encarga de procesar la lectura del archivo excel
+ * de los datos de los alumnos 
+ * procesa el excel valida los campos y los envia a la vista
+ * para mostrarlos
+ * ademas gestiona que estos se puedan guardar a traves de los services
  */
 @Controller("datosAlumnosMBean")
 @ViewScoped
