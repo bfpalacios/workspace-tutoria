@@ -479,5 +479,7 @@ public interface TutoriaServices {
 	 * @return the list
 	 * @throws Exception the exception
 	 */
-	public List<AsistenciaTAlumBO>  buscarAsistenciaDeAlumnosTutoriaUser(String periodo, String anio, String dia, String curso, String codUser, String horaIni, String horaFin) throws Exception;	
+	public List<AsistenciaTAlumBO>  buscarAsistenciaDeAlumnosTutoriaUser(String periodo, String anio, String dia, String curso, String codUser, String horaIni, String horaFin) throws Exception;
+
+	public AlumnoBO buscarDatosAlumnoRegular(String codAlumno);	
 }

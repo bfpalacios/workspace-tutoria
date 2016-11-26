@@ -464,5 +464,7 @@ public interface TutoriaIJdbcDao {
 	 * @return the list
 	 * @throws Exception the exception
 	 */
-	public List<AsistenciaTAlumBO>  buscarAsistenciaDeAlumnosTutoriaUser(String periodo, String anio, String dia, String curso, String codigoUser, String horaIni, String horaFin) throws Exception;	
+	public List<AsistenciaTAlumBO>  buscarAsistenciaDeAlumnosTutoriaUser(String periodo, String anio, String dia, String curso, String codigoUser, String horaIni, String horaFin) throws Exception;
+
+	public AlumnoBO buscarDatosAlumnoRegular(String codAlumno);	
 }

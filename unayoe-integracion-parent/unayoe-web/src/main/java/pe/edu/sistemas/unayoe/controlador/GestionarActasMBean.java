@@ -411,6 +411,7 @@ public class GestionarActasMBean {
 //			codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
 			codCurso= (String) (e.getNewValue() == null ? "" : e.getNewValue());
 			codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
+			System.out.println("cod docente " + codDocente);
 		} else {
 			if (MODO == MODO_TUTOR) {
 				codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());

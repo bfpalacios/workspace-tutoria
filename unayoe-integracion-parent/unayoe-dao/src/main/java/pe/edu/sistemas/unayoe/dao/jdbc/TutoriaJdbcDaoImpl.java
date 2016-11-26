@@ -1765,4 +1765,45 @@ public class TutoriaJdbcDaoImpl  extends BaseDAO implements TutoriaIJdbcDao{
 		}		
 		return validadorObservacion;
 	}
+
+
+	@Override
+	public AlumnoBO buscarDatosAlumnoRegular(String codAlumno) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		
+		AlumnoBO datosAlumno = new AlumnoBO();
+		
+		String sql = "    SELECT COD_ALUMNO, NOM_ALUMNO  "
+  +"          FROM ALUMNO_REGULAR "
+  + "         WHERE COD_ALUMNO = ?";
+		
+		try{
+			con = Conexion.obtenerConexion();
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, codAlumno);							
+			
+			rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				datosAlumno.setaCodigo(rs.getString(1)==null?"":rs.getString(1).toString());
+				datosAlumno.setaNombre(rs.getString(2)==null?"":rs.getString(2).toString());
+			/*	datosAlumno.setaFNacimiento(rs.getDate(3)==null?"":rs.getDate(3).toString());
+				datosAlumno.setaDireccion(rs.getString(4)==null?"":rs.getString(4));
+				datosAlumno.setaEmail(rs.getString(5)==null?"":rs.getString(5));
+				datosAlumno.setaTelefono(rs.getString(6)==null?"":rs.getString(6));
+				datosAlumno.setaDNI(rs.getString(7)==null?"":rs.getString(7));*/
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			this.cerrarResultSet(rs);
+			this.cerrarStatement(pstm);
+			this.cerrarConexion(con);
+		}
+		return datosAlumno;
+	}
 }

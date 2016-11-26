@@ -357,4 +357,9 @@ public class TutoriaServicesImpl implements TutoriaServices {
 	public int verificarExistenciaObservacion(String codTutoria, int sesion) throws Exception{
 		return tutoriaIDao.verificarExistenciaObservacion(codTutoria, sesion);
 	}
+
+	@Override
+	public AlumnoBO buscarDatosAlumnoRegular(String codAlumno) {
+		return tutoriaIDao.buscarDatosAlumnoRegular(codAlumno);
+	}
 }

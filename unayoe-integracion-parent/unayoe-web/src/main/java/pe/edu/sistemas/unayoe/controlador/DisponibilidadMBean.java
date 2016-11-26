@@ -272,9 +272,8 @@ public class DisponibilidadMBean {
 	 * @throws Exception the exception
 	 */
 	public void actualizarAlumno(ValueChangeEvent e) throws Exception {
-		String codCurso = getDisponibilidadModelSelect().getCodCurso() == null ? ""
-				: getDisponibilidadModelSelect().getCodCurso();
-		String codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
+		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
+		PROCESO_BUSQUEDA = 2;
 		System.out.println("codcurso " + codCurso);
 		List<AlumnoBO> listaAlumnos = alumnoServices.listarAlumnoDisponibilidad(codCurso);
 
@@ -378,6 +377,7 @@ public class DisponibilidadMBean {
 		int tipoUsuario = 0;
 		String codDocente = "";
 		try {
+			System.out.println("codC antes " + getDisponibilidadModelSelect().getCodCurso());
 			String codCurso = getDisponibilidadModelSelect().getCodCurso() == "" ? "Invalido"
 					: getDisponibilidadModelSelect().getCodCurso();
 			System.out.println("p_busq" + PROCESO_BUSQUEDA);
@@ -405,8 +405,10 @@ public class DisponibilidadMBean {
 					tipoUsuario = 2;
 					break;
 				}
+				System.out.println("codusuario " + codUsuario);
 				List<DisponibilidadBO> listaDisponibilidades = tutoriaServices.listarDisponibilidades(codCurso,
 						codUsuario, tipoUsuario);
+				System.out.println("num disponibilidades " + listaDisponibilidades.size() ) ;
 				setListaDisponibilidades(listaDisponibilidades);
 			}
 		} catch (Exception e) {
@@ -480,6 +482,7 @@ public class DisponibilidadMBean {
 		}
 
 		if (MODO == MODO_ADMIN) {
+			System.out.println("proceso registro " +  PROCESO_REGISTRO);
 			if (PROCESO_REGISTRO == PROCESO_TUTOR) {
 				if (codDocente.equals("Invalido")) {
 					mostrarMensaje(10);

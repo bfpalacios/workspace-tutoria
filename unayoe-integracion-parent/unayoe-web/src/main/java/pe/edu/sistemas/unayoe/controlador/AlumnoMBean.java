@@ -463,11 +463,15 @@ System.out.println("MODO2:"+MODO);
 						}
 					}
 
+					System.out.println("usuario docente " + usuarioDocente);
+					
 					List<TutoriaBO> listarTutorias = new ArrayList<TutoriaBO>();
 					listarTutorias = getTutoriaServices().buscarAsistenciaAlumnosTutoria(usuarioDocente,
 							getAlumnoModelSelect().getCod_curso(), getAlumnoModelSelect().getCodigo(), fechaElegida,
 							PROCESO, MODO);
 
+					
+					
 					if (listarTutorias.size() > 0) {
 						System.out.println("Hay tutoria");
 						codTutoria = listarTutorias.get(0).gettCodigo();

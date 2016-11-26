@@ -556,7 +556,7 @@ public class RegistrarTutoriaMBean {
 			String codAlumno = getTutoriaModelSelect().getaCodigo();
 
 			if (validaNumero(codAlumno)) {
-				AlumnoBO alumno = tutoriaServices.buscarDatosAlumno(codAlumno);
+				AlumnoBO alumno = tutoriaServices.buscarDatosAlumnoRegular(codAlumno);
 
 				if (!alumno.getaCodigo().equals("")) {
 					String nombreAlumno = alumno.getaNombre();
@@ -1584,19 +1584,29 @@ public class RegistrarTutoriaMBean {
 		inicializarClases();
 		listarFrecuencia();
 		listarHoraInicio();
+		
+		List<CursoBO> lsCursos = cursoServices.listarCursos();
+		getTutoriaModel().setListarCursos(lsCursos);
+		
+		List<ProfesorBO> lsProfesoresRegulares = tutoriaServices.listarTutoresRegulares();
+
+		
 		switch (procesoTutoria) {
 		case 1:
 			switch (modo) {
 			case 1:
 				MODO_USUARIO = MODO_ADMIN;
+				getTutoriaModel().setListarTutores(lsProfesoresRegulares);
 				pagina = "/paginas/ModuloRegulares/admin/registrar/registrarDatosDeTutoria.xhtml";
 				break;
 			case 2:
 				MODO_USUARIO = MODO_OCAA;
+				getTutoriaModel().setListarTutores(lsProfesoresRegulares);
 				pagina = "/paginas/ModuloRegulares/ocaa/registrar/registrarDatosDeTutoria.xhtml";
 				break;
 			case 3:
 				MODO_USUARIO = MODO_DIR_ACA;
+				getTutoriaModel().setListarTutores(lsProfesoresRegulares);
 				pagina = "/paginas/ModuloRegulares/diraca/registrar/registrarDatosDeTutoria.xhtml";
 				break;
 			}
