@@ -69,7 +69,7 @@
 								requiredMessage="#{mensaje['general.error.requerido']}" 
 								validatorMessage="#{mensaje['general.error.nombre']}" 
 								value="#{usuarioMBean.usuarioModel.nombres}" >
-								<f:validateRegex pattern="[a-zA-Z]+"/>
+								<f:validateRegex pattern="^[a-zA-Z][a-zA-Z\s]+"/>
 								</p:inputText>
 								<p:message for="nombresUsuario"/>
 							</p:column>
