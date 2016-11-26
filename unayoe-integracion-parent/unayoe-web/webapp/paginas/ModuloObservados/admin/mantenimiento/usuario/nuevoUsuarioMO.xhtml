@@ -87,7 +87,7 @@
 									requiredMessage="#{mensaje['general.error.requerido']}" 
 									validatorMessage="#{mensaje['general.error.ap']}" 							
 									value="#{usuarioMBean.usuarioModel.paterno}" >
-									<f:validateRegex pattern="[a-zA-Z]+"/>
+									<f:validateRegex pattern="^[a-zA-Z][a-zA-Z\s]+"/>
 									</p:inputText>
 								<p:message for="apellidoPaternoUsuario" />
 							</p:column>
@@ -104,7 +104,7 @@
 								requiredMessage="#{mensaje['general.error.requerido']}"	 
 								validatorMessage="#{mensaje['general.error.am']}"								
 									value="#{usuarioMBean.usuarioModel.materno}" >
-									<f:validateRegex pattern="[a-zA-Z]+"/>
+									<f:validateRegex pattern="^[a-zA-Z][a-zA-Z\s]+"/>
 									</p:inputText>
 								<p:message for="apellidoMaternoUsuario" />
 							</p:column>
