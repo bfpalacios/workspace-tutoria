@@ -43,17 +43,39 @@
 							<p:selectOneMenu 
                     			id="selectOneCurso" 
                     			value="#{gestionarActasMBean.tutoriaModelSelect.cCodigo}" 
-                    			valueChangeListener="#{gestionarActasMBean.actualizarAlumnoGenerico}"
+                    			valueChangeListener="#{gestionarActasMBean.actualizarDocente}"
                     			styleClass="ui-column-label-spij styleAlignRightColumn">
                         		<f:selectItem itemLabel="Seleccione el curso:"/>
                         		<f:selectItems 
                         			value="#{gestionarActasMBean.tutoriaModel.listarCursos}"
                                     var="cursos" itemLabel="#{cursos.nombre}"
                                     itemValue="#{cursos.cCodigo}" />
-                        		<f:ajax event="change" execute="@this" render="selectOneAlumno selectOneSesion"/>
+                        		<f:ajax event="change" execute="@this" render="selectOneProfesor selectOneAlumno selectOneSesion"/>
                     		</p:selectOneMenu>
 						</p:column>
 					</p:row>
+                    
+                    <p:row>
+                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText 
+                    			id="idTutor"
+                    			value="#{mensaje['unayoe.ingresar.datos.alumnos.label.docente']}"/>
+						</p:column>
+                    	<p:column>
+							<p:selectOneMenu 
+								id="selectOneProfesor"
+								value="#{gestionarActasMBean.tutoriaModelSelect.pCodigo}"
+								valueChangeListener="#{gestionarActasMBean.actualizarAlumno}"
+								styleClass="ui-column-label-spij styleAlignRightColumn">
+								<f:selectItem itemLabel="Seleccione el tutor: " />
+								<f:selectItems
+									value="#{gestionarActasMBean.tutoriaModel.listarTutores}"
+									var="profesor" itemLabel="#{profesor.pNombre}"
+									itemValue="#{profesor.pCodigo}" />
+								<f:ajax event="change" execute="@this" render="selectOneAlumno selectOneSesion"/>
+							</p:selectOneMenu>
+						</p:column>
+                    </p:row>
                     
                     <p:row>
                     	<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
