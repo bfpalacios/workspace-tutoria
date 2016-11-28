@@ -1,3 +1,7 @@
+package pe.edu.sistemas.unayoe.listener;
+
+
+
 
 import java.net.URL;
 import org.apache.log4j.Logger;
@@ -33,22 +37,31 @@ public class ConexionLog {
      * @param numero
      * @param mensaje
      */
-    public static void registrarMensaje(int numero, String mensaje){
-        
+    public  static void registrarMensaje(int numero, String mensaje){
+      
         PropertyConfigurator.configure(url);
+        System.out.println("entre");
+        System.out.println("numb"+numero);
+        System.out.println("msj"+mensaje);
         switch(numero){
+      
             case 0: //Mensaje informativo
-                log.info(mensaje);
+            	log.info(mensaje);
+                break;
             case 1: //Mensaje de Warning
                 log.warn(mensaje);
+                break;
             case 2: //Mensaje de Warning
                 log.warn(mensaje);
+                break;
             case 3: //Mensaje de error
                 log.error(mensaje);
+                break;
             case 4:
                 //Mensaje de error fatal
                 log.fatal(mensaje);
-            default: System.out.println("Error el numero indicado es incorrecto");
+         System.out.println("Error el numero indicado es incorrecto");
+         break;
         }
     }
    

@@ -26,12 +26,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 
+
 import pe.edu.sistemas.unayoe.model.LoginModel;
 import pe.edu.sistemas.unayoe.services.RolServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.RolBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
-
+import pe.edu.sistemas.unayoe.listener.*;
 // TODO: Auto-generated Javadoc
 /**
  * The Class LoginMBean.
@@ -41,7 +42,10 @@ import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
 @Controller("loginMBean")
 @ViewScoped
 public class LoginMBean /*implements PhaseListener*/ {
-
+     /*log*/
+	
+      
+      
 	/** The login model. */
 	@Autowired
 	private LoginModel loginModel;
@@ -173,11 +177,14 @@ public class LoginMBean /*implements PhaseListener*/ {
 	 */
 	public String doLogin() throws ServletException, IOException {
 		// try{
+
 		System.out.println("do login");
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		String password = shaPasswordEncoder.encodePassword(loginModel.getClave(), null);
-		System.out.println(password);
-
+		
+		ConexionLog.registrarMensaje(0,"***LOGIN***");
+		ConexionLog.registrarMensaje(0,"Usuario"+loginModel.getUsuario());
+		ConexionLog.registrarMensaje(0,"Clave"+loginModel.getClave());
 		RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher(
 				"/j_spring_security_check?j_username=" + loginModel.getUsuario() + "&j_password=" + password);
 		// try{

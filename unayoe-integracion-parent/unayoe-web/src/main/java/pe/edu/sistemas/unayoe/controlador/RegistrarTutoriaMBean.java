@@ -56,6 +56,9 @@ import pe.edu.sistemas.unayoe.unayoe.bo.TutoriaBO;
 @Controller("registrarTutoriaMBean")
 @ViewScoped
 public class RegistrarTutoriaMBean {
+
+	@Autowired
+	private ChartBean cb;
 	
 	/** The comun services. */
 	@Autowired
@@ -194,6 +197,7 @@ public class RegistrarTutoriaMBean {
 		asistenciaTutoriaModelSelect = new AsistenciaTutoriaModel();
 		listAsistenciaTutoria = new ArrayList<AsistenciaTutoriaModel>();
 		listAsistenciaTutoriaDocente = new ArrayList<AsistenciaTutoriaModel>();
+		cb=new ChartBean();
 		inicializarClases();
 	}
 
@@ -1470,6 +1474,7 @@ public class RegistrarTutoriaMBean {
 				listaIndicadores.add(indicador);
 			}
 			getTutoriaModel().setListaIndicadores(listaIndicadores);
+		cb.setListaIndicadores(listaIndicadores);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

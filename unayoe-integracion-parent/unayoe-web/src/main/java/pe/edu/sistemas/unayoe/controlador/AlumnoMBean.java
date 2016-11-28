@@ -47,7 +47,7 @@ import pe.edu.sistemas.unayoe.unayoe.bo.AsistenciaCAlumnoBO;
 @Controller("alumnoMBean")
 @ViewScoped
 public class AlumnoMBean {
-	
+
 	/** The alumno model. */
 	@Autowired
 	private AlumnoModel alumnoModel;
