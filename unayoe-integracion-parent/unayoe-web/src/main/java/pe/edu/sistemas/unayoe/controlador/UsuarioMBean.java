@@ -250,6 +250,7 @@ public class UsuarioMBean {
 	 * @return the string
 	 */
 	public String guardarNuevoUsuarioMO() {
+				
 		String pagina = "";
 		try {
 			if (buscarUsuario(getUsuarioModel().getIdUsuario() == null ? "0" : getUsuarioModel().getIdUsuario())
@@ -285,8 +286,18 @@ public class UsuarioMBean {
 					usuarioNuevo.setDireccion(direccion);
 					usuarioNuevo.setTelefono(telefono);
 					usuarioNuevo.setIdRol(String.valueOf(idRol));
-
+					
 					usuarioServices.grabarUsuarioObservados(usuarioNuevo);
+					
+					//enviar correo
+					
+					Mail m=new Mail();
+					m.setMailAddress(correo);
+					m.setName(nuevoUsuario);
+					m.setPass(getUsuarioModel().getClave());
+					m.setNombrecompleto(nombres+" "+apellidoPaterno+" "+apellidoMaterno);
+					m.sendMail();
+					
 					limpiarCampos();
 					mostrarMensaje(8);
 				}
@@ -383,6 +394,15 @@ public class UsuarioMBean {
 					usuarioNuevo.setDireccion(direccion);
 					usuarioNuevo.setTelefono(telefono);
 					usuarioNuevo.setIdRol(String.valueOf(idRol));
+					
+						//enviar correo
+					
+					Mail m=new Mail();
+					m.setMailAddress(correo);
+					m.setName(nuevoUsuario);
+					m.setPass(getUsuarioModel().getClave());
+					m.setNombrecompleto(nombres+" "+apellidoPaterno+" "+apellidoMaterno);
+					m.sendMail();
 					if (idRol == ROL_ALUMNO_REGULAR) {
 						usuarioNuevo.setCodAlumno(codAlumno);
 						usuarioNuevo.setPlanAlumno(planAlumno);

@@ -109,11 +109,21 @@
 	                    	<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
 								<p:commandButton
 								 	id="btnBuscarAsistencia" align="center" 
+								 	icon="ui-icon ui-icon-search" 
 	                                value="#{mensaje['unayoe.ingresar.datos.alumnos.label.buscar']}"
 	                                actionListener="#{alumnoMBean.buscarAsistenciaAlumnosTutoria}"
-	                                update="tablaResultado,mostrarTutoria, mostrarNotas, mensajePrimeraSesion"/>                     
+	                                update="tablaResultado,mostrarTutoria, mostrarNotas, mensajePrimeraSesion">
+	                               <p:confirm header="Delete Record" 
+               						message="Are you sure about deleting this record?" 
+               						icon="ui-icon-alert"/>
+	                               </p:commandButton>                    
 							</p:column>
-	                    </p:row>                   
+	                    </p:row>  
+
+<p:confirmDialog global="true" showEffect="fade" hideEffect="explode" closable="false">
+<p:commandButton title="GDelYesButton" value="Aceptar" styleClass="ui-confirmdialog-yes" align="center"/>
+</p:confirmDialog>     
+       
 	                </p:panelGrid>            
 	            </p:panel>
 	            
@@ -253,7 +263,8 @@
 								ajax="true" />
 						</p:column>
 	            	</p:row>
-	            </p:outputPanel>           
+	            </p:outputPanel>   
+	                 
           	</h:form>
         </ui:define>
     </ui:composition>
