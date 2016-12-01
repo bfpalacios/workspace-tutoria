@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import pe.edu.sistemas.unayoe.model.DatosAlumnoExcelModel;
 import pe.edu.sistemas.unayoe.core.util.FormatoExcel;
 import pe.edu.sistemas.unayoe.model.ArchivoModel;
+import pe.edu.sistemas.unayoe.model.CicloModel;
 import pe.edu.sistemas.unayoe.services.AlumnoServices;
 import pe.edu.sistemas.unayoe.services.ComunServices;
 import pe.edu.sistemas.unayoe.services.CursoServices;
@@ -86,6 +87,9 @@ public class DatosAlumnosMBean {
 	/** The archivo model. */
 	@Autowired
 	private ArchivoModel archivoModel;
+	
+	@Autowired
+	private CicloModel cicloModel;
 
 	/** The datos alumno excel model grid. */
 	private List<DatosAlumnoExcelModel> datosAlumnoExcelModelGrid;
@@ -691,7 +695,9 @@ public class DatosAlumnosMBean {
 	 */
 	public String selectorDatosAlumnos(int modo) throws Exception {
 		String pagina = "";
-
+		CicloBO ciclo = comunServices.buscarCicloActual();
+		setCicloModel(new CicloModel());
+		getCicloModel().setCiclo(ciclo);
 		switch (modo) {
 		case 1:
 			MODO_USUARIO = MODO_ADMIN;
@@ -837,4 +843,13 @@ public class DatosAlumnosMBean {
 	public void setDatosAlumnoExcelModelGrid(List<DatosAlumnoExcelModel> datosAlumnoExcelModelGrid) {
 		this.datosAlumnoExcelModelGrid = datosAlumnoExcelModelGrid;
 	}
+	
+	public void setCicloModel(CicloModel cicloModel){
+		this.cicloModel = cicloModel;
+	}
+	
+	public CicloModel getCicloModel(){
+		return this.cicloModel;
+	}
+	
 }

@@ -45,6 +45,19 @@
 		            			      multiple="false" rendered="true"  label="Seleccionar Excel"/>	
 		          	</p:column>
 		   		</p:row>
+		   		
+		   		<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblCicloActual"
+								value = "Ciclo:"
+							/>
+						</p:column>
+						<p:column colspan="2">
+							<p:inputText id="cicloActual"
+								value="#{datosAlumnosMBean.cicloModel.ciclo.anio} - #{datosAlumnosMBean.cicloModel.ciclo.periodo}" disabled="true" size="50"
+							/>
+						</p:column>
+					</p:row>
 		   	
 		   		<p:row id="filExcel">
 		        	<p:column colspan="3" styleClass="ui-column-label-spij styleAlignCenterColumn">
