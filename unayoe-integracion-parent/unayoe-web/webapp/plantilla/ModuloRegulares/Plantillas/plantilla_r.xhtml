@@ -12,41 +12,49 @@
 
 <h:body>
 	<!--  <h:form id="formPrincipal"> -->
-		<p:layout fullPage="true">
-			<p:idleMonitor onactive="sessionTimeOutDialog.show();"
-				timeout="#{session.maxInactiveInterval * 1000}" />
-			<p:dialog header="#{mensaje['error.sessionTimeOut.header']}"
-				widgetVar="sessionTimeOutDialog" modal="true" fixedCenter="true"
-				closable="false" width="400" visible="false">
-				<h:outputText value="#{mensaje['error.sessionTimeOut.text']}" />
-				<input id="confirmBackToLogin" type="button"
-					value="#{mensaje['error.sessionTimeOut.button']}"
-					onclick="window.location='#{facesContext.externalContext.requestContextPath}/login.xhtml';" />
-			</p:dialog>
-			<p:layoutUnit position="north" size="220">
+	<p:layout fullPage="true">
+		<p:idleMonitor onactive="sessionTimeOutDialog.show();"
+			timeout="#{session.maxInactiveInterval * 1000}" />
+		<p:dialog header="#{mensaje['error.sessionTimeOut.header']}"
+			widgetVar="sessionTimeOutDialog" modal="true" fixedCenter="true"
+			closable="false" width="400" visible="false">
+			<h:outputText value="#{mensaje['error.sessionTimeOut.text']}" />
+			<input id="confirmBackToLogin" type="button"
+				value="#{mensaje['error.sessionTimeOut.button']}"
+				onclick="window.location='#{facesContext.externalContext.requestContextPath}/login.xhtml';" />
+		</p:dialog>
+		<p:layoutUnit position="north" size="280">
+			<div style="height: 85%">
 				<h:graphicImage id="imgBanner"
 					value="/resources/images/banner/fisi-unmsm.jpg" width="100%"
 					height="100%" />
-			</p:layoutUnit>
+			</div>
+			<div style="height: 15%">
+				<h:graphicImage id="barraObs"
+					value="/resources/images/banner/banner_reg_adm.jpg" width="100%"
+					height="100%" />
+			</div>
+		</p:layoutUnit>
 
-			<p:layoutUnit position="south" size="40">
-				<h:outputText value="${mensaje['demo.piepagina.mensaje']}" />
-			</p:layoutUnit>
+		<p:layoutUnit position="south" size="40">
+			<h:outputText value="${mensaje['demo.piepagina.mensaje']}" />
+		</p:layoutUnit>
 
-			<p:layoutUnit id="layoutCenter" position="center">
-				<div id="divPrincipalContenido"
-					style="font-size: 12px; margin: 0px auto; height: 100%;"
-					align="center">
-					<p:messages id="msgContenido" />
-					<ui:insert name="contenido" />
-				</div>
-				<ui:insert name="dialogos" />
-			</p:layoutUnit>
+		<p:layoutUnit id="layoutCenter" position="center">
+			<div id="divPrincipalContenido"
+				style="font-size: 12px; margin: 0px auto; height: 100%;"
+				align="center">
+				<p:messages id="msgContenido" />
+				<ui:insert name="contenido" />
+			</div>
+			<ui:insert name="dialogos" />
+		</p:layoutUnit>
 
-			<p:layoutUnit position="west" size="200" collapsible="true" header="Opciones" minSize="150">
-				<ui:include src="/plantilla/ModuloRegulares/Menus/menu_r.xhtml" />
-			</p:layoutUnit>
-		</p:layout>
-	  <!-- </h:form> --> 
+		<p:layoutUnit position="west" size="200" collapsible="true"
+			header="Opciones" minSize="150">
+			<ui:include src="/plantilla/ModuloRegulares/Menus/menu_r.xhtml" />
+		</p:layoutUnit>
+	</p:layout>
+	<!-- </h:form> -->
 </h:body>
 </html>

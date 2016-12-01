@@ -20,9 +20,17 @@
                  <input id="confirmBackToLogin" type="button" value="#{mensaje['error.sessionTimeOut.button']}"
                     onclick="window.location='#{facesContext.externalContext.requestContextPath}/login.xhtml';" />
             	</p:dialog>
-		 		<p:layoutUnit position="north" size="220"  >  
-	        		 <h:graphicImage id="imgBanner" value="/resources/images/banner/fisi-unmsm.jpg" width="100%" height="100%"/>	
-	    		</p:layoutUnit>  
+		 		<p:layoutUnit position="north" size="250"  >  
+<div style="height: 85%">
+			<h:graphicImage id="imgBanner"
+				value="/resources/images/banner/fisi-unmsm.jpg" width="100%"
+				height="100%" />
+			</div>
+			<div style="height: 15%">
+			<h:graphicImage id="barraObs"
+						value="/resources/images/banner/banner_obs_ocaa.jpg" width="100%"
+						height="100%" />
+			</div>	    		</p:layoutUnit>  
 	  
 			    <p:layoutUnit position="south" size="40">  
 			        <h:outputText value="${mensaje['demo.piepagina.mensaje']}" />  
