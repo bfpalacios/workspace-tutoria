@@ -390,7 +390,8 @@ public class GestionarActasMBean {
 		if (getTutoriaModel().getListarAlumnos() != null) {
 			getTutoriaModel().getListarAlumnos().clear();
 		}
-
+		System.out.println("Modo actualizar alumno : " + MODO);
+		
 		List<AlumnoBO> listaAlumnos = new ArrayList<AlumnoBO>();
 		listaAlumnos = alumnoServices.listarAlumnoTutoria(codDocente, getTutoriaModelSelect().getcCodigo(), PROCESO,
 				MODO);
@@ -459,7 +460,7 @@ public class GestionarActasMBean {
 		getTutoriaModelSelect().setaCodigo(codAlumno);
 		AlumnoBO alumno = tutoriaServices.buscarDatosAlumno(codAlumno);
 		getTutoriaModelSelect().setaNombre(alumno.getaNombre() + " " + alumno.getaApellido());
-		if (MODO == MODO_ADMIN) {
+		if (MODO == MODO_ADMIN || MODO == MODO_DECANO) {
 			codDocente = getTutoriaModelSelect().getpCodigo() == null ? "" : getTutoriaModelSelect().getpCodigo();
 		} else {
 			if (MODO == MODO_TUTOR) {

@@ -14,7 +14,7 @@
 			<p:column colspan="3">Estadisticas del sistema >> Estadísticas</p:column>
 		</p:row>
 		</f:facet>
-
+<!-- 
 		<p:outputPanel id="mostrarIndicadores" style="width:40%;margin-top:10px">
                 <p:row id="filaIndicadores">		   		
 		   			<p:column  id="colTabla" styleClass="ui-column-label-spij styleAlignRightColumn" colspan="3"> 
@@ -46,7 +46,8 @@
                 		</p:dataTable>
                 	</p:column>
                 </p:row>                
-			</p:outputPanel>		
+			</p:outputPanel>	-->
+			<p:chart type="pie" model="#{chart.pieModel1}" style="width:600px;height:600px" showDataLabels="true"/>	
 	</ui:define>
 </ui:composition>
 
