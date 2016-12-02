@@ -148,10 +148,53 @@
 									value="#{usuarioMBean.usuarioModel.rolesUsuario}"
 									var="roles" 
 									itemLabel="#{roles.role}"
-									itemValue="#{roles.idRol}"/> 								
+									itemValue="#{roles.idRol}"/>
+									<f:ajax event="change" execute="@this" render="selectOnePlan codigoAlumno"/>  								
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
+					
+				<!-- desde aqui hice el cambio :v -->	
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
+							<h:outputText id="lblCodAlumno"
+								value="Sólo aplicable si el rol a registrar es alumno" />
+						</p:column>
+					</p:row>
+					
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblCodigoAlumno"
+								value="#{mensaje['demo.mantenimiento.usuario.codAlumno']}" />
+						</p:column>
+
+						<p:column>
+							<p:inputText id="codigoAlumno" size="40"						
+								value="#{usuarioMBean.usuarioModel.codAlumno}" 
+								disabled="#{usuarioMBean.esAlumno}"/>					
+						</p:column>
+					</p:row>
+					
+					<p:row>
+						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
+							<h:outputText id="lblPlan"
+								value="#{mensaje['demo.mantenimiento.usuario.plan']}" />
+						</p:column>
+						<p:column styleClass="styleAlignLeftColumn">
+							<p:selectOneMenu
+								id="selectOnePlan"
+								value="#{usuarioMBean.usuarioModelSelect.planAlumno}"								
+								disabled="#{usuarioMBean.esAlumno}">
+								<f:selectItems 
+									value="#{usuarioMBean.usuarioModel.listaPlanes}"
+									var="planes" 
+									itemLabel="#{planes.valorCampo}"
+									itemValue="#{planes.idCampo}"/>								
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<!-- desde aqui hice el cambio :v -->	
+					
 				</p:panelGrid>
 			</p:panel>
 			
@@ -161,6 +204,8 @@
 						<p:commandButton 
 							id="botonGuardar" value="Guardar" 
 							actionListener="#{usuarioMBean.guardarNuevoUsuarioMR}" 
+							update="pnlGridLoginAcceso,usuarioId, clave, nombresUsuario, apellidoPaternoUsuario, apellidoMaternoUsuario, correoUsuario, direccionUsuario, telefonoUsuario, codigoAlumno,
+							pnlGridMensajes"
 							ajax="true" />							
 					</p:column>
 				</p:row>

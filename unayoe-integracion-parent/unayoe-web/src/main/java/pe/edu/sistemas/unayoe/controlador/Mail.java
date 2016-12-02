@@ -45,8 +45,8 @@ public class Mail {
 		this.mailAddress = mailAddress;
 	}
 	public void sendMail(){
-		final String usuario ="cristian12dn@gmail.com";
-		final String password ="dannajade1-";
+		final String usuario ="tallerproy2@gmail.com";
+		final String password ="tallerproyectos2";
 		Properties properties=new Properties();
 		properties.put("mail.smtp.auth","true");
 		properties.put("mail.smtp.starttls.enable","true");
