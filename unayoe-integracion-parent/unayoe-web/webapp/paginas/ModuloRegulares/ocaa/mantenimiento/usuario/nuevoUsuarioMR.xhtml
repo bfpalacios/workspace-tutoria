@@ -9,21 +9,15 @@
 	<ui:composition template="/plantilla/ModuloRegulares/Plantillas/plantilla_ocaa_r.xhtml">
 		<ui:define name="contenido">
 		<h:form>
-			<f:facet name="header">
-			<p:row>
-				<p:column colspan="3">Registro de Usuario >> Nuevo Usuario</p:column>
-			</p:row>
-			</f:facet>
-		
 			<p:outputPanel id="pnlGridMensajes" style="width:500px;margin-top:5px;">
-				<p:row>
-    				<p:column colspan="4" rowspan="2">
-    					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-   					</p:column>
-   				</p:row>
-   			</p:outputPanel>
+					<p:row>
+	    				<p:column colspan="4" rowspan="2">
+	    					<p:messages id="messages" showDetail="true"  globalOnly="true" closable="true" />
+	   					</p:column>
+	   				</p:row>
+	   			</p:outputPanel>
 			
-			<p:panel header="Mantenimiento de Usuarios" style="width: 400px;">					
+			<p:panel header="Mantenimiento de Usuarios" style="width:600px;">					
 				<p:panelGrid id="pnlGridLoginAcceso">
 					<p:row>
 						<p:column styleClass="ui-column-label-spij styleAlignRightColumn">
@@ -33,7 +27,7 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="usuarioId" size="40"
+							<p:inputText id="usuarioId" size="40" required="true"
 								requiredMessage="#{mensaje['general.error.requerido']}"
 								value="#{usuarioMBean.usuarioModel.idUsuario}" />
 							<p:message for="usuarioId" />
@@ -49,7 +43,7 @@
 
 						<p:column styleClass="styleAlignLeftColumn">
 							<p:password 
-								id="clave" size="40"
+								id="clave" size="40" required="true"
 								requiredMessage="#{mensaje['general.error.requerido']}"
 								value="#{usuarioMBean.usuarioModel.clave}" />
 							<p:message for="clave" />
@@ -63,9 +57,12 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="nombresUsuario" size="40"
-								requiredMessage="#{mensaje['general.error.requerido']}"
-								value="#{usuarioMBean.usuarioModel.nombres}" />
+							<p:inputText id="nombresUsuario" size="40" required="true" 							
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.nombre']}" 
+								value="#{usuarioMBean.usuarioModel.nombres}" >
+								<f:validateRegex pattern="^[a-zA-Z][a-zA-Z\s]+"/>
+								</p:inputText>
 							<p:message for="nombresUsuario" />
 						</p:column>
 					</p:row>
@@ -78,9 +75,12 @@
 
 						<p:column>
 							<p:inputText 
-								id="apellidoPaternoUsuario" size="40"
-								requiredMessage="#{mensaje['general.error.requerido']}"
-								value="#{usuarioMBean.usuarioModel.paterno}" />
+								id="apellidoPaternoUsuario" size="40" required="true"
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.ap']}" 
+								value="#{usuarioMBean.usuarioModel.paterno}" >
+								 <f:validateRegex pattern="^[a-zA-Z][a-zA-Z\s]+"/>
+								</p:inputText>
 							<p:message for="apellidoPaternoUsuario" />
 						</p:column>
 					</p:row>
@@ -92,9 +92,12 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="apellidoMaternoUsuario" size="40"
-								requiredMessage="#{mensaje['general.error.requerido']}"
-								value="#{usuarioMBean.usuarioModel.materno}" />
+							<p:inputText id="apellidoMaternoUsuario" size="40" required="true"
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.am']}"  
+								value="#{usuarioMBean.usuarioModel.materno}" >
+								 <f:validateRegex pattern="^[a-zA-Z][a-zA-Z\s]+"/>
+								</p:inputText>
 							<p:message for="apellidoMaternoUsuario" />
 						</p:column>
 					</p:row>
@@ -106,8 +109,13 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="correoUsuario" size="40"						
-								value="#{usuarioMBean.usuarioModel.correo}" />					
+							<p:inputText id="correoUsuario" size="40"	required="true"
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.correo']}"  					
+								value="#{usuarioMBean.usuarioModel.correo}" > 
+								 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+								</p:inputText>		
+							<p:message for= "correoUsuario"/>			
 						</p:column>
 					</p:row>
 			
@@ -130,8 +138,13 @@
 						</p:column>
 
 						<p:column>
-							<p:inputText id="telefonoUsuario" size="40"						
-								value="#{usuarioMBean.usuarioModel.telefono}" />					
+							<p:inputText id="telefonoUsuario" size="40"	required="true"
+								requiredMessage="#{mensaje['general.error.requerido']}" 
+								validatorMessage="#{mensaje['general.error.telefono']}"  
+								value="#{usuarioMBean.usuarioModel.telefono}" >		
+								 <f:validateRegex pattern="[0-9]+"/>
+								</p:inputText>
+								<p:message for="telefonoUsuario" />			
 						</p:column>
 					</p:row>
 			
@@ -148,13 +161,12 @@
 									value="#{usuarioMBean.usuarioModel.rolesUsuario}"
 									var="roles" 
 									itemLabel="#{roles.role}"
-									itemValue="#{roles.idRol}"/>
-									<f:ajax event="change" execute="@this" render="selectOnePlan codigoAlumno"/>  								
+									itemValue="#{roles.idRol}"/> 
+								<f:ajax event="change" execute="@this" render="selectOnePlan codigoAlumno"/> 
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
 					
-				<!-- desde aqui hice el cambio :v -->	
 					<p:row>
 						<p:column styleClass="ui-column-label-spij styleAlignRightColumn" colspan="2">
 							<h:outputText id="lblCodAlumno"
@@ -193,12 +205,16 @@
 							</p:selectOneMenu>
 						</p:column>
 					</p:row>
-					<!-- desde aqui hice el cambio :v -->	
-					
 				</p:panelGrid>
 			</p:panel>
 			
-			<p:outputPanel id="pnlGuardar" style="width:400x;margin-top:10px;">
+			<p:panelGrid>
+				<p:row>
+					<p:column colspan="1" style="font-weight:bold;font-size:13px;color:red;">Advertencia:Los campos que están con (*) son obligatorios</p:column>
+				</p:row>
+				</p:panelGrid>
+			
+			<p:outputPanel id="pnlGuardar" style="width:400x;margin-top:px;">
 				<p:row>
 					<p:column colspan="2" styleClass="styleAlignRightColumn">
 						<p:commandButton 
