@@ -136,7 +136,7 @@ public class GestionarActasMBean {
 	private static int MODO_UNAYOE = 4;
 	
 	/** The modo decano. */
-	private static int MODO_DECANO = 5;
+	private static int MODO_DECANO = 6;
 
 	// private static String REGISTRO_CORRECTO = "R";
 	/** The registro faltante. */
@@ -364,6 +364,7 @@ public class GestionarActasMBean {
 	public void actualizarDocente(ValueChangeEvent e) throws Exception {
 		setListaObservaciones(new ArrayList<TutoriaModel>());
 		String codCurso = (String) (e.getNewValue() == null ? "" : e.getNewValue());
+		System.out.println("curso " + codCurso);
 		List<ProfesorBO> listaProfesores = new ArrayList<ProfesorBO>();
 		switch (PROCESO) {
 		case 1:
@@ -770,7 +771,7 @@ public class GestionarActasMBean {
 				break;
 			case 5:
 				PROCESO = PROCESO_OBSERVADOS;
-				MODO = MODO_DECANO;
+				MODO = MODO_ADMIN;
 				setDesactivarCarga(true);
 				setDesactivarTarea(true);
 				System.out.println("TAREA GG : " + isDesactivarTarea());

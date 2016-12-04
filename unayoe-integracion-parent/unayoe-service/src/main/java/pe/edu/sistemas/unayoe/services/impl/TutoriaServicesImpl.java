@@ -207,7 +207,7 @@ public class TutoriaServicesImpl implements TutoriaServices {
 	 * @see pe.edu.sistemas.unayoe.services.TutoriaServices#listarSesionTutoria(int, int, java.lang.String, java.lang.String, java.lang.String, int, int)
 	 */
 	public List<SesionBO> listarSesionTutoria(int anio, int periodo, String codCurso, String codDocente, String codAlumno, int procesoTutoria, int modo) throws Exception{
-		if(modo==5){
+		if(modo==6){
 			modo=1;
 		}
 		return tutoriaIDao.listarSesionTutoria(anio, periodo, codCurso, codDocente, codAlumno, procesoTutoria, modo);
@@ -218,7 +218,7 @@ public class TutoriaServicesImpl implements TutoriaServices {
 	 */
 	public SesionBO obtenerActaTutoria(int anio, int periodo, String codCurso, String codDocente, 
 			                           String codAlumno, int sesion, int procesoTutoria, int modo) throws Exception{
-		if(modo==5){
+		if(modo==6){
 			modo=1;
 		}
 		return tutoriaIDao.obtenerActaTutoria(anio, periodo, codCurso, codDocente, codAlumno, sesion, procesoTutoria, modo);
