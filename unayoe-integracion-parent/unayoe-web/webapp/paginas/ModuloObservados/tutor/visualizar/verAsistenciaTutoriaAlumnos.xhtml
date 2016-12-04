@@ -137,6 +137,16 @@
                 	</p:column>
                 </p:row>                
 			</p:outputPanel> 
+			<p:outputPanel id="pnlExportarAsistencia" style="width:100px;margin-top:10px;">
+					<p:row>
+						<p:column colspan="3">
+							<p:commandButton 
+								id="botonExportar3"
+								value="Exportar Asistencia" 
+								actionListener="#{registrarTutoriaMBean.imprimirReporteAsistenciaTutoriaAlumno}" ajax="false" />
+						</p:column>
+					</p:row>
+				</p:outputPanel>	
 		</h:form>
         </ui:define>
     </ui:composition>
