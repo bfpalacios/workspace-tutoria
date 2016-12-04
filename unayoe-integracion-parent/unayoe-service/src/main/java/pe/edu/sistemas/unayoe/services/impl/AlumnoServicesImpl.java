@@ -137,7 +137,7 @@ public class AlumnoServicesImpl implements AlumnoServices{
 	 * @see pe.edu.sistemas.unayoe.services.AlumnoServices#listarAlumnoTutoria(java.lang.String, java.lang.String, int, int)
 	 */
 	public List<AlumnoBO> listarAlumnoTutoria(String usuarioDocente, String codCurso, int tipoAlumno, int modo){
-		if(modo==5){
+		if(modo==6){
 			modo=1;
 		}
 		return tutoriaDAO.listarAlumnoTutoria(usuarioDocente, codCurso, tipoAlumno, modo);

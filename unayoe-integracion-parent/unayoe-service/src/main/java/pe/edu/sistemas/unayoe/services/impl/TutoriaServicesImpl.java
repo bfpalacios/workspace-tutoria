@@ -354,6 +354,9 @@ public class TutoriaServicesImpl implements TutoriaServices {
 	 * @see pe.edu.sistemas.unayoe.services.TutoriaServices#listarDatosTutoria(java.lang.String, java.lang.String, java.lang.String, int, int)
 	 */
 	public List<TutoriaBO> listarDatosTutoria(String codCurso, String codDocente, String codAlumno, int procesoTutoria, int modoUsuario) throws Exception{
+		if(modoUsuario==6){
+			modoUsuario=1;
+		}
 		return tutoriaIDao.listarDatosTutoria(codCurso, codDocente, codAlumno, procesoTutoria, modoUsuario);
 	}
 	

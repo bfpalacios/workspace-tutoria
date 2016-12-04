@@ -461,7 +461,8 @@ public class RegistrarTutoriaMBean {
 	public void actualizarAlumnoGenerico(ValueChangeEvent e) throws Exception {
 		String codDocente = "";
 		String codCurso = "";
-		if (MODO_USUARIO == MODO_ADMIN) {
+		System.out.println("MODO " + MODO_USUARIO);
+		if (MODO_USUARIO == MODO_ADMIN || MODO_USUARIO == MODO_DECANO) {
 			codCurso = getTutoriaModelSelect().getcCodigo() == null ? "" : getTutoriaModelSelect().getcCodigo();
 			codDocente = (String) (e.getNewValue() == null ? "" : e.getNewValue());
 		} else {
@@ -1254,6 +1255,7 @@ public class RegistrarTutoriaMBean {
 
 			switch (MODO_USUARIO) {
 			case 1:
+			case 6:
 				codDocente = getTutoriaModelSelect().getpCodigo() == "" ? "Invalido"
 						: getTutoriaModelSelect().getpCodigo();
 				break;
@@ -1941,7 +1943,7 @@ public class RegistrarTutoriaMBean {
 				pagina = "/paginas/ModuloObservados/admin/visualizar/verHistorialTareasAlumno.xhtml";
 				break;
 			case 6:
-				MODO_USUARIO = MODO_ADMIN;
+				MODO_USUARIO = MODO_DECANO;
 				MODO_USUARIO_AUX = MODO_DECANO;
 				listarCursos();
 				pagina = "/paginas/ModuloObservados/decano/visualizar/verAsistenciaTutoriaAlumnos.xhtml";
@@ -2006,6 +2008,7 @@ public class RegistrarTutoriaMBean {
 				pagina = "/paginas/ModuloObservados/diraca/visualizar/verIndicadoresSistema.xhtml";
 				break;
 			case 4:
+				MODO_USUARIO = MODO_DECANO;
 				pagina = "/paginas/ModuloObservados/decano/visualizar/verIndicadoresSistema.xhtml";
 				break;
 			}
