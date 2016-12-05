@@ -65,7 +65,7 @@ public class Mail {
 			Message msj=new MimeMessage(session);
 			msj.setFrom(new InternetAddress("aa@aa.com"));
 			msj.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailAddress));
-			msj.setSubject("!Gracias por Registrarte - Sistema Tutoria FISI");
+			msj.setSubject("Sistema de Tutoria - Información de su cuenta de usuario");
 			msj.setText("Hola " + nombrecompleto+",\n"+"Tus datos para ingresar al sistema son los siguientes: \n"+"Usuario: "+name+"\n"+"Contraseña :"+pass+"\n"+"http://sistemas.unmsm.edu.pe/");
 		Transport.send(msj);
 		}catch(MessagingException ex){
