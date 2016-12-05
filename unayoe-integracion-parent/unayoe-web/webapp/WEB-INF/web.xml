@@ -8,9 +8,14 @@
 		<param-name>facelets.SKIP_COMMENTS</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
-	
-	
+
+
+
+<context-param>
+        <param-name>log4j-config-location</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+    </context-param>
+
 
 	<!-- CONFIGURA SPRING -->
 	<listener>
@@ -19,6 +24,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
+	<listener>
+    <listener-class>pe.edu.sistemas.unayoe.listener.LogListener</listener-class>
+</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/context-spring/applicationContext.xml,/WEB-INF/context-spring/spring-security.xml</param-value>
@@ -51,9 +59,9 @@
 		<param-value>server</param-value>
 	</context-param>
 	<context-param>
-<param-name>primefaces.THEME</param-name>
-	<param-value>humanity</param-value>
-    </context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>humanity</param-value>
+	</context-param>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

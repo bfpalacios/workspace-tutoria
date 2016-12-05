@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,6 +29,7 @@ import org.springframework.stereotype.Controller;
 
 
 import pe.edu.sistemas.unayoe.model.LoginModel;
+import pe.edu.sistemas.unayoe.security.MyAuthenticationFailureHandler;
 import pe.edu.sistemas.unayoe.services.RolServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 import pe.edu.sistemas.unayoe.unayoe.bo.RolBO;
@@ -44,7 +46,8 @@ import pe.edu.sistemas.unayoe.listener.*;
 public class LoginMBean /*implements PhaseListener*/ {
      /*log*/
 	
-      
+	final static Logger log = Logger.getLogger(LoginMBean.class);
+
       
 	/** The login model. */
 	@Autowired
@@ -182,9 +185,10 @@ public class LoginMBean /*implements PhaseListener*/ {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		String password = shaPasswordEncoder.encodePassword(loginModel.getClave(), null);
 		
-		ConexionLog.registrarMensaje(0,"***LOGIN***");
-		ConexionLog.registrarMensaje(0,"Usuario"+loginModel.getUsuario());
-		ConexionLog.registrarMensaje(0,"Clave"+loginModel.getClave());
+		log.info("***LOGIN***");		
+		log.info("Usuario "+loginModel.getUsuario());
+		log.info("Clave "+loginModel.getClave());
+		
 		RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher(
 				"/j_spring_security_check?j_username=" + loginModel.getUsuario() + "&j_password=" + password);
 		// try{

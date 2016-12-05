@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -22,6 +23,8 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
+
+import pe.edu.sistemas.unayoe.listener.ConexionLog;
 
 
 // TODO: Auto-generated Javadoc
@@ -46,6 +49,8 @@ public class MyAuthenticationFailureHandler extends
 
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
+	final static Logger log = Logger.getLogger(MyAuthenticationFailureHandler.class);
+	
 	/* (non-Javadoc)
 	 * @see org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler#onAuthenticationFailure(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.core.AuthenticationException)
 	 */
@@ -56,6 +61,9 @@ public class MyAuthenticationFailureHandler extends
 		
 		if(exception instanceof BadCredentialsException){			
 			System.out.println("Usuario o pass incorrecta");
+			
+			log.warn("Usuario o pass incorrecta");
+			
 			 FacesMessage msj = new FacesMessage(FacesMessage.SEVERITY_FATAL,"Usuario y/o contraseña incorrecta.", "");
 			 System.out.println("msj "+msj);
 			 

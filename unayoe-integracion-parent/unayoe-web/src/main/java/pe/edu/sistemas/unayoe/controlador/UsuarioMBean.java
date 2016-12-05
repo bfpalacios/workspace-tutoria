@@ -6,6 +6,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import pe.edu.sistemas.unayoe.listener.ConexionLog;
 import pe.edu.sistemas.unayoe.model.UsuarioModel;
 import pe.edu.sistemas.unayoe.services.ComunServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
@@ -85,6 +87,9 @@ public class UsuarioMBean {
 	/** The es alumno. */
 	private boolean esAlumno = true;
 
+	
+	static Logger log=Logger.getLogger(ConexionLog.class);
+	
 	/**
 	 * Instantiates a new usuario M bean.
 	 */
@@ -300,12 +305,14 @@ public class UsuarioMBean {
 					
 					limpiarCampos();
 					mostrarMensaje(8);
+					log.info("Registro de usuario exitoso");
 				}
 			} else {
 				mostrarMensaje(7);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("Error", e);
 			mostrarMensaje(9);
 		}
 		limpiarObjetos();

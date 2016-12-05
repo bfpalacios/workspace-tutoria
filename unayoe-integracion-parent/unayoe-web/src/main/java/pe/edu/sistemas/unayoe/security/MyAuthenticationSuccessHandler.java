@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import pe.edu.sistemas.unayoe.unayoe.bo.RolBO;
 import pe.edu.sistemas.unayoe.unayoe.bo.UsuarioBO;
+import pe.edu.sistemas.unayoe.listener.ConexionLog;
 import pe.edu.sistemas.unayoe.services.RolServices;
 import pe.edu.sistemas.unayoe.services.UsuarioServices;
 
@@ -42,6 +44,10 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
 	@Autowired
 	private RolServices rolService;
 
+	
+	final static Logger log = Logger.getLogger(MyAuthenticationSuccessHandler.class);
+
+	
 	/* (non-Javadoc)
 	 * @see org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler#onAuthenticationSuccess(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.core.Authentication)
 	 */
@@ -49,7 +55,7 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		if (authentication.isAuthenticated()) {
-			System.out.println("en successhandler");
+			log.info( "Ingreso exitoso");
 			UsuarioBO usuarioBO = null;
 			try {
 				User user = (User) authentication.getPrincipal();
@@ -117,7 +123,7 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
 					}
 
 					setDefaultTargetUrl(url);
-System.out.println("url " + url);
+					log.info("URL " + url);
 				} else {
 					// para antes de agregarlo deberia configurarse el spring
 					// security
@@ -133,7 +139,7 @@ System.out.println("url " + url);
 				
 				redirectStrategy.sendRedirect(request, response, getDefaultTargetUrl());
 			} catch (Exception e) {
-				logger.error(e.getMessage(), e);
+				log.error(e.getMessage(), e);
 				setDefaultTargetUrl("/login.xhtml");
 			}
 		}
