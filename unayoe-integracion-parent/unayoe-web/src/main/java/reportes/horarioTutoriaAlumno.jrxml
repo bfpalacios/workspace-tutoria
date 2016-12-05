@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="horarioTutoriaAlumno" pageWidth="648" pageHeight="842" columnWidth="608" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f5ef60e-a18a-44f7-a856-890aa9cbbaa0">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="95"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="nomAlu" class="java.lang.String"/>
 	<field name="ciclo" class="java.lang.String"/>
@@ -16,14 +16,35 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="94" splitType="Stretch">
 			<staticText>
-				<reportElement x="181" y="16" width="265" height="23" uuid="f1f20cfb-88ba-4bed-819d-1ca8447a9f33"/>
+				<reportElement x="185" y="59" width="265" height="23" uuid="f1f20cfb-88ba-4bed-819d-1ca8447a9f33"/>
 				<textElement>
 					<font size="13" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE TUTORIA EN ALUMNO]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="197" y="31" width="225" height="20" uuid="62eb8620-4bea-47a7-9bb7-3f86055668b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Universidad del Perú, Decana de América"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="136" y="11" width="370" height="20" uuid="d49ce009-4d37-4eff-abf6-72e4a105fd0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS"]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="41" y="3" width="64" height="67" uuid="afd317c1-4b0f-4a09-9693-859b84f2c549"/>
+				<imageExpression><![CDATA["Logo1.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="132" y="51" width="389" height="1" uuid="6de5ccc3-0b2e-4572-ac42-fb58babcec42"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -135,7 +156,24 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="439" y="17" width="80" height="20" uuid="59b5b203-781a-46c4-bcd9-4b9944780940"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="43" y="11" width="516" height="1" uuid="2de1742e-b066-40ef-a538-58aa8f881d11"/>
+			</line>
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="17" width="40" height="20" uuid="6735984a-a325-4f1c-86ed-94cdeba79e68"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="17" width="177" height="20" uuid="d8b2721a-701c-4a86-b7f6-826ddf3b1cb3"/>
+				<text><![CDATA[Sistema de Tutoria de Alumnos - FISI]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

@@ -18,23 +18,23 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="156" splitType="Stretch">
+		<band height="204" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="10" width="802" height="32" uuid="4b260ec3-c4ff-42ad-920d-034fe9b6fd4a"/>
+				<reportElement x="18" y="70" width="802" height="32" uuid="4b260ec3-c4ff-42ad-920d-034fe9b6fd4a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Arial Black" size="18"/>
 				</textElement>
 				<text><![CDATA[SISTEMA DE SEGUIMIENTO ACADEMICO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="42" width="803" height="20" uuid="fd8f1c2d-b437-4d12-ac05-dc0d5faab970"/>
+				<reportElement x="18" y="101" width="803" height="20" uuid="fd8f1c2d-b437-4d12-ac05-dc0d5faab970"/>
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="16"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE TAREAS EN TUTORÍA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="214" y="95" width="80" height="20" uuid="d40e8e99-b155-44a1-b72e-e056e4d7f871">
+				<reportElement x="233" y="144" width="80" height="20" uuid="d40e8e99-b155-44a1-b72e-e056e4d7f871">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>
@@ -50,7 +50,7 @@
 				<text><![CDATA[Curso:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="294" y="115" width="250" height="20" uuid="8739bfb1-5955-4a2b-88e9-9914e467e89e">
+				<reportElement x="313" y="164" width="250" height="20" uuid="8739bfb1-5955-4a2b-88e9-9914e467e89e">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
@@ -66,7 +66,7 @@
 				<textFieldExpression><![CDATA[$P{docente}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="214" y="75" width="330" height="20" uuid="0728672e-af3d-48e6-a39f-250e3c2d4b5b"/>
+				<reportElement x="233" y="124" width="330" height="20" uuid="0728672e-af3d-48e6-a39f-250e3c2d4b5b"/>
 				<box>
 					<topPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
@@ -79,7 +79,7 @@
 				<text><![CDATA[DATOS DE TUTORÍA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="294" y="135" width="250" height="20" uuid="3f855dc7-13be-4e82-91da-313f91419fc4"/>
+				<reportElement x="313" y="184" width="250" height="20" uuid="3f855dc7-13be-4e82-91da-313f91419fc4"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -92,7 +92,7 @@
 				<textFieldExpression><![CDATA[$P{alumno}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="214" y="115" width="80" height="20" uuid="d051f74c-c88b-4003-9194-bafdae509da8">
+				<reportElement x="233" y="164" width="80" height="20" uuid="d051f74c-c88b-4003-9194-bafdae509da8">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
@@ -109,7 +109,7 @@
 				<text><![CDATA[Docente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="214" y="135" width="80" height="20" uuid="bd4609ba-e8d2-4035-942e-f2cba11dc3ce"/>
+				<reportElement x="233" y="184" width="80" height="20" uuid="bd4609ba-e8d2-4035-942e-f2cba11dc3ce"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -123,7 +123,7 @@
 				<text><![CDATA[Alumno:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="294" y="95" width="250" height="20" uuid="0c9b75d4-4a37-420e-923b-462bf58bf773"/>
+				<reportElement x="313" y="144" width="250" height="20" uuid="0c9b75d4-4a37-420e-923b-462bf58bf773"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -135,10 +135,31 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{curso}]]></textFieldExpression>
 			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="141" y="1" width="64" height="67" uuid="206e301e-5ae7-40b5-8bf9-b8e3b45ea044"/>
+				<imageExpression><![CDATA["Logo1.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="212" y="50" width="389" height="1" uuid="db25d158-7b9a-4edd-8b84-6c144790dbd7"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="233" y="10" width="370" height="20" uuid="ad97c006-1403-40d1-a38c-fdc2e01bfc37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="30" width="225" height="20" uuid="98dd864b-8fe8-4b14-abdd-ea0a51408b4b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Universidad del Perú, Decana de América"]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="3" splitType="Stretch"/>
+		<band height="19" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="55" splitType="Stretch">
@@ -360,7 +381,24 @@
 		<band height="13" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="22" splitType="Stretch"/>
+		<band height="36" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="620" y="11" width="40" height="20" uuid="dd4eb71a-912f-444a-b2da-4b9fb60e36de"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="539" y="11" width="80" height="20" uuid="70352db9-ed5f-414a-b170-cd49ef0d3687"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="143" y="5" width="516" height="1" uuid="445794fc-218e-4add-8576-326bceb26441"/>
+			</line>
+			<staticText>
+				<reportElement x="141" y="11" width="177" height="20" uuid="6517c272-5d3a-4b6f-a838-8b397bfce670"/>
+				<text><![CDATA[Sistema de Tutoria de Alumnos - FISI]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="25" splitType="Stretch"/>

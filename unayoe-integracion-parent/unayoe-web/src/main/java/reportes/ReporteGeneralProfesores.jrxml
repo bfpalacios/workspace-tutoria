@@ -28,18 +28,11 @@
 	<title>
 		<band height="120" splitType="Stretch">
 			<staticText>
-				<reportElement x="233" y="16" width="240" height="23" uuid="f1f20cfb-88ba-4bed-819d-1ca8447a9f33"/>
+				<reportElement x="229" y="58" width="240" height="23" uuid="f1f20cfb-88ba-4bed-819d-1ca8447a9f33"/>
 				<textElement textAlignment="Center">
 					<font size="13" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE DE TUTORES]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="43" y="11" width="105" height="28" uuid="62103a69-27f7-4bf4-9198-08e8ba9a604e"/>
-				<textElement>
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="19" y="79" width="126" height="15" uuid="71ca27df-653e-499a-9d8f-42cfd64c9e3c"/>
@@ -54,6 +47,27 @@
 					<font size="11" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nomCurso}]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="62" y="0" width="64" height="67" uuid="f860976a-1ae2-4eb4-a67c-84a89634d79b"/>
+				<imageExpression><![CDATA["Logo1.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="147" y="53" width="389" height="1" uuid="66b0ada5-bd76-419c-8596-5a401c877151"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="145" y="10" width="370" height="20" uuid="9521cb73-68a8-44aa-9319-8c8163504a6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="30" width="225" height="20" uuid="780572e1-c6f4-4edc-bff8-3ed30d0cf247"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Universidad del Perú, Decana de América"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -324,7 +338,24 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="556" y="19" width="40" height="20" uuid="2459de8d-6807-4046-b412-253106c1dd27"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="19" width="80" height="20" uuid="8e2948aa-5aba-403c-ab6f-a95f69d14a94"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="79" y="13" width="516" height="1" uuid="52b1b5a7-b23f-46b7-b6b6-a2cc30b2efba"/>
+			</line>
+			<staticText>
+				<reportElement x="77" y="19" width="177" height="20" uuid="69a590d0-5de6-4848-b6a6-edadfa97f094"/>
+				<text><![CDATA[Sistema de Tutoria de Alumnos - FISI]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

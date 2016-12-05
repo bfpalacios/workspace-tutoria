@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-06-07T20:39:05 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="86680397-5e06-443c-b04f-17985575fd42">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="ciclo" class="java.lang.String"/>
 	<parameter name="nomAlumno" class="java.lang.String"/>
 	<parameter name="facultad" class="java.lang.String"/>
@@ -17,8 +17,8 @@
 	<title>
 		<band height="260" splitType="Stretch">
 			<image>
-				<reportElement x="10" y="0" width="60" height="79" uuid="5b069bf7-8178-46a5-ae42-4570a08edf92"/>
-				<imageExpression><![CDATA["Logo.png"]]></imageExpression>
+				<reportElement x="10" y="0" width="70" height="79" uuid="5b069bf7-8178-46a5-ae42-4570a08edf92"/>
+				<imageExpression><![CDATA["Logo1.png"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="100" y="20" width="370" height="20" uuid="7e394898-005b-409c-9b87-c7b81a0ba07c"/>
@@ -189,6 +189,9 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{plan}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="92" y="67" width="389" height="1" uuid="531b3152-bd14-4a0c-b242-b995743fda99"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -261,7 +264,24 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="17" width="177" height="20" uuid="20502cd4-2782-448d-a344-bc96d3f15861"/>
+				<text><![CDATA[Sistema de Tutoria de Alumnos - FISI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="9" y="12" width="516" height="1" uuid="05c706c5-cc09-4511-a8ba-47d7620696d1"/>
+			</line>
+			<textField>
+				<reportElement x="378" y="17" width="97" height="20" uuid="1a287858-69d4-4c7d-8bcc-5c6992556709"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="482" y="16" width="40" height="20" uuid="0df373d1-ebcf-4555-8232-9e66786ea7a8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
