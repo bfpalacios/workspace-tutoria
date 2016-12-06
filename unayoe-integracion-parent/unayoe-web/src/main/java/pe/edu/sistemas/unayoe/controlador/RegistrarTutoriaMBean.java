@@ -59,6 +59,7 @@ public class RegistrarTutoriaMBean {
 
 	@Autowired
 	private ChartBean cb;
+	private ChartLine cl;
 
 	/** The comun services. */
 	@Autowired
@@ -197,6 +198,7 @@ public class RegistrarTutoriaMBean {
 		listAsistenciaTutoria = new ArrayList<AsistenciaTutoriaModel>();
 		listAsistenciaTutoriaDocente = new ArrayList<AsistenciaTutoriaModel>();
 		cb = new ChartBean();
+		cl=new ChartLine();
 		inicializarClases();
 	}
 
@@ -1508,6 +1510,7 @@ public class RegistrarTutoriaMBean {
 			}
 			getTutoriaModel().setListaIndicadores(listaIndicadores);
 			cb.setListaIndicadores(listaIndicadores);
+			cl.setListaIndicadores(listaIndicadores);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

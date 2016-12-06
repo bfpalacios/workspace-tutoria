@@ -50,8 +50,12 @@
 	                
 	                          
 				</p:outputPanel>	
-			</h:form-->	
-			<p:chart type="pie" model="#{chart.pieModel1}" style="width:600px;height:600px" showDataLabels="true"/> 
+			</h:form-->
+			<h:panelGrid columns="2" columnClasses="left,right" style="width:100%">	
+			<p:chart type="pie" model="#{chart.pieModel1}" style="width:500px;height:500px" showDataLabels="true"/> 
+				<!--p:chart type="line" model="#{chartLine.lineModel1}" style="width:500px;"/-->
+				<p:chart type="pie" model="#{chart.pieModel2}" style="width:500px;height:500px" showDataLabels="true"/>
+	</h:panelGrid>
 	</ui:define>
 </ui:composition>
 
